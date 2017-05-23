@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//agenda_tecnicos/__openerp__.py=utf-8
+encoding//agenda_tecnicos/models/agenda_tecnicos.py=utf-8
+encoding//outbox_testes/__openerp__.py=utf-8
+encoding//outbox_testes/models/sale_order.py=utf-8
+encoding//projetos_cinte/__openerp__.py=utf-8
+encoding//projetos_cinte/models/ponto_cliente_mudanca.py=utf-8
