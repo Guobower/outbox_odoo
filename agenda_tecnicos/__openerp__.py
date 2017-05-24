@@ -14,6 +14,7 @@
         'views/agenda_tecnicos_form.xml',
         'views/agenda_tecnicos_calendar.xml',
         'views/agenda_tecnicos_search.xml',
-        'views/agenda_tecnicos_tree.xml'
+        'views/agenda_tecnicos_tree.xml',
+        'views/agenda_tecnicos_graph.xml'
     ]
 }

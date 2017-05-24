@@ -10,7 +10,7 @@
             <field name="name">Agenda dos Técnicos</field>
             <field name="res_model">agenda_tecnicos</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                 	Crie a sua primeira agenda

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="agenda_tecnicos_graph">
+			<field name="name">agenda_tecnicos.graph</field>
+			<field name="model">agenda_tecnicos</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Agenda dos Técnicos">
+					<field name="name" />
+					<field name="equipe" />
+					<field name="data" />
+					<field name="cliente_nome" />
+					<field name="atividade" />
+					<field name="turno" />
+					<field name="status" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>
