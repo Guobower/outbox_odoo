@@ -25,8 +25,8 @@ class Agenda_tecnicos(models.Model):
         string='Cidade de Origem',
         help='Cidade de origem dos técnicos',
         comodel_name='l10n_br_base.city',
-        domain=[('state_id', '=', 70)])
-    
+        domain=['|',('state_id', '=', 70),('state_id', '=', 72)])
+
     cliente_nome = fields.Char(
         string='Cliente',
         size=200,
@@ -120,7 +120,7 @@ class Agenda_tecnicos(models.Model):
                 origem = self.pool.get('l10n_br_base.city').browse(cr, user, cidadeOrigem)
                 destino = self.pool.get('l10n_br_base.city').browse(cr, user, cidadeDestino)
         
-                url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + origem.name + ",RN&destinations=" + destino.name + ",RN&key=AIzaSyDYRUAfCeT3uwCqZzvVoGv1QqRIAL0h5dk"
+                url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + origem.name + ","+origem.state_id.name+"&destinations=" + destino.name + ","+destino.state_id.name+"&key=AIzaSyDYRUAfCeT3uwCqZzvVoGv1QqRIAL0h5dk"
                 url = url.encode('utf-8')
                 result = simplejson.load(urllib.urlopen(url))
         
