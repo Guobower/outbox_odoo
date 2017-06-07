@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="convenio115_tree">
+			<field name="name">convenio115.tree</field>
+			<field name="model">convenio115</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<tree string="Convênio 115">
+					<field name="name" />
+					<field name="mes" />
+					<field name="ano" />
+					<field name="empresa" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

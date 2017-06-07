@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="convenio115_form">
+			<field name="name">convenio115.form</field>
+			<field name="model">convenio115</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Convênio 115">
+					<sheet string="Convênio 115">
+						<button name="gerar_arquivo" type="object" string="Gerar arquivos fiscais"
+							class="oe_highlight" />
+						<button name="gerar_arquivo_identificacao" type="object" string="Gerar arquivo de identificação"
+							class="oe_highlight" />
+						<group string="Informações Principais">
+							<group>
+								<field name="name" />
+								<field name="empresa" />
+							</group>
+							<group>
+								<field name="data_emissao" />
+								<field name="mes" on_change="on_change_mes_ano(mes, ano)" />
+								<field name="ano" on_change="on_change_mes_ano(mes, ano)" />
+							</group>
+						</group>
+						<group string="Dados do Lote">
+							<group>
+								<field name="status_lote" />
+								<field name="status_sequencial" />
+							</group>
+							<group>
+								<field name="volume" />
+								<field name="situacao_documento_fiscal" />
+							</group>
+						</group>
+						<group string="Dados da Transmissão">
+							<group>
+								<field name="versao_validador"></field>
+								<field name="chave_controle_recibo"></field>
+							</group>
+							<group>
+								<field name="quantidade_advertencias"></field>
+							</group>
+						</group>
+						<notebook>
+							<page string="Faturas de Clientes">
+								<field name="notas_fiscais" domain="[('type', '=like', 'out_invoice')]">
+								</field>
+							</page>
+							<page string="Arquivo Mestre">
+								<group string="Identificação">
+									<group>
+										<field name="nome_arquivo_mestre" readonly="1"></field>
+										<field name="quantidade_registros_mestre" readonly="1"></field>
+										<field name="codigo_autenticacao_digital_mestre" readonly="1"></field>
+									</group>
+									<group>
+										<field name="numero_primeiro_documento" readonly="1"></field>
+										<field name="data_emissao_primeiro_documento" readonly="1"></field>
+										<field name="numero_ultimo_documento" readonly="1"></field>
+										<field name="data_emissao_ultimo_documento" readonly="1"></field>
+									</group>
+								</group>
+								<group string="Valores">
+									<group>
+										<field name="valor_total" readonly="1"></field>
+										<field name="operacoes_isentas" readonly="1"></field>
+									</group>
+									<group>
+										<field name="base_calculo_icms" readonly="1"></field>
+										<field name="icms" readonly="1"></field>
+									</group>
+								</group>
+							</page>
+							<page string="Arquivo de Itens">
+								<group>
+									<group>
+										<field name="nome_arquivo_itens" readonly="1"></field>
+										<field name="codigo_autenticacao_digital_itens" readonly="1"></field>
+									</group>
+									<group>
+										<field name="quantidade_registros_itens" readonly="1"></field>
+									</group>
+								</group>
+							</page>
+							<page string="Arquivo de Destinatários">
+								<group>
+									<group>
+										<field name="nome_arquivo_destinatarios" readonly="1"></field>
+										<field name="codigo_autenticacao_digital_destinatarios" readonly="1"></field>
+									</group>
+									<group>
+										<field name="quantidade_registros_destinatarios" readonly="1"></field>
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="convenio115_list_action">
+            <field name="name">Convênio 115</field>
+            <field name="res_model">convenio115</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Geração de arquivos necessários para as notas fiscais no
+                	convênio 115.
+                </p>
+            </field>
+        </record>
+
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="convenio115_menu" name="Convênio 115"
+                  parent="l10n_br_account.menu_l10n_br_account_fiscal" action="convenio115_list_action"/>
+        
+    </data>
+</openerp>
