@@ -19,7 +19,7 @@ class Agenda_tecnicos(models.Model):
         string='Cidade de Destino',
         help='Cidade de destino final dos técnicos',
         comodel_name='l10n_br_base.city',
-        domain=[('state_id', '=', 70)])
+        domain=['|',('state_id', '=', 70),('state_id', '=', 72)])
     
     cidade_origem = fields.Many2one(
         string='Cidade de Origem',
