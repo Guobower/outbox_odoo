@@ -3,6 +3,7 @@ import simplejson, urllib
 
 from openerp import models, fields, api
 from pysped.relato_sped.base_rps import VALOR_TOTAL
+from mx.Tools.Tools import base
 
 class Convenio115(models.Model):
     _name = 'convenio115'
@@ -365,6 +366,18 @@ class Convenio115(models.Model):
                 9, str(numero_nota)
                 )
             
+            # Valor total do ICMS da nota
+            nota_valor_icms = 0
+            
+            # Valor base do ICMS
+            nota_base_icms = 0
+            
+            # Cálculo de ICMS base e valor
+            for linha_imposto in item.tax_line:
+                nota_valor_icms = linha_imposto.amount
+                nota_base_icms = linha_imposto.base_amount
+                    
+            
             # Código de autenticação digital do documento fiscal, 32 caracteres, casas 104 - 135, tipo X 
             txt_content = txt_content + "" + self.formatar_alfanumerico(
                 32, str(
@@ -379,10 +392,10 @@ class Convenio115(models.Model):
                                 12, str('%.2f' % (item.amount_total)).replace('.', '')
                                 ),
                             self.formatar_numerico(
-                                12, str('%.2f' % (item.icms_base)).replace('.', '')
+                                12, str('%.2f' % (nota_base_icms)).replace('.', '')
                                 ),
                             self.formatar_numerico(
-                                12, str('%.2f' % (item.icms_value)).replace('.', '')
+                                12, str('%.2f' % (nota_valor_icms)).replace('.', '')
                                 ),
                             self.formatar_alfanumerico(
                                 8, self.formatar_caracteres_especiais(str(item.date_invoice))
@@ -404,27 +417,27 @@ class Convenio115(models.Model):
             
             # BC ICMS, 12 caracteres, casas 148 - 159, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
-                12, str('%.2f' % (item.icms_base)).replace('.', '')
+                12, str('%.2f' % (nota_base_icms)).replace('.', '')
                 )
             
             # Somando o ICMS
-            base_icms = base_icms + item.icms_base
+            base_icms = base_icms + nota_base_icms
             
             # ICMS Destacado, 12 caracteres, casas 160 - 171, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
-                12, str('%.2f' % (item.icms_value)).replace('.', '')
+                12, str('%.2f' % (nota_valor_icms)).replace('.', '')
                 )
             
             # Somando o ICMS
-            icms = icms + item.icms_value
+            icms = icms + nota_valor_icms
             
             # Operações isentas ou não tributadas, 12 caracteres, casas 172 - 183, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
-                12, str('%.2f' % (item.amount_total - item.icms_base)).replace('.', '')
+                12, str('%.2f' % (item.amount_total - nota_base_icms)).replace('.', '')
                 )
             
-            # Somando o ICMS
-            operacoes_isentas = operacoes_isentas + (item.amount_total - item.icms_base)
+            # Somando as Operações isentas
+            operacoes_isentas = operacoes_isentas + (item.amount_total - nota_base_icms)
             
             # Outros valores, 12 caracteres, casas 184 - 195, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
@@ -716,19 +729,29 @@ class Convenio115(models.Model):
                     11, str('0')
                     )
                 
-                # BC ICMS (com 2 decimais), 11 casas, 167 - 177 tipo N
-                txt_content = txt_content + "" + self.formatar_numerico(
-                    11, str('%.2f' % (linha_produto.icms_base)).replace('.', '')
-                    )
+                # Valores isentos
+                valores_isentos = 0
                 
+                # BC ICMS (com 2 decimais), 11 casas, 167 - 177 tipo N
+                if linha_produto.price_subtotal > linha_produto.price_tax_discount:
+                    txt_content = txt_content + "" + self.formatar_numerico(
+                        11, str('%.2f' % (linha_produto.price_subtotal)).replace('.', '')
+                        )
+                else:
+                    txt_content = txt_content + "" + self.formatar_numerico(
+                        11, str('%.2f' % (0.00)).replace('.', '')
+                        )
+                    valores_isentos = linha_produto.price_subtotal
+                    
+                    
                 # ICMS (com 2 decimais), 11 casas, 178 - 188 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    11, str('%.2f' % (linha_produto.icms_value)).replace('.', '')
+                    11, str('%.2f' % ((linha_produto.price_subtotal - linha_produto.price_tax_discount))).replace('.', '')
                     )
                 
                 # Operações isentas ou não tributadas (com 2 decimais), 11 casas, 189 - 199 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    11, str('%.2f' % ((linha_produto.quantity * linha_produto.price_unit) - linha_produto.icms_base)).replace('.', '')
+                    11, str('%.2f' % (valores_isentos)).replace('.', '')
                     )
                 
                 # Outros valores (com 2 decimais), 11 casas, 200 - 210 tipo N
@@ -738,7 +761,7 @@ class Convenio115(models.Model):
                 
                 # Alíquota do ICMS (com 2 decimais), 4 casas, 211 - 214 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    4, str('%.2f' % (linha_produto.icms_percent)).replace('.', '')
+                    4, str('%.2f' % (30.00)).replace('.', '')
                     )
                 
                 # Situação, 1 casas, 215 - 215 tipo X
