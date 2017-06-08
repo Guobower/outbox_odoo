@@ -2,8 +2,6 @@
 import simplejson, urllib
 
 from openerp import models, fields, api
-from pysped.relato_sped.base_rps import VALOR_TOTAL
-from mx.Tools.Tools import base
 
 class Convenio115(models.Model):
     _name = 'convenio115'
