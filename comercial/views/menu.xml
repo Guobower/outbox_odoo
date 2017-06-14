@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<record model="ir.actions.act_window" id="crm_case_category_act_licitados">
+			<field name="name">Licitados</field>
+			<field name="res_model">crm.lead</field>
+			<field name="view_mode">kanban,tree,graph,form,calendar</field>
+			<field name="domain">[('type','=','licitados')]</field>
+			<field name="context">{
+				'stage_type': 'licitados',
+				'default_type':
+				'licitados',
+				'default_user_id': uid
+				}
+			</field>
+			<field name="view_id" eval="False" />
+			<field name="search_view_id" ref="crm.view_crm_case_opportunities_filter" />
+			<field name="help" type="html">
+				<p>
+					Odoo ajuda você a manter o controle de sua linha de licitações
+					para
+					acompanhar o potencial de vendas e ter uma melhor previsão das
+					suas
+					receitas futuras.
+				</p>
+				<p>
+					Você será capaz de planejar reuniões e telefonemas com os orgãos,
+					convertê-los em cotações, anexar documentos relacionados,
+					acompanhar todas as discussões, e muito mais.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="crm.action_crm_tag_form_view_leads">
+			<field name="sequence" eval="2" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="crm.crm_case_form_view_leads" />
+			<field name="act_window_id" ref="crm.crm_case_category_act_leads_all" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="crm.action_crm_tag_form_view_leads">
+			<field name="sequence" eval="1" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="crm.crm_case_tree_view_leads" />
+			<field name="act_window_id" ref="crm.crm_case_category_act_leads_all" />
+		</record>
+
+
+		<menuitem name="Licitações" id="menu_crm_licitados" parent="base.menu_sales"
+			sequence="4" action="crm_case_category_act_licitados"
+			groups="base.group_sale_salesman,base.group_sale_manager" />
+
+	</data>
+</openerp>
