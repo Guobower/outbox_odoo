@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="atividades_cinte_graph">
+			<field name="name">atividades_cinte.graph</field>
+			<field name="model">atividades_cinte</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Atividades">
+					<field name="name" />
+					<field name="responsavel" />
+					<field name="atividade" />
+					<field name="dataPrevisao" />
+					<field name="dataConclusao" />
+					<field name="status" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>

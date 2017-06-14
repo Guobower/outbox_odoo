@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="atividades_cinte_search">
+			<field name="name">atividades_cinte.search</field>
+			<field name="model">atividades_cinte</field>
+			<field name="view_type">search</field>
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<search string="Search Atividades">
+					<field name="name" />
+					<field name="responsavel" />
+					<field name="atividade" />
+					<field name="dataPrevisao" />
+					<field name="dataConclusao" />
+					<field name="equipe" />
+					<field name="status" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

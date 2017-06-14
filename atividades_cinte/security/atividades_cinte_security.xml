@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <openerp>
+       <data noupdate="0">
+           <!-- Creating a Group Category -->        
+           <record id="atividades_cinte" model="ir.module.category">
+               <field name="name">Atividades Cinte</field>
+               <field name="sequence">1</field>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="atividades_cinte.manager" model="res.groups">
+               <field name="name">Administrador</field>
+               <field name="category_id" ref="atividades_cinte"/>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="atividades_cinte.user" model="res.groups">
+               <field name="name">Usuário</field>
+               <field name="category_id" ref="atividades_cinte"/>
+           </record>
+        </data>
+    </openerp>
