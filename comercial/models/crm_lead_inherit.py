@@ -11,3 +11,5 @@ class Crm_lead_inherited(models.Model):
         string='Type',
         select =True,
         help='Usados para separar prospectos, oportunidades e licitados')
+    
+    
