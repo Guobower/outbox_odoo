@@ -13,7 +13,7 @@
 					<field name="atividade" />
 					<field name="dataPrevisao" />
 					<field name="dataConclusao" />
-					<field name="status" />
+					<field name="stage_id" />
 				</graph>
 			</field>
 		</record>

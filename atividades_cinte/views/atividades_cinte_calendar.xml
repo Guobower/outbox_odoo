@@ -8,9 +8,9 @@
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<calendar date_start="dataPrevisao" color="responsavel" display="[atividade]"
+				<calendar date_start="dataPrevisao" color="responsavel" display="[name]"
 					attendee="equipe" avatar_model="res.users">
-					<field name="atividade" />
+					<field name="name" />
 					<field name="equipe" />
 				</calendar>
 			</field>

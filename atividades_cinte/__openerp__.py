@@ -10,12 +10,16 @@
     'depends': ['base'],
     'installable': True,
     'data': [
+        'atividades_cinte_report.xml',
+        'views/report_atividades_cinte.xml',
         'views/menu.xml',
+        'views/atividades_cinte_kanban.xml',
         'views/atividades_cinte_form.xml',
         'views/atividades_cinte_calendar.xml',
         'views/atividades_cinte_search.xml',
         'views/atividades_cinte_tree.xml',
         'views/atividades_cinte_graph.xml',
-        'security/atividades_cinte_security.xml'
+        'security/atividades_cinte_security.xml',
+        'security/ir.rule.xml'
     ]
 }

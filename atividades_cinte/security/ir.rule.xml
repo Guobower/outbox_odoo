@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <record id="atividades_cinte_rule_user" model="ir.rule">
+        <field name="name">Apenas usuários podem visualizar suas atividades</field>
+        <field name="model_id" ref="atividades_cinte.model_atividades_cinte"/>
+        <field name="domain_force">['|',('responsavel', '=', user.id),('equipe', '=', user.id)]</field>
+        <field name="groups" eval="[(4,ref('atividades_cinte.user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+</data>
+</openerp>

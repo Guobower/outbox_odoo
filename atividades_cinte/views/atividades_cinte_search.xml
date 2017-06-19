@@ -14,7 +14,7 @@
 					<field name="dataPrevisao" />
 					<field name="dataConclusao" />
 					<field name="equipe" />
-					<field name="status" />
+					<field name="stage_id" />
 				</search>
 			</field>
 		</record>

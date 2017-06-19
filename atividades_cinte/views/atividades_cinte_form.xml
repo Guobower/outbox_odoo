@@ -14,7 +14,7 @@
 							<group>
 								<field name="name" />
 								<field name="responsavel" />
-								<field name="status" />
+								<field name="stage_id" />
 							</group>
 							<group>
 								<field name="dataPrevisao" />

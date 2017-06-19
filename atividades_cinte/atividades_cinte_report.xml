@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<report id="action_report_atividades_cinte" model="atividades_cinte"
+			string="Relatorio de Atividades" report_type="qweb-pdf"
+			name="atividades_cinte.report_atividades_cinte" attachment_use="False"
+			file="atividades_cinte.report_atividades_cinte" />
+	</data>
+</openerp>
+
