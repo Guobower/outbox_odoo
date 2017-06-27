@@ -58,9 +58,13 @@ class Crm_lead_inherited(models.Model):
         string='Edital',
         help='PDF do Edital.')
     
+    edital_filename = fields.Char("Arquivo do Edital")
+    
     anexo_edital = fields.Binary(
         string='Anexo do Edital',
         help='PDF do anexo do Edital.')
+    
+    anexo_edital_filename = fields.Char("Arquivo do Anexo Edital")
     
     numero_edital = fields.Char(
         string='Número/Identificação do Edital',
@@ -155,6 +159,8 @@ class Crm_lead_inherited(models.Model):
         string='Ata do Pregão',
         help='Anexo da ata do pregão.')
     
+    ata_pregao_filename = fields.Char("Arquivo da Ata do Pregão")
+    
     vencemos_perdemos = fields.Selection(
         selection=[(1, 'Vencemos'), (2, 'Perdemos')],
         string='Resultado',
@@ -168,6 +174,8 @@ class Crm_lead_inherited(models.Model):
     documentacao_vencedor = fields.Binary(
         string='Documentação do Vencedor',
         help='Anexo com a documentação do vencedor para análise.')
+    
+    documentacao_vencedor_filename = fields.Char("Arquivo da Documentação do Vencedor")
     
     certidoes = fields.Selection(
         selection=[(1, 'OK'), (2, 'Pendente')],
