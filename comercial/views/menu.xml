@@ -9,8 +9,7 @@
 			<field name="domain">[('type','=','licitados')]</field>
 			<field name="context">{
 				'stage_type': 'licitados',
-				'default_type':
-				'licitados',
+				'default_type': 'licitados',
 				'default_user_id': uid
 				}
 			</field>
@@ -44,6 +43,20 @@
 			<field name="view_mode">form</field>
 			<field name="view_id" ref="crm.crm_case_form_view_leads" />
 			<field name="act_window_id" ref="crm.crm_case_category_act_leads_all" />
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_crm_tag_kanban_view_licitados">
+			<field name="sequence" eval="1" />
+			<field name="view_mode">kanban</field>
+			<field name="view_id" ref="crm_leads_licitados_kanban" />
+			<field name="act_window_id" ref="crm_case_category_act_licitados" />
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_crm_tag_form_view_licitados">
+			<field name="sequence" eval="2" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="crm_leads_licitados_form" />
+			<field name="act_window_id" ref="crm_case_category_act_licitados" />
 		</record>
 
 

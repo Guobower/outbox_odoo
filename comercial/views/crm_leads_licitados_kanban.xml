@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="crm_leads_licitados_kanban">
+			<field name="name">crm.lead.licitados.kanban</field>
+			<field name="model">crm.lead</field>
+			<field name="view_type">kanban</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<kanban default_group_by="stage_id">
+					<field name="stage_id" />
+					<field name="color" />
+					<field name="priority" />
+					<field name="planned_revenue" sum="Expected Revenues" />
+					<field name="user_email" />
+					<field name="user_id" />
+					<field name="partner_address_email" />
+					<field name="message_summary" />
+					<field name="message_unread" />
+					<templates>
+						<field name="date_deadline" />
+						<t t-name="kanban-box">
+							<div
+								t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+								<div class="oe_dropdown_toggle oe_dropdown_kanban">
+									<span class="oe_e">í</span>
+									<ul class="oe_dropdown_menu">
+										<t t-if="widget.view.is_action_enabled('edit')">
+											<li>
+												<a type="edit">Edit...</a>
+											</li>
+										</t>
+										<t t-if="widget.view.is_action_enabled('delete')">
+											<li>
+												<a type="delete">Delete</a>
+											</li>
+										</t>
+										<li>
+											<a name="91" type="action">Send Email</a>
+										</li>
+										<li>
+											<a type="action" name="136">Calls</a>
+										</li>
+										<li>
+											<a name="action_schedule_meeting" type="object">Schedule Meeting</a>
+										</li>
+									</ul>
+								</div>
+								<div class="oe_kanban_content">
+									<div>
+										<b>
+											<field name="name" />
+										</b>
+										<t t-if="record.planned_revenue.raw_value">
+											-
+											<b>
+												<t t-esc="record.planned_revenue.value" />
+												<field name="company_currency" />
+											</b>
+										</t>
+									</div>
+									<div style="padding-left: 0.5em; margin-bottom: 5px; margin-top: 5px;">
+										<b>Licitação: <span style="color: #FF0000"><field name="data_licitacao" /></span></b>
+									</div>
+									<div style="padding-left: 0.5em; margin-bottom: 5px;">
+										Esclarecimentos: <span style="color: #FF5555"><field name="data_fim_esclarecimentos" /></span>
+									</div>
+									<div style="padding-left: 0.5em; margin-bottom: 5px;">
+										Impugnação: <span style="color: #FF5555"><field name="data_fim_impugnacao" /></span>
+									</div>
+									<div style="padding-left: 0.5em; margin-bottom: 5px;">
+										<b>Resultado: <span><field name="vencemos_perdemos" /></span></b>
+									</div>
+									
+									<div style="padding-left: 0.5em; margin-bottom: 5px;" invisible="1">
+										<field name="partner_id" />
+									</div>
+									<div style="padding-left: 0.5em" invisible="1">
+										<t
+											t-if="record.date_action.raw_value and record.date_action.raw_value lt (new Date())"
+											t-set="red">oe_kanban_text_red</t>
+										<span t-attf-class="#{red || ''}">
+											<field name="date_action" />
+										</span>
+										<t t-if="record.date_action.raw_value"> : </t>
+										<field name="title_action" />
+									</div>
+									<div class="oe_kanban_bottom_right">
+										<img
+											t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)"
+											t-att-title="record.user_id.value" width="24" height="24"
+											class="oe_kanban_avatar pull-right" />
+										<div class="pull-left" groups="base.group_user">
+											<field name="priority" widget="priority" />
+										</div>
+									</div>
+									<div class="oe_kanban_footer_left">
+										<t t-raw="record.message_summary.raw_value" />
+									</div>
+								</div>
+								<div class="oe_clear" />
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+	</data>
+</openerp>

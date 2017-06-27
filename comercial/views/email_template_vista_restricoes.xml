@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<openerp>
+	<!-- Mail template are declared in a NOUPDATE block so users can freely 
+		customize/delete them -->
+	<data noupdate="1">
+		<!--Email template -->
+		<record id="email_template_vista_restricoes" model="email.template">
+			<field name="name">Vista de Restrições</field>
+			<field name="model_id" ref="crm.model_crm_lead" />
+			<field name="auto_delete" eval="True" />
+			<field name="email_from">odoo@cinte.com.br</field>
+			<field name="email_to">${(object.restricao_participacao_responsavel != False and
+				object.restricao_participacao_responsavel.email)|safe},
+				${(object.user_id != False and
+				object.user_id.email)|safe},
+				edsoncosme@cinte.com.br</field>
+			<field name="subject">Pedido de Visto - ${object.name}</field>
+			<field name="body_html"><![CDATA[<p>Olá ${object.restricao_participacao_responsavel.name},</p><p>
+
+Foi solicitado no Odoo que você verifique a licitação abaixo e informe se ela possui restrições sobre a nossa participação:
+</p><p>
+<b>Licitação:</b> ${object.name}.<br/>
+<b>Pendência:</b> Confirmar se não há nenhuma restrição à nossa participação na Licitação.
+</p><p>
+Em caso de dúvidas, entre em contato com o vendedor: ${object.user_id.name}.
+</p>]]></field>
+		</record>
+	</data>
+</openerp>
