@@ -13,6 +13,7 @@
         'views/crm_leads_licitados.xml',
         'views/crm_leads_licitados_kanban.xml',
         'views/crm_leads_form.xml',
+        'views/crm_leads_form_oppor.xml',
         'views/email_template_vista_financeira.xml',
         'views/email_template_vista_certidoes.xml',
         'views/email_template_vista_objeto.xml',
