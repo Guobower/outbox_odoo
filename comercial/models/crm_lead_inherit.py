@@ -61,8 +61,8 @@ class Crm_lead_inherited(models.Model):
     edital_filename = fields.Char("Arquivo do Edital")
     
     anexo_edital = fields.Binary(
-        string='Anexo do Edital',
-        help='PDF do anexo do Edital.')
+        string='Termo de Referência',
+        help='PDF do termo de referência do Edital.')
     
     anexo_edital_filename = fields.Char("Arquivo do Anexo Edital")
     
