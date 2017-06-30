@@ -10,7 +10,8 @@
 			<field name="context">{
 				'stage_type': 'licitados',
 				'default_type': 'licitados',
-				'default_user_id': uid
+				'default_user_id': uid,
+				'default_name': 'Edital - '
 				}
 			</field>
 			<field name="view_id" eval="False" />
