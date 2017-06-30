@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<report id="action_report_dossie_viabilidade" model="project.task"
+			string="Dossiê de Viabilidade financeira" report_type="qweb-pdf"
+			name="projetos_cinte.report_dossie_viabilidade" attachment_use="False"
+			file="projetos_cinte.report_dossie_viabilidade" />
+	</data>
+</openerp>
+

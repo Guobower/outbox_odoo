@@ -9,4 +9,8 @@
     'author': 'Edson Junior',
     'depends': ['base','project'],
     'installable': True,
+    'data': [
+        'views/report_dossie_viabilidade.xml',
+        'dossie_viabilidade_report.xml'
+    ]
 }

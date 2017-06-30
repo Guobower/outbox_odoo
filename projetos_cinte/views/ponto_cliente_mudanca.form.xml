@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<openerp>
-   <data>  
-     <record id="ponto_cliente_mudanca.form" model="ir.ui.view">
-        <field name="name">simple_module.order.form</field>
-        <field name="model">sale.order</field>
-     </record>
-   </data>
-</openerp>

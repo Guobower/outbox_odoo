@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report. -->
+<openerp>
+	<data>
+		<template id="report_dossie_viabilidade">
+			<t t-call="report.html_container">
+				<t t-foreach="docs.project_id" t-as="o">
+					<t t-call="report.external_layout">
+						<div class="page">
+							<h2 style="text-align: center;">
+								Dossiê -
+								<span t-field="o.name" />
+							</h2>
+							<br />
+							<div class="row mt32 mb32">
+								<div t-if="o.partner_id" class="col-xs-3">
+									<strong>Cliente:</strong>
+									<p t-field="o.partner_id" />
+								</div>
+								<div t-if="o.user_id" class="col-xs-3">
+									<strong>Representante</strong>
+									<p t-field="o.user_id" />
+								</div>
+								<div t-if="o.x_sla_exigido" class="col-xs-3">
+									<strong>SLA Exigido:</strong>
+									<p t-field="o.x_sla_exigido" />
+								</div>
+								<div t-if="o.x_quantidade_ips" class="col-xs-3">
+									<strong>Qtd. IPs:</strong>
+									<p t-field="o.x_quantidade_ips" />
+								</div>
+							</div>
+							<br />
+							<h3>Pontos de Instalação</h3>
+							<table class="table table-condensed">
+								<thead>
+									<tr>
+										<th style="border: 1px solid #888888;">
+											<strong>Localidade</strong>
+										</th>
+										<th style="border: 1px solid #888888;">
+											<strong>Tipo de Projeto</strong>
+										</th>
+										<th style="border: 1px solid #888888;">
+											<strong>Velocidade (Mbps)</strong>
+										</th>
+										<th style="border: 1px solid #888888;">
+											<strong>Valor (R$)</strong>
+										</th>
+										<th style="border: 1px solid #888888;" class="text-center">
+											<strong>Despesas da Instalação</strong>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr t-foreach="o.x_pontos_cliente" t-as="pontos">
+										<td style="border: 1px solid #888888;">
+											<span t-field="pontos.x_localidade" />
+										</td>
+										<td style="border: 1px solid #888888;">
+											<span t-field="pontos.x_tipo_projeto" />
+										</td>
+										<td style="border: 1px solid #888888;">
+											<span t-field="pontos.x_velocidade" />
+										</td>
+										<td style="border: 1px solid #888888;">
+											<span t-field="pontos.x_valor_ponto" />
+										</td>
+										<td style="border: 1px solid #888888;">
+											<span t-field="pontos.x_custo_instalacao" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<br />
+							<h2 style="text-align: center;">Cotação de Materiais para Projeto</h2>
+							<t t-foreach="o.x_pontos_cliente" t-as="pontos">
+								<t t-if="pontos.x_lista_materiais">
+									<h3>
+										Localidade:
+										<span t-field="pontos.x_localidade" />
+									</h3>
+									<t t-set="total" t-value="0" />
+									<h4>Materiais de Fibra</h4>
+									<table class="table table-condensed">
+										<thead>
+											<tr>
+												<th style="border: 1px solid #888888;">
+													<strong>Produto</strong>
+												</th>
+												<th style="border: 1px solid #888888;">
+													<strong>Origem da Compra</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Quantidade</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Preço Unitário</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Subtotal</strong>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<t t-set="impostosTotal" t-value="0" />
+											<tr t-foreach="pontos.x_lista_materiais" t-as="lista">
+												<td style="border: 1px solid #888888;">
+													<span t-field="lista.x_product_id" />
+												</td>
+												<td style="border: 1px solid #888888;">
+													<span t-field="lista.x_origem_compra" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<span t-field="lista.x_quantidade" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													R$
+													<span t-field="lista.x_product_id.standard_price" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<t t-set="subtotal"
+														t-value="lista.x_product_id.standard_price*lista.x_quantidade" />
+													R$
+													<span t-esc="str('%.2f'%(subtotal)).replace('.',',')" />
+													<t t-set="total" t-value="total + subtotal" />
+												</td>
+												<t t-set="impostos" t-value="0" />
+
+												<t t-if="lista.x_origem_compra == 'AC'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'AL'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'AP'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'AM'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'BA'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'CE'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'DF'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'ES'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'GO'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MA'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MT'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MS'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MG'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PA'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PB'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PR'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PE'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PI'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RJ'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RN'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.18)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RS'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RO'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RR'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'SC'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'SP'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'SE'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'TO'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'IMP'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.04)" />
+												</t>
+												<t t-set="impostosTotal" t-value="impostosTotal + impostos" />
+											</tr>
+										</tbody>
+									</table>
+									<div class="row">
+										<div class="col-xs-4 pull-right">
+											<table class="table table-condensed">
+												<tr class="border-black">
+													<td>
+														<strong>Valor Original</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(total)).replace('.',',')" />
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<strong>Impostos</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(impostosTotal)).replace('.',',')" />
+													</td>
+												</tr>
+												<tr class="border-black">
+													<td>
+														<strong>Total</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(total+impostosTotal)).replace('.',',')" />
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</t>
+								<t t-if="pontos.x_lista_materiais_radio">
+									<h4>Materiais de Rádio</h4>
+									<t t-set="totalRadio" t-value="0" />
+									<table class="table table-condensed">
+										<thead>
+											<tr>
+												<th style="border: 1px solid #888888;">
+													<strong>Produto</strong>
+												</th>
+												<th style="border: 1px solid #888888;">
+													<strong>Origem da Compra</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Quantidade</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Preço Unitário</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Subtotal</strong>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<t t-set="impostosTotal" t-value="0" />
+											<tr t-foreach="pontos.x_lista_materiais_radio" t-as="lista">
+												<td style="border: 1px solid #888888;">
+													<span t-field="lista.x_product_id" />
+												</td>
+												<td style="border: 1px solid #888888;">
+													<span t-field="lista.x_origem_compra" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<span t-field="lista.x_quantidade" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													R$
+													<span t-field="lista.x_product_id.standard_price" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<t t-set="subtotal"
+														t-value="lista.x_product_id.standard_price*lista.x_quantidade" />
+													R$
+													<span t-esc="str('%.2f'%(subtotal)).replace('.',',')" />
+													<t t-set="totalRadio" t-value="totalRadio + subtotal" />
+												</td>
+												<t t-set="impostos" t-value="0" />
+
+												<t t-if="lista.x_origem_compra == 'AC'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'AL'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'AP'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'AM'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'BA'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'CE'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'DF'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'ES'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'GO'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MA'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MT'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MS'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'MG'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PA'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PB'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PR'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PE'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'PI'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RJ'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RN'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.18)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RS'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RO'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'RR'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'SC'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'SP'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.07)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'SE'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'TO'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.12)" />
+												</t>
+
+												<t t-if="lista.x_origem_compra == 'IMP'">
+													<t t-set="impostos" t-value="(subtotal*0.18) - (subtotal*0.04)" />
+												</t>
+												<t t-set="impostosTotal" t-value="impostosTotal + impostos" />
+											</tr>
+										</tbody>
+									</table>
+									<div class="row">
+										<div class="col-xs-4 pull-right">
+											<table class="table table-condensed">
+												<tr class="border-black">
+													<td>
+														<strong>Valor Original</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(totalRadio)).replace('.',',')" />
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<strong>Impostos</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(impostosTotal)).replace('.',',')" />
+													</td>
+												</tr>
+												<tr class="border-black">
+													<td>
+														<strong>Total</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span
+															t-esc="str('%.2f'%(totalRadio+impostosTotal)).replace('.',',')" />
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</t>
+							</t>
+
+							<h2 style="text-align: center;">Custos com Equipe</h2>
+							<br />
+							<br />
+							<t t-foreach="o.x_pontos_cliente" t-as="pontos">
+								<t t-if="pontos.x_equipe_projeto">
+									<h3>
+										Localidade:
+										<span t-field="pontos.x_localidade" />
+									</h3>
+									<t t-set="total" t-value="0" />
+									<h4>Projeto de Fibra</h4>
+									<table class="table table-condensed">
+										<thead>
+											<tr>
+												<th style="border: 1px solid #888888;">
+													<strong>Cargo</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Quantidade</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Valor da Hora</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Horas</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Subtotal</strong>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr t-foreach="pontos.x_equipe_projeto" t-as="lista">
+												<td style="border: 1px solid #888888;">
+													<span t-field="lista.x_cargos_projetos_id" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<span t-field="lista.x_quantidade" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													R$
+													<span t-field="lista.x_cargos_projetos_id.x_media_salarial" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<span t-field="lista.x_horas" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<t t-set="subtotal"
+														t-value="lista.x_cargos_projetos_id.x_media_salarial*lista.x_quantidade*lista.x_horas" />
+													R$
+													<span t-esc="str('%.2f'%(subtotal)).replace('.',',')" />
+													<t t-set="total" t-value="total + subtotal" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="row">
+										<div class="col-xs-4 pull-right">
+											<table class="table table-condensed">
+												<tr class="border-black">
+													<td>
+														<strong>Total</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(total)).replace('.',',')" />
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</t>
+								<t t-if="pontos.x_equipe_projeto_radio">
+									<h4>Projeto de Rádio</h4>
+									<t t-set="totalRadio" t-value="0" />
+									<table class="table table-condensed">
+										<thead>
+											<tr>
+												<th style="border: 1px solid #888888;">
+													<strong>Cargo</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Quantidade</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Valor da Hora</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Horas</strong>
+												</th>
+												<th style="border: 1px solid #888888;" class="text-center">
+													<strong>Subtotal</strong>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr t-foreach="pontos.x_equipe_projeto_radio" t-as="lista">
+												<td style="border: 1px solid #888888;">
+													<span t-field="lista.x_cargos_projetos_id" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<span t-field="lista.x_quantidade" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													R$
+													<span t-field="lista.x_cargos_projetos_id.x_media_salarial" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<span t-field="lista.x_horas" />
+												</td>
+												<td style="border: 1px solid #888888;" class="text-center">
+													<t t-set="subtotal"
+														t-value="lista.x_cargos_projetos_id.x_media_salarial*lista.x_quantidade*lista.x_horas" />
+													R$
+													<span t-esc="str('%.2f'%(subtotal)).replace('.',',')" />
+													<t t-set="totalRadio" t-value="totalRadio + subtotal" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="row">
+										<div class="col-xs-4 pull-right">
+											<table class="table table-condensed">
+												<tr class="border-black">
+													<td>
+														<strong>Total</strong>
+													</td>
+													<td class="text-right">
+														R$
+														<span t-esc="str('%.2f'%(totalRadio)).replace('.',',')" />
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</t>
+							</t>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>
