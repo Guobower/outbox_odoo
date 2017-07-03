@@ -79,7 +79,8 @@ class Agenda_tecnicos(models.Model):
         help='Quantidade')
     
     status = fields.Selection(
-        selection=[('pendenciaResolvida', 'Pendência Resolvida'),
+        selection=[('nao_aplica', 'Não se Aplica'),
+                   ('pendenciaResolvida', 'Pendência Resolvida'),
                    ('pendente', 'Pendente'),
                    ('ok', 'OK'),
                    ('cancelada', 'Cancelada')],
