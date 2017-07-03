@@ -16,6 +16,8 @@
 					<field name="atividade" />
 					<field name="turno" />
 					<field name="status" />
+					<field name="cidade_origem" />
+					<field name="cidade_destino" />
 				</tree>
 			</field>
 		</record>
