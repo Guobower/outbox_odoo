@@ -80,12 +80,12 @@ class Agenda_tecnicos(models.Model):
     
     status = fields.Selection(
         selection=[('nao_aplica', 'Não se Aplica'),
-                   ('pendenciaResolvida', 'Pendência Resolvida'),
                    ('pendente', 'Pendente'),
                    ('ok', 'OK'),
                    ('cancelada', 'Cancelada')],
         string='Status',
-        help='Status da atividade')
+        help='Status da atividade',
+        required=True)
     
     tempo_viagem = fields.Float(
         string='Tempo de Viagem (minutos)',
