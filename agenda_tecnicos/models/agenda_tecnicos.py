@@ -84,8 +84,7 @@ class Agenda_tecnicos(models.Model):
                    ('ok', 'OK'),
                    ('cancelada', 'Cancelada')],
         string='Status',
-        help='Status da atividade',
-        required=True)
+        help='Status da atividade')
     
     tempo_viagem = fields.Float(
         string='Tempo de Viagem (minutos)',
