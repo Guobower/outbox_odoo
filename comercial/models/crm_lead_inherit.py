@@ -295,7 +295,7 @@ class Crm_lead_inherited(models.Model):
             # Return the values to update it in the view.
             return res
         
-        if (certidoes == 1) or (orgao_interesse == 1) or (financeiramente_viavel == 1) or (restricao_participacao == 2) or (objeto_atende == 1):
+        if (certidoes == 1) and (orgao_interesse == 1) and (financeiramente_viavel == 1) and (restricao_participacao == 2) and (objeto_atende == 1):
             res = {
                  'value': {
                     'color': 5,
