@@ -286,14 +286,18 @@ class Crm_lead_inherited(models.Model):
         
     
     def on_change_aprovacoes(self, cr, user, ids, certidoes, orgao_interesse, financeiramente_viavel, restricao_participacao, objeto_atende, context=None):
+        res = {
+             'value': {
+                'color': 0,
+            }
+        }
+        
         if (certidoes == 2) or (orgao_interesse == 2) or (financeiramente_viavel == 2) or (restricao_participacao == 1) or (objeto_atende == 2):
             res = {
                  'value': {
                     'color': 2,
                 }
             }
-            # Return the values to update it in the view.
-            return res
         
         if (certidoes == 1) and (orgao_interesse == 1) and (financeiramente_viavel == 1) and (restricao_participacao == 2) and (objeto_atende == 1):
             res = {
@@ -301,5 +305,7 @@ class Crm_lead_inherited(models.Model):
                     'color': 5,
                 }
             }
-            # Return the values to update it in the view.
-            return res
+        
+        
+        # Return the values to update it in the view.
+        return res
