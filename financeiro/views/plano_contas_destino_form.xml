@@ -10,13 +10,14 @@
 				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<form string="Atividades">
 					<sheet string="Plano de Contas Destino">
-						<group string="Informações Principais">
+						<group string="Plano de Contas Destino no Domínio">
 							<group>
-								<field name="name" />
+								<field name="codigo" on_change="on_change_codigo_nome(codigo, nome)" />
+								<field name="nome" on_change="on_change_codigo_nome(codigo, nome)"/>
 							</group>
 							<group>
 								<field name="reduzido" />
-								<field name="codigo" />
+								<field name="name" invisible="1" />
 							</group>
 						</group>
 					</sheet>

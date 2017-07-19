@@ -5,6 +5,11 @@ class Plano_contas_destino(models.Model):
     _name = 'plano_contas_destino'
     
     name = fields.Char(
+        string="Name",
+        size=250,
+        required=True)
+    
+    nome = fields.Char(
         string="Nome",
         size=250,
         required=True)
@@ -20,3 +25,12 @@ class Plano_contas_destino(models.Model):
         required=True)
     
     
+    def on_change_codigo_nome(self, cr, user, ids, codigo, nome, context=None):
+        res = {
+             'value': {
+                # Define a distancia entre as cidades e o tempo médio do percurso.
+                'name': str(codigo)+" - "+str(nome)
+            }
+        }
+        # Return the values to update it in the view.
+        return res

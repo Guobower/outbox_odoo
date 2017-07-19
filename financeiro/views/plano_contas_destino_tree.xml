@@ -9,8 +9,9 @@
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<tree string="Plano de Contas Destino">
-					<field name="name" />
 					<field name="codigo" />
+					<field name="nome" />
+					<field name="reduzido" />
 				</tree>
 			</field>
 		</record>
