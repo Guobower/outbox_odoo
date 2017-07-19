@@ -26,11 +26,13 @@ class Crm_lead_inherited(models.Model):
         select=True,
         help='Tipo de serviço oferecido ao cliente')
     
-    motivo_desistencia = fields.Selection(
-        selection=[('custo', 'Custo Elevado'),
-                   ('prazo', 'Prazo Elevado'),
-                   ('estrutura', 'Estrutura Insuficiente'),
-                   ('tecnologia', 'Tecnologia Insuficiente'),
+    motivo_desistencia = fields.Selection([
+                   ('instalacao', 'Dificuldade de Instalação'),
+                   ('prazo', 'Prazo de Entrega da Proposta Elevado'),
+                   ('prazo_instalacao', 'Prazo de Instalação Elevado'),
+                   ('viabilidade', 'Sem Viabilidade Técnica'),
+                   ('taxa', 'Taxa de Instalação'),
+                   ('valor', 'Valor do Mega'),
                    ('outros', 'Outros')],
         string='Motivo da Perda',
         select=True,
