@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<report id="action_report_recibo_caixa" model="account.bank.statement.line"
+			string="Recibo de Caixa" report_type="qweb-pdf"
+			name="financeiro.report_recibo_caixa" attachment_use="False"
+			file="financeiro.report_recibo_caixa" />
+	</data>
+</openerp>

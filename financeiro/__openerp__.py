@@ -14,6 +14,9 @@
         'views/plano_contas_destino_form.xml',
         'views/plano_contas_destino_tree.xml',
         'views/account_account_form_inherited.xml',
-        'views/account_bank_statement_form.xml'
+        'views/account_bank_statement_form.xml',
+        'views/account_bank_statement_form2.xml',
+        'views/report_recibo_caixa.xml',
+        'views/report_extrato_caixa.xml'
     ]
 }
