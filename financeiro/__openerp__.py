@@ -16,6 +16,9 @@
         'views/account_account_form_inherited.xml',
         'views/account_bank_statement_form.xml',
         'views/account_bank_statement_form2.xml',
+        'views/account_move_line_tree.xml',
+        'views/account_invoice_form.xml',
+        'views/account_invoice_tree.xml',
         'views/report_recibo_caixa.xml',
         'views/report_extrato_caixa.xml'
     ]
