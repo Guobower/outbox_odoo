@@ -56,7 +56,7 @@ class Account_bank_statement_inherited(models.Model):
                         # Gerando dados do arquivo
                         txt_content = txt_content + "|0000|08378641000196|\n"
                         txt_content = txt_content + "|6000|X||||\n"
-                        txt_content = txt_content + "|6100|" + string_data_real + "|" + str(linha_conciliada.account_id.de_para.reduzido) + "|" + str(linha_obj.account_id.de_para.reduzido) + "|" + str('%.2f' % (linha_obj.credit)).replace(".", ",") + "|1|" + str(linha_obj.name) + "||||\n"
+                        txt_content = txt_content + "|6100|" + string_data_real + "|" + str(linha_conciliada.account_id.de_para.reduzido) + "|" + str(linha_obj.account_id.de_para.reduzido) + "|" + str('%.2f' % (linha_obj.credit)).replace(".", ",") + "|1|" + str(linha_obj.name.encode('ascii', 'ignore').decode('ascii')) + "||||\n"
             
             if linha_obj.debit > 0:
                 if linha_conciliada.credit > 0:
@@ -66,7 +66,7 @@ class Account_bank_statement_inherited(models.Model):
                         # Gerando dados do arquivo
                         txt_content = txt_content + "|0000|08378641000196|\n"
                         txt_content = txt_content + "|6000|X||||\n"
-                        txt_content = txt_content + "|6100|" + string_data_real + "|" + str(linha_conciliada.account_id.de_para.reduzido) + "|" + str(linha_obj.account_id.de_para.reduzido) + "|" + str('%.2f' % (linha_obj.debit)).replace(".", ",") + "|1|" + str(linha_obj.name) + "||||\n"
+                        txt_content = txt_content + "|6100|" + string_data_real + "|" + str(linha_conciliada.account_id.de_para.reduzido) + "|" + str(linha_obj.account_id.de_para.reduzido) + "|" + str('%.2f' % (linha_obj.debit)).replace(".", ",") + "|1|" + str(linha_obj.name.encode('ascii', 'ignore').decode('ascii')) + "||||\n"
             
             
             
