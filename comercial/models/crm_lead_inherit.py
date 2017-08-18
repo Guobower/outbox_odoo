@@ -197,6 +197,14 @@ class Crm_lead_inherited(models.Model):
         string='Lembrado em',
         help='Data da última solicitação de lembrança.')
     
+    valor_ganho = fields.Float(
+        string='Valor da Proposta Vencedora',
+        help='Valor final da proposta vencedora da licitaçao.')
+    
+    valor_projeto = fields.Float(
+        string='Valor Orçado para o Projeto',
+        help='Valor orçado pela equipe de projetos para a implantação do projeto.')
+    
     
     def cobrar_certidoes(self, cr, uid, ids, context=None):
         import time
@@ -282,6 +290,20 @@ class Crm_lead_inherited(models.Model):
         lead_obj = self.pool.get('crm.lead')
         lead_obj.write(cr, uid, ids[0], {'restricao_participacao_ultima_lembranca': time.strftime('%Y-%m-%d %H:%M')}, context=context)     
             
+        return self.pool['email.template'].send_mail(
+           cr, uid, template_id, ids[0], force_send=True,
+           context=None)
+    
+    def acionar_juridico(self, cr, uid, ids, context=None):
+        import time
+        if not context:
+            context= {}
+        ir_model_data = self.pool.get('ir.model.data')
+        try:
+            template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_acionar_juridico')[1]
+        except ValueError:
+            template_id = False
+        
         return self.pool['email.template'].send_mail(
            cr, uid, template_id, ids[0], force_send=True,
            context=None)

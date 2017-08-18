@@ -19,6 +19,7 @@
         'views/email_template_vista_objeto.xml',
         'views/email_template_vista_orgao.xml',
         'views/email_template_vista_restricoes.xml',
+        'views/email_template_acionar_juridico.xml',
         'views/menu.xml'
     ]
 }

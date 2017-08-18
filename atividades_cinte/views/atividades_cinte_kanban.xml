@@ -41,10 +41,24 @@
 											<field name="name" />
 										</b>
 									</div>
+									<div>
+										<b style="color: #AAAAAA">
+											<i>
+												<field name="atividade" />
+											</i>
+										</b>
+									</div>
 									<div class="oe_kanban_bottom_left">
 										<div>
+											Previsão: 
 											<b style="color: red;font-style: italic;">
 												<field name="dataPrevisao" />
+											</b>
+										</div>
+										<div>
+											Conclusão: 
+											<b style="color: red;font-style: italic;">
+												<field name="dataConclusao" />
 											</b>
 										</div>
 									</div>

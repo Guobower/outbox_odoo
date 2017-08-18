@@ -1394,7 +1394,7 @@ class Convenio115(models.Model):
             if ano:
                 res = {}
 
-                res['domain'] = {'notas_fiscais': [('date_invoice', '>=', '01-'+mes+'-'+ano),
-                                                   ('date_invoice', '<=', ''+str(calendar.monthrange(int(ano), int(mes))[1])+'-'+mes+'-'+ano)]}
+                res['domain'] = {'notas_fiscais': [('date_invoice', '>=', ano+'-'+mes+'-01'),
+                                                   ('date_invoice', '<=', ano+'-'+mes+'-'+str(calendar.monthrange(int(ano), int(mes))[1]))]}
                 
                 return res

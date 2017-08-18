@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<openerp>
+	<!-- Mail template are declared in a NOUPDATE block so users can freely 
+		customize/delete them -->
+	<data noupdate="1">
+		<!--Email template -->
+		<record id="email_template_acionar_juridico" model="email.template">
+			<field name="name">Acionar Jurídico</field>
+			<field name="model_id" ref="crm.model_crm_lead" />
+			<field name="auto_delete" eval="True" />
+			<field name="email_from">odoo@cinte.com.br</field>
+			<field name="email_to">edsoncosme@cinte.com.br</field>
+			<field name="subject">Solicitação de análise jurídica - ${object.name}</field>
+			<field name="body_html"><![CDATA[<p>Olá,</p><p>
+
+Foi solicitado no Odoo que você verifique a licitação abaixo e analise a nossa entrada com
+pedido de impugnação:
+</p><p>
+<b>Licitação:</b> ${object.name}.<br/></p><p>
+Em caso de dúvidas, entre em contato com o vendedor: ${object.user_id.name}.
+</p>]]></field>
+		</record>
+	</data>
+</openerp>
