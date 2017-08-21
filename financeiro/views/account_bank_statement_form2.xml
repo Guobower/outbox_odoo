@@ -51,7 +51,7 @@
 						<notebook>
 							<page string="Cash Transactions" attrs="{'invisible': [('state','=','draft')]}">
 								<field name="line_ids" context="{'date':date}">
-									<tree string="Statement lines" colors="grey:journal_entry_id!=False">
+									<tree string="Statement lines" default_order='date' colors="grey:journal_entry_id!=False">
 										<field name="sequence" invisible="1" />
 										<field name="journal_entry_id" invisible="1" />
 										<field name="date"
