@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from openerp import models, fields, api
+from datetime import datetime
 
 class Account_bank_statement_line_inherited(models.Model):
     _inherit = 'account.bank.statement.line'
-    
+    _defaults={
+        'date' : datetime.today().strftime('%Y-%m-%d'),
+    }
     
     def gerar_recibo(self, cr, uid, ids, context=None):
         if ids:
