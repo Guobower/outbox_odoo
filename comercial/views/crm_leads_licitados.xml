@@ -180,6 +180,10 @@
 										<field name="documentacao_vencedor_filename" invisible="1" />
 										<field widget="binary" height="64" name="documentacao_vencedor"
 											filename="documentacao_vencedor_filename" />
+										
+										<field name="planilha_preco_filename" invisible="1" />
+										<field widget="binary" height="64" name="planilha_preco"
+											filename="planilha_preco_filename" />
 									</group>
 									<group>
 										<field name="valor_ganho" />

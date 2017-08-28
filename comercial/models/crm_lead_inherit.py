@@ -73,6 +73,12 @@ class Crm_lead_inherited(models.Model):
         size=200,
         help='Número ou Identificação do Edital do Orgão')
     
+    planilha_preco_filename = fields.Char("Arquivo da Planilha de Preço do Vencedor")
+    
+    planilha_preco = fields.Binary(
+        string='Planilha de Preço do Vencedor',
+        help='PDF da planilha de preço da empresa vencedora.')
+    
     objeto_contrato = fields.Text(
         string='Objeto',
         help='Objeto do Edital')
