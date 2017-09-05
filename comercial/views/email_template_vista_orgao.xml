@@ -23,7 +23,8 @@ Foi solicitado no Odoo que você verifique a licitação abaixo e informe se o o
 <b>Pendência:</b> Confirmar se o Orgão da Licitação é de interesse da Cinte.
 </p><p>
 Em caso de dúvidas, entre em contato com o vendedor: ${object.user_id.name}.
-</p>]]></field>
+</p>
+<p><a href="http://odoo.cinte.com.br:8069/web#id=${object.id}&amp;view_type=form&amp;model=crm.lead&amp;menu_id=525&amp;action=683" target="_blank">Clique aqui</a> para acessar a licitação.</p>]]></field>
 		</record>
 	</data>
 </openerp>
