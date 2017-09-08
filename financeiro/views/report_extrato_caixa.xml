@@ -52,7 +52,7 @@
 							<table class="table table-condensed">
 								<thead>
 									<tr>
-										<th style="border: 1px solid #888888;">
+										<th style="border: 1px solid #888888; width: 100px;">
 											<strong>Data</strong>
 										</th>
 										<th style="border: 1px solid #888888;" class="text-center">
@@ -69,24 +69,47 @@
 										</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr t-foreach="o.line_ids" t-as="line">
-										<td style="border: 1px solid #888888;">
-											<span t-field="line.date" />
-										</td>
-										<td style="border: 1px solid #888888;" class="text-center">
-											<span t-field="line.name" />
-										</td>
-										<td style="border: 1px solid #888888;" class="text-center">
-											<span t-field="line.ref" />
-										</td>
-										<td style="border: 1px solid #888888;" class="text-center">
-											<span t-field="line.partner_id.name" />
-										</td>
-										<td style="border: 1px solid #888888;" class="text-center">
-											<span t-field="line.amount" />
-										</td>
-									</tr>
+								<tbody style="font-size: 0.8em;">
+									<t t-if="o.journal_id.id == 12">
+										<tr t-foreach="o.line_ids.sorted(key=lambda r: r.create_date)"
+											t-as="line">
+											<td style="border: 1px solid #888888;">
+												<span t-field="line.create_date" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.ref" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.partner_id.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.amount" />
+											</td>
+										</tr>
+									</t>
+									<t t-if="o.journal_id.id != 12">
+										<tr t-foreach="o.line_ids.sorted(key=lambda r: r.date)"
+											t-as="line">
+											<td style="border: 1px solid #888888;">
+												<span t-field="line.date" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.ref" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.partner_id.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.amount" />
+											</td>
+										</tr>
+									</t>
 								</tbody>
 							</table>
 							<br />
