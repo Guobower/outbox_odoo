@@ -125,7 +125,7 @@
 											string="Lembrar Responsável" class="oe_highlight" />
 									</group>
 									<group string="Análise sobre Restrições de Participação">
-										<field name="restricao_participacao"
+										<field name="restricao_participacao" string="Há restrição para nossa participação?"
 											on_change="on_change_aprovacoes(certidoes, orgao_interesse, financeiramente_viavel, restricao_participacao, objeto_atende)" />
 										<field name="restricao_participacao_responsavel" />
 										<field name="restricao_participacao_observacoes" />
@@ -137,7 +137,7 @@
 								</group>
 								<group>
 									<group string="Análise de Viabilidade Financeira">
-										<field name="financeiramente_viavel"
+										<field name="financeiramente_viavel" string="Análise de Viabilidade Financeira"
 											on_change="on_change_aprovacoes(certidoes, orgao_interesse, financeiramente_viavel, restricao_participacao, objeto_atende)" />
 										<field name="financeiramente_viavel_responsavel" />
 										<field name="financeiramente_viavel_observacoes" />
@@ -147,7 +147,7 @@
 											string="Lembrar Responsável" class="oe_highlight" />
 									</group>
 									<group string="Análise de Interesse no Orgão">
-										<field name="orgao_interesse"
+										<field name="orgao_interesse" string="Orgão de interesse?"
 											on_change="on_change_aprovacoes(certidoes, orgao_interesse, financeiramente_viavel, restricao_participacao, objeto_atende)" />
 										<field name="orgao_interesse_responsavel" />
 										<field name="orgao_interesse_observacoes" />
@@ -158,7 +158,7 @@
 								</group>
 								<group>
 									<group string="Confirmação de Certidões">
-										<field name="certidoes"
+										<field name="certidoes" string="Certidões"
 											on_change="on_change_aprovacoes(certidoes, orgao_interesse, financeiramente_viavel, restricao_participacao, objeto_atende)" />
 										<field name="certidoes_responsavel" />
 										<field name="certidoes_observacoes" />

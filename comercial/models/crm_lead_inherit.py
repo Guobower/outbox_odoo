@@ -3,6 +3,18 @@ from openerp import models, fields
 
 class Crm_lead_inherited(models.Model):
     _inherit = 'crm.lead' 
+    
+    _track = {
+            'edital': {
+                'comercial.mt_edital_anexado': lambda self, cr, uid, obj, ctx = None: obj.edital_filename,
+                'comercial.mt_termo_referencia': lambda self, cr, uid, obj, ctx = None: obj.anexo_edital_filename,
+                'comercial.mt_objeto_atende': lambda self, cr, uid, obj, ctx = None: obj.objeto_atende,
+                'comercial.mt_restricao_participacao': lambda self, cr, uid, obj, ctx = None: obj.restricao_participacao,
+                'comercial.mt_orgao_interesse': lambda self, cr, uid, obj, ctx = None: obj.orgao_interesse,
+                'comercial.mt_financeiramente_viavel': lambda self, cr, uid, obj, ctx = None: obj.financeiramente_viavel,
+                'comercial.mt_certidoes': lambda self, cr, uid, obj, ctx = None: obj.certidoes
+            }
+    }
 
     type = fields.Selection(
         selection=[('lead', 'Lead'),
@@ -60,13 +72,15 @@ class Crm_lead_inherited(models.Model):
         string='Edital',
         help='PDF do Edital.')
     
-    edital_filename = fields.Char("Arquivo do Edital")
+    edital_filename = fields.Char("Arquivo do Edital", 
+        track_visibility='onchange')
     
     anexo_edital = fields.Binary(
         string='Termo de Referência',
         help='PDF do termo de referência do Edital.')
     
-    anexo_edital_filename = fields.Char("Arquivo do Anexo Edital")
+    anexo_edital_filename = fields.Char("Arquivo do Anexo Edital", 
+        track_visibility='onchange')
     
     numero_edital = fields.Char(
         string='Número/Identificação do Edital',
@@ -86,7 +100,8 @@ class Crm_lead_inherited(models.Model):
     objeto_atende = fields.Selection(
         selection=[(1, 'Sim'), (2, 'Não')],
         string='Objeto atende?',
-        help='O objeto do edital atende os serviços da Cinte?')
+        help='O objeto do edital atende os serviços da Cinte?', 
+        track_visibility='onchange')
     
     objeto_atende_observacoes = fields.Text(
         string='Observações',
@@ -103,8 +118,9 @@ class Crm_lead_inherited(models.Model):
     
     restricao_participacao = fields.Selection(
         selection=[(1, 'Sim'), (2, 'Não')],
-        string='Há restrição para nossa participação?',
-        help='Há algo que restrinja a nossa participação na licitação?')
+        string='Restricao para nossa participacao?',
+        help='Há algo que restrinja a nossa participação na licitação?', 
+        track_visibility='onchange')
     
     restricao_participacao_observacoes = fields.Text(
         string='Observações',
@@ -121,8 +137,9 @@ class Crm_lead_inherited(models.Model):
     
     financeiramente_viavel = fields.Selection(
         selection=[(1, 'Sim'), (2, 'Não')],
-        string='É financeiramente viável?',
-        help='A licitação é financeiramente viável para os preços praticados pela Cinte?')
+        string='Financeiramente viavel?',
+        help='A licitação é financeiramente viável para os preços praticados pela Cinte?', 
+        track_visibility='onchange')
     
     financeiramente_viavel_observacoes = fields.Text(
         string='Observações',
@@ -139,8 +156,9 @@ class Crm_lead_inherited(models.Model):
     
     orgao_interesse = fields.Selection(
         selection=[(1, 'Sim'), (2, 'Não')],
-        string='É um orgão de interesse?',
-        help='O orgão da licitação é de interesse da Cinte?')
+        string='Orgao de interesse?',
+        help='O orgão da licitação é de interesse da Cinte?', 
+        track_visibility='onchange')
     
     orgao_interesse_observacoes = fields.Text(
         string='Observações',
@@ -187,8 +205,9 @@ class Crm_lead_inherited(models.Model):
     
     certidoes = fields.Selection(
         selection=[(1, 'OK'), (2, 'Pendente')],
-        string='Certidões',
-        help='Nossas certidões estão prontas?')
+        string='Certidoes',
+        help='Nossas certidões estão prontas?', 
+        track_visibility='onchange')
     
     certidoes_observacoes = fields.Text(
         string='Observações',
@@ -215,7 +234,7 @@ class Crm_lead_inherited(models.Model):
     def cobrar_certidoes(self, cr, uid, ids, context=None):
         import time
         if not context:
-            context= {}
+            context = {}
         ir_model_data = self.pool.get('ir.model.data')
         try:
             template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_vista_certidoes')[1]
@@ -232,7 +251,7 @@ class Crm_lead_inherited(models.Model):
     def cobrar_avaliacao_financeira(self, cr, uid, ids, context=None):
         import time
         if not context:
-            context= {}
+            context = {}
         ir_model_data = self.pool.get('ir.model.data')
         try:
             template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_vista_financeira')[1]
@@ -250,7 +269,7 @@ class Crm_lead_inherited(models.Model):
     def cobrar_vista_objeto(self, cr, uid, ids, context=None):
         import time
         if not context:
-            context= {}
+            context = {}
         ir_model_data = self.pool.get('ir.model.data')
         try:
             template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_vista_objeto')[1]
@@ -268,7 +287,7 @@ class Crm_lead_inherited(models.Model):
     def cobrar_vista_orgao(self, cr, uid, ids, context=None):
         import time
         if not context:
-            context= {}
+            context = {}
         ir_model_data = self.pool.get('ir.model.data')
         try:
             template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_vista_orgao')[1]
@@ -286,7 +305,7 @@ class Crm_lead_inherited(models.Model):
     def cobrar_vista_restricoes(self, cr, uid, ids, context=None):
         import time
         if not context:
-            context= {}
+            context = {}
         ir_model_data = self.pool.get('ir.model.data')
         try:
             template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_vista_restricoes')[1]
@@ -303,7 +322,7 @@ class Crm_lead_inherited(models.Model):
     def acionar_juridico(self, cr, uid, ids, context=None):
         import time
         if not context:
-            context= {}
+            context = {}
         ir_model_data = self.pool.get('ir.model.data')
         try:
             template_id = ir_model_data.get_object_reference(cr, uid, 'comercial', 'email_template_acionar_juridico')[1]

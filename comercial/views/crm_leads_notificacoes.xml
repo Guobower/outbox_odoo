@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- CRM-related subtypes for messaging / Chatter -->
+		<record id="mt_edital_anexado" model="mail.message.subtype">
+			<field name="name">Edital Anexado</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Edital anexado na licitação</field>
+		</record>
+		<record id="mt_termo_referencia" model="mail.message.subtype">
+			<field name="name">Termo de Ref Anexado</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Termo de Referência anexado na licitação</field>
+		</record>
+		<record id="mt_objeto_atende" model="mail.message.subtype">
+			<field name="name">Objeto Atende</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Objeto da Licitação atende os interesses</field>
+		</record>
+		<record id="mt_restricao_participacao" model="mail.message.subtype">
+			<field name="name">Restricao de Participacao</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Existência de restrições à participação na licitação</field>
+		</record>
+		<record id="mt_orgao_interesse" model="mail.message.subtype">
+			<field name="name">Orgao de Interesse</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Interesse no orgão da licitação</field>
+		</record>
+		<record id="mt_financeiramente_viavel" model="mail.message.subtype">
+			<field name="name">Financeiramente Viavel</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Viabilidade financeira da licitação</field>
+		</record>
+		<record id="mt_certidoes" model="mail.message.subtype">
+			<field name="name">Certidoes</field>
+			<field name="res_model">crm.lead</field>
+			<field name="default" eval="True" />
+			<field name="description">Certidões necessárias na licitação</field>
+		</record>
+	</data>
+</openerp>
