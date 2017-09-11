@@ -406,34 +406,6 @@ class Convenio115(models.Model):
                     )
                 )
              )
-            
-            chave_digital = self.gerar_autenticacao_digital(
-                            self.formatar_numerico(
-                                14, self.formatar_caracteres_especiais(str(item.partner_id.cnpj_cpf))
-                                ),
-                            self.formatar_numerico(
-                                9, str(numero_nota)
-                                ),
-                            self.formatar_numerico(
-                                12, str('%.2f' % (item.amount_total)).replace('.', '')
-                                ),
-                            self.formatar_numerico(
-                                12, str('%.2f' % (nota_base_icms)).replace('.', '')
-                                ),
-                            self.formatar_numerico(
-                                12, str('%.2f' % (nota_valor_icms)).replace('.', '')
-                                ),
-                            self.formatar_alfanumerico(
-                                8, self.formatar_caracteres_especiais(str(item.date_invoice))
-                                ),
-                            self.formatar_numerico(
-                                14, self.formatar_caracteres_especiais(str(record_obj.empresa.cnpj_cpf))
-                                )
-                    )
-            
-            nota_obj = self.pool.get('account.invoice')
-            nota_obj.write(cr, uid, item.id, {'chave_autenticacao_digital': chave_digital, 'numero_nota_fiscal': numero_nota}, context=context)     
-        
         
             # Valor Total, 12 caracteres, casas 136 - 147, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
