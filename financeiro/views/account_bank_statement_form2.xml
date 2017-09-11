@@ -64,6 +64,7 @@
 											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
 										<field name="amount"
 											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="create_date" readonly="1" />
 									</tree>
 									<form string="Statement lines">
 										<button class="oe_inline oe_stat_button" name="gerar_recibo"
