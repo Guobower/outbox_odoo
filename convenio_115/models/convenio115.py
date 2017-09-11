@@ -187,7 +187,9 @@ class Convenio115(models.Model):
         string='Quantidade de Advertências',
         help='Quantidade de advertências')
     
-    
+    ultima_nota = fields.Integer(
+        string='Última Nota',
+        help='Número da última nota fiscal ')
     
     
     
@@ -404,6 +406,34 @@ class Convenio115(models.Model):
                     )
                 )
              )
+            
+            chave_digital = self.gerar_autenticacao_digital(
+                            self.formatar_numerico(
+                                14, self.formatar_caracteres_especiais(str(item.partner_id.cnpj_cpf))
+                                ),
+                            self.formatar_numerico(
+                                9, str(numero_nota)
+                                ),
+                            self.formatar_numerico(
+                                12, str('%.2f' % (item.amount_total)).replace('.', '')
+                                ),
+                            self.formatar_numerico(
+                                12, str('%.2f' % (nota_base_icms)).replace('.', '')
+                                ),
+                            self.formatar_numerico(
+                                12, str('%.2f' % (nota_valor_icms)).replace('.', '')
+                                ),
+                            self.formatar_alfanumerico(
+                                8, self.formatar_caracteres_especiais(str(item.date_invoice))
+                                ),
+                            self.formatar_numerico(
+                                14, self.formatar_caracteres_especiais(str(record_obj.empresa.cnpj_cpf))
+                                )
+                    )
+            
+            nota_obj = self.pool.get('account.invoice')
+            nota_obj.write(cr, uid, item.id, {'chave_autenticacao_digital': chave_digital, 'numero_nota_fiscal': numero_nota}, context=context)     
+        
         
             # Valor Total, 12 caracteres, casas 136 - 147, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
@@ -931,7 +961,7 @@ class Convenio115(models.Model):
             
             # Municipio, 30 caracteres, casas 152 - 181, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                30, str(item.partner_id.l10n_br_city_id.name)
+                30, str(item.partner_id.l10n_br_city_id.name.encode('ascii', 'ignore').decode('ascii'))
                 )
             
             # UF, 2 caracteres, casas 64 - 65, tipo X 
@@ -1398,3 +1428,35 @@ class Convenio115(models.Model):
                                                    ('date_invoice', '<=', ano+'-'+mes+'-'+str(calendar.monthrange(int(ano), int(mes))[1]))]}
                 
                 return res
+         
+            
+    def gerar_notas_fiscais(self, cr, uid, ids, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo adicionar nas faturas associadas ao lote as informações
+              sobre numero da nota e chave digital.
+        
+            Utilização:
+              gerar_notas_fiscais()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs do lote de convênio em questão
+              context
+                Contexto atual
+        '''
+        lote_nota_fiscal = self.pool.get('convenio115').browse(cr, uid, ids[0])
+        
+        for item_fatura in lote_nota_fiscal.notas_fiscais:
+            if item_fatura.numero_nota_fiscal == 0:
+                fatura = self.pool.get('account.invoice').browse(cr, uid, item_fatura.id)
+                
+                fatura.write({'numero_nota_fiscal': lote_nota_fiscal.ultima_nota + 1}, context=context)
+                lote_nota_fiscal.ultima_nota = lote_nota_fiscal.ultima_nota + 1
+            
+        # Retorna uma confirmação.
+        return True
