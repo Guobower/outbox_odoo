@@ -82,25 +82,3 @@ class Account_bank_statement_inherited(models.Model):
                                                 'datas_fname': file_name}, context=context)
         
         return attach_id
-    
-    
-    def gerar_recibo(self, cr, uid, ids, context=None):
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'action_warn',
-            'name': 'Warning',
-            'params': {
-                'title': 'Warning!',
-                'text': 'Entered Quantity is greater than quantity on source.',
-                'sticky': True
-                }
-         }
-        #if ids:
-        #    if not isinstance(ids, list):
-        #        ids = [ids]
-        #    context = dict(context or {}, active_ids=ids, active_model=self._name)
-        #return {
-        #    'type': 'ir.actions.report.xml',
-        #    'report_name': 'mrp.products_consume_document',
-        #    'context': context,
-        #}

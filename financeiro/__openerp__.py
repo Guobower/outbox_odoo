@@ -15,6 +15,8 @@
         'views/plano_contas_destino_tree.xml',
         'views/account_account_form_inherited.xml',
         'views/account_bank_statement_form.xml',
+        'views/account_bank_statement_form2_inherited_infraestrutura.xml',
+        'views/account_bank_statement_form2_inherited_tecnico.xml',
         'views/account_bank_statement_form2.xml',
         'views/account_move_line_tree.xml',
         'views/account_invoice_form.xml',
@@ -23,6 +25,7 @@
         'views/report_extrato_caixa.xml',
         'views/report_entradas_caixa.xml',
         'views/report_saidas_caixa.xml',
-        'views/report_recibo_nota_fiscal.xml'
+        'views/report_recibo_nota_fiscal.xml',
+        'security/account_bank_statement_security.xml'
     ]
 }

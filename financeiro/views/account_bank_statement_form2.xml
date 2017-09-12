@@ -43,7 +43,7 @@
 								<field name="date" attrs="{'readonly':[('state','!=','draft')]}"
 									on_change="onchange_date(date, company_id)" />
 								<field name="closing_date" readonly="1" />
-								<field name="period_id" class="oe_inline" />
+								<field name="period_id" />
 								<field name="currency" invisible="1" />
 								<field name="cash_control" invisible="1" />
 							</group>
