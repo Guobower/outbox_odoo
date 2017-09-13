@@ -72,3 +72,25 @@ class Atividades_cinte(models.Model):
         comodel_name='res.users',
         string='Equipe',
         help='Equipe envolvida na atividade')
+    
+    def get_partner_ids(self, cr, uid, ids) :
+        retorno = ""
+        atividade = self.pool.get('atividades_cinte').browse(cr, uid, ids[0])
+        for item in atividade.equipe:
+            retorno = retorno + "" + str(item.partner_id.id) + ","
+        return str(retorno) 
+    
+    def comunicar_conclusao(self, cr, uid, ids, context=None):
+        if not context:
+            context = {}
+        ir_model_data = self.pool.get('ir.model.data')
+        try:
+            template_id = ir_model_data.get_object_reference(cr, uid, 'atividades_cinte', 'email_template_aviso_conclusao')[1]
+        except ValueError:
+            template_id = False
+            
+        return self.pool['email.template'].send_mail(
+           cr, uid, template_id, ids[0], force_send=True,
+           context=None)
+        
+        return True

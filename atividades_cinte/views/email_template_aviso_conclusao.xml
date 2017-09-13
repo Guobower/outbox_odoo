@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<openerp>
+	<!-- Mail template are declared in a NOUPDATE block so users can freely 
+		customize/delete them -->
+	<data noupdate="1">
+		<!--Email template -->
+		<record id="email_template_aviso_conclusao" model="email.template">
+			<field name="name">Aviso de Conclusão</field>
+			<field name="model_id" ref="atividades_cinte" />
+			<field name="auto_delete" eval="True" />
+			<field name="email_from">odoo@cinte.com.br</field>
+			<field name="email_to">${object.responsavel.partner_id.email}</field>
+			<field name="subject">Aviso de Conclusão - ${object.name}</field>
+			<field name="body_html"><![CDATA[<p>Olá,</p><p>
+A tarefa ${object.name} foi concluída no Odoo:
+</p><p>
+<b>Atividade:</b> ${object.atividade}.<br/>
+<b>Previsão:</b> ${object.data_previsao}.<br/>
+<b>Conclusão:</b> ${object.data_conclusao}.<br/>
+</p><p>
+Em caso de dúvidas, entre em contato com o responsável: ${object.responsavel.name}.
+</p>]]></field>
+		</record>
+	</data>
+</openerp>

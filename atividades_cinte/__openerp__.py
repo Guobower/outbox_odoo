@@ -7,7 +7,7 @@
     'version': '1.0',
     'description': "Gestão de atividades individuais e de setores da Cinte para maior controle dos processos dos setores.",
     'author': 'Edson Junior',
-    'depends': ['base'],
+    'depends': ['base','mail','contacts',"email_template"],
     'installable': True,
     'data': [
         'atividades_cinte_report.xml',
@@ -19,6 +19,7 @@
         'views/atividades_cinte_search.xml',
         'views/atividades_cinte_tree.xml',
         'views/atividades_cinte_graph.xml',
+        'views/email_template_aviso_conclusao.xml',
         'security/atividades_cinte_security.xml',
         'security/ir.rule.xml'
     ]

@@ -10,6 +10,8 @@
 				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<form string="Atividades">
 					<sheet string="Atividades/Pendências">
+						<button name="comunicar_conclusao"
+							string="Comunicar Conclusão" type="object" />
 						<group string="Informações Principais">
 							<group>
 								<field name="name" />
@@ -19,7 +21,7 @@
 							<group>
 								<field name="dataPrevisao" />
 								<field name="dataConclusao" />
-								<field name="prioridade" widget="priority"/>
+								<field name="prioridade" widget="priority" />
 							</group>
 						</group>
 						<group string="Resumo" colspan="2">
