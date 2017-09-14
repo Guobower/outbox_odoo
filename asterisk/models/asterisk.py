@@ -95,6 +95,10 @@ class Asterisk(models.Model):
         '''
         # Codifique a comunicação com o servidor do Asterix aqui
         
+        # Busca o modelo do asterisk
+        asterisk_obj = self.pool.get('asterisk')
+        # Chama o método de criação/inserção no banco passando como parâmetro os campos e os conteúdos
+        asterisk_obj.create(cr, uid, {'name': 'Teste', 'trunk':'Teste', 'callerid':'Teste', 'id_queue_call_entry': 1}, context=context)     
         
         # Retornando um alerta na tela do usuário, enquanto desenvolve você pode usar para saber 
         # se a comunicação está dando certo
