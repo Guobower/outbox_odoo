@@ -6,14 +6,14 @@
             The following tag is an action definition for a "window action",
             that is an action opening a view or a set of views
         -->
-        <record model="ir.actions.act_window" id="asterix_list_action">
-            <field name="name">Asterix</field>
-            <field name="res_model">asterix</field>
+        <record model="ir.actions.act_window" id="asterisk_list_action">
+            <field name="name">Asterisk</field>
+            <field name="res_model">asterisk</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                	Gerenciamento de ligações do Asterix.
+                	Gerenciamento de ligações do Asterisk.
                 </p>
             </field>
         </record>
@@ -21,8 +21,8 @@
         <!-- the following menuitem should appear *after*
              its parent openacademy_menu and *after* its
              action course_list_action -->
-        <menuitem id="asterix_menu" name="Asterix" parent="mail.mail_my_stuff"
-                  action="asterix_list_action"/>
+        <menuitem id="asterisk_menu" name="Asterisk" parent="mail.mail_my_stuff"
+                  action="asterisk_list_action"/>
         <!-- Full id location:
              action="openacademy.course_list_action"
              It is not required when it is the same module -->

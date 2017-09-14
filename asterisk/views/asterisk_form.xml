@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <openerp>
 	<data>
-		<record model="ir.ui.view" id="asterix_form">
-			<field name="name">asterix.form</field>
-			<field name="model">asterix</field>
+		<record model="ir.ui.view" id="asterisk_form">
+			<field name="name">asterisk.form</field>
+			<field name="model">asterisk</field>
 			<field name="view_type">form</field>
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<form string="Asterix">
+				<form string="Asterisk">
 					<button name="atualizar_dados_servidor" string="Atualizar os Dados"
 						type="object" />
 					<field name="name" />

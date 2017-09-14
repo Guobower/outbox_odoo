@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from openerp import models, fields, api
 
-class Asterix(models.Model):
-    _name = 'asterix'
+class Asterisk(models.Model):
+    _name = 'asterisk'
     
     name = fields.Char(
         string="Nome amigavel da coluna",
