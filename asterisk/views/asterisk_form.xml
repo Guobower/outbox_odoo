@@ -11,21 +11,27 @@
 				<form string="Asterisk">
 					<button name="atualizar_dados_servidor" string="Atualizar os Dados"
 						type="object" />
-					<field name="name" />
-					<field name="id_agent" />
-					<field name="id_queue_call_entry" />
-					<field name="id_contact" />
-					<field name="callerid" />
-					<field name="datetime_init" />
-					<field name="datetime_end" />
-					<field name="duration" />
-					<field name="status" />
-					<field name="transfer" />
-					<field name="datetime_entry_queue" />
-					<field name="duration_wait" />
-					<field name="uniqueid" />
-					<field name="id_campaign" />
-					<field name="trunk" />
+					<group>
+						<group>
+							<field name="name" />
+							<field name="id_agent" />
+							<field name="id_queue_call_entry" />
+							<field name="id_contact" />
+							<field name="callerid" />
+							<field name="datetime_init" />
+							<field name="datetime_end" />
+						</group>
+						<group>
+							<field name="duration" />
+							<field name="status" />
+							<field name="transfer" />
+							<field name="datetime_entry_queue" />
+							<field name="duration_wait" />
+							<field name="uniqueid" />
+							<field name="id_campaign" />
+							<field name="trunk" />
+						</group>
+					</group>
 				</form>
 			</field>
 		</record>
