@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="asterix_tree">
+			<field name="name">asterix.tree</field>
+			<field name="model">asterix</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Atividades">
+					<field name="name" />
+					<field name="id_agent" />
+					<field name="id_queue_call_entry" />
+					<field name="id_contact" />
+					<field name="callerid" />
+					<field name="datetime_init" />
+					<field name="datetime_end" />
+					<field name="duration" />
+					<field name="status" />
+					<field name="transfer" />
+					<field name="datetime_entry_queue" />
+					<field name="duration_wait" />
+					<field name="uniqueid" />
+					<field name="id_campaign" />
+					<field name="trunk" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

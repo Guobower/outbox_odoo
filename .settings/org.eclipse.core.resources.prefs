@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//agenda_tecnicos/__openerp__.py=utf-8
 encoding//agenda_tecnicos/models/agenda_tecnicos.py=utf-8
+encoding//asterix/__openerp__.py=utf-8
+encoding//asterix/models/asterix.py=utf-8
 encoding//atividades_cinte/__openerp__.py=utf-8
 encoding//atividades_cinte/models/atividades_cinte.py=utf-8
 encoding//atividades_cinte/models/estagios_atividades_cinte.py=utf-8
