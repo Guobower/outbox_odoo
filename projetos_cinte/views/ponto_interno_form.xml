@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="ponto_interno_form">
+			<field name="name">ponto_interno.form</field>
+			<field name="model">ponto.interno</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<form string="Ponto ">
+					<sheet string="Ponto">
+						<group string="Informações Principais">
+							<group>
+								<field name="localidade" />
+								<field name="endereco" />
+								<field name="data_agendada_instalacao" />
+							</group>
+							<group>
+								<field name="latitude" />
+								<field name="longitude" />
+							</group>
+							<group colspan="2">
+								<field colspan="2" name="observacoes_gerais" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Análise de Viabilidade">
+								<group string="Viabilidade">
+									<group>
+										<field name="disponibilidade_minima" />
+									</group>
+								</group>
+								<group string="Projeto de Rádio">
+									<group>
+										<field name="tempo_maximo_projeto_execucao_radio" />
+										<field name="modelo_radio" />
+										<field name="altura_necessaria_cliente" />
+										<field name="altura_necessaria_cinte" />
+									</group>
+									<group>
+										<field name="velocidade_maxima_radio" />
+										<field name="distancia_link" />
+										<field name="modelo_antenas" />
+										<field name="pop_radio" />
+									</group>
+								</group>
+								<group>
+									<field name="equipe_projeto_radio">
+										<tree editable="top">
+											<field name="x_cargos_projetos_id" />
+											<field name="x_quantidade" />
+											<field name="x_horas" />
+										</tree>
+									</field>
+								</group>
+								<group string="Projeto de Fibra">
+									<group>
+										<field name="tempo_maximo_projeto_execucao" />
+										<field name="tamanho_percurso" />
+										<field name="modelo_conversores" />
+										<field name="pop" />
+									</group>
+									<group>
+										<field name="velocidade_maxima" />
+										<field name="modelo_fibra" />
+										<field name="tronco" />
+									</group>
+								</group>
+								<group>
+									<field name="equipe_projeto">
+										<tree editable="top">
+											<field name="x_cargos_projetos_id" />
+											<field name="x_quantidade" />
+											<field name="x_horas" />
+										</tree>
+									</field>
+								</group>
+							</page>
+							<page string="Lista de Materiais de Rádio">
+								<field name="lista_materiais_radio">
+									<tree editable="top">
+										<field name="x_product_id" />
+										<field name="x_origem_compra" />
+										<field name="x_quantidade" />
+										<field string="Data de Criação" name="create_date" />
+									</tree>
+								</field>
+							</page>
+							<page string="Lista de Materiais de Fibra">
+								<field name="lista_materiais">
+									<tree editable="top">
+										<field name="x_product_id" />
+										<field name="x_origem_compra" />
+										<field name="x_quantidade" />
+										<field string="Data de Criação" name="create_date" />
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

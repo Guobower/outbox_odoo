@@ -4,6 +4,29 @@ from openerp import models, fields
 class Project_task_inherited(models.Model):
     _inherit = 'project.project' 
     
+    type_project = fields.Selection(
+        selection=[('corporativos', 'Corporativos'),
+                   ('licitados', 'Licitados'),
+                   ('internos', 'Internos')],
+        string='Type',
+        select=True,
+        help='Usados para separar projetos coporativos, licitados e internos')
+    
+    pontos_clientes = fields.One2many(
+        comodel_name='ponto.cliente_licitado',
+        inverse_name='project_id',
+        string='Pontos do Cliente',
+        help='Pontos do Cliente')
+    
+    pontos_internos = fields.One2many(
+        comodel_name='ponto.interno',
+        inverse_name='project_id',
+        string='Pontos Internos',
+        help='Pontos Internos')
+    
+    invoice_line = fields.One2many('account.invoice.line', 'invoice_id', string='Invoice Lines',
+        readonly=True, states={'draft': [('readonly', False)]}, copy=True)
+    
     proxima_tarefa = fields.Many2one(
         comodel_name='project.task',
         string='Próxima Tarefa',
