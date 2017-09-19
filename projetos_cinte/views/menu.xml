@@ -75,6 +75,46 @@
 
 		<menuitem id="projetos_internos_menu" name="Projetos Internos"
 			parent="project.menu_project_management" action="project_act_internos" />
+			
+			
+		<!-- Configurações para Projetos Corporativos -->
+		<record model="ir.actions.act_window" id="project_act_corporativos">
+			<field name="name">Projetos Corporativos</field>
+			<field name="res_model">project.project</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form</field>
+			<field name="domain"></field>
+			<field name="context">{
+				'default_type_project': 'corporativos',
+				'default_user_id': uid
+				}
+			</field>
+			<field name="help" type="html">
+				<p>
+					Odoo ajuda você a manter o controle de seus projetos e
+					atividades.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_project_kanban_view_corporativos">
+			<field name="sequence" eval="1" />
+			<field name="view_mode">kanban</field>
+			<field name="view_id" ref="project_corporativos_kanban" />
+			<field name="act_window_id" ref="project_act_corporativos" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_project_form_view_corporativos">
+			<field name="sequence" eval="2" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="project_corporativos_form" />
+			<field name="act_window_id" ref="project_act_corporativos" />
+		</record>
+
+		<menuitem id="projetos_corporativos_menu" name="Projetos Corporativos"
+			parent="project.menu_project_management" action="project_act_corporativos" />
+
+		
 
 	</data>
 </openerp>

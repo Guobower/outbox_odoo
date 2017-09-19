@@ -11,6 +11,8 @@
     'installable': True,
     'data': [
         'views/report_dossie_viabilidade.xml',
+        'views/project_corporativos_kanban.xml',
+        'views/project_corporativos.xml',
         'views/project_licitados_kanban.xml',
         'views/project_licitados.xml',
         'views/project_internos_kanban.xml',
