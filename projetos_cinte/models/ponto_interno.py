@@ -124,4 +124,14 @@ class Ponto_interno(models.Model):
         string='Lista de Materiais',
         help='Lista de Materiais')
     
+    aprovacao_comercial = fields.Selection(
+        selection=[('0', 'Aprovado'),
+                   ('1', 'Reprovado')],
+        string='Aprovação Comercial',
+        help='Análise e aprovação do comercial')
+    
+    aprovacao_comercial_observacoes = fields.Text(
+        string='Observações',
+        help='Observações referentes a aprovação comercial para a região/ponto.')
+    
         

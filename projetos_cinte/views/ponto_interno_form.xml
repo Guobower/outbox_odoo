@@ -9,18 +9,18 @@
 			<field name="arch" type="xml">
 				<form string="Ponto ">
 					<sheet string="Ponto">
-						<group string="Informações Principais">
-							<group>
+						<group>
+							<group string="Informações Principais">
 								<field name="localidade" />
 								<field name="endereco" />
 								<field name="data_agendada_instalacao" />
-							</group>
-							<group>
 								<field name="latitude" />
 								<field name="longitude" />
-							</group>
-							<group colspan="2">
 								<field colspan="2" name="observacoes_gerais" />
+							</group>
+							<group string="Aprovação Comercial">
+								<field name="aprovacao_comercial" />
+								<field name="aprovacao_comercial_observacoes" />
 							</group>
 						</group>
 						<notebook>

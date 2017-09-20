@@ -45,7 +45,7 @@ class Project_task_inherited(models.Model):
               exibida na visualização Kanban dos projetos.
         
             Utilização:
-              setar_proxima_tarefa(param1, param2)
+              setar_proxima_tarefa()
         
             Parâmetros:
               cr
@@ -72,4 +72,33 @@ class Project_task_inherited(models.Model):
                 break
         
         return projeto.write({'proxima_tarefa':atividade,'responsavel':responsavel})
+    
+    
+    def gerar_oportunidade(self, cr, uid, ids, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo gerar uma oportunidade no CRM
+              ao criar um projeto.
+        
+            Utilização:
+              gerar_oportunidade()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs dos projetos em questão
+              context
+                Contexto atual
+        '''
+        if context is None:
+            context = {}
+            
+        lead_obj = self.pool.get('crm.lead')
+        
+        lead_obj.create(cr, uid, {'name': 'Teste', 'trunk':'Teste', 'callerid':'Teste', 'id_queue_call_entry': 1}, context=context)     
+       
+        
         
