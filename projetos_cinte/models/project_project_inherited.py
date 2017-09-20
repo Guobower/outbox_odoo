@@ -37,6 +37,10 @@ class Project_task_inherited(models.Model):
         string='Responsável',
         help='Responsável pela atividade')
     
+    oportunidade_gerada = fields.Integer(
+        string='Oportunidade Gerada',
+        help='Oportunidade Gerada')
+    
     def setar_proxima_tarefa(self, cr, uid, ids, context=None):
         '''
             Descrição:
@@ -71,7 +75,7 @@ class Project_task_inherited(models.Model):
                 responsavel = atividades.user_id.id
                 break
         
-        return projeto.write({'proxima_tarefa':atividade,'responsavel':responsavel})
+        return projeto.write({'proxima_tarefa':atividade, 'responsavel':responsavel})
     
     
     def gerar_oportunidade(self, cr, uid, ids, context=None):
@@ -96,9 +100,35 @@ class Project_task_inherited(models.Model):
         if context is None:
             context = {}
             
-        lead_obj = self.pool.get('crm.lead')
+        model_obj = self.pool.get('project.project')
+        projeto = model_obj.browse(cr, uid, ids[0])    
         
-        lead_obj.create(cr, uid, {'name': 'Teste', 'trunk':'Teste', 'callerid':'Teste', 'id_queue_call_entry': 1}, context=context)     
-       
+        if projeto.oportunidade_gerada == 0:    
+            lead_obj = self.pool.get('crm.lead')
+            
+            lead_obj.create(cr, uid, {'name': projeto.name, 
+                                      'partner_id':projeto.partner_id.id, 
+                                      'type': 'opportunity',
+                                      'email_from': projeto.partner_id.email,
+                                      'phone': projeto.partner_id.phone,
+                                      'stage_id': 1,
+                                      'partner_name': projeto.partner_id.name,
+                                      'street': projeto.partner_id.street,
+                                      'street2': projeto.partner_id.street2,
+                                      'zip': projeto.partner_id.zip,
+                                      'user_id':projeto.user_id.id}, context=context)     
+            
+            projeto.write({'oportunidade_gerada': (projeto.oportunidade_gerada + 1)}, context=context)
+                        
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'action_warn',
+                'name': 'Warning',
+                'params': {
+                    'title': 'Oportunidade Gerada!',
+                    'text': 'Oportunidade criada no módulo de CRM.',
+                    'sticky': True
+                    }
+            }
         
         

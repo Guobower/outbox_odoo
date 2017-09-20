@@ -51,6 +51,9 @@
 								type="object" icon="fa-files-o">
 								<field string="Documents" name="doc_count" widget="statinfo" />
 							</button>
+							<field name="oportunidade_gerada" invisible="1" />
+							<button name="gerar_oportunidade" class="oe_inline oe_stat_button" icon="fa-money" groups="base.group_user" style="font-size: 0.9em"
+							string="Criar Oportunidade" type="object" attrs="{'invisible':[('oportunidade_gerada','>', 0)]}" />
 						</div>
 						<group>
 							<group>
