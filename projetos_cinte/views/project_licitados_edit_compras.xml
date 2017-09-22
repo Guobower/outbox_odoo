@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="project_licitados_edit_x_previsao_chegada_material">
+			<field name="name">project.licitados.edit_x_previsao_chegada_material</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_previsao_chegada_material']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_x_material_disponivel">
+			<field name="name">project.licitados.edit_x_material_disponivel</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_material_disponivel']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

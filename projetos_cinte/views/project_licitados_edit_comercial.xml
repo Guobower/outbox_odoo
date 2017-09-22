@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="project_licitados_edit_date_start">
+			<field name="name">project.licitados.edit_date_start</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_start']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_date">
+			<field name="name">project.licitados.edit_date</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_partner_id">
+			<field name="name">project.licitados.edit_partner_id</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_x_quantidade_ips">
+			<field name="name">project.licitados.edit_x_quantidade_ips</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_quantidade_ips']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_x_sla_exigido">
+			<field name="name">project.licitados.edit_x_sla_exigido</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_sla_exigido']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_x_tipo_cliente">
+			<field name="name">project.licitados.edit_x_tipo_cliente</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_tipo_cliente']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_licitados_edit_x_prazo_instalacao_cliente">
+			<field name="name">project.licitados.edit_x_prazo_instalacao_cliente</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_licitados_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_prazo_instalacao_cliente']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

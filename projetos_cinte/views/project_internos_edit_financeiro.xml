@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="project_internos_edit_x_aprovacao_viabilidade_financeira">
+			<field name="name">project.internos.edit_x_aprovacao_viabilidade_financeira</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_internos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_aprovacao_viabilidade_financeira']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_internos_edit_x_data_aprovacao_viabilidade_financeira">
+			<field name="name">project.internos.edit_x_data_aprovacao_viabilidade_financeira</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_internos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_data_aprovacao_viabilidade_financeira']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_internos_edit_x_aprovacao_viabilidade_financeira_observacoes">
+			<field name="name">project.internos.edit_x_aprovacao_viabilidade_financeira_observacoes</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_internos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_aprovacao_viabilidade_financeira_observacoes']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

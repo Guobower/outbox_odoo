@@ -88,6 +88,7 @@
 								<group>
 									<field name="x_aprovacao_viabilidade" readonly="1" />
 									<field name="x_data_aprovacao_viabilidade" readonly="1" />
+									<field name="x_aprovacao_viabilidade_observacoes" readonly="1" />
 								</group>
 							</group>
 							<group string="Aprovação Comercial">

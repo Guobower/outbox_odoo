@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="project_internos_edit_date_start">
+			<field name="name">project.internos.edit_date_start</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_internos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_start']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_internos_edit_date">
+			<field name="name">project.internos.edit_date</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_internos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="project_internos_edit_partner_id">
+			<field name="name">project.internos.edit_partner_id</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_internos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

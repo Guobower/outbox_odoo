@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="project_corporativos_edit_x_numero_contrato_syncron">
+			<field name="name">project.corporativos.edit_x_numero_contrato_syncron</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project_corporativos_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='x_numero_contrato_syncron']" position="attributes">
+					<attribute name="readonly" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
