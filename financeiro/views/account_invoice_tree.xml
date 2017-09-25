@@ -19,6 +19,7 @@
                     <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                     <field name="user_id" string="Responsible" invisible="1"/>
                     <field name="date_due"/>
+                    <field name="numero_nota_fiscal"/>
                     <field name="origin"/>
                     <field name="currency_id" groups="base.group_multi_currency"/>
                     <field name="residual" sum="Residual Amount"/>
