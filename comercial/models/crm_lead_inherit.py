@@ -50,6 +50,10 @@ class Crm_lead_inherited(models.Model):
         select=True,
         help='Motivo da perda/desistência do Prospecto/Cliente')
     
+    megas_ganhos = fields.Float(
+        string='Megas Negociados',
+        help='Quantidade de megas vendidos ao novo cliente ou resultado de upgrade.')
+    
     
     
     # Campos necessários para as Licitações

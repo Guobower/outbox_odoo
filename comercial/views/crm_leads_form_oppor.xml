@@ -58,6 +58,7 @@
 									context="{'default_name': partner_name, 'default_email': email_from, 'default_phone': phone}" />
 								<field name="email_from" string="Email" widget="email" />
 								<field name="phone" />
+								<field name="megas_ganhos" />
 							</group>
 
 							<group>
