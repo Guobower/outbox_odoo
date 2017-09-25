@@ -4,6 +4,9 @@ from openerp import api, fields, models
 
 class AccountMoveLineInherited(models.Model):
     _inherit = 'account.move.line'
+    
+    name = fields.Char(
+        required=False)
 
     @api.multi
     def action_payment_installment(self):
