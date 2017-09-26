@@ -75,23 +75,24 @@ class Account_invoice_inherited(models.Model):
                 mes = 12
                 ano = int(ano)-1
             
-            fatura = self.pool.get('account.invoice').browse(cr, user, ids[0])
-            data_fatura = fatura.create_date.split(" ")
-            
-            data_base = datetime.strptime(data_fatura[0], '%Y-%m-%d')
-            inicio_periodo = data_base - timedelta(days=31)
-            final_periodo = data_base - timedelta(days=1)
-            
-            res = {
-                 'value': {
-                    # Define os valores dos campos e atualiza no formulário
-                    'mes_competencia': mes,
-                    'ano_competencia': ano,
-                    'periodo_prestacao_servico': "De " + str(inicio_periodo.strftime('%d/%m/%Y')) + " à " + str(final_periodo.strftime('%d/%m/%Y'))
+            if ids:
+                fatura = self.pool.get('account.invoice').browse(cr, user, ids[0])
+                data_fatura = fatura.create_date.split(" ")
+                
+                data_base = datetime.strptime(data_fatura[0], '%Y-%m-%d')
+                inicio_periodo = data_base - timedelta(days=31)
+                final_periodo = data_base - timedelta(days=1)
+                
+                res = {
+                     'value': {
+                        # Define os valores dos campos e atualiza no formulário
+                        'mes_competencia': mes,
+                        'ano_competencia': ano,
+                        'periodo_prestacao_servico': "De " + str(inicio_periodo.strftime('%d/%m/%Y')) + " à " + str(final_periodo.strftime('%d/%m/%Y'))
+                    }
                 }
-            }
-            # Retorna os valores para serem atualizados na view.
-            return res
+                # Retorna os valores para serem atualizados na view.
+                return res
     
     def gerar_nota_fiscal(self, cr, user, ids, context=None):
         '''
