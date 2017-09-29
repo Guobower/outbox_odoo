@@ -2,7 +2,7 @@
 <!--Custom report. -->
 <openerp>
 	<data>
-		<template id="report_entradas_caixa">
+		<template id="report_saidas_caixa">
 			<t t-call="report.html_container">
 				<t t-call="report.external_layout">
 					<div class="page">
