@@ -498,7 +498,7 @@ class Convenio115(models.Model):
             
             # Número ou código da fatura comercial, 20 caracteres, casas 253 - 272, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                20, self.formatar_caracteres_especiais(str(item.numero_nota_fiscal))
+                20, self.formatar_caracteres_especiais(str(item.number))
                 )
             
             # Valor total da fatura comercial, 12 caracteres, casas 273 - 284, tipo N
