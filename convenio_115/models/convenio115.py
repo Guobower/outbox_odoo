@@ -81,15 +81,6 @@ class Convenio115(models.Model):
         help='Em caso normais usar 01, caso seja substituto iniciar com 01',
         required=True)
     
-    situacao_documento_fiscal = fields.Selection(
-        selection=[('S', 'Documento fiscal cancelado dentro do período'),
-                   ('R', 'Documento fiscal de substituição a documento do mesmo período'),
-                   ('C', 'Documento fiscal complementar'),
-                   ('N', 'Demais casos')],
-        string='Situação do Documento Fiscal',
-        help='Situação do documento fiscal',
-        required=True)
-    
     notas_fiscais = fields.Many2many(
         comodel_name='account.invoice',
         string='Faturas de Clientes',
