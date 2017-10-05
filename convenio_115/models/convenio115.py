@@ -194,23 +194,26 @@ class Convenio115(models.Model):
     
     
     
-    def hello_world(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-            # your logic will set over  hear
-            
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'action_warn',
-            'name': 'Warning',
-            'params': {
-                'title': 'Warning!',
-                'text': 'Entered Quantity is greater than quantity on source.',
-                'sticky': True
-                }
-         }
-    
     def gerar_arquivo(self, cr, uid, ids, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo gerar os arquivos padrões do convênio 115 
+              (Arquivo Mestre, Arquivo de Itens e Arquivo de Destinatários) e anexar
+              na instância do lote de notas fiscais.
+        
+            Utilização:
+              gerar_arquivo()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              context
+                Contexto atual
+        '''
         if context is None:
             context = {}
             
@@ -219,10 +222,9 @@ class Convenio115(models.Model):
         model_obj = self.pool.get('convenio115')  # the model of record you want file attached
         record_obj = model_obj.browse(cr, uid, ids[0])  # actual record to wich you attach file
         
-        self.gerar_mestre_fiscal(cr, uid, ids, model_obj, record_obj, context)
-        self.gerar_item(cr, uid, ids, model_obj, record_obj, context)
-        self.gerar_dados_destinatarios(cr, uid, ids, model_obj, record_obj, context)
-        # self.gerar_dados_controle_identificacao(cr, uid, ids, model_obj, record_obj, context)
+        self.gerar_mestre_fiscal(cr, uid, ids, record_obj, context)
+        self.gerar_item(cr, uid, ids, record_obj, context)
+        self.gerar_dados_destinatarios(cr, uid, ids, record_obj, context)
         
         return {
             'type': 'ir.actions.client',
@@ -234,34 +236,30 @@ class Convenio115(models.Model):
                 'sticky': True
                 }
          }
-        
-    def gerar_arquivo_identificacao(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-            
-        assert len(ids) == 1, "Only one ID accepted"
-        
-        model_obj = self.pool.get('convenio115')  # the model of record you want file attached
-        record_obj = model_obj.browse(cr, uid, ids[0])  # actual record to wich you attach file
-        
-        self.gerar_dados_controle_identificacao(cr, uid, ids, model_obj, record_obj, context)
-        
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'action_warn',
-            'name': 'Warning',
-            'params': {
-                'title': 'Arquivos Gerados!',
-                'text': 'Arquivos gerados com sucesso, confira nos anexos do documento.',
-                'sticky': True
-                }
-         }    
-        
     
-    # Método para gerar arquivo Mestre fiscal    
-    def gerar_mestre_fiscal(self, cr, uid, ids, model_obj, record_obj, context):
+    
+    
+    def gerar_mestre_fiscal(self, cr, uid, ids, record_obj, context):
+        '''
+            Descrição:
+              Esta função tem como objetivo gerar o arquivo do Mestre Fiscal do Convênio 115 e
+              anexá-lo na instância do lote de notas fiscais.
+        
+            Utilização:
+              gerar_mestre_fiscal()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              context
+                Contexto atual
+        '''
         import base64
-        # Geração do primeiro arquivo
+        # Buscando CNPJ do emitente
         cnpj_emitente = self.formatar_caracteres_especiais(record_obj.empresa.cnpj_cpf)
         
         # Gerando nome do arquivo
@@ -269,9 +267,6 @@ class Convenio115(models.Model):
         
         # Gerando dados do arquivo, precisamos fazer um loop em todas as faturas
         txt_content_arquivo = ""
-        
-        # Número sequencial da Nota Fiscal
-        numero_nota = 0
         
         # Número de itens nas Notas Fiscais
         numero_itens = 0
@@ -295,8 +290,6 @@ class Convenio115(models.Model):
         operacoes_isentas = 0
         
         for item in record_obj.notas_fiscais:
-            # Incrementa o número sequencial da Nota Fiscal
-            numero_nota = numero_nota + 1
             txt_content = ""
             
             # CNPJ Cliente, 14 caracteres, casas 1 - 14, tipo N 
@@ -341,15 +334,15 @@ class Convenio115(models.Model):
             
             # Data de emissão, 8 caracteres, casas 82 - 89, tipo N 
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                8, self.formatar_caracteres_especiais(str(item.date_invoice))
+                8, self.formatar_caracteres_especiais(str(item.data_emissao))
                 )
             
             # Descobrindo se é a primeira data
             if data_primeiro == "":
-                data_primeiro = item.date_invoice
+                data_primeiro = item.data_emissao
             
             # Informando a data do último documento
-            data_ultimo = item.date_invoice
+            data_ultimo = item.data_emissao
             
             # Modelo, 2 caracteres, casas 90 - 91, tipo N 
             txt_content = txt_content + "" + self.formatar_numerico(
@@ -363,7 +356,7 @@ class Convenio115(models.Model):
             
             # Número, 9 caracteres, casas 95 - 103, tipo N 
             txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(numero_nota)
+                9, str(item.numero_nota_fiscal)
                 )
             
             # Valor total do ICMS da nota
@@ -386,7 +379,7 @@ class Convenio115(models.Model):
                                 14, self.formatar_caracteres_especiais(str(item.partner_id.cnpj_cpf))
                                 ),
                             self.formatar_numerico(
-                                9, str(numero_nota)
+                                9, str(item.numero_nota_fiscal)
                                 ),
                             self.formatar_numerico(
                                 12, str('%.2f' % (item.amount_total)).replace('.', '')
@@ -398,7 +391,7 @@ class Convenio115(models.Model):
                                 12, str('%.2f' % (nota_valor_icms)).replace('.', '')
                                 ),
                             self.formatar_alfanumerico(
-                                8, self.formatar_caracteres_especiais(str(item.date_invoice))
+                                8, self.formatar_caracteres_especiais(str(item.data_emissao))
                                 ),
                             self.formatar_numerico(
                                 14, self.formatar_caracteres_especiais(str(record_obj.empresa.cnpj_cpf))
@@ -446,7 +439,7 @@ class Convenio115(models.Model):
             
             # Situação do documento, 1 caracteres, casas 196 - 196, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                1, str(record_obj.situacao_documento_fiscal)
+                1, str("N")
                 )
             
             # Ano e mês de referência da apuração, 4 caracteres, casas 197 - 200, tipo N
@@ -505,7 +498,7 @@ class Convenio115(models.Model):
             
             # Número ou código da fatura comercial, 20 caracteres, casas 253 - 272, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                20, self.formatar_caracteres_especiais(str(item.internal_number))
+                20, self.formatar_caracteres_especiais(str(item.numero_nota_fiscal))
                 )
             
             # Valor total da fatura comercial, 12 caracteres, casas 273 - 284, tipo N
@@ -565,7 +558,7 @@ class Convenio115(models.Model):
         
         # Setando valores importantes para outros arquivos
         # Quantidade de registros do arquivo Mestre
-        self.write(cr, uid, ids[0], {'quantidade_registros_mestre':numero_nota}, context)
+        #self.write(cr, uid, ids[0], {'quantidade_registros_mestre':numero_nota}, context)
         
         # Data de emissão do primeiro documento
         self.write(cr, uid, ids[0], {'data_emissao_primeiro_documento':data_primeiro}, context)
@@ -577,7 +570,7 @@ class Convenio115(models.Model):
         self.write(cr, uid, ids[0], {'numero_primeiro_documento':1}, context)
         
         # Número do último documento
-        self.write(cr, uid, ids[0], {'numero_ultimo_documento':numero_nota}, context)
+        #self.write(cr, uid, ids[0], {'numero_ultimo_documento':numero_nota}, context)
         
         # Valor total
         self.write(cr, uid, ids[0], {'valor_total':valor_total}, context)
@@ -602,8 +595,25 @@ class Convenio115(models.Model):
     
     
     
-    # Método para gerar arquivo Itens Fiscais
-    def gerar_item(self, cr, uid, ids, model_obj, record_obj, context):
+    def gerar_item(self, cr, uid, ids, record_obj, context):
+        '''
+            Descrição:
+              Esta função tem como objetivo gerar o arquivo de Itens Fiscais do Convênio 115 e
+              anexá-lo na instância do lote de notas fiscais.
+        
+            Utilização:
+              gerar_item()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              context
+                Contexto atual
+        '''
         import base64
         # Geração do primeiro arquivo
         cnpj_emitente = self.formatar_caracteres_especiais(record_obj.empresa.cnpj_cpf)
@@ -614,14 +624,10 @@ class Convenio115(models.Model):
         # Gerando dados do arquivo, precisamos fazer um loop em todas as faturas
         txt_content_arquivo = ""
         
-        # Número sequencial da Nota Fiscal
-        numero_nota = 0
-        
         # Totalizador de itens
         total_itens = 0
         for item in record_obj.notas_fiscais:
             # Incrementa o número sequencial da Nota Fiscal
-            numero_nota = numero_nota + 1
             numero_item = 0
             
             for linha_produto in item.invoice_line:
@@ -656,7 +662,7 @@ class Convenio115(models.Model):
                 
                 # Data de Emissão, 8 casas, 21 - 28 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    8, self.formatar_caracteres_especiais(str(item.date_invoice))
+                    8, self.formatar_caracteres_especiais(str(item.data_emissao))
                     )
                 
                 # Modelo, 2 casas, 29 - 30 tipo N
@@ -671,7 +677,7 @@ class Convenio115(models.Model):
                 
                 # Número, 9 casas, 34 - 42 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    9, str(numero_nota)
+                    9, str(item.numero_nota_fiscal)
                     )
                 
                 # CFOP, 4 casas, 43 - 46 tipo N
@@ -691,7 +697,7 @@ class Convenio115(models.Model):
                 
                 # Descrição do item, 40 casas, 60 - 99 tipo X
                 txt_content = txt_content + "" + self.formatar_alfanumerico(
-                    40, str(linha_produto.product_id.name.encode('ascii', 'ignore').decode('ascii'))
+                    40, str(linha_produto.name.encode('ascii', 'ignore').decode('ascii'))
                     )
                 
                 # Código de classificação do item, 4 casas, 100 - 103 tipo N
@@ -766,7 +772,7 @@ class Convenio115(models.Model):
                 
                 # Situação, 1 casas, 215 - 215 tipo X
                 txt_content = txt_content + "" + self.formatar_alfanumerico(
-                    1, str(record_obj.situacao_documento_fiscal)
+                    1, str("N")
                     )
                 
                 # Ano e Mês de referência da apuração, 4 casas, 216 - 219 tipo X
@@ -856,8 +862,25 @@ class Convenio115(models.Model):
     
     
     
-    # Método para gerar arquivo com dados dos destinatários   
-    def gerar_dados_destinatarios(self, cr, uid, ids, model_obj, record_obj, context):
+    def gerar_dados_destinatarios(self, cr, uid, ids, record_obj, context):
+        '''
+            Descrição:
+              Esta função tem como objetivo gerar o arquivo de Dados de Destinatários 
+              do Convênio 115 e anexá-lo na instância do lote de notas fiscais.
+        
+            Utilização:
+              gerar_dados_destinatario()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              context
+                Contexto atual
+        '''
         import base64
         # Geração do primeiro arquivo
         cnpj_emitente = self.formatar_caracteres_especiais(record_obj.empresa.cnpj_cpf)
@@ -868,11 +891,7 @@ class Convenio115(models.Model):
         # Gerando dados do arquivo, precisamos fazer um loop em todas as faturas
         txt_content_arquivo = ""
         
-        # Número sequencial da Nota Fiscal
-        numero_nota = 0
         for item in record_obj.notas_fiscais:
-            # Incrementa o número sequencial da Nota Fiscal
-            numero_nota = numero_nota + 1
             txt_content = ""
             
             # CNPJ Cliente, 14 caracteres, casas 1 - 14, tipo N 
@@ -969,7 +988,7 @@ class Convenio115(models.Model):
             
             # Data de emissão, 8 caracteres, casas 222 - 229, tipo N
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                8, self.formatar_caracteres_especiais(str(item.date_invoice))
+                8, self.formatar_caracteres_especiais(str(item.data_emissao))
                 )
             
             # Modelo, 2 caracteres, casas 230 - 231, tipo N
@@ -984,7 +1003,7 @@ class Convenio115(models.Model):
             
             # Número, 9 caracteres, casas 235 - 243, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(numero_nota)
+                9, str(item.numero_nota_fiscal)
                 )
             
             # Código do Município, 7 caracteres, casas 244 - 250, tipo N
@@ -1008,7 +1027,7 @@ class Convenio115(models.Model):
             txt_content_arquivo = txt_content_arquivo + txt_content
         
         # Quantidade de registro do arquivo de Destinatários
-        self.write(cr, uid, ids[0], {'quantidade_registros_destinatarios':numero_nota}, context)
+        #self.write(cr, uid, ids[0], {'quantidade_registros_destinatarios':numero_nota}, context)
         
         # Nome do arquivo de Destinatários
         self.write(cr, uid, ids[0], {'nome_arquivo_destinatarios':file_name}, context)
@@ -1029,296 +1048,18 @@ class Convenio115(models.Model):
     
     
     
-    # Método para gerar arquivo de Controle e Identificação
-    def gerar_dados_controle_identificacao(self, cr, uid, ids, model_obj, record_obj, context):
-        import base64
-        # Geração do primeiro arquivo
-        cnpj_emitente = self.formatar_caracteres_especiais(record_obj.empresa.cnpj_cpf)
-        
-        # Gerando nome do arquivo
-        file_name = record_obj.empresa.state_id.code + '' + cnpj_emitente + '21UUU' + record_obj.ano + '' + record_obj.mes + '' + record_obj.status_lote + '' + record_obj.status_sequencial + 'C.' + record_obj.volume + ''
-        
-        # Gerando dados do arquivo, precisamos fazer um loop em todas as faturas
-        txt_content = ""
-        
-        # CNPJ, 18 caracteres, casas 1 - 18, tipo X 
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            18, str(record_obj.empresa.cnpj_cpf)
-            )
-        
-        # IE, 15 caracteres, casas 19 - 33, tipo X 
-        if record_obj.empresa.inscr_est:
-            txt_content = txt_content + "" + self.formatar_alfanumerico(
-                15, "" + str(record_obj.empresa.inscr_est)
-                )
-        else:
-            txt_content = txt_content + "" + self.formatar_alfanumerico(
-                15, "ISENTO"
-                )
-             
-        # Razão Social, 50 caracteres, casas 34 - 83, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            50, str(record_obj.empresa.legal_name)
-            )
-        
-        # Logradouro, 50 caracteres, casas 84 - 133, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            50, str(record_obj.empresa.street)
-            )
-        
-        # CEP, 9 caracteres, casas 134 - 142, tipo X
-        txt_content = txt_content + "" + self.formatar_numerico(
-            9, str(record_obj.empresa.zip)
-            )
-        
-        # Bairro, 30 caracteres, casas 143 - 172, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            30, str(record_obj.empresa.district.encode('ascii', 'ignore').decode('ascii'))
-            )
-        
-        # Municipio, 30 caracteres, casas 173 - 202, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            30, str(record_obj.empresa.l10n_br_city_id.name.encode('ascii', 'ignore').decode('ascii'))
-            )
-        
-        # UF, 2 caracteres, casas 203 - 204, tipo X 
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            2, str(record_obj.empresa.state_id.code)
-            )
-        
-        # Responsável pela apresentação, 30 caracteres, casas 205 - 234, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            30, str("BRUNO ALEXANDRE AZEVEDO BEZERRA DE SOUSA")
-            )
-        
-        # Cargo, 20 caracteres, casas 235 - 254, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            20, str("CONTADOR")
-            )
-        
-        # Telefone, 12 caracteres, casas 255 - 266, tipo N
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            12, str(self.formatar_caracteres_especiais(record_obj.empresa.phone))
-            )
-        
-        # Email, 40 caracteres, casas 267 - 306, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-            40, str("BRUNOBEZERRA@CINTE.COM.BR")
-            )
-        
-        # Quantidade de registro do arquivo Mestre, 7 caracteres, casas 307 - 313, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                7, str(record_obj.quantidade_registros_mestre)
-            )
-        
-        # Quantidade de notas fiscais canceladas, 7 caracteres, casas 314 - 320, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                7, str("0")
-            )
-        
-        # Data de emissão do primeiro documento fiscal, 8 caracteres, casas 321 - 328, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                8, self.formatar_caracteres_especiais(str(record_obj.data_emissao_primeiro_documento))
-            )
-        
-        # Data de emissão do último documento fiscal, 8 caracteres, casas 329 - 336, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                8, self.formatar_caracteres_especiais(str(record_obj.data_emissao_ultimo_documento))
-            )
-       
-        # Número do primeiro documento fiscal, 9 caracteres, casas 337 - 345, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(record_obj.numero_primeiro_documento)
-            )
-        
-        # Número do último documento fiscal, 9 caracteres, casas 346 - 354, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(record_obj.numero_ultimo_documento)
-            )
-       
-        # Valor Total (com 2 decimais), 14 caracteres, casas 355 - 368, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.valor_total)).replace('.', '')
-            )
-       
-        # BC ICMS (com 2 decimais), 14 caracteres, casas 369 - 382, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.base_calculo_icms)).replace('.', '')
-            )
-       
-        # ICMS (com 2 decimais), 14 caracteres, casas 383 - 396, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.icms)).replace('.', '')
-            )
-       
-        # Operações isentas ou não tributadas (com 2 decimais), 14 caracteres, casas 397 - 410, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.operacoes_isentas)).replace('.', '')
-            )
-        
-        # Outros valores que não compõe a BC do ICMS (com 2 decimais), 14 caracteres, casas 411 - 424, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('0')
-            )
-        
-        # Nome do arquivo mestre do documento fiscal, 15 caracteres, casas 425 - 439, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                15, str(record_obj.nome_arquivo_mestre)
-            )
-        
-        # Status de retificação ou substituição do arquivo, 1 caracteres, casas 440 - 440, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                1, str(record_obj.status_lote)
-            )
-        
-        # Código de autenticação digital do arquivo mestre do documento fiscal, 32 caracteres, casas 441 - 472, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                32, str(record_obj.codigo_autenticacao_digital_mestre)
-            )
-        
-        # Quantidade de registros do arquivo Item de Documento Fiscal, 9 caracteres, casas 473 - 481, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(record_obj.quantidade_registros_itens)
-            )
-        
-        # Quantidade de itens cancelados, 7 caracteres, casas 482 - 488, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                7, str("0")
-            )
-        
-        # Data de emissão do primeiro documento fiscal, 8 caracteres, casas 489 - 496, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                8, self.formatar_caracteres_especiais(str(record_obj.data_emissao_primeiro_documento))
-            )
-        
-        # Data de emissão do ultimo documento fiscal, 8 caracteres, casas 497 - 504, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                8, self.formatar_caracteres_especiais(str(record_obj.data_emissao_ultimo_documento))
-            )
-        
-        # Número do primeiro documento fiscal, 9 caracteres, casas 505 - 513, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(record_obj.numero_primeiro_documento)
-            )
-        
-        # Número do último documento fiscal, 9 caracteres, casas 514 - 522, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(record_obj.numero_ultimo_documento)
-            )
-        
-        # Valor Total (com 2 decimais), 14 caracteres, casas 523 - 536, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.valor_total)).replace('.', '')
-            )
-        
-        # Descontos (com 2 decimais), 14 caracteres, casas 537 - 550, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('0')
-            )
-        
-        # Acréscimos e despesas acessórias (com 2 decimais), 14 caracteres, casas 551 - 564, tipo N       
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('0')
-            )
-               
-        # BC ICMS (com 2 decimais), 14 caracteres, casas 565 - 578, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.base_calculo_icms)).replace('.', '')
-            )
-       
-        # ICMS (com 2 decimais), 14 caracteres, casas 579 - 592, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.icms)).replace('.', '')
-            )
-        
-        # Operações isentas ou não tributadas (com 2 decimais), 14 caracteres, casas 593 - 606, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('%.2f' % (record_obj.operacoes_isentas)).replace('.', '')
-            )
-        
-        # Outros valores que não compõe a BC do ICMS (com 2 decimais), 14 caracteres, casas 607 - 620, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                14, str('0')
-            )
-        
-        # Nome do arquivo item do documento fiscal, 15 caracteres, casas 621 - 635, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                15, str(record_obj.nome_arquivo_mestre)
-            )
-        
-        # Status de retificação ou substituição do arquivo, 1 caracteres, casas 636 - 636, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                1, str(record_obj.status_lote)
-            )
-        
-        # Código de autenticação digital do arquivo Item de Documento Fiscal, 32 caracteres, casas 637 - 668, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                32, str(record_obj.codigo_autenticacao_digital_itens)
-            )
-        
-        # Quantidade de registros do arquivo Dados Cadastrais do Destinatário do documento fiscal, 7 caracteres, casas 669 - 675, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                7, str(record_obj.quantidade_registros_itens)
-            )
-        
-        # Nome do arquivo Dados Cadastrais do Destinatário do documento fiscal, 15 caracteres, casas 676 - 690, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                15, str(record_obj.nome_arquivo_mestre)
-            )
-        
-        # Status de retificação ou substituição do arquivo, 1 caracteres, casas 691 - 691, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                1, str(record_obj.status_lote)
-            )
-        
-        # Código de autenticação digital do arquivo Dados Cadastrais do Destinatário do documento fiscal, 32 caracteres, casas 692 - 723, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                32, str(record_obj.codigo_autenticacao_digital_destinatarios)
-            )
-        
-        # Versão do programa Validador utilizado na validação, 3 caracteres, casas 724 - 726, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                3, str(record_obj.versao_validador)
-            )
-        
-        # Chave de controle do recibo de entrega, 9 caracteres, casas 727 - 732, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                3, str(record_obj.chave_controle_recibo)
-            )
-        
-        # Quantidade de Advertências encontradas, 9 caracteres, casas 733 - 741, tipo N
-        txt_content = txt_content + "" + self.formatar_numerico(
-                9, str(record_obj.quantidade_advertencias)
-            )
-        
-        # Brancos - reservado para uso futuro, 24 caracteres, casas 742 - 765, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                24, str("")
-            )
-        
-        # Código de autenticação digital do registro, 32 caracteres, casas 766 - 797, tipo X
-        txt_content = txt_content + "" + self.formatar_alfanumerico(
-                32, str(self.gerar_autenticacao_digital_registro(txt_content))
-            )
-        
-        
-        # Encerramento da Linha
-        txt_content = txt_content + "\r\n"
-    
-        attach_name = file_name
-        attach_obj = self.pool.get('ir.attachment')
-        
-        context.update({'default_res_id': ids[0], 'default_res_model': 'convenio115'})
-
-        attach_id = attach_obj.create(cr, uid, {'name': attach_name,
-                                                'datas': base64.encodestring(txt_content),
-                                                'datas_fname': file_name}, context=context)
-        
-        return attach_id
-    
-    
-    # Função para formatar strings para retirar caracteres especiais
     def formatar_caracteres_especiais(self, string_pura):
+        '''
+            Descrição:
+             Função para formatar strings para retirar caracteres especiais.
+        
+            Utilização:
+              formatar_caracteres_especiais(param1)
+        
+            Parâmetros:
+              string_pura
+                String a ser formatada
+        '''
         if string_pura:
             # Retirando caracteres especiais e substituindo por nada
             string_pura = string_pura.replace(".", "")
@@ -1333,9 +1074,20 @@ class Convenio115(models.Model):
             return ""
     
     
-    # Função para formatar elementos numéricos para o arquivo da nota fiscal
-    # Recebe o tamanho padrão do documento e o valor para formatação
     def formatar_numerico(self, tamanho, valor):
+        '''
+            Descrição:
+              Função para formatar elementos numéricos para o arquivo da nota fiscal.
+        
+            Utilização:
+              formatar_numerico(param1, param2)
+        
+            Parâmetros:
+              tamanho
+                Tamanho da string de retorno
+              valor
+                String a ser formatada
+        '''
         # Declaração de string que será utilizada para formatação e retorno
         string_tratada = ""
         
@@ -1350,9 +1102,20 @@ class Convenio115(models.Model):
         return string_tratada[-tamanho::]
     
     
-    # Função para formatar elementos alfanuméricos para o arquivo da nota fiscal
-    # Recebe o tamanho padrão do documento e a string para formatação
     def formatar_alfanumerico(self, tamanho, string_pura):
+        '''
+            Descrição:
+              Função para formatar elementos alfanuméricos para o arquivo da nota fiscal.
+        
+            Utilização:
+              formatar_alfanumerico(param1, param2)
+        
+            Parâmetros:
+              tamanho
+                Tamanho da string de retorno
+              string_pura
+                String a ser formatada
+        '''
         # Declaração de string que será utilizada para formatação e retorno recebendo a string passada
         string_tratada = "" + string_pura
         
@@ -1364,10 +1127,32 @@ class Convenio115(models.Model):
         # retornando a string formatada com o tamanho solicitado, contando da esquerda para direita   
         return string_tratada[:tamanho]
         
-    # Função para gerar a autenticação digital da nota fiscal
-    # Recebe os campos necessários para a geração do código
+    
     def gerar_autenticacao_digital(self, cnpj_destinatario, numero_nota, valor_total,
                                    base_calculo_icms, valor_icms, data_emissao, cnpj_emitente):
+        '''
+            Descrição:
+              Função para gerar a autenticação digital da nota fiscal.
+        
+            Utilização:
+              gerar_autenticacao_digital(param1, param2, param3, param4, param5, param6, param7)
+        
+            Parâmetros:
+              cnpj_destinatario
+                CNPJ do cliente
+              numero_nota
+                Numero da Nota Fiscal
+              valor_total
+                Valor Total da Nota Fiscal
+              base_calculo_icms
+                Base de calculo do ICMS
+              valor_icms
+                Valor total do ICMS
+              data_emissao
+                Data de Emissão da Nota Fiscal
+              cnpj_emitente
+                CNPJ da empresa emitente
+        '''
         # importa classe python com implementação do algoritmo MD5
         import md5
         
@@ -1378,8 +1163,19 @@ class Convenio115(models.Model):
         # retornando a autenticação  
         return autenticacao_digital.hexdigest()
     
-    # Função para gerar a autenticação digital do registro
+    
     def gerar_autenticacao_digital_registro(self, string_registro):
+        '''
+            Descrição:
+              Função para gerar a autenticação digital da nota fiscal.
+        
+            Utilização:
+              gerar_autenticacao_digital_registro(param1)
+        
+            Parâmetros:
+              string_registro
+                String a ser criptografada
+        '''
         # importa classe python com implementação do algoritmo MD5
         import md5
         
@@ -1391,13 +1187,35 @@ class Convenio115(models.Model):
 
     
     def on_change_mes_ano(self, cr, user, ids, mes, ano, context=None):
+        '''
+            Descrição:
+              Função chamada no on_change dos campos mes e ano, responsavel por filtrar quais 
+              faturas estarao disponiveis a serem inseridas no lote.
+        
+            Utilização:
+              on_change_mes_ano(param1, param2)
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              user
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              mes
+                Mes informado no formulario
+              ano
+                Ano informado no formulario
+              context
+                Contexto atual
+        '''
         import calendar
         if mes:
             if ano:
                 res = {}
 
-                res['domain'] = {'notas_fiscais': [('date_invoice', '>=', '2017'+'-'+mes+'-01'),
-                                                   ('date_invoice', '<=', '2017'+'-'+mes+'-'+str(calendar.monthrange(int(ano), int(mes))[1]))]}
+                res['domain'] = {'notas_fiscais': [('data_emissao', '>=', '2017'+'-'+mes+'-01'),
+                                                   ('data_emissao', '<=', '2017'+'-'+mes+'-'+str(calendar.monthrange(int(ano), int(mes))[1]))]}
                 
                 return res
          
