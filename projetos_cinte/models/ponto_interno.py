@@ -102,19 +102,19 @@ class Ponto_interno(models.Model):
     
     equipe_projeto_radio = fields.One2many(
         comodel_name='x_equipe_projeto',
-        inverse_name='x_ponto_id_radio',
+        inverse_name='x_ponto_interno_id_radio',
         string='Equipe do Projeto',
         help='Equipe do Projeto')
         
     equipe_projeto = fields.One2many(
         comodel_name='x_equipe_projeto',
-        inverse_name='x_ponto_id',
+        inverse_name='x_ponto_interno_id',
         string='Equipe do Projeto',
         help='Equipe do Projeto')
     
     lista_materiais_radio = fields.One2many(
         comodel_name='x_materiais_projeto',
-        inverse_name='x_ponto_id_radio',
+        inverse_name='x_ponto_interno_id_radio',
         string='Lista de Materiais',
         help='Lista de Materiais')
     
