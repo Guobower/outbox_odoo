@@ -120,7 +120,7 @@ class Ponto_interno(models.Model):
     
     lista_materiais = fields.One2many(
         comodel_name='x_materiais_projeto',
-        inverse_name='x_ponto_id',
+        inverse_name='x_ponto_interno_id',
         string='Lista de Materiais',
         help='Lista de Materiais')
     
