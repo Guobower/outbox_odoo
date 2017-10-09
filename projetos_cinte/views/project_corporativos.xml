@@ -52,8 +52,10 @@
 								<field string="Documents" name="doc_count" widget="statinfo" />
 							</button>
 							<field name="oportunidade_gerada" invisible="1" />
-							<button name="gerar_oportunidade" class="oe_inline oe_stat_button" icon="fa-money" groups="base.group_user" style="font-size: 0.9em"
-							string="Criar Oportunidade" type="object" attrs="{'invisible':[('oportunidade_gerada','>', 0)]}" />
+							<button name="gerar_oportunidade" class="oe_inline oe_stat_button"
+								icon="fa-money" groups="base.group_user" style="font-size: 0.9em"
+								string="Criar Oportunidade" type="object"
+								attrs="{'invisible':['|',('oportunidade_gerada','>', 0),('type_project', '=', 'internos')]}" />
 						</div>
 						<group>
 							<group>
@@ -65,7 +67,8 @@
 									<field name="partner_id" on_change="onchange_partner_id(partner_id)"
 										string="Customer" readonly="1" />
 									<field name="x_tipo_projeto_odoo" string="Tipo do Projeto"
-										readonly="1" />
+										readonly="1" attrs="{'invisible': [('type_project', '=', 'internos')]}" />
+									<field name="type_project" string="Tipo do Projeto" invisible="1" />
 								</group>
 								<group>
 									<field name="date_start" string="Start Date" readonly="1" />
@@ -73,7 +76,7 @@
 								</group>
 							</group>
 						</group>
-						<group string="Dados do Projeto">
+						<group string="Dados do Projeto" attrs="{'invisible': [('type_project', '=', 'internos')]}">
 							<group>
 								<field name="x_tipo_cliente" readonly="1" />
 								<field name="x_numero_contrato_syncron" readonly="1" />
@@ -83,15 +86,16 @@
 								<field name="x_quantidade_ips" readonly="1" />
 							</group>
 						</group>
-						<group attrs="{'invisible': [('x_tipo_projeto_odoo', '!=', '1')]}">
+						<group attrs="{'invisible': [('x_tipo_projeto_odoo', '!=', '1'),('type_project', '=', 'corporativos')]}">
 							<group string="Aprovação Gerencial" readonly="1">
 								<group>
 									<field name="x_aprovacao_viabilidade" readonly="1" />
 									<field name="x_data_aprovacao_viabilidade" readonly="1" />
-									<field name="x_aprovacao_viabilidade_observacoes" readonly="1" />
+									<field name="x_aprovacao_viabilidade_observacoes"
+										readonly="1" />
 								</group>
 							</group>
-							<group string="Aprovação Comercial">
+							<group string="Aprovação Comercial" attrs="{'invisible': [('type_project', '=', 'internos')]}">
 								<group>
 									<field name="x_aprovacao_viabilidade_comercial" readonly="1" />
 									<field name="x_data_aprovacao_viabilidade_comercial"
@@ -114,7 +118,7 @@
 								<group>
 									<field name="x_previsao_chegada_material" readonly="1" />
 									<field name="x_material_disponivel" readonly="1" />
-									<field name="x_prazo_instalacao_cliente" readonly="1" />
+									<field name="x_prazo_instalacao_cliente" readonly="1" attrs="{'invisible': [('type_project', '=', 'internos')]}" />
 								</group>
 							</group>
 							<p invisible="1"
@@ -148,12 +152,20 @@
 						</group>
 						<notebook>
 							<page string="Pontos do Cliente">
-								<field name="x_pontos_cliente">
+								<field name="x_pontos_cliente" attrs="{'invisible': [('type_project', '=', 'internos')]}">
 									<tree>
 										<field name="x_localidade" />
 										<field name="x_endereco" />
 										<field name="x_latitude" />
 										<field name="x_longitude" />
+									</tree>
+								</field>
+								<field name="pontos_internos" attrs="{'invisible': [('type_project', '!=', 'internos')]}">
+									<tree>
+										<field name="localidade" />
+										<field name="endereco" />
+										<field name="latitude" />
+										<field name="longitude" />
 									</tree>
 								</field>
 							</page>
