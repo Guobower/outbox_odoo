@@ -5,7 +5,7 @@
     'category': 'Uncategorized',
     'summary': 'Agenda dos projetistas da Cinte',
     'version': '1.1',
-    'description': "Agenda dos projetistas da Cinte",
+    'description': "Agenda customizada para os projetistas da Cinte",
     'author': 'Edson Junior',
     'depends': ['base'],
     'installable': True,
