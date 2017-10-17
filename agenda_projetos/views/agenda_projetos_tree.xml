@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="agenda_projetos_tree">
+			<field name="name">agenda_projetos.tree</field>
+			<field name="model">agenda_projetos</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Agenda de Projetos">
+					<field name="name" />
+					<field name="responsavel" />
+					<field name="data" />
+					<field name="data_termino" />
+					<field name="equipe" widget="many2many_tags" />
+					<field name="cliente_nome" />
+					<field name="tipo_cliente" />
+					<field name="atividade" />
+					<field name="status" />
+					<field name="cidade_origem" />
+					<field name="cidade_destino" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

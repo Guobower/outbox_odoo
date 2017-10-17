@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="agenda_projetos_calendar">
+			<field name="name">agenda_projetos.calendar</field>
+			<field name="model">agenda_projetos</field>
+			<field name="view_type">calendar</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<calendar date_start="data" date_stop="data_termino" color="responsavel" display="[atividade]"
+					attendee="equipe" avatar_model="res.users">
+					<field name="atividade" />
+					<field name="responsavel" />
+					<field name="equipe" />
+				</calendar>
+			</field>
+		</record>
+	</data>
+</openerp>

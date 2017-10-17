@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="agenda_projetos_search">
+			<field name="name">agenda_projetos.search</field>
+			<field name="model">agenda_projetos</field>
+			<field name="view_type">search</field>
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<search string="Search Agenda">
+					<field name="name" string="Name" />
+					<field name="data" string="Data" />
+					<field name="equipe" string="Equipe" />
+					<field name="cliente_nome" string="Cliente" />
+					<field name="atividade" string="Atividade" />
+					<field name="status" string="Status" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

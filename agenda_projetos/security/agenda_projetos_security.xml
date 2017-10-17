@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <openerp>
+       <data noupdate="0">
+           <!-- Creating a Group Category -->        
+           <record id="agenda_projetos" model="ir.module.category">
+               <field name="name">Agenda de Projetos</field>
+               <field name="sequence">1</field>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="agenda_projetos.manager" model="res.groups">
+               <field name="name">Administrador</field>
+               <field name="category_id" ref="agenda_projetos"/>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="agenda_projetos.user" model="res.groups">
+               <field name="name">Usuário</field>
+               <field name="category_id" ref="agenda_projetos"/>
+           </record>
+        </data>
+    </openerp>

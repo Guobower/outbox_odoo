@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="agenda_projetos_graph">
+			<field name="name">agenda_projetos.graph</field>
+			<field name="model">agenda_projetos</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Agenda de Projetos">
+					<field name="responsavel" />
+					<field name="data" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>

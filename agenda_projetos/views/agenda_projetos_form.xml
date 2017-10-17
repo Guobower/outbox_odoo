@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="agenda_projetos_form">
+			<field name="name">agenda_projetos.form</field>
+			<field name="model">agenda_projetos</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Agenda de Projetos">
+					<sheet string="Agenda de Projetos">
+						<group string="Informações Principais">
+							<group>
+								<field name="name" />
+								<field name="cliente_nome" />
+								<field name="tipo_cliente" />
+								<field name="responsavel" />
+							</group>
+							<group>
+								<field name="data" />
+								<field name="data_termino" />
+								<field name="status" />
+								<field name="veiculo" />
+							</group>
+						</group>
+						<group string="Descritivo">
+							<group colspan="2">
+								<field colspan="2" name="atividade" />
+							</group>
+							<group colspan="2">
+								<field colspan="2" name="observacoes" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Trajeto">
+								<group>
+									<group>
+										<field name="cidade_origem" on_change="on_change_cidade(cidade_origem, cidade_destino)" />
+										<field name="cidade_destino" on_change="on_change_cidade(cidade_origem, cidade_destino)" />
+									</group>
+									<group>
+										<field name="distancia" />
+										<field name="tempo_viagem" />
+									</group>
+								</group>
+							</page>
+							<page string="Equipe">
+								<field colspan="4" name="equipe" widget="many2many_kanban">
+									<kanban quick_create="false" create="true" delete="true">
+										<field name="name" />
+										<templates>
+											<t t-name="kanban-box">
+												<div style="position: relative">
+													<a t-if="! read_only_mode" type="delete"
+														style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+													<div class="oe_module_vignette">
+														<img
+															t-att-src="kanban_image('res.users', 'image_small', record.id.value)"
+															class="oe_avatar oe_kanban_avatar_smallbox" />
+														<div class="oe_module_desc">
+															<field name="name" />
+														</div>
+													</div>
+												</div>
+											</t>
+										</templates>
+									</kanban>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>
