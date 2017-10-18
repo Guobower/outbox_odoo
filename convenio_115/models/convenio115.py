@@ -1230,7 +1230,7 @@ class Convenio115(models.Model):
               context
                 Contexto atual
         '''
-        lote_nota_fiscal = self.pool.get('convenio115').browse(cr, uid, ids[0])
+        lote_nota_fiscal = self.pool.get('convenio115').browse(cr, uid, ids)
         
         for item_fatura in lote_nota_fiscal.notas_fiscais:
             if item_fatura.numero_nota_fiscal == 0:
