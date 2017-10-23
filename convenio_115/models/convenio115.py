@@ -2,7 +2,6 @@
 import simplejson, urllib
 
 from openerp import models, fields, api
-
 class Convenio115(models.Model):
     _name = 'convenio115'
     
@@ -280,7 +279,7 @@ class Convenio115(models.Model):
         # Operações isentas
         operacoes_isentas = 0
         
-        for item in record_obj.notas_fiscais:
+        for item in record_obj.notas_fiscais.sorted(key=lambda r: r.numero_nota_fiscal):
             txt_content = ""
             
             # CNPJ Cliente, 14 caracteres, casas 1 - 14, tipo N 
@@ -301,7 +300,7 @@ class Convenio115(models.Model):
             
             # Razão Social do Cliente, 35 caracteres, casas 29 - 63, tipo X 
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                35, str(item.partner_id.legal_name.encode('ascii', 'ignore').decode('ascii'))
+                35, str(item.partner_id.legal_name.encode('iso-8859-1'))
                 )
             
             # UF, 2 caracteres, casas 64 - 65, tipo X 
@@ -617,7 +616,7 @@ class Convenio115(models.Model):
         
         # Totalizador de itens
         total_itens = 0
-        for item in record_obj.notas_fiscais:
+        for item in record_obj.notas_fiscais.sorted(key=lambda r: r.numero_nota_fiscal):
             # Incrementa o número sequencial da Nota Fiscal
             numero_item = 0
             
@@ -688,7 +687,7 @@ class Convenio115(models.Model):
                 
                 # Descrição do item, 40 casas, 60 - 99 tipo X
                 txt_content = txt_content + "" + self.formatar_alfanumerico(
-                    40, str(linha_produto.name.encode('ascii', 'ignore').decode('ascii'))
+                    40, str(linha_produto.name.strip().encode('ascii', 'ignore').decode('ascii'))
                     )
                 
                 # Código de classificação do item, 4 casas, 100 - 103 tipo N
@@ -882,7 +881,7 @@ class Convenio115(models.Model):
         # Gerando dados do arquivo, precisamos fazer um loop em todas as faturas
         txt_content_arquivo = ""
         
-        for item in record_obj.notas_fiscais:
+        for item in record_obj.notas_fiscais.sorted(key=lambda r: r.numero_nota_fiscal):
             txt_content = ""
             
             # CNPJ Cliente, 14 caracteres, casas 1 - 14, tipo N 
@@ -903,18 +902,25 @@ class Convenio115(models.Model):
                 
             # Razão Social, 35 caracteres, casas 29 - 63, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                35, str(item.partner_id.legal_name.encode('ascii', 'ignore').decode('ascii'))
+                35, str(item.partner_id.legal_name.encode('iso-8859-1'))
                 )
             
             # Logradouro, 45 caracteres, casas 64 - 108, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                45, str(item.partner_id.street.encode('ascii', 'ignore').decode('ascii'))
+                45, str(item.partner_id.street.encode('iso-8859-1'))
                 )
             
-            # Número, 5 caracteres, casas 109 - 113, tipo N
-            txt_content = txt_content + "" + self.formatar_numerico(
-                5, str(item.partner_id.number)
-                )
+            
+            if item.partner_id.number:
+                # Número, 5 caracteres, casas 109 - 113, tipo N
+                txt_content = txt_content + "" + self.formatar_numerico(
+                    5, str(item.partner_id.number)
+                    )
+            else:
+                # Número, 5 caracteres, casas 109 - 113, tipo N
+                txt_content = txt_content + "" + self.formatar_numerico(
+                    5, str("")
+                    )
             
             # Complemento, 15 caracteres, casas 114 - 128, tipo X
             if item.partner_id.street2:
@@ -938,15 +944,15 @@ class Convenio115(models.Model):
 
             # Bairro, 15 caracteres, casas 137 - 151, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                15, str(item.partner_id.district.encode('ascii', 'ignore').decode('ascii'))
+                15, str(item.partner_id.district.encode('iso-8859-1'))
                 )
             
             # Municipio, 30 caracteres, casas 152 - 181, tipo X
             txt_content = txt_content + "" + self.formatar_alfanumerico(
-                30, str(item.partner_id.l10n_br_city_id.name.encode('ascii', 'ignore').decode('ascii'))
+                30, str(item.partner_id.l10n_br_city_id.name.encode('iso-8859-1'))
                 )
             
-            # UF, 2 caracteres, casas 64 - 65, tipo X 
+            # UF, 2 caracteres, casas 182 - 183, tipo X 
             txt_content = txt_content + "" + self.formatar_alfanumerico(
                 2, str(item.partner_id.state_id.code)
                 )
@@ -1241,3 +1247,12 @@ class Convenio115(models.Model):
             
         # Retorna uma confirmação.
         return True
+    
+    
+    def whatisthis(self, s):
+        if isinstance(s, str):
+            return "ordinary string"
+        elif isinstance(s, unicode):
+            return "unicode string"
+        else:
+            return "not a string"

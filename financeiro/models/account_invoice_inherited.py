@@ -42,6 +42,11 @@ class Account_invoice_inherited(models.Model):
         string="Chave Digital",
         size=250)
     
+    lote_convenio = fields.Many2one(
+        string='Lote de Notas Fiscais',
+        help='Lote de notas fiscais do convênio 115 ao qual pertence a fatura',
+        comodel_name='convenio115')
+    
     
     def on_change_data_emissao(self, cr, user, ids, data_emissao, contrato, context=None):
         '''
@@ -115,6 +120,12 @@ class Account_invoice_inherited(models.Model):
         '''
         fatura = self.pool.get('account.invoice').browse(cr, user, ids[0])
         
+        if fatura.numero_nota_fiscal == 0:
+            if fatura.lote_convenio:
+                lote_nota_fiscal = self.pool.get('convenio115').browse(cr, user, fatura.lote_convenio.id)
+                fatura.write({'numero_nota_fiscal': lote_nota_fiscal.ultima_nota + 1}, context=context)
+                lote_nota_fiscal.write({'ultima_nota': lote_nota_fiscal.ultima_nota + 1})
+                
         if fatura.state != "draft":
             if fatura.numero_nota_fiscal > 0:
                 if fatura.data_emissao:
