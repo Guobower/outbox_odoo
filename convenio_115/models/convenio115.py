@@ -428,9 +428,14 @@ class Convenio115(models.Model):
                 )
             
             # Situação do documento, 1 caracteres, casas 196 - 196, tipo X
-            txt_content = txt_content + "" + self.formatar_alfanumerico(
-                1, str("N")
-                )
+            if item.state == 'cancel':
+                txt_content = txt_content + "" + self.formatar_alfanumerico(
+                    1, str("S")
+                    )
+            else:
+                txt_content = txt_content + "" + self.formatar_alfanumerico(
+                    1, str("N")
+                    )
             
             # Ano e mês de referência da apuração, 4 caracteres, casas 197 - 200, tipo N
             txt_content = txt_content + "" + self.formatar_numerico(
@@ -761,9 +766,14 @@ class Convenio115(models.Model):
                     )
                 
                 # Situação, 1 casas, 215 - 215 tipo X
-                txt_content = txt_content + "" + self.formatar_alfanumerico(
-                    1, str("N")
-                    )
+                if item.state == 'cancel':
+                    txt_content = txt_content + "" + self.formatar_alfanumerico(
+                        1, str("S")
+                        )
+                else:
+                    txt_content = txt_content + "" + self.formatar_alfanumerico(
+                        1, str("N")
+                        )
                 
                 # Ano e Mês de referência da apuração, 4 casas, 216 - 219 tipo X
                 txt_content = txt_content + "" + self.formatar_alfanumerico(
