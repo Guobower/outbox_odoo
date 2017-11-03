@@ -6,7 +6,7 @@
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="o">
 					<div class="header">
-						<div class="row" style="padding: 20px;">
+						<div class="row" style="padding: 20px 0px; ">
 							<div class="col-xs-3">
 								<img t-attf-src="data:image/*;base64,{{o.company_id.logo}}" t-att-alt="o.company_id.name" style="height: 50px;"/>
 							</div>
@@ -19,10 +19,11 @@
 								<span t-field="o.numero_nota_fiscal"/>
 								Emissão:
 								<span t-field="o.data_emissao"/>
+<br/>
 							</div>
 						</div>
-						<div class="row" style="padding: 0px 20px; float:left;">
-							<div class="col-xs-3" style="white-space: nowrap; font-size: 11px;">
+						<div class="row" style="margin-bottom: 10px; float:left;">
+							<div class="col-xs-2" style="white-space: nowrap; font-size: 11px;">
 								<strong style="font-size: 1.4em;">
 									CINTE TELECOM COMERCIO E SERVICOS LTDA
 								</strong>
@@ -64,7 +65,7 @@
 						</t>
 						<t t-set="isentas" t-value="o.amount_total - base_icms"/>
 						<br/>
-						<div class="row" style="border: 1px solid #444444; margin: 10px; padding: 10px 0px; font-size: 11px;">
+						<div class="row" style="margin-bottom: 10px; margin-top: 20px; padding: 10px 0px; border: 1px solid #444444; font-size: 11px;">
 							<div class="col-xs-8">
 								Tomador dos serviços
 								<br/>
@@ -92,7 +93,6 @@
 								Inscrição Estadual:
 								<t t-if="o.partner_id.inscr_est">
 									<span t-field="o.partner_id.inscr_est"/>
-									Acessei
 								</t>
 								<t t-if="not o.partner_id.inscr_est">
 									ISENTO
@@ -100,23 +100,23 @@
 								<br/>
 							</div>
 						</div>
-						<div class="row" style="margin: 10px; font-size:11px;">
+						<div class="row" style="margin-bottom: 10px; font-size:11px;">
 							<div class="col-xs-3" style="border: 1px solid #444444; margin-right: 2px;">
 								Base de Cálculo do ICMS
 								<br/>
 								<span t-esc="str('%.2f'%(base_icms)).replace('.',',')"/>
 							</div>
-							<div class="col-xs-2" style="width: 100px; border: 1px solid #444444; margin-right: 2px;">
+							<div class="col-xs-2" style="width: 110px; border: 1px solid #444444; margin-right: 2px;">
 								ICMS
 								<br/>
 								<span t-esc="str('%.2f'%(valor_icms)).replace('.',',')"/>
 							</div>
-							<div class="col-xs-3" style="width: 190px; border: 1px solid #444444; margin-right: 2px;">
+							<div class="col-xs-3" style="width: 200px; border: 1px solid #444444; margin-right: 2px;">
 								Isentas e Não Tributadas
 								<br/>
 								<span t-esc="str('%.2f'%(isentas)).replace('.',',')"/>
 							</div>
-							<div class="col-xs-2" style="width: 92px; border: 1px solid #444444; margin-right: 2px;">
+							<div class="col-xs-2" style="width: 104px; border: 1px solid #444444; margin-right: 2px;">
 								Outros
 								<br/>
 								0,00
@@ -127,34 +127,34 @@
 								<span t-field="o.amount_total"/>
 							</div>
 						</div>
-						<div class="row" style="margin: 10px; font-size:11px;">
-							<div class="col-xs-5" style="width: 260px; border: 1px solid #444444; margin-right: 2px;">
+						<div class="row" style="margin-bottom: 10px; font-size:11px;">
+							<div class="col-xs-5" style="width: 254px; border: 1px solid #444444; margin-right: 2px;">
 								Chave de Codificação Digital
 								<br/>
 								<strong>
 									<span t-esc="o.chave_autenticacao_digital[:4]"/>.<span t-esc="o.chave_autenticacao_digital[4:8]"/>.<span t-esc="o.chave_autenticacao_digital[8:12]"/>.<span t-esc="o.chave_autenticacao_digital[12:16]"/>.<span t-esc="o.chave_autenticacao_digital[16:20]"/>.<span t-esc="o.chave_autenticacao_digital[20:24]"/>.<span t-esc="o.chave_autenticacao_digital[24:28]"/>.<span t-esc="o.chave_autenticacao_digital[28:32]"/>
 								</strong>
 							</div>
-							<div class="col-xs-1" style="width: 70px; border: 1px solid #444444; margin-right: 2px;">
+							<div class="col-xs-1" style="width: 66px; border: 1px solid #444444; margin-right: 2px;">
 								Código
 								<br/>
 								5307
 							</div>
-							<div class="col-xs-1" style="width: 100px; border: 1px solid #444444; margin-right: 2px;">
+							<div class="col-xs-1" style="width: 110px; border: 1px solid #444444; margin-right: 2px;">
 								Competência
 								<br/>
 								<span t-field="o.mes_competencia"/>/<span t-field="o.ano_competencia"/>
 							</div>
-							<div class="col-xs-3" style="width: 110px; font-size: 0.7em; border: 1px solid #444444; margin-right: 2px;">
+							<div class="col-xs-3" style="width: 170px; border: 1px solid #444444; margin-right: 2px;">
 								Prestação de Serviço
 								<br/>
 								<span t-field="o.periodo_prestacao_servico"/>
 							</div>
-							<div class="col-xs-2" style="width: 120px; border: 1px solid #444444;">
+							<div class="col-xs-2" style="width: 114px; border: 1px solid #444444;">
 								Situação do documento fiscal
 							</div>
 						</div>
-						<div class="row" style="border: 1px solid #444444; margin: 10px; padding: 10px 0px; font-size:11px;">
+						<div class="row" style="margin-bottom: 10px; border: 1px solid #444444; padding: 10px 0px; font-size:11px;">
 							<table style="width: 100%; border-collapse: separate; border-spacing: 5px 0px;">
 								<tr>
 									<td style="border: 1px solid #444444;">SEQ.</td>
