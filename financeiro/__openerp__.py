@@ -22,6 +22,7 @@
         'views/account_invoice_form.xml',
         'views/account_invoice_form_vencimentos.xml',
         'views/account_invoice_tree.xml',
+        #'views/account_view_move_form_inherited.xml',
         'views/report_recibo_caixa.xml',
         'views/report_extrato_caixa.xml',
         'views/report_entradas_caixa.xml',

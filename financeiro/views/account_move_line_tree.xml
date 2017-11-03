@@ -21,6 +21,7 @@
 					<field name="credit" readonly="1" sum="Total Credit" />
 					<field name="maturity_residual" sum="Total Residual" />
 					<field name="date_maturity" />
+					<field name="boleto" />
 					<field name="move_id" readonly="1" />
 					<field name="reconcile_id" readonly="1" invisible="1" />
 					<field name="reconcile_partial_id" readonly="1" invisible="1" />

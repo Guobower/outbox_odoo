@@ -7,6 +7,11 @@ class AccountMoveLineInherited(models.Model):
     
     name = fields.Char(
         required=False)
+    
+    boleto = fields.Char(
+        string="Boleto",
+        help='Código de barras do boleto deste vencimento',
+        size=200)
 
     @api.multi
     def action_payment_installment(self):
