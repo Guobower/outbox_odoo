@@ -104,17 +104,17 @@
 							<div class="col-xs-3" style="border: 1px solid #444444; margin-right: 2px;">
 								Base de Cálculo do ICMS
 								<br/>
-								<span t-esc="str('%.2f'%(base_icms)).replace('.',',')"/>
+								<span t-esc="o.report_format_moeda(base_icms)"/>
 							</div>
 							<div class="col-xs-2" style="width: 110px; border: 1px solid #444444; margin-right: 2px;">
 								ICMS
 								<br/>
-								<span t-esc="str('%.2f'%(valor_icms)).replace('.',',')"/>
+								<span t-esc="o.report_format_moeda(valor_icms)"/>
 							</div>
 							<div class="col-xs-3" style="width: 200px; border: 1px solid #444444; margin-right: 2px;">
 								Isentas e Não Tributadas
 								<br/>
-								<span t-esc="str('%.2f'%(isentas)).replace('.',',')"/>
+								<span t-esc="o.report_format_moeda(isentas)"/>
 							</div>
 							<div class="col-xs-2" style="width: 104px; border: 1px solid #444444; margin-right: 2px;">
 								Outros
@@ -124,7 +124,7 @@
 							<div class="col-xs-2" style="border: 1px solid #444444;">
 								Valor Total
 								<br/>
-								<span t-field="o.amount_total"/>
+								<span t-esc="o.report_format_moeda(o.amount_total)"/>
 							</div>
 						</div>
 						<div class="row" style="margin-bottom: 10px; font-size:11px;">

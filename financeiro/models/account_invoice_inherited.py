@@ -266,3 +266,30 @@ class Account_invoice_inherited(models.Model):
         
         # retornando a string formatada com o tamanho solicitado, contando da esquerda para direita   
         return string_tratada[:tamanho]
+    
+    
+    def report_format_moeda(self, cr, user, ids, valor, context=None):
+        '''
+            Descrição:
+              Formatar valores como moeda em real para a exibição em relatórios.
+        
+            Utilização:
+              report_format_moeda(param1)
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              valor
+                Valor a ser formatado
+              context
+                Contexto atual
+        '''
+        import locale
+        
+        return locale.currency(valor, grouping=True, symbol=None)
+    
+    
