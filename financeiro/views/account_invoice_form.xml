@@ -71,8 +71,9 @@
 									on_change="onchange_payment_term_date_invoice(payment_term, date_invoice)"
 									readonly="1" />
 								<field name="internal_number" invisible="1" />
-								<field name="numero_nota_fiscal" />
-								<field name="data_emissao" on_change="on_change_data_emissao(data_emissao, origin)" />
+								<field name="numero_nota_fiscal" readonly="1" />
+								<field name="data_emissao" on_change="on_change_data_emissao(data_emissao, origin)"
+									attrs="{'readonly': [('numero_nota_fiscal','!=',0)]}" />
 								<field name="journal_id" groups="account.group_account_user"
 									on_change="onchange_journal_id(journal_id)" options="{'no_create': True}"
 									attrs="{'readonly':[('internal_number','!=',False)]}" />
@@ -160,7 +161,8 @@
 										<field name="periodo_prestacao_servico" />
 										<field name="date_due" />
 										<field name="chave_autenticacao_digital" readonly="1" />
-										<field name="lote_convenio" />
+										<field name="lote_convenio"
+											attrs="{'readonly': [('numero_nota_fiscal','!=',0)]}" />
 									</group>
 									<group>
 										<field name="origin" groups="base.group_user" string="Contrato"

@@ -165,6 +165,8 @@ class Account_invoice_inherited(models.Model):
                             )
                     )
                     
+                    self.formatar_nome_vencimentos(fatura)
+                        
                     fatura.write({'chave_autenticacao_digital': autenticacao_digital}, context=context)
                     
                     return {
@@ -292,4 +294,24 @@ class Account_invoice_inherited(models.Model):
         
         return locale.currency(valor, grouping=True, symbol=None)
     
+    
+    
+    def formatar_nome_vencimentos(self,fatura, context=None):
+        '''
+            Descrição:
+              Formatar os nomes dos vencimentos para os padrões da Cinte.
+        
+            Utilização:
+              formatar_nome_vencimentos(param1)
+        
+            Parâmetros:
+              fatura
+                Fatura a ter seus vencimentos formatados
+        '''
+        for index, vencimentos in enumerate(fatura.move_line_receivable_id):
+                        vencimentos.write({'name':'NF/'+str(fatura.data_emissao[0:4])+
+                                           '/'+str(fatura.data_emissao[5:7])+
+                                           '/'+str('{:0>5}'.format(fatura.numero_nota_fiscal))+
+                                           ':'+str(index+1)+
+                                           '-'+str(len(fatura.move_line_receivable_id))}, context=context)
     
