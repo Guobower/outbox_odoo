@@ -29,6 +29,8 @@
         'views/report_recibo_nota_fiscal.xml',
         'security/account_bank_statement_security.xml',
         'views/natureza_financeira_form.xml',
-        'views/natureza_financeira_tree.xml'
+        'views/natureza_financeira_tree.xml',
+        'views/account_bank_statement_line_tree.xml',
+        'views/account_bank_statement_line_graph.xml'
     ]
 }

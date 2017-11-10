@@ -46,7 +46,30 @@
              its parent openacademy_menu and *after* its
              action course_list_action -->
         <menuitem id="natureza_financeira_menu" name="Natureza Financeira" parent="account.account_account_menu"
-                  action="natureza_financeira_list_action"/>          
+                  action="natureza_financeira_list_action"/>   
+                  
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="account_bank_statement_line_inherited_list_action">
+            <field name="name">Itens de Caixa</field>
+            <field name="res_model">account.bank.statement.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de itens de caixa.
+                </p>
+            </field>
+        </record>
+
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="account_bank_statement_line_inherited_menu" name="Itens de Caixa" parent="account.menu_finance_bank_and_cash"
+                  action="account_bank_statement_line_inherited_list_action"/>          
                   
     </data>
 </openerp>

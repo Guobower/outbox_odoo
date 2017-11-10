@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account.bank_statement_line_graph">
+			<field name="name">account.bank.statement.line.graph</field>
+			<field name="model">account.bank.statement.line</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Itens de Caixa">
+                    <field name="journal_id"/>
+                    <field name="natureza_financeira"/>
+                </graph>
+			</field>
+		</record>
+	</data>
+</openerp>
