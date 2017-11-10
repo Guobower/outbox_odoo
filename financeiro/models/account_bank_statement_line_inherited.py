@@ -8,6 +8,11 @@ class Account_bank_statement_line_inherited(models.Model):
         'date' : datetime.today().strftime('%Y-%m-%d'),
     }
     
+    natureza_financeira = fields.Many2one(
+        comodel_name='natureza_financeira',
+        string='Natureza Financeira',
+        help='Natureza Financeira da Despesa/Receita')
+    
     def gerar_recibo(self, cr, uid, ids, context=None):
         if ids:
             if not isinstance(ids, list):

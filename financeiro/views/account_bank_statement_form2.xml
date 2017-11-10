@@ -62,6 +62,7 @@
 											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
 										<field name="partner_id"
 											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="natureza_financeira" />
 										<field name="amount"
 											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
 										<field name="create_date" readonly="1" />
@@ -75,6 +76,7 @@
 											<field name="ref" />
 											<field name="partner_id" />
 											<field name="amount" />
+											<field name="natureza_financeira"  options="{'no_create': True}"/>
 											<field name="sequence" invisible="1" />
 										</group>
 										<separator string="Notes" />
