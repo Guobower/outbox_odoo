@@ -151,7 +151,13 @@
 								<span t-field="o.periodo_prestacao_servico"/>
 							</div>
 							<div class="col-xs-2" style="width: 114px; border: 1px solid #444444;">
-								Situação do documento fiscal
+								<t t-if="o.state == 'cancel'">
+									Documento fiscal cancelado
+								</t>
+								<t t-if="o.state != 'cancel'">
+									Situação do documento fiscal
+								</t>
+								
 							</div>
 						</div>
 						<div class="row" style="margin-bottom: 10px; border: 1px solid #444444; padding: 10px 0px; font-size:11px;">
