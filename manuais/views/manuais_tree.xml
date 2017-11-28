@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="manuais_tree">
+			<field name="name">manuais.tree</field>
+			<field name="model">manuais</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Manuais">
+					<field name="name" />
+					<field name="status" />
+					<field name="descricao" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

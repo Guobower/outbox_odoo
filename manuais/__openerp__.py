@@ -12,6 +12,8 @@
     'data': [
         'views/menu.xml',
         'views/manuais_form.xml',
-        'views/manuais_notificacoes.xml'
+        'views/manuais_tree.xml',
+        'views/manuais_notificacoes.xml',
+        'security/manuais_security.xml'
     ]
 }

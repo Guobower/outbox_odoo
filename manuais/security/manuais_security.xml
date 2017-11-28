@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <openerp>
+       <data noupdate="0">
+           <!-- Creating a Group Category -->        
+           <record id="manuais" model="ir.module.category">
+               <field name="name">Manuais e Processos</field>
+               <field name="sequence">1</field>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="manuais.manager" model="res.groups">
+               <field name="name">Administrador</field>
+               <field name="category_id" ref="manuais"/>
+           </record>
+        </data>
+    </openerp>
