@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="manuais_comunicacoes_list_action">
+            <field name="name">Manuais Comunicacoes</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','comunicacoes')]</field>
+            <field name="context">{
+				'modulo': 'comunicacoes',
+				'default_modulo': 'comunicacoes'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Comunicações.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_crm_list_action">
+            <field name="name">Manuais do CRM</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','crm')]</field>
+            <field name="context">{
+				'modulo': 'crm',
+				'default_modulo': 'crm'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de CRM.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_projetos_list_action">
+            <field name="name">Manuais de Projetos</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','projetos')]</field>
+            <field name="context">{
+				'modulo': 'projetos',
+				'default_modulo': 'projetos'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Projetos.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_fiscal_list_action">
+            <field name="name">Manuais do Fiscal</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','fiscal')]</field>
+            <field name="context">{
+				'modulo': 'fiscal',
+				'default_modulo': 'fiscal'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo Fiscal.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_contabilidade_list_action">
+            <field name="name">Manuais da Contabilidade</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','contabilidade')]</field>
+            <field name="context">{
+				'modulo': 'contabilidade',
+				'default_modulo': 'contabilidade'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Contabilidade.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_compras_list_action">
+            <field name="name">Manuais de Compras</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','compras')]</field>
+            <field name="context">{
+				'modulo': 'compras',
+				'default_modulo': 'compras'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Compras.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_almoxarifado_list_action">
+            <field name="name">Manuais de Almoxarifado</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','almoxarifado')]</field>
+            <field name="context">{
+				'modulo': 'almoxarifado',
+				'default_modulo': 'almoxarifado'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Almoxarifado.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="manuais_frota_list_action">
+            <field name="name">Manuais de Frota</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','frota')]</field>
+            <field name="context">{
+				'modulo': 'frota',
+				'default_modulo': 'frota'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Frota.
+                </p>
+            </field>
+        </record>
+        
+        
+
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="manuais_menu" name="Manuais" parent="mail.mail_feeds_main"/>  
+                  
+        <menuitem id="manuais_comunicacoes_menu" name="Comunicações" parent="manuais_menu"
+                  action="manuais_comunicacoes_list_action"/>        
+                  
+        <menuitem id="manuais_crm_menu" name="CRM" parent="manuais_menu"
+                  action="manuais_crm_list_action"/>        
+                  
+        <menuitem id="manuais_fiscal_menu" name="Fiscal" parent="manuais_menu"
+                  action="manuais_fiscal_list_action"/>        
+                  
+        <menuitem id="manuais_contabilidade_menu" name="Contabilidade" parent="manuais_menu"
+                  action="manuais_contabilidade_list_action"/>        
+                  
+        <menuitem id="manuais_compras_menu" name="Compras" parent="manuais_menu"
+                  action="manuais_compras_list_action"/>        
+                  
+        <menuitem id="manuais_almoxarifado_menu" name="Almoxarifado" parent="manuais_menu"
+                  action="manuais_almoxarifado_list_action"/>        
+                  
+        <menuitem id="manuais_frota_menu" name="Frota" parent="manuais_menu"
+                  action="manuais_frota_list_action"/>        
+                    
+                  
+    </data>
+</openerp>

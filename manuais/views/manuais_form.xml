@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="manuais_form">
+			<field name="name">manuais.form</field>
+			<field name="model">manuais</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Manuais">
+					<sheet string="Manuais">
+						<group string="Informações Principais">
+							<group>
+								<field name="name" />
+							</group>
+							<group>
+								<field name="status" />
+								<field name="modulo" invisible="1" />
+							</group>
+						</group>
+						<group string="Dados do Manual">
+							<group>
+								<field name="pdf_filename" invisible="1" />
+								<field widget="binary" height="64" name="pdf" filename="pdf_filename" />
+								<field name="video" widget="html" />
+								<field name="descricao" />
+							</group>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

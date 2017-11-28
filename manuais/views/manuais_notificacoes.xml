@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_name" model="mail.message.subtype">
+			<field name="name">Nome modificado</field>
+			<field name="res_model">manuais</field>
+			<field name="default" eval="True" />
+			<field name="description">Nome modificado</field>
+		</record>
+		
+		<record id="mt_descricao" model="mail.message.subtype">
+			<field name="name">Descricao modificada</field>
+			<field name="res_model">manuais</field>
+			<field name="default" eval="True" />
+			<field name="description">Descricao modificado</field>
+		</record>
+		
+		<record id="mt_pdf_filename" model="mail.message.subtype">
+			<field name="name">PDF modificado</field>
+			<field name="res_model">manuais</field>
+			<field name="default" eval="True" />
+			<field name="description">PDF modificado</field>
+		</record>
+		
+		<record id="mt_video" model="mail.message.subtype">
+			<field name="name">Video modificado</field>
+			<field name="res_model">manuais</field>
+			<field name="default" eval="True" />
+			<field name="description">Video modificado</field>
+		</record>
+		
+		<record id="mt_status" model="mail.message.subtype">
+			<field name="name">Status modificado</field>
+			<field name="res_model">manuais</field>
+			<field name="default" eval="True" />
+			<field name="description">Status modificado</field>
+		</record>
+	</data>
+</openerp>
