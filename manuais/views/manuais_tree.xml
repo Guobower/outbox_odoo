@@ -9,9 +9,9 @@
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<tree string="Manuais">
-					<field name="name" />
+					<field name="name" string="Nome" />
 					<field name="status" />
-					<field name="descricao" />
+					<field name="descricao" string="Descrição" />
 				</tree>
 			</field>
 		</record>

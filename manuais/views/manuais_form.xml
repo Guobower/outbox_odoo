@@ -12,7 +12,7 @@
 					<sheet string="Manuais">
 						<group string="Informações Principais">
 							<group>
-								<field name="name" />
+								<field name="name" string="Nome" />
 							</group>
 							<group>
 								<field name="status" />
@@ -23,8 +23,8 @@
 							<group>
 								<field name="pdf_filename" invisible="1" />
 								<field widget="binary" height="64" name="pdf" filename="pdf_filename" />
-								<field name="video" widget="html" />
-								<field name="descricao" />
+								<field name="video" string="Vídeo" widget="html" />
+								<field name="descricao" string="Descrição" />
 							</group>
 						</group>
 					</sheet>
