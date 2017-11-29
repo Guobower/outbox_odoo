@@ -152,7 +152,7 @@
 							</div>
 							<div class="col-xs-2" style="width: 114px; border: 1px solid #444444;">
 								<t t-if="o.state == 'cancel'">
-									Documento fiscal cancelado
+									Documento Fiscal Cancelado
 								</t>
 								<t t-if="o.state != 'cancel'">
 									Situação do documento fiscal
