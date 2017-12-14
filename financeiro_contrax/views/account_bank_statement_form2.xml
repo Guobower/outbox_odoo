@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account.view_bank_statement_form2">
+			<field name="name">account.bank.statement.form</field>
+			<field name="model">account.bank.statement</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<form string="Statement">
+					<header>
+						<field name="all_lines_reconciled" invisible="1" />
+						<span
+							attrs="{'invisible':['|',('all_lines_reconciled','=',True),('line_ids','=',[])]}">
+							<button name="217" states="open" string="Reconcile" type="action"
+								class="oe_highlight" />
+						</span>
+						<span attrs="{'invisible':[('all_lines_reconciled','=',False)]}">
+							<button name="button_confirm_cash" states="open" string="Close CashBox"
+								type="object" class="oe_highlight" />
+						</span>
+						<button name="button_open" states="draft" string="Open CashBox"
+							type="object" class="oe_highlight" />
+						<button name="button_cancel" states="confirm,open" string="Cancel CashBox"
+							type="object" />
+						<field name="state" widget="statusbar" nolabel="1"
+							statusbar_visible="draft,confirm" />
+					</header>
+					<sheet string="Statement">
+						<label for="name" class="oe_edit_only" attrs="{'invisible':[('name','=','/')]}" />
+						<h1>
+							<field name="name" class="oe_inline" attrs="{'invisible':[('name','=','/')]}" />
+						</h1>
+						<group>
+							<group>
+								<field name="journal_id" on_change="onchange_journal_id(journal_id)"
+									widget="selection" domain="[('type', '=', 'cash')]" />
+								<field name="user_id" attrs="{'readonly':[('state','!=','draft')]}"
+									string="Responsible" />
+								<field name="company_id" widget="selection" groups="base.group_multi_company" />
+							</group>
+							<group>
+								<field name="date" attrs="{'readonly':[('state','!=','draft')]}"
+									on_change="onchange_date(date, company_id)" />
+								<field name="closing_date" readonly="1" />
+								<field name="period_id" />
+								<field name="currency" invisible="1" />
+								<field name="cash_control" invisible="1" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Cash Transactions" attrs="{'invisible': [('state','=','draft')]}">
+								<field name="line_ids" context="{'date':date}">
+									<tree string="Statement lines" default_order='date' colors="grey:journal_entry_id!=False">
+										<field name="sequence" invisible="1" />
+										<field name="journal_entry_id" invisible="1" />
+										<field name="date"
+											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="name" string="Descrição"
+											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="ref"
+											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="partner_id"
+											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="amount"
+											attrs="{'readonly' : [('journal_entry_id', '!=', False)] }" />
+										<field name="create_date" readonly="1" />
+									</tree>
+									<form string="Statement lines">
+										<button class="oe_inline oe_stat_button" name="gerar_recibo"
+											string="Gerar Recibo" type="object" icon="fa-file-pdf-o" />
+										<group col="4">
+											<field name="date" />
+											<field name="name" string="Descrição" />
+											<field name="ref" />
+											<field name="partner_id" />
+											<field name="amount" />
+											<field name="sequence" invisible="1" />
+										</group>
+										<separator string="Notes" />
+										<field name="note" />
+									</form>
+								</field>
+							</page>
+							<page string="Cash Control"
+								attrs="{'invisible' : [('cash_control', '=', False)]}">
+								<group col="2" expand="1">
+									<group string="Opening Cash Control"
+										attrs="{'invisible' : [('state', '!=', 'draft')]}">
+										<field name="opening_details_ids" colspan="2" nolabel="1">
+											<tree string="Opening Cashbox Lines" editable="bottom">
+												<field name="pieces" />
+												<field name="number_opening"
+													on_change="on_change_sub_opening(pieces, number_opening)" />
+												<field name="subtotal_opening" string="Opening Subtotal"
+													sum="Total" />
+											</tree>
+										</field>
+									</group>
+									<group>
+										<group string="Opening Cash Control"
+											attrs="{'invisible' : [('state', '=', 'draft')]}">
+											<field name="details_ids" colspan="2" nolabel="1"
+												attrs="{'readonly' : [('state', '!=', 'draft')]}">
+												<tree string="Opening Cashbox Lines" editable="bottom">
+													<field name="pieces" />
+													<field name="number_opening"
+														on_change="on_change_sub_opening(pieces, number_opening)" />
+													<field name="subtotal_opening" string="Opening Subtotal"
+														sum="Total" />
+												</tree>
+											</field>
+										</group>
+										<group string="Closing Cash Control"
+											attrs="{'invisible' : [('state', '=', 'draft')]}">
+											<field name="closing_details_ids" colspan="2" nolabel="1"
+												attrs="{'readonly' : [('state', '=', 'confirm')]}">
+												<tree string="Closing Cashbox Lines" editable="bottom">
+													<field name="pieces" readonly="1" />
+													<field name="number_closing"
+														on_change="on_change_sub_closing(pieces, number_closing)" />
+													<field name="subtotal_closing" string="Closing Subtotal"
+														sum="Total" />
+												</tree>
+											</field>
+										</group>
+									</group>
+								</group>
+							</page>
+							<page string="Journal Entries" attrs="{'invisible': [('state','!=','confirm')]}">
+								<field name="move_line_ids" string="Journal Entries" />
+							</page>
+						</notebook>
+						<group>
+							<group class="oe_subtotal_footer oe_right">
+								<label for="balance_start" class="oe_subtotal_footer_separator oe_open_balance"
+									string="Opening Balance"
+									style="padding-right: 23px !important; padding-top: 6px !important;" />
+								<field name="balance_start"
+									attrs="{'readonly' : ['|', ('cash_control', '=', True), ('state', '=', 'confirm')]}"
+									nolabel="1" widget="monetary"
+									class="oe_subtotal_footer_separator oe_open_balance" options="{'currency_field': 'currency'}"
+									help="Total of opening cash control lines" />
+								<label for="total_entry_encoding" string="+ Transactions"
+									class="oe_force_bold oe_mini_subtotal_footer_separator" style="padding-right: 20px !important;" />
+								<field name="total_entry_encoding" nolabel="1"
+									class="oe_bold oe_account_total" widget="monetary"
+									options="{'currency_field': 'currency'}" />
+								<label for="balance_end" string="= Theoretical Closing Balance"
+									class="oe_force_bold oe_mini_subtotal_footer_separator" style="padding-right: 20px !important;"
+									help="Sum of opening balance and transactions." />
+								<field name="balance_end" nolabel="1"
+									class="oe_bold oe_account_total" widget="monetary"
+									options="{'currency_field': 'currency'}" />
+							</group>
+							<div>
+								<group class="oe_subtotal_footer oe_right" attrs="{'invisible': [('state', '=', 'draft')]}">
+									<label for="balance_end_real"
+										class="oe_subtotal_footer_separator oe_real_closing_balance"
+										string="Real Closing Balance"
+										style="font-size: 1.1em; padding-right: 23px !important; padding-top: 6px !important;" />
+									<field name="balance_end_real"
+										attrs="{'readonly' : ['|', ('cash_control', '=', True), ('state', '=', 'confirm')]}"
+										nolabel="1" class="oe_subtotal_footer_separator oe_real_closing_balance"
+										widget="monetary" options="{'currency_field': 'currency'}"
+										help="Total of closing cash control lines." />
+								</group>
+								<group />
+								<group />
+								<group class="oe_subtotal_footer oe_right" attrs="{'invisible': [('state', '=', 'draft')]}">
+									<label for="difference" string="Difference"
+										class="oe_subtotal_footer_separator oe_difference" style="padding-right: 20px !important;" />
+									<field name="difference" nolabel="1"
+										class="oe_subtotal_footer_separator oe_difference" widget="monetary"
+										options="{'currency_field': 'currency'}" />
+								</group>
+							</div>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

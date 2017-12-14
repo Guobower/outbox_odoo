@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account.view_bank_statement_form2_tecnico">
+			<field name="name">account.bank.statement.form.tecnico</field>
+			<field name="model">account.bank.statement</field>
+        	<field name="inherit_id" ref="account.view_bank_statement_form2"/>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='journal_id']" position="replace">
+					<field name="journal_id" on_change="onchange_journal_id(journal_id)"
+						widget="selection" domain="[('id', '=', 13)]" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

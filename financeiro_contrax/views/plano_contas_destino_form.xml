@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="plano_contas_destino_form">
+			<field name="name">plano_contas_destino.form</field>
+			<field name="model">plano_contas_destino</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Atividades">
+					<sheet string="Plano de Contas Destino">
+						<group string="Plano de Contas Destino no Domínio">
+							<group>
+								<field name="codigo" on_change="on_change_codigo_nome(codigo, nome)" />
+								<field name="nome" on_change="on_change_codigo_nome(codigo, nome)"/>
+							</group>
+							<group>
+								<field name="reduzido" />
+								<field name="name" invisible="1" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

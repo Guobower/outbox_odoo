@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report. -->
+<openerp>
+	<data>
+		<template id="report_recibo_caixa">
+			<t t-call="report.html_container">
+				<t t-call="report.external_layout">
+					<div class="page">
+						<t t-foreach="docs" t-as="o">
+							<h2 style="text-align: center;">
+								Recibo de Caixa:
+								<span t-field="o.statement_id.name" />
+							</h2>
+							<br />
+							<br />
+							<br />
+							<table class="table table-condensed">
+								<tr>
+									<td>
+										<b>Data:</b> <span t-field="o.date" />
+									</td>
+									<td>
+										<b>Valor:</b> <span t-field="o.amount" />
+									</td>
+									<td>
+										<b>Comunicação:</b> <span t-field="o.name" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<b>Referência:</b> <span t-field="o.ref" />
+									</td>
+									<td colspan="2">
+										<b>Parceiro:</b> <span t-field="o.partner_id.name" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<b>Observações:</b> <span t-field="o.note" />
+									</td>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<br />
+							<br />
+							<table class="table table-condensed" style="width: 80%; margin: 0 auto;">
+								<tr>
+									<td
+										style="border-top: 1px solid; text-align:center; margin: 10px; width: 40%">
+										<strong><span t-field="o.statement_id.user_id.name" /> (Responsável)</strong>
+									</td>
+									<td></td>
+									<td
+										style="border-top: 1px solid; text-align:center; margin: 10px; width: 40%">
+										<strong><span t-field="o.partner_id.name" /></strong>
+									</td>
+								</tr>
+							</table>
+						</t>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

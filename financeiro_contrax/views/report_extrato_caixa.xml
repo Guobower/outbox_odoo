@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report. -->
+<openerp>
+	<data>
+		<template id="report_extrato_caixa">
+			<t t-call="report.html_container">
+				<t t-call="report.external_layout">
+					<div class="page">
+						<t t-foreach="docs" t-as="o">
+							<h2 style="text-align: center;">
+								Extrato de Caixa:
+								<span t-field="o.name" />
+							</h2>
+							<br />
+							<br />
+							<br />
+							<table class="table table-condensed">
+								<tr>
+									<td>
+										<b>Responsável:</b>
+										<span t-field="o.user_id.name" />
+									</td>
+									<td>
+										<b>Data:</b>
+										<span t-field="o.date" />
+									</td>
+									<td>
+										<b>Fechado em:</b>
+										<span t-field="o.closing_date" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<b>Saldo Inicial:</b>
+										<span t-field="o.balance_start" />
+									</td>
+									<td>
+										<b>Saldo de Fechamento Teórico:</b>
+										<span t-field="o.balance_end" />
+									</td>
+									<td>
+										<b>Saldo de Fechamento Real:</b>
+										<span t-field="o.balance_end_real" />
+									</td>
+								</tr>
+							</table>
+							<br />
+							<br />
+							<h3 style="text-align: center;">
+								Movimentações
+							</h3>
+							<table class="table table-condensed">
+								<thead>
+									<tr>
+										<th style="border: 1px solid #888888; width: 100px;">
+											<strong>Data</strong>
+										</th>
+										<th style="border: 1px solid #888888;" class="text-center">
+											<strong>Descrição</strong>
+										</th>
+										<th style="border: 1px solid #888888;" class="text-center">
+											<strong>Referência</strong>
+										</th>
+										<th style="border: 1px solid #888888;" class="text-center">
+											<strong>Parceiro</strong>
+										</th>
+										<th style="border: 1px solid #888888;" class="text-center">
+											<strong>Valor</strong>
+										</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 0.8em;">
+									<t t-if="o.journal_id.id == 12">
+										<tr t-foreach="o.line_ids.sorted(key=lambda r: r.create_date)"
+											t-as="line">
+											<td style="border: 1px solid #888888;">
+												<span t-field="line.create_date" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.ref" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.partner_id.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.amount" />
+											</td>
+										</tr>
+									</t>
+									<t t-if="o.journal_id.id != 12">
+										<tr t-foreach="o.line_ids.sorted(key=lambda r: r.date)"
+											t-as="line">
+											<td style="border: 1px solid #888888;">
+												<span t-field="line.date" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.ref" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.partner_id.name" />
+											</td>
+											<td style="border: 1px solid #888888;" class="text-center">
+												<span t-field="line.amount" />
+											</td>
+										</tr>
+									</t>
+								</tbody>
+							</table>
+							<br />
+							<br />
+							<br />
+							<br />
+							<table class="table table-condensed" style="width: 80%; margin: 0 auto;">
+								<tr>
+									<td
+										style="border-top: 1px solid; text-align:center; margin: 10px; width: 40%">
+										<strong>
+											<span t-field="o.user_id.name" />
+											(Responsável)
+										</strong>
+									</td>
+									<td></td>
+									<td
+										style="border-top: 1px solid; text-align:center; margin: 10px; width: 40%">
+										<strong>Supervisor(a)</strong>
+									</td>
+								</tr>
+							</table>
+						</t>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

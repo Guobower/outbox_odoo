@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report. -->
+<openerp>
+	<data>
+		<template id="report_recibo_nota_fiscal">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="header">
+						<div class="row" style="padding: 20px;">
+							<div class="col-xs-3">
+								<img t-attf-src="data:image/*;base64,{{o.company_id.logo}}" t-att-alt="o.company_id.name" style="height: 50px;"/>
+							</div>
+							<div class="col-xs-6" style="white-space: nowrap; float: right; text-align: right; font-size:11px;">
+								<strong>Nota Fiscal de Serviço de Comunicação</strong>
+								<br/>
+								Modelo 21 - Série UUU
+								<br/>
+								Nº
+								<span t-field="o.numero_nota_fiscal"/>
+								Emissão:
+								<span t-field="o.data_emissao"/>
+							</div>
+						</div>
+						<div class="row" style="padding: 0px 20px; float:left;">
+							<div class="col-xs-3" style="white-space: nowrap; font-size: 11px;">
+								<strong style="font-size: 1.4em;">
+									CINTE TELECOM COMERCIO E SERVICOS LTDA
+								</strong>
+								<br/>
+								R.LAURO PINTO 610 - CEP: 59064-250 -NATAL-RN
+								<br/>
+								IE: 202032469 - CNPJ: 08.378.641/0001-96
+							</div>
+						</div>
+					</div>
+					<div style="clear: both;"/>
+					<div class="page">
+						<style>
+							table td{
+							padding: 5px;
+							}
+
+							.left{
+							text-align: left;
+							}
+
+							.center{
+							text-align: center;
+							}
+
+							.right{
+							text-align: right;
+							}
+						</style>
+						<t t-set="base_icms" t-value="0"/>
+						<t t-set="valor_icms" t-value="0"/>
+						<t t-set="isentas" t-value="0"/>
+
+						<t t-foreach="o.tax_line" t-as="impostos">
+							<t t-if="impostos.tax_code_id.id == 10">
+								<t t-set="base_icms" t-value="impostos.base_amount"/>
+								<t t-set="valor_icms" t-value="impostos.amount"/>
+							</t>
+						</t>
+						<t t-set="isentas" t-value="o.amount_total - base_icms"/>
+						<br/>
+						<div class="row" style="border: 1px solid #444444; margin: 10px; padding: 10px 0px; font-size: 11px;">
+							<div class="col-xs-8">
+								Tomador dos serviços
+								<br/>
+								<strong style="font-size: 1.4em;">
+									<span t-field="o.partner_id.name"/>
+								</strong>
+								<br/>
+								<span t-field="o.partner_id.street"/>
+								<span t-field="o.partner_id.number"/>
+								,
+								<br/>
+								<span t-field="o.partner_id.zip"/>
+								,
+								<span t-field="o.partner_id.l10n_br_city_id.name"/>
+								-
+								<span t-field="o.partner_id.state_id.name"/>
+							</div>
+							<div class="col-xs-4" style="text-align: right;">
+								Nº de Referência:
+								<span t-field="o.origin"/>
+								<br/>
+								CNPJ/CPF:
+								<span t-field="o.partner_id.cnpj_cpf"/>
+								<br/>
+								Inscrição Estadual:
+								<t t-if="o.partner_id.inscr_est">
+									<span t-field="o.partner_id.inscr_est"/>
+									Acessei
+								</t>
+								<t t-if="not o.partner_id.inscr_est">
+									ISENTO
+								</t>
+								<br/>
+							</div>
+						</div>
+						<div class="row" style="margin: 10px; font-size:11px;">
+							<div class="col-xs-3" style="border: 1px solid #444444; margin-right: 2px;">
+								Base de Cálculo do ICMS
+								<br/>
+								<span t-esc="str('%.2f'%(base_icms)).replace('.',',')"/>
+							</div>
+							<div class="col-xs-2" style="width: 100px; border: 1px solid #444444; margin-right: 2px;">
+								ICMS
+								<br/>
+								<span t-esc="str('%.2f'%(valor_icms)).replace('.',',')"/>
+							</div>
+							<div class="col-xs-3" style="width: 190px; border: 1px solid #444444; margin-right: 2px;">
+								Isentas e Não Tributadas
+								<br/>
+								<span t-esc="str('%.2f'%(isentas)).replace('.',',')"/>
+							</div>
+							<div class="col-xs-2" style="width: 92px; border: 1px solid #444444; margin-right: 2px;">
+								Outros
+								<br/>
+								0,00
+							</div>
+							<div class="col-xs-2" style="border: 1px solid #444444;">
+								Valor Total
+								<br/>
+								<span t-field="o.amount_total"/>
+							</div>
+						</div>
+						<div class="row" style="margin: 10px; font-size:11px;">
+							<div class="col-xs-5" style="width: 260px; border: 1px solid #444444; margin-right: 2px;">
+								Chave de Codificação Digital
+								<br/>
+								<strong>
+									<span t-esc="o.chave_autenticacao_digital[:4]"/>.<span t-esc="o.chave_autenticacao_digital[4:8]"/>.<span t-esc="o.chave_autenticacao_digital[8:12]"/>.<span t-esc="o.chave_autenticacao_digital[12:16]"/>.<span t-esc="o.chave_autenticacao_digital[16:20]"/>.<span t-esc="o.chave_autenticacao_digital[20:24]"/>.<span t-esc="o.chave_autenticacao_digital[24:28]"/>.<span t-esc="o.chave_autenticacao_digital[28:32]"/>
+								</strong>
+							</div>
+							<div class="col-xs-1" style="width: 70px; border: 1px solid #444444; margin-right: 2px;">
+								Código
+								<br/>
+								5307
+							</div>
+							<div class="col-xs-1" style="width: 100px; border: 1px solid #444444; margin-right: 2px;">
+								Competência
+								<br/>
+								<span t-field="o.mes_competencia"/>/<span t-field="o.ano_competencia"/>
+							</div>
+							<div class="col-xs-3" style="width: 110px; font-size: 0.7em; border: 1px solid #444444; margin-right: 2px;">
+								Prestação de Serviço
+								<br/>
+								<span t-field="o.periodo_prestacao_servico"/>
+							</div>
+							<div class="col-xs-2" style="width: 120px; border: 1px solid #444444;">
+								Situação do documento fiscal
+							</div>
+						</div>
+						<div class="row" style="border: 1px solid #444444; margin: 10px; padding: 10px 0px; font-size:11px;">
+							<table style="width: 100%; border-collapse: separate; border-spacing: 5px 0px;">
+								<tr>
+									<td style="border: 1px solid #444444;">SEQ.</td>
+									<td style="border: 1px solid #444444;">DESCRIÇÃO DO SERVIÇO</td>
+									<td style="border: 1px solid #444444;">VALOR TOTAL</td>
+									<td style="border: 1px solid #444444;">BASE DE CÁLCULO ICMS</td>
+									<td style="border: 1px solid #444444;">ALÍQUOTA ICMS</td>
+								</tr>
+								<t t-set="ordenacao" t-value="0"/>
+								<tr t-foreach="o.invoice_line" t-as="line">
+									<t t-set="ordenacao" t-value="ordenacao + 1"/>
+									<td class="text-center">
+										<span t-esc="ordenacao"/>
+									</td>
+									<td class="text-left">
+										<span t-field="line.name"/>
+									</td>
+									<td class="text-right">
+										<span t-field="line.price_unit"/>
+									</td>
+									<t t-if="line.price_subtotal &gt; line.price_tax_discount">
+										<td class="text-right">
+											<span t-field="line.price_subtotal"/>
+										</td>
+										<td class="text-right">30</td>
+									</t>
+									<t t-if="line.price_subtotal == line.price_tax_discount">
+										<td class="text-right">0,00</td>
+										<td class="text-right">0</td>
+									</t>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>
