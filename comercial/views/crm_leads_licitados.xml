@@ -60,9 +60,8 @@
 								<field name="partner_id" on_change="on_change_partner_id(partner_id)"
 									string="Customer"
 									context="{'default_name': partner_name, 'default_email': email_from, 'default_phone': phone}" />
-								<field name="email_from" string="Email" widget="email"
-									invisible="1" />
-								<field name="phone" invisible="1" />
+								<field name="email_from" string="Email" widget="email" />
+								<field name="phone" />
 								<field name="megas_ganhos" />
 								<field name="user_id" on_change="on_change_user(user_id, context)"
 									context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'base.group_sale_salesman_all_leads']}" />
