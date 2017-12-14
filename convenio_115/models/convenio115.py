@@ -707,12 +707,12 @@ class Convenio115(models.Model):
                 
                 # Quantidade contratada (com 3 decimais), 12 casas, 110 - 121 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    12, str("0")
+                    12, str('%.3f' % (linha_produto.quantity)).replace('.', '')
                     )
                 
                 # Quantidade medida (com 3 decimais), 12 casas, 122 - 133 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    12, str("0")
+                    12, str('%.3f' % (linha_produto.quantity)).replace('.', '')
                     )
                 
                 # Total (com 2 decimais), 11 casas, 134 - 144 tipo N
