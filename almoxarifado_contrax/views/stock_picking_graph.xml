@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="stock.picking_graph">
+			<field name="name">stock.picking.graph</field>
+			<field name="model">stock.picking</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Movimentos">
+					<field name="tipo_material" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>

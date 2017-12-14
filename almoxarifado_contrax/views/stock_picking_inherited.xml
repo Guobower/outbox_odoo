@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="stock_picking_inherited_tipo_prioridade">
+			<field name="name">stock.picking.inherited_tipo_prioridade</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<field name="origin" position="after">
+					<field name="tipo_material"></field>
+					<field name="prioridade_solicitacao" readonly="1"></field>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>
