@@ -72,7 +72,7 @@
 									readonly="1" />
 								<field name="internal_number" invisible="1" />
 								<field name="numero_nota_fiscal" readonly="1" />
-								<field name="data_emissao" on_change="on_change_data_emissao(data_emissao, origin)"
+								<field name="data_emissao" on_change="on_change_data_emissao(data_emissao)"
 									attrs="{'readonly': [('numero_nota_fiscal','!=',0)]}" />
 								<field name="journal_id" groups="account.group_account_user"
 									on_change="onchange_journal_id(journal_id)" options="{'no_create': True}"

@@ -48,7 +48,7 @@ class Account_invoice_inherited(models.Model):
         comodel_name='convenio115')
     
     
-    def on_change_data_emissao(self, cr, user, ids, data_emissao, contrato, context=None):
+    def on_change_data_emissao(self, cr, user, ids, data_emissao, context=None):
         '''
             Descrição:
               Esta função tem como objetivo preencher automaticamente os dados de
@@ -69,6 +69,7 @@ class Account_invoice_inherited(models.Model):
                 Contexto atual
         '''
         from datetime import *
+        import calendar
         
         if data_emissao:
             ano, mes, dia = data_emissao.split('-')
@@ -84,8 +85,10 @@ class Account_invoice_inherited(models.Model):
                 fatura = self.pool.get('account.invoice').browse(cr, user, ids[0])
                 data_fatura = fatura.create_date.split(" ")
                 
+                monthRange = calendar.monthrange(ano,mes)
+                
                 data_base = datetime.strptime(data_fatura[0], '%Y-%m-%d')
-                inicio_periodo = data_base - timedelta(days=31)
+                inicio_periodo = data_base - timedelta(days=monthRange[1])
                 final_periodo = data_base - timedelta(days=1)
                 
                 res = {
