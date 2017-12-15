@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="natureza_financeira_form">
+			<field name="name">natureza_financeira.form</field>
+			<field name="model">natureza_financeira</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Natureza Financeira">
+					<sheet string="Natureza Financeira">
+						<group string="Natureza Financeira">
+							<group>
+								<field name="name"/>
+							</group>
+							<group>
+								<field name="descricao" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

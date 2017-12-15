@@ -6,14 +6,14 @@
             The following tag is an action definition for a "window action",
             that is an action opening a view or a set of views
         -->
-        <record model="ir.actions.act_window" id="plano_contas_destino_list_action">
-            <field name="name">Plano de Contas Destino</field>
-            <field name="res_model">plano_contas_destino</field>
+        <record model="ir.actions.act_window" id="centro_custo_list_action">
+            <field name="name">Centro de Custo</field>
+            <field name="res_model">centro_custo</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                	Plano de contas destino para utilização em processo De/Para.
+                	Centro de Custos.
                 </p>
             </field>
         </record>
@@ -21,10 +21,29 @@
         <!-- the following menuitem should appear *after*
              its parent openacademy_menu and *after* its
              action course_list_action -->
-        <menuitem id="plano_contas_destino_menu" name="Plano de Contas Destino" parent="account.account_account_menu"
-                  action="plano_contas_destino_list_action"/>
+        <menuitem id="centro_custo_menu" name="Centro de Custo" parent="account.account_account_menu"
+                  action="centro_custo_list_action"/>
         <!-- Full id location:
              action="openacademy.course_list_action"
              It is not required when it is the same module -->
+             
+        
+         <record model="ir.actions.act_window" id="natureza_financeira_list_action">
+            <field name="name">Natureza Financeira</field>
+            <field name="res_model">natureza_financeira</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Conjunto de naturezas financeiras para categorização de despesas.
+                </p>
+            </field>
+        </record>
+
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="natureza_financeira_menu" name="Natureza Financeira" parent="account.account_account_menu"
+                  action="natureza_financeira_list_action"/>   
     </data>
 </openerp>

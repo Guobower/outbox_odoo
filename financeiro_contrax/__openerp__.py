@@ -10,6 +10,10 @@
     'depends': ['base','account'],
     'installable': True,
     'data': [
-#        'views/account_invoice_form_vencimentos.xml'
+        'views/menu.xml',
+        'views/centro_custo_form.xml',
+        'views/centro_custo_tree.xml',
+        'views/natureza_financeira_form.xml',
+        'views/natureza_financeira_tree.xml'
     ]
 }

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="centro_custo_form">
+			<field name="name">centro_custo.form</field>
+			<field name="model">centro_custo</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Centro de Custo">
+					<sheet string="Centro de Custo">
+						<group string="Centro de Custo">
+							<group>
+								<field name="codigo" on_change="on_change_codigo_nome(codigo, nome)" />
+								<field name="nome" on_change="on_change_codigo_nome(codigo, nome)"/>
+							</group>
+							<group>
+								<field name="reduzido" />
+								<field name="name" invisible="1" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>
