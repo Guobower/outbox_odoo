@@ -4,10 +4,11 @@ from datetime import datetime
 
 class Account_bank_statement_line_inherited(models.Model):
     _inherit = 'account.bank.statement.line'
-    _defaults={
+    
+    '''_defaults={
         'date' : datetime.today().strftime('%Y-%m-%d'),
     }
-    
+    '''
     natureza_financeira = fields.Many2one(
         comodel_name='natureza_financeira',
         string='Natureza Financeira',
