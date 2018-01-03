@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<!-- window action -->
+		<!-- The following tag is an action definition for a "window action", that 
+			is an action opening a view or a set of views -->
+		<record model="ir.actions.act_window" id="helpdesk_list_action">
+			<field name="name">Helpdesk</field>
+			<field name="res_model">helpdesk</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form,graph</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de chamados de suporte.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="estagios_helpdesk_list_action">
+			<field name="name">Estágios</field>
+			<field name="res_model">estagios_helpdesk</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de estágios para chamados de suporte.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="sistemas_helpdesk_list_action">
+			<field name="name">Sistemas</field>
+			<field name="res_model">sistemas_helpdesk</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de sistemas para chamados de suporte.
+				</p>
+			</field>
+		</record>
+
+
+
+		<!-- the following menuitem should appear *after* its parent openacademy_menu 
+			and *after* its action course_list_action -->
+		<menuitem id="helpdesk_parent_menu" name="Helpdesk" />
+
+		<menuitem id="helpdesk_suporte_menu" name="Suporte" sequence="10"
+			parent="helpdesk_parent_menu" />
+
+		<menuitem id="helpdesk_configuracao_menu" name="Configuração"
+			sequence="20" parent="helpdesk_parent_menu" />
+
+
+		<menuitem id="helpdesk_menu" name="Helpdesk" 
+			parent="helpdesk_suporte_menu" action="helpdesk_list_action" />
+
+		<menuitem id="estagios_helpdesk_menu" name="Estágios"
+			parent="helpdesk_configuracao_menu" action="estagios_helpdesk_list_action" />
+
+		<menuitem id="sistemas_helpdesk_menu" name="Sistemas"
+			parent="helpdesk_configuracao_menu" action="sistemas_helpdesk_list_action" />
+
+	</data>
+</openerp>

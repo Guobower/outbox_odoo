@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_name" model="mail.message.subtype">
+			<field name="name">Nome modificado</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Nome modificado</field>
+		</record>
+		
+		<record id="mt_descricao" model="mail.message.subtype">
+			<field name="name">Descricao modificada</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Descricao modificado</field>
+		</record>
+		
+		<record id="mt_sistema" model="mail.message.subtype">
+			<field name="name">Sistema modificado</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Sistema modificado</field>
+		</record>
+		
+		<record id="mt_stage_id" model="mail.message.subtype">
+			<field name="name">Estagio modificado</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Estagio modificado</field>
+		</record>
+		
+		<record id="mt_prioridade" model="mail.message.subtype">
+			<field name="name">Prioridade modificada</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Prioridade modificada</field>
+		</record>
+		
+		<record id="mt_data_previsao" model="mail.message.subtype">
+			<field name="name">Data de previsao modificada</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Data de previsao modificada</field>
+		</record>
+		
+		<record id="mt_data_conclusao" model="mail.message.subtype">
+			<field name="name">Data de conclusao modificada</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Data de conclusao modificada</field>
+		</record>
+		
+		<record id="mt_responsavel" model="mail.message.subtype">
+			<field name="name">Responsavel modificado</field>
+			<field name="res_model">helpdesk</field>
+			<field name="default" eval="True" />
+			<field name="description">Responsavel modificado</field>
+		</record>
+	</data>
+</openerp>
