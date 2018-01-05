@@ -30,8 +30,8 @@
 							</group>
 							<group>
 								<field name="cep" />
-								<field name="cidade" />
-								<field name="estado" />
+								<field name="estado" on_change="on_change_estado(estado)" options="{'no_create': True}" />
+								<field name="cidade" options="{'no_create': True}" />
 								<field name="ponto_referencia" />
 							</group>
 						</group>

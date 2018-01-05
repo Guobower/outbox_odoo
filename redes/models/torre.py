@@ -100,4 +100,27 @@ class Torre(models.Model):
         track_visibility="onchange")
     
     
+    def on_change_estado(self, cr, user, ids, estado, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo modificar o dominio das cidades para que exiba apenas as vinculados ao 
+              estado selecionado.
+        
+            Utilização:
+              on_change_estado(param1)
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              estado
+                Estado selecionado no formulario  
+              context
+                Contexto atual
+        '''
+        return {'domain':{'cidade':[('state_id','=',estado)]}}
+    
     
