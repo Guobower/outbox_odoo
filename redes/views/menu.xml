@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<!-- window action -->
+		<!-- The following tag is an action definition for a "window action", that 
+			is an action opening a view or a set of views -->
+		<record model="ir.actions.act_window" id="torre_list_action">
+			<field name="name">Torre</field>
+			<field name="res_model">torre</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de torres.
+				</p>
+			</field>
+		</record>
+
+
+
+		<!-- the following menuitem should appear *after* its parent openacademy_menu 
+			and *after* its action course_list_action -->
+		<menuitem id="redes_parent_menu" name="Redes" />
+
+		<menuitem id="redes_configuracao_menu" name="Configuração"
+			sequence="20" parent="redes_parent_menu" />
+
+
+		<menuitem id="torre_menu" name="Torre" parent="redes_configuracao_menu"
+			action="torre_list_action" />
+
+
+	</data>
+</openerp>

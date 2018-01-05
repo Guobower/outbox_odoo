@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_name" model="mail.message.subtype">
+			<field name="name">Nome modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Nome modificado</field>
+		</record>
+		
+		<record id="mt_sustentavel" model="mail.message.subtype">
+			<field name="name">Sustentavel</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Descricao modificado</field>
+		</record>
+		
+		<record id="mt_altura" model="mail.message.subtype">
+			<field name="name">Altura modificada</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Altura modificada</field>
+		</record>
+		
+		<record id="mt_latitude" model="mail.message.subtype">
+			<field name="name">Latitude modificada</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Latitude modificada</field>
+		</record>
+		
+		<record id="mt_longitude" model="mail.message.subtype">
+			<field name="name">Longitude modificada</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Longitude modificada</field>
+		</record>
+		
+		<record id="mt_cep" model="mail.message.subtype">
+			<field name="name">CEP modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">CEP modificado</field>
+		</record>
+		
+		<record id="mt_logradouro" model="mail.message.subtype">
+			<field name="name">Logradouro modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Logradouro modificado</field>
+		</record>
+		
+		<record id="mt_numero" model="mail.message.subtype">
+			<field name="name">Numero modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Numero modificado</field>
+		</record>
+		
+		<record id="mt_bairro" model="mail.message.subtype">
+			<field name="name">Bairro modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Bairro modificado</field>
+		</record>
+		
+		<record id="mt_cidade" model="mail.message.subtype">
+			<field name="name">Cidade modificada</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Cidade modificado</field>
+		</record>
+		
+		<record id="mt_estado" model="mail.message.subtype">
+			<field name="name">Estado modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Estado modificado</field>
+		</record>
+		
+		<record id="mt_complemento" model="mail.message.subtype">
+			<field name="name">Complemento modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Complemento modificado</field>
+		</record>
+		
+		<record id="mt_ponto_referencia" model="mail.message.subtype">
+			<field name="name">Ponto de referencia modificado</field>
+			<field name="res_model">torre</field>
+			<field name="default" eval="True" />
+			<field name="description">Ponto de referencia modificado</field>
+		</record>
+	</data>
+</openerp>

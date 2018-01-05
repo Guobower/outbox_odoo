@@ -80,8 +80,15 @@
 								<field name="x_quantidade_ips" readonly="1" />
 							</group>
 						</group>
+						<group string="Instalação">
+							<group>
+								<field name="x_previsao_chegada_material" readonly="1" />
+								<field name="x_material_disponivel" readonly="1" />
+								<field name="x_prazo_instalacao_cliente" readonly="1" />
+							</group>
+						</group>
 						<group>
-							<group string="Aprovação Gerencial" readonly="1">
+							<group string="Aprovação Gerencial" readonly="1" invisible="1">
 								<group>
 									<field name="x_aprovacao_viabilidade" readonly="1" />
 									<field name="x_data_aprovacao_viabilidade" readonly="1" />
@@ -89,13 +96,7 @@
 										readonly="1" />
 								</group>
 							</group>
-							<group string="Instalação">
-								<group>
-									<field name="x_previsao_chegada_material" readonly="1" />
-									<field name="x_material_disponivel" readonly="1" />
-									<field name="x_prazo_instalacao_cliente" readonly="1" />
-								</group>
-							</group>
+
 							<p invisible="1"
 								attrs="{'invisible': [('analytic_account_id','=',False)]}">
 								To invoice or setup invoicing and renewal options, go to the

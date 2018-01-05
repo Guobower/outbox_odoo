@@ -19,6 +19,7 @@
         'views/atividades_cinte_search.xml',
         'views/atividades_cinte_tree.xml',
         'views/atividades_cinte_graph.xml',
+        'views/atividades_cinte_notificacoes.xml',
         'views/email_template_aviso_conclusao.xml',
         'security/atividades_cinte_security.xml',
         'security/ir.rule.xml'

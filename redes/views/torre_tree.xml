@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="torre_tree">
+			<field name="name">torre.tree</field>
+			<field name="model">torre</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Torre">
+					<field name="name" string="Nome" />
+					<field name="latitude" />
+					<field name="longitude" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

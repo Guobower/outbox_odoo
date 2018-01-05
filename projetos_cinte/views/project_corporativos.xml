@@ -87,7 +87,7 @@
 							</group>
 						</group>
 						<group attrs="{'invisible': [('x_tipo_projeto_odoo', '!=', '1'),('type_project', '=', 'corporativos')]}">
-							<group string="Aprovação Gerencial" readonly="1">
+							<group string="Aprovação Gerencial" readonly="1" invisible="1">
 								<group>
 									<field name="x_aprovacao_viabilidade" readonly="1" />
 									<field name="x_data_aprovacao_viabilidade" readonly="1" />
@@ -104,7 +104,7 @@
 										readonly="1" />
 								</group>
 							</group>
-							<group string="Aprovação Financeira">
+							<group string="Aprovação Financeira" invisible="1">
 								<group>
 									<field name="x_aprovacao_viabilidade_financeira"
 										readonly="1" />

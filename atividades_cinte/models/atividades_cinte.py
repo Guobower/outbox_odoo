@@ -20,6 +20,12 @@ class Atividades_cinte(models.Model):
         'stage_id': _read_group_stage_ids,
     }
     
+    _track = {
+            'atividade': {
+                'atividades_cinte.mt_stage_id': lambda self, cr, uid, obj, ctx = None: obj.stage_id
+            }
+    }
+    
     name = fields.Char(
         string="Nome",
         size=150,
@@ -28,7 +34,8 @@ class Atividades_cinte(models.Model):
     stage_id = fields.Many2one(
         comodel_name='estagios_atividades_cinte',
         string='Estágio',
-        help='Estágio da atividade')
+        help='Estágio da atividade', 
+        track_visibility='onchange')
     
     color = fields.Integer(
         string="Color Index")
