@@ -28,7 +28,8 @@ class Convenio115(models.Model):
         required=True)
     
     ano = fields.Selection(
-        selection=[('17', '2017')],
+        selection=[('17', '2017'),
+                   ('18', '2018')],
         string='Ano',
         help='Ano de referência para o lote enviado',
         required=True)
