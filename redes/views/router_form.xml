@@ -14,7 +14,7 @@
 							<group>
 								<field name="name" string="Nome" />
 								<field name="login" />
-								<field name="senha" />
+								<field name="senha" password="True" />
 								<field name="nas" />
 								<field name="torre" options="{'no_create': True}" />
 								<field name="pop" options="{'no_create': True}" />
