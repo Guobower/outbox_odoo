@@ -81,12 +81,14 @@ class Torre(models.Model):
     cidade = fields.Many2one(
         string='Cidade',
         help='Cidade',
-        comodel_name='l10n_br_base.city')
+        comodel_name='l10n_br_base.city',
+        track_visibility="onchange")
     
     estado = fields.Many2one(
         string='Estado',
         help='Estado',
-        comodel_name='res.country.state')
+        comodel_name='res.country.state',
+        track_visibility="onchange")
     
     complemento = fields.Char(
         string="Complemento",

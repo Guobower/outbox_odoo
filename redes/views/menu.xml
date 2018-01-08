@@ -15,6 +15,30 @@
 				</p>
 			</field>
 		</record>
+		
+		<record model="ir.actions.act_window" id="pop_list_action">
+			<field name="name">Pop</field>
+			<field name="res_model">pop</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de pops.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="router_list_action">
+			<field name="name">Router</field>
+			<field name="res_model">router</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de routers.
+				</p>
+			</field>
+		</record>
 
 
 
@@ -25,9 +49,16 @@
 		<menuitem id="redes_configuracao_menu" name="Configuração"
 			sequence="20" parent="redes_parent_menu" />
 
+		<menuitem id="router_menu" name="Router" parent="redes_configuracao_menu"
+			action="router_list_action" />
 
 		<menuitem id="torre_menu" name="Torre" parent="redes_configuracao_menu"
 			action="torre_list_action" />
+
+		<menuitem id="pop_menu" name="Pop" parent="redes_configuracao_menu"
+			action="pop_list_action" />
+			
+			
 
 
 	</data>

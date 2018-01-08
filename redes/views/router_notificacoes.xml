@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_name" model="mail.message.subtype">
+			<field name="name">Nome modificado</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Nome modificado</field>
+		</record>
+		
+		<record id="mt_login" model="mail.message.subtype">
+			<field name="name">Login</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Login modificado</field>
+		</record>
+		
+		<record id="mt_senha" model="mail.message.subtype">
+			<field name="name">Senha</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Senha modificada</field>
+		</record>
+		
+		<record id="mt_nas" model="mail.message.subtype">
+			<field name="name">NAS</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">NAS modificado</field>
+		</record>
+		
+		<record id="mt_torre" model="mail.message.subtype">
+			<field name="name">Torre</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Torre modificada</field>
+		</record>
+		
+		<record id="mt_pop" model="mail.message.subtype">
+			<field name="name">POP</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">POP modificado</field>
+		</record>
+		
+		<record id="mt_ip" model="mail.message.subtype">
+			<field name="name">IP</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">IP modificado</field>
+		</record>
+		
+		<record id="mt_mac" model="mail.message.subtype">
+			<field name="name">MAC</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">MAC modificado</field>
+		</record>
+		
+		<record id="mt_modo_autenticacao" model="mail.message.subtype">
+			<field name="name">Modo de Autenticacao</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Modo de Autenticacao</field>
+		</record>
+		
+		<record id="mt_tipo_nas" model="mail.message.subtype">
+			<field name="name">Tipo NAS</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Tipo NAS</field>
+		</record>
+		
+		<record id="mt_frame" model="mail.message.subtype">
+			<field name="name">Frame</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Frame modificado</field>
+		</record>
+		
+		<record id="mt_slot_id" model="mail.message.subtype">
+			<field name="name">Slot id</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Slot id modificado</field>
+		</record>
+		
+		<record id="mt_prompt" model="mail.message.subtype">
+			<field name="name">Prompt</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Prompt modificado</field>
+		</record>
+		
+		<record id="mt_oid" model="mail.message.subtype">
+			<field name="name">Oid</field>
+			<field name="res_model">router</field>
+			<field name="default" eval="True" />
+			<field name="description">Oid modificado</field>
+		</record>
+	</data>
+</openerp>

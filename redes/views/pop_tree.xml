@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="pop_tree">
+			<field name="name">pop.tree</field>
+			<field name="model">pop</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Pop">
+					<field name="name" string="Nome" />
+					<field name="populacao" string="População" />
+					<field name="central" />
+					<field name="cidade" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

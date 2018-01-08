@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_name" model="mail.message.subtype">
+			<field name="name">Nome modificado</field>
+			<field name="res_model">pop</field>
+			<field name="default" eval="True" />
+			<field name="description">Nome modificado</field>
+		</record>
+		
+		<record id="mt_populacao" model="mail.message.subtype">
+			<field name="name">Populacao</field>
+			<field name="res_model">pop</field>
+			<field name="default" eval="True" />
+			<field name="description">Populacao modificada</field>
+		</record>
+		
+		<record id="mt_central" model="mail.message.subtype">
+			<field name="name">Central</field>
+			<field name="res_model">pop</field>
+			<field name="default" eval="True" />
+			<field name="description">Central modificada</field>
+		</record>
+		
+		<record id="mt_cidade" model="mail.message.subtype">
+			<field name="name">Cidade modificada</field>
+			<field name="res_model">pop</field>
+			<field name="default" eval="True" />
+			<field name="description">Cidade modificada</field>
+		</record>
+	</data>
+</openerp>

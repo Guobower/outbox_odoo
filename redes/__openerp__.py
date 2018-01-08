@@ -11,9 +11,15 @@
     'installable': True,
     'data': [
         'views/menu.xml',
+        'security/redes_security.xml',
         'views/torre_tree.xml',
         'views/torre_form.xml',
         'views/torre_notificacoes.xml',
-        'security/redes_security.xml'
+        'views/pop_tree.xml',
+        'views/pop_form.xml',
+        'views/pop_notificacoes.xml',
+        'views/router_tree.xml',
+        'views/router_form.xml',
+        'views/router_notificacoes.xml'
     ]
 }

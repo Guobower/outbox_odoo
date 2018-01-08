@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="router_tree">
+			<field name="name">router.tree</field>
+			<field name="model">router</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Routers">
+					<field name="name" string="Nome" />
+					<field name="login" />
+					<field name="nas" />
+					<field name="ip" />
+					<field name="mac" />
+					<field name="pop" />
+					<field name="torre" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>
