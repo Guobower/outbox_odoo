@@ -16,5 +16,10 @@
                <field name="name">Usuário</field>
                <field name="category_id" ref="helpdesk"/>
            </record>
+           
+           <record id="helpdesk.solicitante" model="res.groups">
+               <field name="name">Solicitante</field>
+               <field name="category_id" ref="helpdesk"/>
+           </record>
         </data>
     </openerp>

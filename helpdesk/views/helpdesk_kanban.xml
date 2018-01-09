@@ -8,7 +8,7 @@
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<kanban default_group_by="stage_id">
+				<kanban default_group_by="stage_id" edit="false">
 					<field name="stage_id" />
 					<field name="responsavel" />
 					<field name="create_uid" />

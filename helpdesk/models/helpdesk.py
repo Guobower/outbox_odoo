@@ -22,6 +22,10 @@ class Helpdesk(models.Model):
         'stage_id': _read_group_stage_ids,
     }
     
+    _defaults={
+        'stage_id' : 1
+    }
+    
     _track = {
             'helpdesk': {
                 'helpdesk.mt_name': lambda self, cr, uid, obj, ctx = None: obj.name,
@@ -87,6 +91,11 @@ class Helpdesk(models.Model):
         string='Responsavel',
         help='Responsável pelo suporte',
         track_visibility='onchange')
+    
+    equipe = fields.Many2many(
+        comodel_name='res.users',
+        string='Equipe',
+        help='Equipe envolvida na atividade')
     
     
     def pegar_ticket(self, cr, uid, ids, context=None):

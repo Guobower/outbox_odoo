@@ -15,7 +15,7 @@
 						<group string="Informações Principais">
 							<group>
 								<field name="name" string="Nome" />
-								<field name="stage_id" />
+								<field name="stage_id" groups="helpdesk.user" />
 								<field name="sistema" />
 							</group>
 							<group>
@@ -39,6 +39,31 @@
 								<field name="descricao" string="Descrição" />
 							</group>
 						</group>
+						<notebook>
+							<page string="Equipe">
+								<field colspan="4" name="equipe" widget="many2many_kanban">
+									<kanban quick_create="false" create="true" delete="true">
+										<field name="name" />
+										<templates>
+											<t t-name="kanban-box">
+												<div style="position: relative">
+													<a t-if="! read_only_mode" type="delete"
+														style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+													<div class="oe_module_vignette">
+														<img
+															t-att-src="kanban_image('res.users', 'image_small', record.id.value)"
+															class="oe_avatar oe_kanban_avatar_smallbox" />
+														<div class="oe_module_desc">
+															<field name="name" />
+														</div>
+													</div>
+												</div>
+											</t>
+										</templates>
+									</kanban>
+								</field>
+							</page>
+						</notebook>
 					</sheet>
 					<div class="oe_chatter">
 						<field name="message_follower_ids" widget="mail_followers" />
