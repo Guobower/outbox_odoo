@@ -6,7 +6,7 @@
 			<field name="name">Projetos Licitados</field>
 			<field name="res_model">project.project</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">kanban,tree,form</field>
+			<field name="view_mode">tree,kanban,form</field>
 			<field name="domain">[('type_project','=','licitados')]</field>
 			<field name="context">{
 				'default_type_project': 'licitados',
@@ -44,7 +44,7 @@
 			<field name="name">Projetos Internos</field>
 			<field name="res_model">project.project</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">kanban,tree,form</field>
+			<field name="view_mode">tree,kanban,form</field>
 			<field name="domain">[('type_project','=','internos')]</field>
 			<field name="context">{
 				'default_type_project': 'internos',
@@ -82,7 +82,7 @@
 			<field name="name">Projetos Corporativos</field>
 			<field name="res_model">project.project</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">kanban,tree,form</field>
+			<field name="view_mode">tree,kanban,form</field>
 			<field name="domain"></field>
 			<field name="context">{
 				'default_type_project': 'corporativos',
