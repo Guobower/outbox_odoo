@@ -13,7 +13,6 @@
 					<field name="responsavel" />
 					<field name="data" />
 					<field name="data_termino" />
-					<field name="equipe" widget="many2many_tags" />
 					<field name="cliente_nome" />
 					<field name="tipo_cliente" />
 					<field name="atividade" />
