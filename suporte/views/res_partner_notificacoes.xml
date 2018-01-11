@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_informacoes_tecnicas" model="mail.message.subtype">
+			<field name="name">Informacoes tecnicas modificadas</field>
+			<field name="res_model">res.partner</field>
+			<field name="default" eval="True" />
+			<field name="description">Informacoes tecnicas modificadas</field>
+		</record>
+		
+		<record id="mt_textos_chamados" model="mail.message.subtype">
+			<field name="name">Textos de chamados modificados</field>
+			<field name="res_model">res.partner</field>
+			<field name="default" eval="True" />
+			<field name="description">Textos de chamados modificados</field>
+		</record>
+		
+		<record id="mt_sla" model="mail.message.subtype">
+			<field name="name">SLA modificado</field>
+			<field name="res_model">res.partner</field>
+			<field name="default" eval="True" />
+			<field name="description">SLA modificado</field>
+		</record>
+		
+		<record id="mt_usuario_centreon" model="mail.message.subtype">
+			<field name="name">Usuario Centreon modificado</field>
+			<field name="res_model">res.partner</field>
+			<field name="default" eval="True" />
+			<field name="description">Usuario Centreon modificado</field>
+		</record>
+	</data>
+</openerp>

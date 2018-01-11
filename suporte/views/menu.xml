@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<!-- window action -->
+		<!-- The following tag is an action definition for a "window action", that 
+			is an action opening a view or a set of views -->
+		<record model="ir.actions.act_window" id="clientes_list_action">
+			<field name="name">Clientes</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form</field>
+			<field name="domain">[('customer','=','true')]</field>
+			<field name="context">{
+				'customer': 'true'
+				}
+			</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de clientes.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="contratos_list_action">
+			<field name="name">Contratos</field>
+			<field name="res_model">account.analytic.account</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('parent_id', '=', False)]</field>
+			<field name="context">{
+				'parent_id': 'false'
+				}
+			</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de contratos.
+				</p>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window" id="status_contrato_list_action">
+			<field name="name">Status de Contratos</field>
+			<field name="res_model">status_contrato</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de status de contratos.
+				</p>
+			</field>
+		</record>
+
+
+		<!-- the following menuitem should appear *after* its parent openacademy_menu 
+			and *after* its action course_list_action -->
+		<menuitem id="suporte_parent_menu" name="Suporte" />
+
+		<menuitem id="atendimento_menu" name="Atendimento" sequence="20"
+			parent="suporte_parent_menu" />
+
+		<menuitem id="clientes_menu" name="Clientes" parent="atendimento_menu"
+			action="clientes_list_action" />
+
+		<menuitem id="contratos_menu" name="Contratos" parent="atendimento_menu"
+			action="contratos_list_action" />
+
+
+
+
+		<menuitem id="configuracoes_menu" name="Configurações"
+			sequence="20" parent="suporte_parent_menu" />
+
+		<menuitem id="status_contrato_menu" name="Status de Contratos"
+			parent="configuracoes_menu" action="status_contrato_list_action" />
+
+	</data>
+</openerp>

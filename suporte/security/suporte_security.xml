@@ -2,19 +2,19 @@
     <openerp>
        <data noupdate="0">
            <!-- Creating a Group Category -->        
-           <record id="redes" model="ir.module.category">
-               <field name="name">Redes</field>
+           <record id="suporte" model="ir.module.category">
+               <field name="name">Suporte</field>
                <field name="sequence">1</field>
            </record>
            <!-- Adding a Group to the Group Category -->
-           <record id="redes.manager" model="res.groups">
-               <field name="name">Administrador</field>
-               <field name="category_id" ref="redes"/>
+           <record id="suporte.manager" model="res.groups">
+               <field name="name">Suporte</field>
+               <field name="category_id" ref="suporte"/>
            </record>
            
-           <record id="redes.user" model="res.groups">
+           <record id="suporte.user" model="res.groups">
                <field name="name">Usuário</field>
-               <field name="category_id" ref="redes"/>
+               <field name="category_id" ref="suporte"/>
            </record>
         </data>
     </openerp>
