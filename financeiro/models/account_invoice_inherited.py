@@ -21,7 +21,8 @@ class Account_invoice_inherited(models.Model):
         help='Mês da competência de prestação do serviço.')
     
     ano_competencia = fields.Selection(
-        selection=[(2017, '2017'),
+        selection=[(2018, '2018'),
+                   (2017, '2017'),
                    (2016, '2016')],
         string='Ano de Competência',
         help='Ano da competência de prestação do serviço.')
