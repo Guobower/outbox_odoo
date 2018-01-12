@@ -6,16 +6,17 @@ class Account_analytic_account_inherited(models.Model):
  
     _track = {
             'account.analytic.account': {
-                'account.analytic.account.mt_stage_id': lambda self, cr, uid, obj, ctx = None: obj.stage_id
+                'account.analytic.account.mt_stage_id': lambda self, cr, uid, obj, ctx = None: obj.status_contrato
             }
     }
     
     _defaults={
-        'stage_id' : 1
+        'stage_id' : 1,
+        'type': 'contract'
     }
     
-    stage_id = fields.Many2one(
-        comodel_name='estagios_helpdesk',
+    status_contrato = fields.Many2one(
+        comodel_name='status_contrato',
         string='Status',
         help='Status do contrato',
         track_visibility='onchange')

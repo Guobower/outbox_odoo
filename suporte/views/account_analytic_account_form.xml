@@ -7,8 +7,100 @@
 			<field name="arch" type="xml">
 				<form string="Contrato">
 					<sheet string="Contrato">
-						<field name="stage_id"></field>
+						<div class="oe_title">
+							<label for="name" class="oe_edit_only" string="Nome/Contrato" />
+							<h1>
+								<field name="name" class="oe_inline" />
+							</h1>
+						</div>
+						<group name="main">
+							<group>
+								<field name="partner_id" string="Cliente" />
+								<field name="manager_id" string="Gerente de Contas"
+									context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'account.group_account_manager']}" />
+							</group>
+							<group>
+								<field name="type" invisible="1" />
+								<field name="code" readonly="1" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Informações do Contrato" name="contract_page">
+								<group>
+									<group string="Renovação" name="contract">
+										<p colspan="2" class="oe_grey oe_edit_only">
+											Uma vez que a data final do contrato é
+											ultrapassada
+											o gerente de contas é notificado por e-mail para
+											renovar
+											o contrato com o cliente.
+										</p>
+										<field name="date_start" string="Data Inicial" />
+										<label for="date" string="Data Final" />
+										<div name="duration">
+											<field name="date" string="Data Final" class="oe_inline" />
+										</div>
+									</group>
+									<group string="Configurações">
+										<field name="status_contrato" />
+										<field name="tipo_envio" />
+										<field name="data_base_vencimento" />
+										<field name="tipo_contrato" />
+									</group>
+								</group>
+								<separator string="Recurring Invoices"
+									attrs="{'invisible': [('recurring_invoices','!=',True)]}" />
+								<div>
+									<div
+										attrs="{'invisible': [('type','!=', 'contract'), ('recurring_invoices', '=', False)]}">
+										<field name="recurring_invoices"
+											on_change="onchange_recurring_invoices(recurring_invoices, date_start)"
+											class="oe_inline" />
+										<label for="recurring_invoices" />
+									</div>
+									<button class="oe_link" name="recurring_create_invoice"
+										attrs="{'invisible': [('recurring_invoices','!=',True)]}"
+										string="⇒ create invoices" type="object"
+										groups="account.group_account_invoice" />
+								</div>
+								<group attrs="{'invisible': [('recurring_invoices','!=',True)]}">
+									<label for="recurring_interval" />
+									<div>
+										<field name="recurring_interval" class="oe_inline"
+											attrs="{'required': [('recurring_invoices', '=', True)]}" />
+										<field name="recurring_rule_type" class="oe_inline"
+											attrs="{'required': [('recurring_invoices', '=', True)]}" />
+									</div>
+									<field name="recurring_next_date" />
+								</group>
+								<label for="recurring_invoice_line_ids"
+									attrs="{'invisible': [('recurring_invoices','=',False)]}" />
+								<div attrs="{'invisible': [('recurring_invoices','=',False)]}">
+									<field name="recurring_invoice_line_ids">
+										<tree string="Account Analytic Lines" editable="bottom">
+											<field name="product_id"
+												on_change="product_id_change(product_id, uom_id, quantity, False, parent.partner_id, False, parent.pricelist_id, parent.company_id)" />
+											<field name="name" />
+											<field name="quantity" />
+											<field name="uom_id" />
+											<field name="price_unit" />
+											<field name="price_subtotal" />
+										</tree>
+									</field>
+								</div>
+							</page>
+							<page string="Faturamento">
+							</page>
+							<page string="Adesões">
+							</page>
+							<page string="Atendimentos">
+							</page>
+						</notebook>
 					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
 				</form>
 			</field>
 		</record>
