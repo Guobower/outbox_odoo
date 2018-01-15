@@ -101,6 +101,10 @@ class Torre(models.Model):
         help="Ponto de referência",
         track_visibility="onchange")
     
+    id_syncron = fields.Integer(
+        string='ID do torre no Syncron',
+        help='ID de identificação da torre no Syncron')
+    
     
     def on_change_estado(self, cr, user, ids, estado, context=None):
         '''

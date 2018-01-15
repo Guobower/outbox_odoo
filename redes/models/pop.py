@@ -41,4 +41,8 @@ class Pop(models.Model):
         track_visibility="onchange",
         domain=[('state_id', '=', 70)])
     
+    id_syncron = fields.Integer(
+        string='ID do pop no Syncron',
+        help='ID de identificação do pop no Syncron')
+    
     

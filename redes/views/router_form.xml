@@ -19,6 +19,7 @@
 								<field name="torre" options="{'no_create': True}" />
 								<field name="pop" options="{'no_create': True}" />
 								<field name="ip" />
+								<field name="id_syncron" />
 							</group>
 							<group>
 								<field name="mac" />

@@ -107,3 +107,7 @@ class Router(models.Model):
         string="Oid",
         size=50,
         track_visibility='onchange')
+    
+    id_syncron = fields.Integer(
+        string='ID do router no Syncron',
+        help='ID de identificação do router no Syncron')

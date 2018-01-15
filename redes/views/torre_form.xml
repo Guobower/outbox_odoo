@@ -14,6 +14,7 @@
 							<group>
 								<field name="name" string="Nome" />
 								<field name="altura" />
+								<field name="id_syncron" />
 							</group>
 							<group>
 								<field name="latitude" />
