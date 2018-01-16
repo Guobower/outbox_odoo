@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="modo_aquisicao_form">
+			<field name="name">modo_aquisicao.form</field>
+			<field name="model">modo_aquisicao</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Modo de Aquisição">
+					<sheet string="Modo de Aquisição">
+						
+						<group string="Informações Principais">
+							<group>
+								<field name="name" />
+							</group>
+							<group>
+								<field name="descricao" string="Descrição" />
+							</group>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

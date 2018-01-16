@@ -17,6 +17,15 @@
         'views/status_contrato_form.xml',
         'views/status_contrato_notificacoes.xml',
         'views/status_contrato_tree.xml',
+        'views/plano_form.xml',
+        'views/plano_notificacoes.xml',
+        'views/plano_tree.xml',
+        'views/grupo_servico_form.xml',
+        'views/grupo_servico_notificacoes.xml',
+        'views/grupo_servico_tree.xml',
+        'views/modo_aquisicao_form.xml',
+        'views/modo_aquisicao_notificacoes.xml',
+        'views/modo_aquisicao_tree.xml',
         'views/account_analytic_account_form.xml'
     ]
 }

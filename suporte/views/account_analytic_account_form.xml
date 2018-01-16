@@ -92,6 +92,12 @@
 							<page string="Faturamento">
 							</page>
 							<page string="Adesões">
+								<field name="adesao">
+									<tree editable="top">
+										<field name="id" />
+										<field name="name" />
+									</tree>
+								</field>
 							</page>
 							<page string="Atendimentos">
 							</page>

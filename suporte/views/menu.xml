@@ -51,6 +51,42 @@
 			</field>
 		</record>
 
+		<record model="ir.actions.act_window" id="plano_list_action">
+			<field name="name">Planos</field>
+			<field name="res_model">plano</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de status de planos.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="grupo_servico_list_action">
+			<field name="name">Grupos de Serviços</field>
+			<field name="res_model">grupo_servico</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de grupos de serviços.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="modo_aquisicao_list_action">
+			<field name="name">Modo de Aquisição</field>
+			<field name="res_model">modo_aquisicao</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de modos de aquisição.
+				</p>
+			</field>
+		</record>
+
 
 		<!-- the following menuitem should appear *after* its parent openacademy_menu 
 			and *after* its action course_list_action -->
@@ -73,6 +109,15 @@
 
 		<menuitem id="status_contrato_menu" name="Status de Contratos"
 			parent="configuracoes_menu" action="status_contrato_list_action" />
+
+		<menuitem id="plano_menu" name="Planos" parent="configuracoes_menu"
+			action="plano_list_action" />
+
+		<menuitem id="grupo_servico_menu" name="Grupos de Serviços"
+			parent="configuracoes_menu" action="grupo_servico_list_action" />
+
+		<menuitem id="modo_aquisicao_menu" name="Modo de Aquisição"
+			parent="configuracoes_menu" action="modo_aquisicao_list_action" />
 
 	</data>
 </openerp>

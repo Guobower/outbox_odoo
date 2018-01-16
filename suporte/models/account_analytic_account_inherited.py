@@ -41,3 +41,9 @@ class Account_analytic_account_inherited(models.Model):
         string='Tipo de Contrato',
         help='Tipo de contrato com o cliente',
         track_visibility='onchange')
+    
+    adesao = fields.One2many(
+        comodel_name='adesao',
+        inverse_name='contrato',
+        string='Adesoes',
+        help='Adesões vinculadas ao contrato')

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="mt_name" model="mail.message.subtype">
+			<field name="name">Nome</field>
+			<field name="res_model">modo_aquisicao</field>
+			<field name="default" eval="True" />
+			<field name="description">Nome</field>
+		</record>
+		
+		<record id="mt_descricao" model="mail.message.subtype">
+			<field name="name">Descricao</field>
+			<field name="res_model">modo_aquisicao</field>
+			<field name="default" eval="True" />
+			<field name="description">Descricao</field>
+		</record>
+	</data>
+</openerp>
