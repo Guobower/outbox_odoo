@@ -129,4 +129,86 @@ class Torre(models.Model):
         '''
         return {'domain':{'cidade':[('state_id','=',estado)]}}
     
-    
+    def on_change_zip(self, cr, user, ids, cep, context=None):
+        import pycep_correios
+        from pycep_correios.excecoes import (CEPInvalido,
+                                     ExcecaoPyCEPCorreios,
+                                     Timeout,
+                                     MultiploRedirecionamento,
+                                     FalhaNaConexao)
+
+        try:
+            if cep:
+                endereco = pycep_correios.consultar_cep(cep)
+                
+                estado_obj = self.pool.get('res.country.state')
+                estado = estado_obj.search(cr, user,  [('code','=',endereco['uf'])])
+                #estado = estado_obj.browse(cr, user, estado_obj.search(cr, user,  [('code','=',endereco['uf'])]))
+                
+                cidade_obj = self.pool.get('l10n_br_base.city')
+                cidade = cidade_obj.search(cr, user,  [('name','=',endereco['cidade']),('state_id','=',estado[0])])
+                
+                res = {
+                    'value': {
+                    'logradouro': endereco['end'],
+                    'bairro': endereco['bairro'],
+                    'complemento': endereco['complemento'],
+                    'estado': estado[0],
+                    'cidade': cidade[0]
+                    }
+                }
+                # Return the values to update it in the view.
+                return res
+        except Timeout as exc:
+            return {
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'Tempo excedido!',
+                        'text': 'Tempo excedido na consulta de CEP!'
+                        }
+                }
+        except FalhaNaConexao as exc:
+            return {
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'Falha de conexão!',
+                        'text': 'Falha de conexão na consulta de CEP!'
+                        }
+                }
+        except MultiploRedirecionamento as exc:
+            return {
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'Erro de redirecionamento!',
+                        'text': 'Erro de redirecionamento na consulta de CEP!'
+                        }
+                }
+        except CEPInvalido as exc:
+            return {
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'CEP inválido!',
+                        'text': 'O CEP informado é inválido!'
+                        }
+                }
+        except ExcecaoPyCEPCorreios as exc:
+            return {
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'Erro ao consultar!',
+                        'text': 'Erro ao consultar CEP!'
+                        }
+                }
+            
+            
+        

@@ -30,8 +30,9 @@
 								<field name="complemento" />
 							</group>
 							<group>
-								<field name="cep" />
-								<field name="estado" on_change="on_change_estado(estado)" options="{'no_create': True}" />
+								<field name="cep" on_change="on_change_zip(cep)" widget="mask" placeholder="99.999-000" mask="99.999-999" />
+								<field name="estado" on_change="on_change_estado(estado)"
+									options="{'no_create': True}" />
 								<field name="cidade" options="{'no_create': True}" />
 								<field name="ponto_referencia" />
 							</group>
