@@ -25,7 +25,7 @@ class Plano(models.Model):
         help="Taxa de upload do plano")
     
     transferencia_mensal = fields.Integer(
-        string="Transferência Mensal (Gb)",
+        string="Transferencia Mensal (Gb)",
         help="Transferência Mensal")
     
     codigo_plano = fields.Char(
@@ -34,7 +34,7 @@ class Plano(models.Model):
         track_visibility='onchange')
     
     pos_pago = fields.Selection(
-        string="Pós-Pago",
+        string="Pos-Pago",
         help="Pós-Pago",
         selection=[('0', 'Não'),
                    ('1', 'Sim')],
@@ -45,11 +45,11 @@ class Plano(models.Model):
         help="Numero de Parcelas")
     
     valor_adesao = fields.Float(
-        string='Valor da Instalação (R$)',
+        string='Valor da Instalacao (R$)',
         help='Valor a ser pago no ato da instalação')
     
     adesao_desconto = fields.Float(
-        string='Desconto da Instalação (R$)',
+        string='Desconto da Instalacao (R$)',
         help='Valor a ser descontado da taxa de instalação')
     
     valor_aluguel = fields.Float(
@@ -57,11 +57,11 @@ class Plano(models.Model):
         help='Valor de Aluguel')
     
     comissao_mensal = fields.Float(
-        string='Comissão Mensal (Em espécie)',
+        string='Comissao Mensal (Em espécie)',
         help='Comissão Mensal (Em espécie)')
     
     comissao_inicial = fields.Float(
-        string='Comissão Inicial (Em espécie)',
+        string='Comissao Inicial (Em espécie)',
         help='Comissão Inicial (Em espécie)')
     
     traffic_table_id = fields.Integer(
