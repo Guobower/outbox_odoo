@@ -88,3 +88,7 @@ class Plano(models.Model):
         string='Pops',
         help='Pop onde valerá este plano')
     
+    id_syncron = fields.Integer(
+        string='ID no Syncron',
+        help='ID de identificação no Syncron')
+    

@@ -51,6 +51,18 @@
 			</field>
 		</record>
 
+		<record model="ir.actions.act_window" id="status_adesao_list_action">
+			<field name="name">Status de Adesões</field>
+			<field name="res_model">status_adesao</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de status de adesões.
+				</p>
+			</field>
+		</record>
+
 		<record model="ir.actions.act_window" id="plano_list_action">
 			<field name="name">Planos</field>
 			<field name="res_model">plano</field>
@@ -109,6 +121,9 @@
 
 		<menuitem id="status_contrato_menu" name="Status de Contratos"
 			parent="configuracoes_menu" action="status_contrato_list_action" />
+
+		<menuitem id="status_adesao_menu" name="Status de Adesões"
+			parent="configuracoes_menu" action="status_adesao_list_action" />
 
 		<menuitem id="plano_menu" name="Planos" parent="configuracoes_menu"
 			action="plano_list_action" />

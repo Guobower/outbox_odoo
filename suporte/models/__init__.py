@@ -5,3 +5,4 @@ from . import adesao
 from . import plano
 from . import grupo_servico
 from . import modo_aquisicao
+from . import status_adesao

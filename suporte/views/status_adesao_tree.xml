@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="status_adesao_tree">
+			<field name="name">status_adesao.tree</field>
+			<field name="model">status_adesao</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Status de adesão">
+					<field name="name" />
+					<field name="descricao" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

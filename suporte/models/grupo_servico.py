@@ -23,3 +23,7 @@ class Grupo_servico(models.Model):
         string="Descricao",
         help="Descrição do grupo de serviço",
         track_visibility="onchange")
+    
+    id_syncron = fields.Integer(
+        string='ID no Syncron',
+        help='ID de identificação no Syncron')

@@ -93,10 +93,56 @@
 							</page>
 							<page string="Adesões">
 								<field name="adesao">
-									<tree editable="top">
-										<field name="id" />
-										<field name="name" />
+									<tree>
+										<field name="plano" />
+										<field name="status_adesao" />
+										<field name="descricao" />
+										<field name="create_date" />
 									</tree>
+									<form>
+										<group string="Dados Gerais">
+											<group>
+												<field name="name" />
+												<field name="pop" />
+												<field name="plano" />
+											</group>
+											<group>
+												<field name="modo_aquisicao" />
+												<field name="status_adesao" />
+											</group>
+										</group>
+										<group colspan="2">
+											<field name="descricao" />
+										</group>
+										<notebook>
+											<page string="Materiais Utilizados">
+												<field name="numero_serie" />
+											</page>
+											<page string="Endereço">
+												<group>
+													<group>
+														<field name="logradouro" />
+														<field name="numero" />
+														<field name="bairro" />
+														<field name="complemento" />
+													</group>
+													<group>
+														<field name="cep" />
+														<field name="estado" on_change="on_change_estado(estado)"
+															options="{'no_create': True}" />
+														<field name="cidade" options="{'no_create': True}" />
+														<field name="latitude" />
+														<field name="longitude" />
+													</group>
+													<group colspan="2">
+														<field name="ponto_referencia" />
+													</group>
+												</group>
+											</page>
+											<page string="Conexões">
+											</page>
+										</notebook>
+									</form>
 								</field>
 							</page>
 							<page string="Atendimentos">

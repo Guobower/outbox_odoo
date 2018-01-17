@@ -47,3 +47,7 @@ class Account_analytic_account_inherited(models.Model):
         inverse_name='contrato',
         string='Adesoes',
         help='Adesões vinculadas ao contrato')
+    
+    id_syncron = fields.Integer(
+        string='ID no Syncron',
+        help='ID de identificação no Syncron')

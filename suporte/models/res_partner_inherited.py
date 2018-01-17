@@ -35,6 +35,10 @@ class Res_partner_inherited(models.Model):
         size=30,
         track_visibility='onchange')
     
+    id_syncron = fields.Integer(
+        string='ID no Syncron',
+        help='ID de identificação no Syncron')
+    
     
     
     
