@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="router_search">
+			<field name="name">router.search</field>
+			<field name="model">router</field>
+			<field name="view_type">search</field>
+			<field name="context">{'group_by':'pop'}</field>
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<search string="Search Router">
+					<field name="name" string="Nome" />
+					<field name="login" />
+					<field name="nas" />
+					<field name="ip" />
+					<field name="mac" />
+					<field name="pop" />
+					<field name="torre" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

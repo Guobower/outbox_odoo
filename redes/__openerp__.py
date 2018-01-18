@@ -20,6 +20,7 @@
         'views/pop_notificacoes.xml',
         'views/router_tree.xml',
         'views/router_form.xml',
+        'views/router_search.xml',
         'views/router_notificacoes.xml'
     ]
 }

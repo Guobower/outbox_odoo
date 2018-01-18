@@ -15,13 +15,6 @@
 			<field name="description">Login modificado</field>
 		</record>
 		
-		<record id="mt_senha" model="mail.message.subtype">
-			<field name="name">Senha</field>
-			<field name="res_model">router</field>
-			<field name="default" eval="True" />
-			<field name="description">Senha modificada</field>
-		</record>
-		
 		<record id="mt_nas" model="mail.message.subtype">
 			<field name="name">NAS</field>
 			<field name="res_model">router</field>

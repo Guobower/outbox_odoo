@@ -63,6 +63,7 @@ class Torre(models.Model):
     logradouro = fields.Char(
         string="Logradouro",
         size=300,
+        required=True,
         help="Logradouro",
         track_visibility="onchange")
     
@@ -75,18 +76,21 @@ class Torre(models.Model):
     bairro = fields.Char(
         string="Bairro",
         size=80,
+        required=True,
         help="Bairro",
         track_visibility="onchange")
     
     cidade = fields.Many2one(
         string='Cidade',
         help='Cidade',
+        required=True,
         comodel_name='l10n_br_base.city',
         track_visibility="onchange")
     
     estado = fields.Many2one(
         string='Estado',
         help='Estado',
+        required=True,
         comodel_name='res.country.state',
         track_visibility="onchange")
     
@@ -127,8 +131,49 @@ class Torre(models.Model):
               context
                 Contexto atual
         '''
-        return {'domain':{'cidade':[('state_id','=',estado)]}}
+        return {'domain':{'cidade':[('state_id', '=', estado)]}}
     
+    def carregar_coordenadas(self, cr, user, ids, context=None):
+        import simplejson, urllib
+        
+        torre = self.pool.get('torre').browse(cr, user, ids[0])
+        
+        try:
+            url = "https://maps.googleapis.com/maps/api/geocode/json?address="+torre.logradouro+","
+            
+            if torre.numero:
+                url = url + torre.numero+","
+            
+            url = url + torre.bairro+","+torre.cidade.name+"-"+torre.estado.code+"&key=AIzaSyBRXLYF_PsJjlo-s0NIUXr_186CmZpf0hI"
+            url = url.encode('utf-8')
+            result = simplejson.load(urllib.urlopen(url))
+    
+            # distancia = (result['rows'][0]['elements'][0]['distance']['value']) / 1000
+            # tempoViagem = (result['rows'][0]['elements'][0]['duration']['value']) / 60
+            latitude = (result['results'][0]['geometry']['location']['lat'])
+            longitude = (result['results'][0]['geometry']['location']['lng'])
+            
+            
+            
+            torre.write({'latitude': str(latitude),'longitude': str(longitude)}, context=context)
+            # Return the values to update it in the view.
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'reload'
+            }
+        except IndexError:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'action_warn',
+                'name': 'Warning',
+                'params': {
+                    'title': 'Não encontrado!',
+                    'text': 'Coordenadas não encontradas!'
+                    }
+            }
+        
+
+        
     def on_change_zip(self, cr, user, ids, cep, context=None):
         import pycep_correios
         from pycep_correios.excecoes import (CEPInvalido,
@@ -139,14 +184,15 @@ class Torre(models.Model):
 
         try:
             if cep:
+                cep = cep.replace("-", "").replace(".", "")
                 endereco = pycep_correios.consultar_cep(cep)
                 
                 estado_obj = self.pool.get('res.country.state')
-                estado = estado_obj.search(cr, user,  [('code','=',endereco['uf'])])
-                #estado = estado_obj.browse(cr, user, estado_obj.search(cr, user,  [('code','=',endereco['uf'])]))
+                estado = estado_obj.search(cr, user, [('code', '=', endereco['uf'])])
+                # estado = estado_obj.browse(cr, user, estado_obj.search(cr, user,  [('code','=',endereco['uf'])]))
                 
                 cidade_obj = self.pool.get('l10n_br_base.city')
-                cidade = cidade_obj.search(cr, user,  [('name','=',endereco['cidade']),('state_id','=',estado[0])])
+                cidade = cidade_obj.search(cr, user, [('name', '=', endereco['cidade']), ('state_id', '=', estado[0])])
                 
                 res = {
                     'value': {

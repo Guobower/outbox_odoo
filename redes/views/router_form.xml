@@ -13,18 +13,32 @@
 						<group string="Informações Principais">
 							<group>
 								<field name="name" string="Nome" />
-								<field name="login" />
-								<field name="senha" password="True" />
-								<field name="nas" />
-								<field name="torre" options="{'no_create': True}" />
-								<field name="pop" options="{'no_create': True}" />
-								<field name="ip" />
-								<field name="id_syncron" />
+								<field name="id_syncron" readonly="1" />
 							</group>
 							<group>
-								<field name="mac" />
-								<field name="modo_autenticacao" string="Modo de Autenticação" />
+								<field name="login" />
+								<field name="senha" password="True" />
+							</group>
+						</group>
+						<group string="Informações Técnicas">
+							<group>
+								<field name="torre" options="{'no_create': True}" />
+							</group>
+							<group>
+								<field name="pop" options="{'no_create': True}" />
+							</group>
+						</group>
+						<group string="Informações de Redes">
+							<group>
+								<field name="nas" />
 								<field name="tipo_nas" />
+								<field name="ip" widget="mask"
+									placeholder="999.999.999.999" mask="999.999.999.999" />
+								<field name="mac" widget="mask"
+									placeholder="**-**-**-**-**-**" mask="**-**-**-**-**-**" />
+								<field name="modo_autenticacao" string="Modo de Autenticação" />
+							</group>
+							<group>
 								<field name="frame" />
 								<field name="slot_id" />
 								<field name="prompt" />

@@ -10,7 +10,6 @@ class Router(models.Model):
             'torre': {
                 'torre.mt_name': lambda self, cr, uid, obj, ctx = None: obj.name,
                 'torre.mt_login': lambda self, cr, uid, obj, ctx = None: obj.login,
-                'torre.mt_senha': lambda self, cr, uid, obj, ctx = None: obj.senha,
                 'torre.mt_nas': lambda self, cr, uid, obj, ctx = None: obj.nas,
                 'torre.mt_torre': lambda self, cr, uid, obj, ctx = None: obj.torre,
                 'torre.mt_pop': lambda self, cr, uid, obj, ctx = None: obj.pop,
@@ -38,8 +37,7 @@ class Router(models.Model):
     
     senha = fields.Char(
         string="Senha",
-        size=100,
-        track_visibility='onchange')
+        size=100)
     
     nas = fields.Selection(
         string="Nas",
