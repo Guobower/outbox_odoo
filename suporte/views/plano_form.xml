@@ -13,9 +13,11 @@
 						<group string="Informações Principais">
 							<group>
 								<field name="name" />
-								<field name="grupo_servico" />
 							</group>
 							<group>
+								<field name="grupo_servico" options="{'no_create': True}"/>
+							</group>
+							<group colspan="2">
 								<field name="descricao" string="Descrição" />
 							</group>
 						</group>
@@ -52,7 +54,7 @@
 						</group>
 						<notebook>
 							<page string="Pops onde valerá este plano">
-								<field colspan="4" name="pop" widget="many2many_kanban">
+								<field colspan="4" name="pop" widget="many2many_kanban" options="{'no_create': True}">
 									<kanban quick_create="false" create="true" delete="true">
 										<field name="name" />
 										<templates>

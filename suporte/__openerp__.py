@@ -7,7 +7,7 @@
     'version': '1.1',
     'description': "Módulo customizado para o setor de suporte da Cinte.",
     'author': 'Edson Junior',
-    'depends': ['base','mail','contacts','account_analytic_analysis'],
+    'depends': ['base','mail','contacts','account_analytic_analysis','l10n_br_hr'],
     'installable': True,
     'data': [
         'views/menu.xml',
@@ -29,6 +29,8 @@
         'views/modo_aquisicao_form.xml',
         'views/modo_aquisicao_notificacoes.xml',
         'views/modo_aquisicao_tree.xml',
+        'views/report_contrato.xml',
+        'views/report_adesao.xml',
         'views/account_analytic_account_form.xml'
     ]
 }

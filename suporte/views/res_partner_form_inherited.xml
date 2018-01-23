@@ -8,10 +8,17 @@
 			<field name="arch" type="xml">
 				<div class="oe_right oe_button_box" name="buttons">
 					<button class="oe_inline oe_stat_button" type="action" name="742"
-						context="{'search_default_partner_id': active_id}"
-						icon="fa-newspaper-o" string="Contratos">
+						context="{'search_default_partner_id': active_id}" icon="fa-newspaper-o"
+						string="Contratos">
 					</button>
 				</div>
+				<field name="title" position="after">
+					<field name="data_nascimento"></field>
+					<field name="profissao" options="{'no_create': True}"></field>
+				</field>
+				<field name="inscr_est" position="after">
+					<field name="orgao_emissor_rg" attrs="{'invisible': [('is_company','!=',False)]}"></field>
+				</field>
 				<notebook>
 					<page position="inside" string="Informações Técnicas" name="Informações Técnicas">
 						<group>
@@ -25,10 +32,10 @@
 					</page>
 					<page position="inside" string="Dados do Suporte" name="Dados do Suporte">
 						<group>
-							<field name="sla"></field>
-						</group>
-						<group>
-							<field name="usuario_centreon"></field>
+							<group>
+								<field name="sla"></field>
+								<field name="usuario_centreon"></field>
+							</group>
 						</group>
 					</page>
 				</notebook>

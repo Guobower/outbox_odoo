@@ -51,3 +51,50 @@ class Account_analytic_account_inherited(models.Model):
     id_syncron = fields.Integer(
         string='ID no Syncron',
         help='ID de identificação no Syncron')
+    
+    date_start = fields.Date(
+        track_visibility='onchange'
+        )
+    
+    recurring_invoices = fields.Boolean(
+        track_visibility='onchange'
+        )
+    
+    recurring_interval = fields.Integer(
+        track_visibility='onchange'
+        )
+    
+    recurring_next_date = fields.Date(
+        track_visibility='onchange'
+        )
+    
+    recurring_rule_type = fields.Selection(
+        track_visibility='onchange'
+        )
+    
+    
+    def gerar_pdf_adesao(self, cr, user, ids, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo imprimir um pdf da Adesão para assinatura do cliente.
+        
+            Utilização:
+              gerar_pdf_adesao()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da adesão em questão
+              context
+                Contexto atual
+        '''
+        adesao = self.env.context.get('adesao')
+        self.pool.get('adesao').gerar_pdf_adesao(cr, user, adesao, context=context)
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'suporte.report_adesao',
+            'context': context,
+        }

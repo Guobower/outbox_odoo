@@ -31,13 +31,30 @@ class Res_partner_inherited(models.Model):
         track_visibility='onchange')
     
     usuario_centreon = fields.Char(
-        string="Usuário Centreon",
+        string="Usuario Centreon",
         size=30,
         track_visibility='onchange')
     
     id_syncron = fields.Integer(
         string='ID no Syncron',
         help='ID de identificação no Syncron')
+    
+    data_nascimento = fields.Date(
+        string='Data de Nascimento',
+        help='Data de Nascimento',
+        track_visibility='onchange'
+        )
+    
+    orgao_emissor_rg = fields.Char(
+        string="Orgao Emissor do RG",
+        size=30,
+        track_visibility='onchange')
+    
+    profissao = fields.Many2one(
+        comodel_name='l10n_br_hr.cbo',
+        string='Profissao',
+        help='Profissão',
+        track_visibility='onchange')
     
     
     

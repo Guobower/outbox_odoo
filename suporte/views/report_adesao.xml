@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report. -->
+<openerp>
+	<data>
+		<template id="report_adesao">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="header">
+						<div class="row" style="padding: 20px 0px 0px 0px;">
+							<div class="col-xs-3">
+								<img t-attf-src="data:image/*;base64,{{o.contrato.company_id.logo}}"
+									t-att-alt="o.contrato.company_id.name" style="height: 50px;" />
+							</div>
+							<div class="col-xs-6"
+								style="white-space: nowrap; float: right; text-align: right; font-size:11px;">
+								<strong>
+									Contrato Nº
+									<span t-esc="o.contrato.code" />
+								</strong>
+								<br />
+								Data Base
+								<span t-esc="o.contrato.create_date" />
+								<br />
+								(05, 10, 15, 20, 25 ou 30)
+								<br />
+							</div>
+						</div>
+					</div>
+					<div style="clear: both;" />
+					<div class="page">
+						<style>
+							*{
+							text-align: justify;
+							font-size: 10px;
+							}
+
+							table td{
+							padding:
+							5px;
+							border-top: none;
+							}
+
+							.left{
+							text-align: left;
+							}
+
+							.center{
+							text-align:
+							center;
+							}
+
+							.right{
+							text-align: right;
+							}
+						</style>
+						<div class="row">
+							<h4>TERMO DE ADESÃO AO CONTRATO DE PRESTAÇÃO DE SERVIÇO DE
+								PROVEDOR DE ACESSO À INTERNET
+							</h4>
+							<p>
+								As partes abaixo identificadas resolvem firmar o presente
+								TERMO DE
+								ADESÃO:
+							</p>
+							<p>
+								Pelo presente instrumento, o ASSINANTE adere aos termos e
+								condições
+								do Contrato de Prestação de
+								Serviços de Telecomunicações
+								o qual encontra-se registrado no 2º
+								Cartório de Registro de
+								Títulos e
+								Documentos da cidade de Natal, no estado do Rio Grande
+								do Norte, sob o Nº
+								219038 e disponível no endereço
+								virtual
+								eletrônico www.cinte.com.br.
+							</p>
+							<p>
+								O ASSINANTE declara neste ato DETER PLENA CAPACIDADE PARA
+								CELEBRAR O PRESENTE, HAVER RECEBIDO, LIDO,
+								COMPREENDIDO E
+								CONCORDADO COM OS TERMOS E CONDIÇÕES DO CONTRATO DE PRESTAÇÃO
+								DOS SERVIÇOS DE TELECOMUNICAÇÕES.
+							</p>
+
+							<h4>1º - DADOS DA PRESTADORA:</h4>
+							<p>
+								CINTENET - COMÉRCIO E SERVIÇOS EM TECNOLOGIA LTDA EPP, pessoa
+								jurídica
+								de direito privado, CNPJ/MF nº
+								09.072.923/0001-23, com
+								sede na Rua Dr. Lauro Pinto, 610, Candelária, CEP
+								59.064-250,
+								Natal/RN, representada
+								pela sua sócia-administradora, Sra.
+								Adriana Cláudia Moreno Caldas,
+								brasileira, casada, empresária,
+								RG
+								nº 1.869.035 SSP/RN, CPF/MF nº 065.255.144-01, residente e
+								domiciliada em Natal/RN, doravante denominada
+								simplesmente de
+								CINTENET, em parceria com a CINTE - INDÚSTRIA COMÉRCIO E
+								SERVIÇOS LTDA, pessoa jurídica
+								de direito privado, CNPJ/MF nº
+								08.378.641/0001-96, com sede com
+								sede à rua Doutor Lauro Pinto,
+								nº 610, Lagoa nova,
+								Natal/RN, CEP: 59.064-250, doravante
+								denominada "CINTE".
+							</p>
+
+							<h4>2º - DADOS DO CLIENTE/ASSINANTE:</h4>
+							<p>
+								a) Nome/Razão Social:
+								<span t-esc="o.contrato.partner_id.name" />
+								,
+								RG/IE:
+								<t t-if="o.contrato.partner_id.inscr_est">
+									<span t-esc="o.contrato.partner_id.inscr_est" />
+								</t>
+								<t t-if="not o.contrato.partner_id.inscr_est">________________________</t>
+								,
+								Órgão emissor:
+								<t t-if="o.contrato.partner_id.orgao_emissor_rg">
+									<span t-esc="o.contrato.partner_id.orgao_emissor_rg" />
+								</t>
+								<t t-if="not o.contrato.partner_id.orgao_emissor_rg">________________________</t>
+								,
+								Data de Nascimento:
+								<t t-if="o.report_format_data(o.contrato.partner_id.data_nascimento)">
+									<span
+										t-esc="o.report_format_data(o.contrato.partner_id.data_nascimento)" />
+								</t>
+								<t
+									t-if="not o.report_format_data(o.contrato.partner_id.data_nascimento)">________________________</t>
+								,
+								CNPF/CNPJ:
+								<t t-if="o.contrato.partner_id.cnpj_cpf">
+									<span t-esc="o.contrato.partner_id.cnpj_cpf" />
+								</t>
+								<t t-if="not o.contrato.partner_id.cnpj_cpf">________________________</t>
+								,
+								Profissão:
+								<t t-if="o.contrato.partner_id.profissao.name">
+									<span t-esc="o.contrato.partner_id.profissao.name" />
+								</t>
+								<t t-if="not o.contrato.partner_id.profissao.name">________________________</t>
+								,
+								Fones:
+								<t t-if="o.contrato.partner_id.phone">
+									<span t-esc="o.contrato.partner_id.phone" />
+								</t>
+								<t t-if="not o.contrato.partner_id.phone">________________________</t>
+								,
+								<t t-if="o.contrato.partner_id.mobile">
+									<span t-esc="o.contrato.partner_id.mobile" />
+								</t>
+								<t t-if="not o.contrato.partner_id.mobile">________________________</t>
+								,
+								E-mail:
+								<t t-if="o.contrato.partner_id.email">
+									<span t-esc="o.contrato.partner_id.email" />
+								</t>
+								<t t-if="not o.contrato.partner_id.email">________________________</t>
+								,
+							</p>
+							<p>
+								b) Endereço Instalação:
+								<t t-if="o.logradouro">
+									<span t-esc="o.logradouro" />
+								</t>
+								<t t-if="not o.logradouro">________________________</t>,
+								<t t-if="o.numero">
+									<span t-esc="o.numero" />
+								</t>
+								<t t-if="not o.numero">________________________</t>,
+								<t t-if="o.bairro">
+									<span t-esc="o.bairro" />
+								</t>
+								<t t-if="not o.bairro">________________________</t>,
+								<t t-if="o.cep">
+									<span t-esc="o.cep" />
+								</t>
+								<t t-if="not o.cep">________________________</t>,
+								<t t-if="o.cidade.name">
+									<span t-esc="o.cidade.name" />
+								</t>
+								<t t-if="not o.cidade.name">________________________</t>-
+								<t t-if="o.estado.code">
+									<span t-esc="o.estado.code" />
+								</t>
+								<t t-if="not o.estado.code">________________________</t>
+							</p>
+							<p>
+								2.1 O Cliente/Assinante deve manter atualizado seus dados
+								cadastrais junto à PRESTADORA, responsabilizando-se
+								pela exatidão
+								das informações e documentos apresentados;
+								<br />
+								2.2 O Cliente/Assinante recebeu seu contrato Prestação de
+								Serviços de Telecomunicações, no ato da contratação via:
+								<br />
+								(__) E-mail (__) Impresso
+							</p>
+
+							<h4>3º - DADOS DO PLANO</h4>
+							<p>
+								3.1 - Velocidade:
+								<span t-esc="o.plano.download" /> Kbps
+								(
+								<span t-esc="o.plano.download/1024" />
+								 Mbps),
+								com garantia de banda de 40%, no valor mensal de R$
+								<span t-esc="str('%.2f'%(o.plano.tarifa_basica)).replace('.',',')" />
+								,
+								com vencimento cada dia
+								<span t-esc="o.contrato.data_base_vencimento" />
+								do mês.
+							</p>
+							<p>
+								a) Conforme a Cláusula 11.4 do Contrato ao qual o presente TERMO
+								DE ADESÃO é anexo, o não pagamento da
+								mensalidade até a data do
+								vencimento prevista no presente TERMO DE ADESÃO,
+								acarretará a
+								incidência de multa
+								de 2% (dois por cento) sobre o valor da
+								fatura e juros moratórios
+								de 1% (hum por cento) ao mês, pro rata
+								die,
+								a iniciar do dia seguinte ao vencimento da fatura.
+								<br />
+								b) Conforme a Cláusula 11.5 do Contrato ao qual o presente TERMO
+								DE ADESÃO é anexo fica ainda o Assinante/Cliente
+								sujeito à
+								suspensão PARCIAL dos serviços objeto deste contrato a partir
+								do
+								15º (décimo quinto) dia da NOTIFICAÇÃO DE DÉBITO vencido.
+								<br />
+								c) Transcorridos 30 (trinta) dias da suspensão parcial, o
+								Assinante/Cliente está sujeito a suspensão integralmente dos
+								serviços.
+								<br />
+								d) Após a suspensão dos serviços objeto desta avença, em razão
+								de atraso no pagamento da mensalidade,
+								sua reativação ocorrerá em
+								até 24 (vinte e quatro) horas úteis após
+								a compensação do
+								pagamento de todos os débitos existentes.
+							</p>
+							<p>
+								3.2 - Fidelidade de 12 meses: SIM ou NÃO
+							</p>
+							<p>
+								a) O plano de serviço contratado dá direito ao ASSINANTE à
+								fruição contínua do serviço.
+								<br />
+								b) A PRESTADORA irá conceder o desconto de R$___________
+								(___________________) reais na taxa de instalação/Ativação,
+								conforme aqui discriminado, a título de benefício, caso o
+								ASSINANTE comprometa-se a permanecer na condição de
+								ASSINANTE no
+								prazo de permanência mínimo de ______ (12) meses.
+								<br />
+								c) Caso o (a) ASSINANTE cancele o contrato antes do término do
+								prazo de permanência mínima de 12 (doze) meses,
+								o (a) ASSINANTE
+								deverá devolver à o (a) PRESTADORA o valor
+								correspondente ao
+								benefício recebido, proporcionalmente
+								ao número de meses
+								restantes para o término do prazo de 12 (doze)
+								meses.
+								<br />
+								d) Valor total de instalação/Ativação:
+								R$________________________
+								<br />
+								e) Número de Parcelas da Taxa de Instalação/Ativação:
+								____________
+								<br />
+								f) Dia de Vencimento: _______________
+							</p>
+							<p>
+								3.3 - Visitas de Assistência Técnica ou Manutenção
+							</p>
+							<p>
+								Consultar previamente a Prestadora sobre os valores vigentes
+								na data da
+								solicitação da assistência técnica e manutenção.
+							</p>
+							<p>
+								3.2 Equipamentos cedidos em comodato:
+							</p>
+							<table style="width: 100%; border-collapse: separate; border-spacing: 5px 0px;">
+								<tr>
+									<td style="border: 1px solid #444444;">#</td>
+									<td style="border: 1px solid #444444;">Número de Série</td>
+									<td style="border: 1px solid #444444;">Produto</td>
+									<td style="border: 1px solid #444444;">Patrimônio</td>
+								</tr>
+								<t t-set="ordenacao" t-value="0"/>
+								<tr t-foreach="o.numero_serie" t-as="line">
+									<t t-set="ordenacao" t-value="ordenacao + 1"/>
+									<td class="text-center">
+										<span t-esc="ordenacao"/>
+									</td>
+									<td class="text-left">
+										<span t-field="line.name"/>
+									</td>
+									<td class="text-left">
+										<span t-field="line.product_id.name"/>
+									</td>
+									<td class="text-left">
+										<span t-field="line.ref"/>
+									</td>
+								</tr>
+							</table>
+							<br/>
+							<br/>
+							<br/>
+							<p>
+								a) A CINTENET, fornecerá em modo comodato, o (s) equipamento (s)
+								de propriedade da PRESTADORA, sob os termos
+								que determina o
+								art.579 e seguintes do Código Civil.
+								<br />
+								b) Compete ao Assinante/Cliente a inteira responsabilidade e
+								custódia do equipamento sob sua guarda, até que
+								o mesmo tenha
+								sido devolvido para a PRESTADORA, na forma dos
+								artigos 579 a 585
+								do Código Civil Brasileiro e
+								conforme clausula: 13ª DAS
+								RESPONSABILIDADES E UTILIZAÇÃO DOS
+								EQUIPAMENTOS, do nosso
+								contrato de prestação de serviços.
+							</p>
+
+
+							<h4>4ª - DAS DISPOSIÇÕES GERAIS</h4>
+							<p>
+								4.1 O ASSINANTE declara, para todos os fins de direito, que a
+								aceitação aos termos do Contrato de Prestação de
+								Serviços de
+								Telecomunicações registrado sob o Nº 219038 no 2º Ofício de
+								Notas da comarca de Natal/RN, formalizada
+								por este TERMO DE
+								ADESÃO, é a expressão de sua vontade. Em face do
+								expresso
+								reconhecimento da legitimidade da
+								presente contratação é que o
+								ASSINANTE não poderá escusar-se de cumprir
+								as condições ora
+								pactuadas tendo ciência
+								de que o presente TERMO DE ADESÃO é anexo
+								ao Contrato regularmente
+								registrado.
+								<br />
+								4.2 A partir da assinatura deste TERMO DE ADESÃO, ficam as
+								partes obrigadas ao fiel cumprimento das cláusulas
+								contidas no
+								Contrato de Prestação de Serviços de Telecomunicações. O
+								presente TERMO DE ADESÃO vigorará enquanto
+								estiver vigente o
+								Contrato de Prestação de Serviços de
+								Telecomunicações.
+								<br />
+								4.3 O presente TERMO DE ADESÃO poderá ser modificado no todo ou
+								em parte, através de termo aditivo.
+							</p>
+
+							<h4>5ª - DA SUCESSÃO E DO FORO</h4>
+							<p>
+								O presente instrumento obriga herdeiros e/ou sucessores, a
+								qualquer tempo, sendo neste ato eleito pelas partes o
+								foro da
+								comarca da cidade de Natal, no estado do Rio Grande do
+								Norte,
+								competente para dirimir quaisquer questões
+								referentes ao
+								presente, com renúncia expressa de qualquer outro, por mais
+								privilegiado que seja.
+								<br />
+								E, por estar de acordo, o ASSINANTE adere ao presente documento
+								assinando em 02 (duas) vias de igual teor por sua
+								livre vontade,
+								declarando ainda, não estar assinando e/ou aceitando o
+								presente
+								sob premente coação, estado de
+								necessidade ou outra forma de
+								vício de consentimento, tendo conhecimento de
+								todo direito e
+								obrigação que assume nesta data.
+							</p>
+							<br />
+							<p class="center">
+								Natal (RN), ____/____/________.
+							</p>
+							<table class="table table-condensed" style="width: 80%; margin: 0 auto;">
+								<tr>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+										<img src='/suporte/static/src/img/assinatura.png' style="max-height: 45px;" />
+									</td>
+									<td style="border-top:none;">
+									</td>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+									</td>
+								</tr>
+								<tr>
+									<td class="center" style="border-top:none;">
+										<strong>
+											CINTENET
+										</strong>
+									</td>
+									<td style="border-top:none;"></td>
+									<td class="center">
+										<strong>
+											CLIENTE
+										</strong>
+									</td>
+								</tr>
+							</table>
+							<br />
+							<table class="table table-condensed" style="width: 80%; margin: 0 auto;">
+								<tr>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+									</td>
+									<td style="border-top:none;">
+									</td>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+									</td>
+								</tr>
+								<tr>
+									<td class="center" style="border-top:none;">
+										<strong>
+											TESTEMUNHA
+										</strong>
+									</td>
+									<td style="border-top:none;"></td>
+									<td class="center" style="border-top:none;">
+										<strong>
+											TESTEMUNHA
+										</strong>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

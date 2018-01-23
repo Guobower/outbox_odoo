@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report. -->
+<openerp>
+	<data>
+		<template id="report_contrato">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="header">
+						<div class="row" style="padding: 20px 0px 0px 0px;">
+							<div class="col-xs-3">
+								<img t-attf-src="data:image/*;base64,{{o.company_id.logo}}"
+									t-att-alt="o.company_id.name" style="height: 50px;" />
+							</div>
+							<div class="col-xs-6"
+								style="white-space: nowrap; float: right; text-align: right; font-size:11px;">
+								<strong>Contrato Nº <span t-esc="o.code" /></strong>
+								<br />
+								Data Base <span t-esc="o.create_date" />
+								<br />
+								(05, 10, 15, 20, 25 ou 30)
+								<br />
+							</div>
+						</div>
+					</div>
+					<div style="clear: both;" />
+					<div class="page">
+						<style>
+							*{
+							text-align: justify;
+							font-size: 11px;
+							}
+
+							table td{
+							padding:
+							5px;
+							border-top: none;
+							}
+
+							.left{
+							text-align: left;
+							}
+
+							.center{
+							text-align:
+							center;
+							}
+
+							.right{
+							text-align: right;
+							}
+						</style>
+						<div class="row">
+							<h4 class="center">
+								CONTRATO DE PRESTAÇÃO DE SERVIÇO DE PROVEDOR DE
+								ACESSO À
+								INTERNET E
+								OUTROS
+							</h4>
+							<h4 class="center">
+								CINTENET COMÉRCIO E SERVIÇOS EM TECNOLOGIA LTDA
+							</h4>
+							<h4 class="center">
+								CNPJ:09.072.923/0001-23
+							</h4>
+							<h4 class="center">
+								RUA DR. LAURO PINTO, Nº610, CANDELÁRIA, NATAL/RN,
+								CEP:59.064-250
+							</h4>
+							<p>
+								Pelo presente instrumento particular, as partes adiante
+								qualificadas, têm entre si justo e acordado, o
+								contrato de
+								prestação de serviço de conexão à rede internet, mediante as
+								cláusulas e condições que a seguir estipulam, aceitam e se
+								obrigam a cumprir, por si, seus herdeiros e sucessores. De
+								um
+								lado, CINTENET - COMÉRCIO E SERVIÇOS EM
+								TECNOLOGIA LTDA EPP,
+								pessoa jurídica de direito privado, CNPJ/MF nº
+								09.072.923/0001-23, com sede na Rua Dr. Lauro Pinto, 610,
+								Candelária, CEP 59.064-250, Natal/RN, representada pela sua
+								sócia-administradora, Sra. Adriana Cláudia Moreno Caldas Garcia,
+								brasileira, casada, empresária, RG nº 1.869.035 SSP/RN, CPF/MF
+								nº 065.255.144-01, residente e domiciliada em Natal/RN,
+								doravante denominada simplesmente de "CINTENET", em parceria com
+								a CINTE TELECOM COMÉRCIO E SERVIÇOS LTDA, pessoa jurídica de
+								direito privado, CNPJ/MF nº 08.378.641/0001-96, com sede à rua
+								Doutor Lauro Pinto, nº 610, Lagoa nova, Natal/RN, CEP:
+								59.064-250,
+								doravante denominada "CINTE". De outro lado o
+								Assinante, devidamente
+								qualificado na proposta e/ou termo de
+								adesão, doravante
+								designado
+								<strong>"Assinante/Cliente"</strong>
+								.
+							</p>
+
+							<h4>CLÁUSULA 1ª - DO PLANO CONTRATADO:</h4>
+							<p>
+								1.1. É objeto do presente contrato a prestação de serviços de
+								processamento de dados e provimento de conteúdo on-line para o
+								<strong>Assinante/Cliente</strong>
+								, através do serviço de Comunicação Multimídia fornecido pela
+								<strong>CinteNet</strong>
+								. Em conformidade com as condições
+								comerciais relativas ao
+								Plano(s) e Pacote(s) de serviços ofertados pela
+								<strong>CinteNet</strong>
+								, e aceitos pelo
+								<strong>Assinante/Cliente</strong>
+								através
+								de assinatura do Termo de adesão ou Proposta comercial
+								que é anexo
+								ao presente contrato, e dele fazendo parte
+								integralmente.
+								<br />
+								1.2. Qualquer solicitação de alteração referente a Plano(s) e
+								Pacote(s) deverão ser realizados através de contato com o
+								atendimento da
+								<strong>CinteNet</strong>
+								.
+								<br />
+								1.3. A adesão ao presente Contrato implica na aceitação, pelo
+								<strong>Assinante/Cliente</strong>
+								, das normas que regulam a prestação de serviço, inclusive as
+								alterações supervenientes.
+								<br />
+								1.4. Reajuste
+								<br />
+								1.5. Adesão novas promoções
+							</p>
+
+							<h4>CLÁUSULA 2ª - DA VIGÊNGIA:</h4>
+							<p>
+								2.1 O presente Contrato entra em vigor na data de assinatura da
+								Proposta Comercial/Termo de Adesão pelo
+								<strong>Assinante/Cliente</strong>
+								, e
+								permanecerá em vigor pelo prazo determinado no(s) mesmo(s).
+							</p>
+
+
+
+							<h4>CLÁUSULA 3ª - DOS DIREITOS DO ASSINANTE:</h4>
+							<p>
+								Nos termos da legislação vigente são direitos do
+								<strong>Assinante/Cliente</strong>
+								:
+								<br />
+								3.1 o acesso ao serviço, mediante contratação junto a
+								<strong>CinteNet</strong>
+								;
+								<br />
+								3.2 de receber cópia do contrato de prestação de serviço, bem
+								como do plano de serviço contratado, sem qualquer ônus
+								e
+								independentemente de solicitação;
+								<br />
+								3.3 tratamento não discriminatório quanto às condições de acesso
+								e fruição do serviço;
+								<br />
+								3.4 à informação adequada sobre condições de prestação do
+								serviço, aplicações, facilidades adicionais contratadas
+								e
+								respectivos preços;
+								<br />
+								3.5 à inviolabilidade ao segredo de comunicação, respeitadas as
+								hipóteses e condições constitucionais e legais de
+								quebra de
+								sigilo de telecomunicações;
+								<br />
+								3.6 ao conhecimento prévio das condições de contratação,
+								prestação, fidelização e suspensão do serviço, bem como
+								de toda e
+								qualquer alteração das referidas condições que lhe
+								atinja direta
+								ou indiretamente
+								<br />
+								3.7 a não suspensão do serviço sem sua solicitação, ressalvada a
+								hipótese de débito diretamente decorrente de sua
+								utilização ou
+								por descumprimento de deveres legais;
+								<br />
+								3.8 de ter restabelecida a integridade dos direitos relativos à
+								prestação dos serviços, a partir da comprovação da
+								<strong>quitação do débito</strong>
+								ou da
+								<strong>celebração de acordo com a CinteNet</strong>
+								, com a imediata exclusão de informação de inadimplência sobre
+								ele anotada;
+								<br />
+								3.9 ao encaminhamento de reclamações ou representações contra a
+								<strong>CinteNet</strong>
+								, junto à Anatel ou aos organismos de defesa do consumidor;
+								<br />
+								3.10 à reparação pelos danos diretos devidamente comprovados
+								causados pela violação dos seus direitos;
+								<br />
+								3.11 de resposta eficiente e pronta às suas reclamações e
+								correspondências, pela
+								<strong>CinteNet</strong>
+								;
+								<br />
+								3.12 a não ser obrigado ou induzido a adquirir bens ou
+								equipamentos que não sejam de seu interesse, bem como não
+								ser
+								compelido a se submeter a qualquer condição, salvo diante de
+								questão de ordem técnica, para recebimento do serviço
+								contratado, nos termos da regulamentação;
+								<br />
+								3.13 à continuidade do serviço pelo prazo contratual;
+								<br />
+								3.14 ao recebimento de documento de cobrança com discriminação
+								dos valores cobrados.
+							</p>
+
+
+							<h4>CLÁUSULA 4ª - DAS OBRIGAÇÕES DO ASSINANTE:</h4>
+							<p>
+								4.1 A utilizar adequadamente os serviços, equipamentos e redes
+								de telecomunicações;
+								<br />
+								4.2 Preservar os bens públicos e aqueles voltados à utilização
+								do público em geral;
+								<br />
+								4.3 Efetuar o pagamento referente à prestação do serviço
+								contratado com a
+								<strong>CinteNet</strong>
+								,
+								observadas as disposições contratuais.
+								<br />
+								4.4 Providenciar, no imóvel indicado, local adequado e
+								infra-estrutura física e elétrica necessárias à correta
+								instalação e funcionamento de equipamentos da
+								<strong>CinteNet</strong>
+								;
+								<br />
+								4.5 Somente conectar à rede externa da prestadora, terminais que
+								obedeçam aos padrões e características
+								técnicas estabelecidas nas
+								demais disposições regulamentares;
+								<br />
+								4.6 Responsabilizar-se pela aquisição, manutenção e proteção da
+								sua rede interna, incluindo seus equipamentos
+								e terminais, que
+								serão conectados à rede pública da
+								<strong>CinteNet</strong>
+								;
+								<br />
+								4.7 Manter atualizado seus dados cadastrais junto à
+								<strong>CinteNet</strong>
+								, responsabilizando-se pela exatidão das informações
+								e documentos
+								apresentados;
+								<br />
+								4.8 Encaminhar à
+								<strong>CinteNet</strong>
+								quando orientado, os devidos comprovantes de pagamentos em caso
+								de não ocorrer/haver a
+								compensação de pagamentos realizados
+								através de boletos bancários
+								superiores a 48hs.
+							</p>
+
+							<h4>CLÁUSULA 5ª - DO ACESSO:</h4>
+							<p>
+								5.1 O serviço será prestado em faixa de velocidade conforme o
+								plano contratado pelo
+								<strong>Assinante/Cliente</strong>
+								,
+								definido e indicado no Termo de Adesão e ratificado no momento
+								da
+								ativação/instalação.
+								<br />
+								5.2 O
+								<strong>Assinante/Cliente</strong>
+								compreende e concorda que as velocidades podem variar dependendo
+								do equipamento
+								(computador e periféricos) por ele utilizado,
+								tráfego de dados na internet
+								e outros fatores que independem do
+								controle da
+								<strong>CinteNet</strong>
+								.
+								<br />
+								5.3 A prestadora garante ao
+								<strong>Assinante/Cliente</strong>
+								o mínimo de 40% da velocidade nominal contratada dentro
+								de sua
+								rede, por se tratar de ambiente restrito e vinculado às
+								características intrínsecas à Rede Mundial de computadores.
+								<br />
+								5.4 É obrigação do
+								<strong>Assinante/Cliente</strong>
+								disponibilizar terminal de computador com condições técnicas
+								necessárias
+								para receber os equipamentos indispensáveis á
+								utilização do serviço
+								a ser prestado, não se responsabilizando a
+								CINTENET
+								por falhas no acesso à internet, ocasionados por
+								problemas na
+								configuração do terminal de computador do
+								<strong>Assinante/Cliente</strong>
+								.
+								<br />
+								5.5 Caso haja alguma prestação de serviço além do provimento de
+								acesso, qual seja manutenção e proteção da rede
+								interna,
+								requisitados pelo
+								<strong>Assinante/Cliente</strong>
+								à
+								<strong>CinteNet</strong>
+								e que a mesma disponibilize procedimento, poderá vim a ser
+								cobrado valor extra a ser consultado e aprovado por parte do
+								Cliente em negociação agendada por meio da Central de
+								Atendimento ao cliente.
+							</p>
+
+							<h4>CLÁUSULA 6ª - DO USO INDEVIDO</h4>
+							<p>
+								6.1 Sem prejuízo de outras não elencadas, são consideradas como
+								práticas lesivas ao serviço prestado pela
+								<strong>CinteNet</strong>
+								e/ou aos demais
+								<strong>Assinantes/Clientes</strong>
+								, sujeitando-se o infrator a todas as cominações legais
+								decorrentes,
+								inclusive rescisão contratual:
+								<br />
+								a)obtenção ou tentativa de obtenção dos serviços através de
+								quaisquer meios ou equipamentos com a intenção
+								de evitar o
+								pagamento da contraprestação devida;
+								<br />
+								b)o fornecimento ou revenda a terceiros de serviço de
+								telecomunicação tendo como suporte o serviço ora
+								contratado e/ou
+								o equipamento e acesso a ele relacionado;
+								<br />
+								c) interferência no uso dos serviços por outros usuários e uso
+								dos serviços com violação de lei ou que
+								possa resultar em ato
+								ilegal;
+								<br />
+								d) tentativas de obter acesso não autorizado, incluindo as
+								tentativas de fraudar autenticação ou segurança
+								de qualquer
+								servidor, provedor, rede ou conta, bem como acesso a
+								dados não
+								disponíveis para o assinante ou
+								mesmo conectar-se ao servidor ou
+								conta cujo acesso não seja
+								expressamente autorizado ao
+								<strong>Assinante/Cliente</strong>
+								,
+								ou colocar a prova a segurança de outras redes;
+								<br />
+								e) tentativas de interferir nos serviços de qualquer outro
+								<strong>Assinante/Cliente</strong>
+								, provedor, servidor, ou rede,
+								incluindo ataques, tais como
+								?negativa de acesso?, ou que provoque o
+								congestionamento das
+								redes, ou tentativas
+								deliberadas de sobrecarregar um servidor;
+								<br />
+								f) o uso de qualquer tipo de programa ou comando designado a
+								interferir na fruição dos serviços de outros
+								Assinantes/Clientes
+								ou de terceiros;
+								<br />
+								g) tentativa de introduzir vírus ou códigos nocivos em
+								computadores de
+								<strong>Assinante/Clientes</strong>
+								ou terceiros;
+								<br />
+								h) enviar mensagens coletivas de e-mail a grupos de usuários,
+								ofertando produtos ou serviços de qualquer
+								natureza que não sejam
+								de interesse dos destinatários ou que não tenham
+								consentimento
+								expresso deste.
+								<br />
+								i) divulgar por meio da internet cenas de sexo explicito ou
+								pornográficas com a participação de crianças
+								e/ou adolescentes,
+								sendo ato caracterizado como exploração e
+								agressão contra os
+								direitos da personalidade
+								dos mesmos, sujeito a pena de 1 a 4
+								anos de reclusão;
+								<br />
+								<br />
+								6.2 O
+								<strong>Assinante/Cliente</strong>
+								reconhece que não caberá a
+								<strong>CinteNet</strong>
+								qualquer responsabilidade decorrente do conteúdo
+								presente em home
+								page, do uso indevido da rede local ou mundial de
+								computadores,
+								por quem quer que seja, ou
+								da troca de mensagens entre o
+								<strong>Assinante/Cliente</strong>
+								e provedores de acesso ou terceiros ou mesmo de transações
+								comerciais ou financeiras, de qualquer natureza, praticadas pelo
+								<strong>Assinante/Cliente</strong>
+								através da rede de
+								<strong>CinteNet</strong>
+								ou através da internet.
+								<br />
+								O
+								<strong>Assinante/Cliente</strong>
+								será responsável por quaisquer encargos decorrentes da má ou
+								inadequada utilização, direta
+								ou indireta , do serviço de
+								internet, e deverá tomar todas as
+								medidas que achar adequadas
+								para impedir a utilização
+							</p>
+
+							<h4>CLÁUSULA 7ª - DA TAXA DE INSTALAÇÃO/ADESÃO:</h4>
+							<p>
+								7.1 Será cobrada Taxa de INSTALAÇÃO, correspondente ao serviço
+								de instalação do Modem ótico/Rádio e
+								demais equipamentos
+								necessários ao fornecimento do serviço que será de
+								acordo com o
+								valor do plano de
+								acesso a rede correspondente à velocidade,
+								vigente no período da
+								contratação e constante no termo de adesão
+								assinado pelo
+								<strong>Assinante/Cliente</strong>
+								.
+								<br />
+								7.2 O valor correspondente à Taxa de instalação será pago
+								parcelado ou à vista, conforme plano em
+								vigência no período da
+								assinatura contratual pelo
+								<strong>Assinante/Cliente</strong>
+								a ser paga no dia de vencimento
+								pré estabelecido no ato da
+								contratação.
+								<br />
+								7.3 Caso o Cliente no ato da adesão, opte por firmar Termo de
+								Fidelidade (termo/Proposta em anexo a
+								este contrato) com a
+								<strong>CinteNet</strong>
+								, ser-lhe-á concedido uma
+								<strong>suspensão total ou parcial do valor da Taxa de
+									Instalação
+								</strong>
+								. O não pagamento do boleto bancário referente à taxa de
+								instalação dentro do prazo de vencimento
+								previsto, ensejará a
+								aplicação das disposições previstas na cláusula 11ª,
+								deste
+								contrato.
+							</p>
+
+							<h4>CLÁUSULA 8ª - DA OPÇÃO FIDELIDADE:</h4>
+							<p>
+								8.1 Caso o Assinantes/cliente opte por alguma promoção de
+								desconto no valor relativo ao serviço
+								prestado pela operadora,
+								deverá o mesmo manter-se vinculado à empresa
+								por um período
+								mínimo igual
+								ao dobro do período de vigência do desconto
+								promocional, contados
+								a partir da data de instalação/habilitação
+								do
+								serviço, se outro prazo não for estipulado pela prestadora,
+								sem prejuízo
+								do disposto no capitulo anterior.
+								<br />
+								8.2 Caso o contrato que se enquadra nas condições expostas na
+								clausula 7ª venha a ser extinto anteriormente
+								ao prazo mínimo,
+								por ato imputável ao
+								<strong>Assinante/Cliente</strong>
+								, é devido a diferença entre a quantia referente ao valor
+								total
+								do serviço e o desconto cedido, multiplicado pelos meses em que
+								o
+								<strong>Assinante/Cliente</strong>
+								, gozou do beneficio.
+								<br />
+								8.3 Estando o cliente fidelizado em um plano, que tenha sido
+								isento da taxa de instalação, fica o mesmo ciente
+								e de acordo que
+								deverá manter-se por um período, mínimo de 6
+								(seis) meses,
+								somente podendo migrar para planos
+								de maior velocidade, sob pena
+								de incorrer na cobrança do valor da
+								taxa de instalação
+								anteriormente isenta.
+								<br />
+								8.4 Não está incluso na contagem do prazo de fidelidade,
+								períodos que o
+								<strong>Assinante/Cliente</strong>
+								tenha solicitado
+								a suspensão do serviço por algum motivo
+								particular ou por motivos
+								de inadimplência.
+							</p>
+
+							<h4>CLÁUSULA 9ª - DA TAXA DE MUDANÇA DE ENDEREÇO/TITULARIDADE:
+							</h4>
+							<p>
+								9.1 O
+								<strong>Assinante/Cliente</strong>
+								poderá solicitar, através do atendimento, a titulo oneroso, sob
+								consulta de
+								valor vigente no período, a mudança de endereço da
+								instalação dentro
+								da área de cobertura,
+								respeitando os prazos de
+								viabilidade técnica e a disponibilidade de
+								serviço. Sendo que
+								dependerá
+								da existência de portabilidade e de condições técnicas
+								na forma
+								regulamentada.
+								<br />
+								9.2 O
+								<strong>Assinante/Cliente</strong>
+								tem direito à transferência de titularidade de seu contrato de
+								prestação de
+								serviço, mediante cumprimento, pelo novo titular,
+								dos requisitos
+								necessários para a contratação inicial
+								do serviço.
+								<strong>Sem cobrança de ônus</strong>
+								mediante alteração, apenas sujeito a quitação de débitos em seu
+								cadastro,
+								dentro do período vigente.
+								<br />
+								9.3 O novo
+								<strong>Assinante/Cliente</strong>
+								assinará termo de adesão ao contrato de prestação de serviços de
+								acesso
+								à internet e receberá nosso contrato de prestação de
+								serviços.
+								Assumindo ciência e responsabilidade
+								sobre o plano em
+								vigência.
+							</p>
+
+							<h4>CLÁUSULA 10ª - DA SOLICITAÇÃO DE SUSPENSÃO:</h4>
+							<p>
+								10.1 O Assinante/cliente que estiver adimplente, poderá
+								solicitar a suspensão do serviço, sem ônus,
+								uma única vez, a cada
+								período de 12 (doze) meses, e pelo prazo
+								mínimo de 30 dias e
+								máximo de 120
+								(cento e vinte dias),
+								<strong>não sendo este prazo, acumulativo ou para uso de forma
+									fracionada
+								</strong>
+								.
+								<br />
+								10.2 A solicitação de suspensão dos serviços de forma adversa da
+								estabelecida no item acima, ou
+								solicitada por
+								<strong>Assinante/Cliente</strong>
+								que estiver inadimplente, será realizada de forma onerosa de
+								acordo
+								com o valor em debito.
+							</p>
+
+							<h4>CLÁUSULA 11ª - DA MENSALIDADE E DO ATRASO NO PAGAMENTO:</h4>
+							<p>
+								11.1 Como contraprestação pelo plano contratado, o
+								<strong>Assinante/Cliente</strong>
+								pagará a
+								<strong>CinteNet</strong>
+								a mensalidade
+								do plano contratado, conforme consta no Termo de
+								adesão, através
+								de boleto bancário a ser enviado ao
+								seu
+								endereço/ou disponibilizado através de email ou site. Será da
+								responsabilidade do
+								<strong>Assinante/Cliente</strong>
+								a retirada da via pelo sítio eletrônico da
+								<strong>CinteNet</strong>
+								no endereço: (www.cinte.com.br), ou em última hipótese,
+								caso
+								devidamente solicitado ao Serviço de Atendimento ao Cliente por
+								telefone, será enviado ao seu e-mail,
+								fornecido no preâmbulo
+								deste contrato, sendo de total responsabilidade do
+								<strong>Assinante/Cliente</strong>
+								o recebimento
+								e devido pagamento até a data do vencimento.
+								<br />
+								11.2 Nas hipóteses em que o
+								<strong>Assinante/Cliente</strong>
+								solicitar parcelamento, e que o mesmo for de acordo e
+								concedido
+								pela
+								<strong>CinteNet</strong>
+								, havendo desistência ou cancelamento, dentro do prazo de
+								vencimento das parcelas,
+								este deverá dar cumprimento total ao
+								compromisso econômico assumido.
+								<br />
+								11.3 A
+								<strong>CinteNet</strong>
+								não se responsabiliza por falhas provenientes de pagamentos
+								realizados pelo
+								<strong>Assinante/Cliente</strong>
+								por meio de debito automático, transferência interbancária e
+								pela compensação de cheques, que não tenham
+								sido compensados na
+								conta corrente da prestadora.
+								<br />
+								11.4 O não pagamento da mensalidade até a data do vencimento
+								prevista no termo de adesão, acarretará a
+								incidência de multa de
+								2% (dois por cento) sobre o valor da fatura e juros
+								moratórios de
+								1% (hum por cento)
+								ao mês, pro rata die, a iniciar do dia
+								seguinte ao vencimento da
+								fatura.
+								<br />
+								11.5 Ficando ainda o
+								<strong>Assinante/Cliente</strong>
+								sujeito à suspensão PARCIAL dos serviços objeto deste contrato a
+								partir do 15º (décimo quinto) dia da NOTIFICAÇÃO DE DÉBITO
+								vencido.
+								<br />
+								11.6 Transcorridos 30 (trinta) dias da suspensão parcial, o
+								<strong>Assinante/Cliente</strong>
+								poderá vim a ter o serviço
+								suspenso integralmente.
+								<br />
+								11.7 Havendo o pagamento integral do débito, ou qualquer outra
+								forma de negociação, o serviço será restabelecido
+								por completo no
+								prazo de até 24 (vinte e quatro) horas úteis
+								contados do
+								conhecimento da efetivação da quitação
+								do débito pela prestadora.
+								<br />
+								11.8 A Prestadora providenciará a solicitação de exclusão dos
+								dados do
+								<strong>Assinante/Cliente</strong>
+								aos órgãos de
+								proteção ao crédito tão logo tenha confirmação da
+								quitação da divida.
+								<br />
+								11.9 Se a
+								<strong>CinteNet</strong>
+								, para promover a defesa de seus direitos decorrentes do
+								presente contrato, ou haver
+								satisfação do quanto lhe seja devido,
+								tiver de recorrer aos meios
+								administrativos ou judiciais, terá o
+								direito de receber além dos valores acima previstos, 20% (vinte
+								por
+								cento) do total do débito a título
+								de custas judiciais e
+								honorários advocatícios.
+								<br />
+								11.10 Fica a disposição do
+								<strong>Assinante/Cliente</strong>
+								, a alteração da data de vencimento de seu boleto sem ônus,
+								para
+								melhor adequação e conveniência da data de pagamento, conforme
+								disponibilidade das datas sob consulta
+								do atendimento ao
+								consumidor. Sob condições de ciência que o
+								boleto vigente poderá
+								sofrer alteração de valor
+								de acordo com os dias de diferença da
+								data atual de vencimento e
+								da nova data, pelo período de
+								cobertura da
+								prestação de serviços.
+							</p>
+
+							<h4>CLÁUSULA 12ª - DA CONTESTAÇÃO DE COBRANÇA:</h4>
+							<p>
+								12.1 O
+								<strong>Assinante/Cliente</strong>
+								tem o direito de contestar/questionar os débitos lançados pela
+								<strong>CinteNet</strong>
+								, não
+								se obrigando ao pagamento dos valores que considerar
+								indevidos,
+								obedecido o disposto abaixo.
+								<br />
+								12.2 A contestação de débitos deverá ser formalizada através de
+								comunicação aos Canais de atendimento.
+								<br />
+								12.3 A apresentação da contestação parcial de débitos não
+								suspende a fluência dos prazos estabelecidos
+								relativos a
+								suspensão dos Serviços caso existam débitos não contestados e
+								não pagos na data de vencimento.
+								<br />
+								12.4 A contestação será analisada pela
+								<strong>CinteNet</strong>
+								, o a resultado informado ao
+								<strong>Assinante/Cliente</strong>
+								no prazo
+								de até 30 dias contados da apresentação da mesma.
+								<br />
+								12.5 A contestação e período da analise, não isenta o
+								<strong>Assinante/Cliente</strong>
+								do pagamento dos demais valores,
+								prosseguindo assim normalmente
+								os demais valores/boletos.
+								<br />
+								12.6 Sendo confirmado pagamento de valor indevido realizado pelo
+								Assinante/cliente referente valor contestado,
+								a
+								<strong>CinteNet</strong>
+								concederá credito no documento de cobrança, de vencimento
+								subsequente.
+								<br />
+								12.7 Caso não seja comprovado pagamento e ou cobrança indevida,
+								o valor será imediatamente exigível,
+								acrescido dos encargos dos
+								encargos previstos na clausula 11.
+							</p>
+
+							<h4>CLÁUSULA 13ª - DAS RESPONSABILIDADES E UTILIZAÇÃO DOS
+								EQUIPAMENTOS:
+							</h4>
+							<p>
+								13.1 A
+								<strong>CinteNet</strong>
+								, fornecerá em modo comodato, o(s) equipamento(s) de propriedade
+								da
+								<strong>CinteNet</strong>
+								, sob os
+								termos que determina o art.579 e seguintes do Código
+								Civil.
+								<br />
+								13.2 Compete ao
+								<strong>Assinante/Cliente</strong>
+								a inteira responsabilidade e custódia do equipamento sob sua
+								guarda,
+								até que o mesmo tenha sido devolvido para a
+								<strong>CinteNet</strong>
+								, na forma dos artigos 579 a 585 do Código Civil Brasileiro.
+								<br />
+								13.3 É vedado ao
+								<strong>Assinante/Cliente</strong>
+								alterar qualquer característica original do equipamento de
+								propriedade
+								da
+								<strong>CinteNet</strong>
+								, bem como realizar qualquer espécie de reparo, manutenção ou
+								violação no equipamento, seja qual
+								for a finalidade. Considerando
+								tal ocorrência como falta grave e
+								implicando na cobrança dos
+								custos de reposição
+								(valor de mercado) ou referente a reparo.
+								<br />
+								13.4 Em caso de roubo, furto ou qualquer dano ao equipamento de
+								propriedade da
+								<strong>CinteNet</strong>
+								, o
+								<strong>Assinante/Cliente</strong>
+								deverá arcar com os respectivos custos de reposição (valor
+								atualizado de mercado).
+								<br />
+								13.5 O equipamento e serviço deste contrato se destinam ao uso
+								exclusivo do
+								<strong>Assinante/Cliente</strong>
+								, vedada a sua
+								utilização para outros fins que não a recepção ou
+								fruição individual do
+								serviço contratado, não podendo o
+								<strong>Assinante/Cliente</strong>
+								retransmitir sinal a terceiros ou praticar revenda do serviço,
+								fazer extensões não autorizadas,
+								dentro do mesmo local, domicilio
+								ou estabelecimento, ou para outro
+								local , ou alterar a instalação
+								original.
+								<br />
+								13.6 Em caso de cancelamento contratual, em qualquer hipótese,
+								será agendada data de retirada do equipamento do
+								local em prazo
+								mínimo de dois dias após a desconexão do serviço
+								rescindido.
+								Havendo impossibilidade da retirada
+								do equipamento pela
+								<strong>CinteNet</strong>
+								em razão de ato imputável ao
+								<strong>Assinante/Cliente</strong>
+								(ausência, recusa, etc) , este deverá
+								providenciar ás suas
+								expensas, a restituição do mesmo na sede da
+								<strong>CinteNet</strong>
+								, incidindo, ainda, a cobrança do valor do
+								equipamento mediante
+								retenção indevida, até a efetiva devolução.
+							</p>
+
+							<h4>CLÁUSULA 14ª - DA RESCISÃO:</h4>
+							<p>
+								O presente Contrato ficará rescindido de pleno direito caso:
+								<br />
+								14.1 Seja cancelada a autorização outorgada à Prestadora pelo
+								órgão federal competente;
+								<br />
+								14.2 O
+								<strong>Assinante/Cliente</strong>
+								não tenha mais interesse na continuidade do serviço, de forma
+								que deverá comunicar sua
+								decisão à
+								<strong>CinteNet</strong>
+								, informando a data da desconexão, devendo ainda, neste período,
+								cumprir com suas obrigações
+								contratuais, bem assim, com
+								obrigações advindas de benefícios especiais
+								condicionados à opção
+								de fidelidade ?permanência
+								mínima, caso tenha optado por esta
+								modalidade;
+								<br />
+								14.3 Não seja possível a execução do serviço contratado, por
+								razões técnicas e/ou físicas, na medida em que o endereço
+								indicado pelo
+								<strong>Assinante/Cliente</strong>
+								deixe de apresentar as condições técnicas ou de segurança;
+								<br />
+								14.4 em que contratos dependam para sua execução de negócio
+								jurídico celebrado com condomínio, de forma que a extinção
+								do
+								contrato na modalidade CONDOMINIAL/COLETIVO dê causa à extinção
+								dos contratos individuais celebrados com o
+								<strong>Assinante/Cliente</strong>
+								. Nessa situação a responsabilidade será, exclusiva e integral,
+								do condomínio, não respondendo,
+								em qualquer caso, a Prestadora
+								por eventuais perdas e danos.
+								<br />
+								14.5 Haja mudança de endereço em que é prestado o serviço, sem
+								que haja possibilidade de transferência, por parte do
+								<strong>Assinante/Cliente</strong>
+								, sendo caracterizada a rescisão por iniciativa deste, o que
+								implica a cobrança de eventual taxa de
+								instalação/habilitação
+								pela Prestadora quando outrora suspensa a sua cobrança.
+								<br />
+								14.6 Haja denúncia escrita por qualquer das partes, a qualquer
+								época, sem que seja devido o valor da taxa de
+								instalação/habilitação,
+								especificamente para o caso em que o
+								<strong>Assinante/Cliente</strong>
+								tenha optado por pagar a mesma ao firmar a sua Proposta/Contrato
+								de Assinatura. Caso a denúncia se dê pela Prestadora,
+								a mesma
+								deverá fazê-la com antecedência de 30 (trinta) dias.
+								<br />
+								14.7 Haja utilização indevida do serviço pelo
+								<strong>Assinante/Cliente</strong>
+								, através de uso ilegal (em desacordo com as leis,
+								normas,
+								regulamentos aplicáveis, bem como pela inobservância do
+								disposto
+								nesta Condições Gerais), bem como adulteração
+								de equipamentos ou
+								programas, por qualquer outro meio que venha a
+								fruir dos serviços
+								de forma diferente da que efetivamente
+								contratou com a
+								<strong>CinteNet</strong>
+								.
+								<br />
+								14.8 A
+								<strong>CinteNet</strong>
+								se resguarda ao direito de rescindir o presente Contrato, sem
+								que lhe seja atribuído quaisquer ônus,
+								nas hipóteses em que
+								ocorra a distribuição indevida a terceiros de
+								sinais transmitidos
+								; a recepção indevida dos sinais
+								transmitidos; a revendas não
+								autorizada dos serviços, por
+								qualquer meio de tecnologia, quer
+								por utilização de terminais
+								em números superior ao contratado,
+								para si ou para terceiros;
+								reprodução indevida dos sinais
+								transmitidos por meio ardil
+								ou qualquer outro meio fraudulento;
+								ou ainda caso haja constatação
+								por parte da
+								<strong>CinteNet</strong>
+								de que o
+								<strong>Assinante/Cliente</strong>
+								está
+								realizando outras práticas expressamente vedadas e/ou
+								consideradas lesivas
+								no presente Contrato. Nesses casos, a
+								<strong>CinteNet</strong>
+								reserva-se ao direito de efetuar, por si ou por terceiros,
+								vistoria nas instalações do
+								<strong>Assinante/Cliente</strong>
+								, o qual envidará
+								esforços para facilitar tais procedimentos.
+								Além de infração contratual, tais práticas constituem ilícito
+								civil
+								e penal, sujeitando-se o infrator a todas as
+								cominações
+								legais daí decorrentes.
+								<br />
+								14.9 Em caso de extinção do contrato, por qualquer razão, os
+								profissionais habilitados pela
+								<strong>CinteNet</strong>
+								, devidamente
+								identificados, ficam desde já autorizados ao livre
+								acesso aos locais onde
+								encontra-se instalada a rede e situados os
+								equipamentos da
+								<strong>CinteNet</strong>
+								, inclusive em áreas comuns ou que dependam de autorização do
+								condomínio.
+								<br />
+								14.10 A extinção do presente contrato não isenta as Partes do
+								cumprimento de todas as respectivas obrigações , e, no
+								caso de
+								denúncia , ficam sujeitas à aplicação de penalidades
+								pertinentes
+								aos inadimplementos ocorridos entre a
+								comunicação prévia e a data
+								da efetiva rescisão deste contrato.
+								<br />
+								14.11 Salvo disposição específica neste instrumento, o
+								descumprimento de qualquer das cláusulas deste contrato, por
+								qualquer das partes, autorizará imediata extinção contratual
+								pela parte adimplente, mediante denúncia escrita, sem
+								prejuízo de
+								serem tomadas as medidas cabíveis.
+							</p>
+
+							<h4>CLÁUSULA 15ª - DAS DISPOSIÇÕES GERAIS:</h4>
+							<p>
+								15.1 O aceite telefônico e/ou eletrônico dado pelo
+								<strong>Assinante/Cliente</strong>
+								neste contrato, bem como o pagamento da
+								primeira fatura de
+								cobrança relativa aos serviços prestados, implica a
+								aceitação
+								pelo
+								<strong>Assinante/Cliente</strong>
+								de
+								todas as cláusulas e condições aqui pactuadas.
+								<br />
+								15.2 O
+								<strong>Assinante/Cliente</strong>
+								declara que não apresenta restrição em sistema de proteção ao
+								crédito, ficando a
+								Prestadora autorizada a proceder consulta em
+								sistemas de proteção ao
+								crédito, para que os serviços objeto
+								deste
+								contrato venham a ser prestados.
+								<br />
+								15.3 Caso se constate a existência de alguma pendência, perante
+								a Prestadora, no domicílio para o qual foi
+								solicitado o serviço,
+								o contrato não se concretizará, salvo se o
+								proponente demonstrar
+								que não apresenta qualquer
+								relação com a pendência em exame.
+								<br />
+								15.4 A Prestadora, com vistas a assegurar a continuidade da
+								prestação dos serviços contratados, poderá ceder
+								direitos ou
+								obrigações aqui estipuladas à empresa controladora,
+								controlada ou
+								coligada ou a terceiros, ficando
+								expressamente vedado ao
+								<strong>Assinante/Cliente</strong>
+								ceder ou transferir este instrumento a terceiros sem a expressa
+								concordância
+								da Prestadora.
+								<br />
+								15.5 O
+								<strong>Assinante/Cliente</strong>
+								, que não estiver inadimplente com nenhuma de suas obrigações,
+								poderá ceder a terceiro os
+								direitos e as obrigações decorrentes
+								do presente contrato. A cessão de
+								direitos e obrigações que alude
+								essa cláusula
+								só será oponível à Prestadora se formalizada com a
+								sua anuência, e
+								desde que o Cessionário manifeste, por escrito,
+								sua concordância aos termos e condições deste contrato.
+								<br />
+								15.6 É expressamente vedado emprestar, ceder, comercializar,
+								sublocar ou subcontratar
+								<br />
+								15.7 Equipamentos necessários para a prestação dos serviços
+								regulados neste negócio, sejam estes atos realizados
+								total ou
+								parcialmente, sem o consentimento prévio, escrito e
+								inequívoco da
+								<strong>CinteNet</strong>
+								.
+								<br />
+								15.8 O
+								<strong>Assinante/Cliente</strong>
+								concorda que a prestação do Serviço é de natureza individual,
+								ficando o
+								<strong>Assinante/Cliente</strong>
+								ciente de que não poderá comercializar, ceder, alugar, sublocar,
+								compartilhar ou disponibilizar o Serviço a terceiros,
+								a qualquer
+								título, bem como não poderá utilizá-lo como meio de
+								prestação de
+								serviços onerosos ou gratuitos a terceiros.
+								<br />
+								15.9 No ato da adesão, o
+								<strong>Assinante/Cliente</strong>
+								expressamente autoriza a
+								<strong>CinteNet</strong>
+								integrar seus dados pessoais ao banco
+								de dados da Prestadora,
+								mediante o que, o
+								<strong>Assinante/Cliente</strong>
+								passará a ser informado sobre lançamentos, ofertas especiais,
+								promoções da Prestadora ou de outras empresas, ressalvando-se a
+								qualquer tempo, o direito do
+								<strong>Assinante/Cliente</strong>
+								que
+								não tiver mais interesse no recebimento das informações, de
+								entrar
+								em contato com a Central de relacionamento da
+								<strong>CinteNet</strong>
+								e solicitar a exclusão das ações acima referidas.
+								<br />
+								15.10 Cabe ao
+								<strong>Assinante/Cliente</strong>
+								a obrigação de comunicar à
+								<strong>CinteNet</strong>
+								tudo que se refira ao funcionamento e às
+								instalações dos
+								equipamentos, bem como quaisquer dúvidas referentes aos
+								pagamentos e vencimentos das mensalidades,
+								cabendo também ao
+								<strong>Assinante/Cliente</strong>
+								comunicar tais mudanças de telefone, endereço e outros dados
+								cadastrais.
+								<br />
+								15.11 A
+								<strong>CinteNet</strong>
+								deve solucionar as reclamações e responder adequadamente aos
+								pedidos de informação recebidos dos
+								<strong>Assinante/Cliente</strong>
+								no prazo máximo de 5 (cinco) dias úteis a contar de seu
+								recebimento. Em caso de
+								<br />
+								15.12 reclamação recebida por meio de correspondência, o prazo
+								de resposta pela Prestadora será de até 10 (dez) dias úteis.
+								<br />
+								15.13 No caso de cláusulas tratarem do mesmo assunto de modo
+								complementar, vigorará aquela que contiver maior detalhamento.
+								<br />
+								15.14 O presente Contrato obriga as PARTES, seus herdeiros ou
+								sucessores legais ao seu cumprimento fiel e integral, a qualquer
+								tempo.
+								<br />
+								15.15 O
+								<strong>Assinante/Cliente</strong>
+								tem conhecimento e concorda com todos os termos do presente
+								contrato ao firmar o
+								Termo de Adesão, anexo e integrante deste
+								negócio jurídico.
+								<br />
+								15.16 As partes elegem, de comum acordo, o foro da Comarca de
+								Natal, Estado do Rio Grande do Norte, para dirimir
+								qualquer
+								dúvida ou litígio deste contrato, com expressa renúncia a
+								qualquer outro, por mais privilegiado que seja.
+
+							</p>
+
+							<p>
+								O presente contrato encontra-se devidamente registrado no
+								Cartório do Segundo Ofício de Títulos e Documentos da
+								Cidade de
+								Natal, Estado do Rio Grande do Norte, sob o número 219038,
+								na
+								data de 22 de novembro de 2017, podendo a
+								Prestadora ampliar,
+								agregar, reduzir, ou de qualquer forma alterar os
+								serviços,
+								mediante novo registro em cartório,
+								com aviso deste novo registro
+								por meio de publicação em jornal
+								local de grande circulação, ou
+								comunicação escrita
+								do novo registro lançada no documento de
+								cobrança mensal, a ser
+								enviada aos
+								<strong>Assinante/Cliente</strong>
+								, o que é dado como
+								recebido e aceito pelo
+								<strong>Assinante/Cliente</strong>
+								pela simples prática posterior de ato de permanência ou execução
+								deste contrato.
+							</p>
+							<br />
+							<p class="center">
+								Natal (RN), ____/____/________.
+							</p>
+							<table class="table table-condensed" style="width: 80%; margin: 0 auto;">
+								<tr>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+										<img src='/suporte/static/src/img/assinatura.png' style="max-height: 45px;" />
+									</td>
+									<td style="border-top:none;">
+									</td>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+									</td>
+								</tr>
+								<tr>
+									<td class="center" style="border-top:none;">
+										<strong>
+											CINTENET
+										</strong>
+									</td>
+									<td style="border-top:none;"></td>
+									<td class="center">
+										<strong>
+											CLIENTE
+										</strong>
+									</td>
+								</tr>
+							</table>
+							<br />
+							<table class="table table-condensed" style="width: 80%; margin: 0 auto;">
+								<tr>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+									</td>
+									<td style="border-top:none;">
+									</td>
+									<td
+										style="border-bottom: 1px solid; text-align:center; margin: 10px; width: 40%; border-top:none;">
+									</td>
+								</tr>
+								<tr>
+									<td class="center" style="border-top:none;">
+										<strong>
+											TESTEMUNHA
+										</strong>
+									</td>
+									<td style="border-top:none;"></td>
+									<td class="center" style="border-top:none;">
+										<strong>
+											TESTEMUNHA
+										</strong>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>
