@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="conexao_cliente_search">
+			<field name="name">conexao_cliente.search</field>
+			<field name="model">conexao_cliente</field>
+			<field name="view_type">search</field>
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<search string="Conexões de clientes">
+					<field name="adesao" string="Adesão" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

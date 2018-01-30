@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="conexao_cliente_form">
+			<field name="name">conexao_cliente.form</field>
+			<field name="model">conexao_cliente</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Conexões de Clientes" create = "false">
+					<sheet>
+						<separator string="Escolha o ponto de acesso" />
+						<div>
+							<div>
+								Pontos de acesso disponíveis em:
+								<strong>
+									<field name="pop_name" readonly="1" class="oe_inline" />
+								</strong>
+							</div>
+						</div>
+						<group colspan="2">
+							<field name="router" string="Ponto de Acesso" class="oe_inline"
+								options="{'no_create': True}" domain="[('pop', '=', id_pop)]" />
+							<field name="id_pop" invisible="1" />
+						</group>
+						<group attrs="{'invisible': [('router','=', False)]}">
+							<group colspan="2" string="Identificação para o portal">
+								<div>
+									<div>
+										<group>
+											<field name="login" class="oe_inline"
+												on_change="on_change_verificar_login(login,adesao)" />
+											<field name="senha" class="oe_inline" />
+											<field name="adesao" invisible="1" />
+											<field name="retorno_login" invisible="1" />
+											<label string="Login Disponível" style="color: #CC0000"
+												attrs="{'invisible': [('retorno_login','&lt;',1)]}" />
+											<label string="Login Indisponível" style="color: #CC0000"
+												attrs="{'invisible': [('retorno_login','!=',-1)]}" />
+										</group>
+									</div>
+								</div>
+							</group>
+						</group>
+						<group string="Nova Conexão"
+							attrs="{'invisible': ['|',('retorno_login','&lt;',1),('senha','=', False)]}">
+							<group>
+								<field name="mac_radio" widget="mask" on_change="on_change_case(mac_radio)"
+									placeholder="**-**-**-**-**-**" mask="**-**-**-**-**-**" />
+								<button name="find_slot_porta" string="Buscar" type="object" />
+								<field name="name" invisible="1" />
+							</group>
+							<group>
+								<field name="slot" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="porta" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="ontid" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="service_port" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="ont_srvprofile_id" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="ont_lineprofile_id" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="porta_onu_condominio" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="vlan" attrs="{'invisible': [('retorno_login','=',1)]}" />
+								<field name="index" attrs="{'invisible': [('retorno_login','=',1)]}" />
+							</group>
+							<group colspan="2">
+								<field name="descricao" />
+							</group>
+						</group>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers" />
+							<field name="message_ids" widget="mail_thread" />
+						</div>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

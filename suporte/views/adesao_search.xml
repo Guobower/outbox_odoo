@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="adesao_search">
+			<field name="name">adesao.search</field>
+			<field name="model">adesao</field>
+			<field name="view_type">search</field>
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<search string="Adesões">
+					<field name="contrato" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

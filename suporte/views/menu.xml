@@ -37,6 +37,30 @@
 				</p>
 			</field>
 		</record>
+		
+		<record model="ir.actions.act_window" id="adesoes_list_action">
+			<field name="name">Adesões</field>
+			<field name="res_model">adesao</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de adesões.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="conexoes_clientes_list_action">
+			<field name="name">Conexões de Clientes</field>
+			<field name="res_model">conexao_cliente</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de conexões de clientes.
+				</p>
+			</field>
+		</record>
 
 
 		<record model="ir.actions.act_window" id="status_contrato_list_action">
@@ -112,6 +136,9 @@
 
 		<menuitem id="contratos_menu" name="Contratos" parent="atendimento_menu"
 			action="contratos_list_action" />
+			
+		<menuitem id="adesoes_menu" name="Adesões" parent="atendimento_menu"
+			action="adesoes_list_action" />
 
 
 

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="conexao_cliente_tree">
+			<field name="name">conexao_cliente.tree</field>
+			<field name="model">conexao_cliente</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Conexões de Clientes" >
+					<field name="name" />
+					<field name="mac_radio" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

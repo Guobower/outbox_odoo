@@ -8,7 +8,7 @@
 			<field name="arch" type="xml">
 				<div class="oe_right oe_button_box" name="buttons">
 					<button class="oe_inline oe_stat_button" type="action" name="742"
-						context="{'search_default_partner_id': active_id}" icon="fa-newspaper-o"
+						context="{'search_default_partner_id': active_id}" icon="fa-envelope-o"
 						string="Contratos">
 					</button>
 				</div>

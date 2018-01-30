@@ -29,6 +29,12 @@
         'views/modo_aquisicao_form.xml',
         'views/modo_aquisicao_notificacoes.xml',
         'views/modo_aquisicao_tree.xml',
+        'views/conexao_cliente_form.xml',
+        'views/conexao_cliente_tree.xml',
+        'views/conexao_cliente_search.xml',
+        'views/adesao_form.xml',
+        'views/adesao_tree.xml',
+        'views/adesao_search.xml',
         'views/report_contrato.xml',
         'views/report_adesao.xml',
         'views/account_analytic_account_form.xml'

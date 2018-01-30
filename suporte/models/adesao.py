@@ -22,6 +22,12 @@ class Adesao(models.Model):
         comodel_name='account.analytic.account',
         help="Contrato ao qual a adesão está vinculada")
     
+    conexao = fields.One2many(
+        comodel_name='conexao_cliente',
+        inverse_name='adesao',
+        string='Conexao',
+        help='Conexões vinculadas à adesão do contrato')
+    
     pop = fields.Many2one(
         comodel_name='pop',
         string='Pop',
@@ -198,8 +204,7 @@ class Adesao(models.Model):
         '''
         if data_padrao:
             return data_padrao[8:10]+"/"+data_padrao[5:7]+"/"+data_padrao[0:4]
-                        
-                        
+                           
     def gerar_pdf_adesao(self, cr, user, ids, context=None):
         '''
             Descrição:

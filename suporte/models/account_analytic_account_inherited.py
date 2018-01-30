@@ -98,3 +98,4 @@ class Account_analytic_account_inherited(models.Model):
             'report_name': 'suporte.report_adesao',
             'context': context,
         }
+    
