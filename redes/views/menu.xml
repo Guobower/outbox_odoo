@@ -4,6 +4,18 @@
 		<!-- window action -->
 		<!-- The following tag is an action definition for a "window action", that 
 			is an action opening a view or a set of views -->
+		<record model="ir.actions.act_window" id="checkagem_acesso_list_action">
+			<field name="name">Checkagem de Acesso</field>
+			<field name="res_model">checkagem_acesso</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Histórico de checkagem de acesso.
+				</p>
+			</field>
+		</record>
+		
 		<record model="ir.actions.act_window" id="torre_list_action">
 			<field name="name">Torre</field>
 			<field name="res_model">torre</field>
@@ -46,8 +58,14 @@
 			and *after* its action course_list_action -->
 		<menuitem id="redes_parent_menu" name="Redes" />
 
+		<menuitem id="redes_relatorios_menu" name="Relatórios"
+			sequence="10" parent="redes_parent_menu" />
+			
 		<menuitem id="redes_configuracao_menu" name="Configuração"
 			sequence="20" parent="redes_parent_menu" />
+			
+		<menuitem id="checkagem_acesso_menu" name="Checkagem de Acesso" parent="redes_relatorios_menu"
+			action="checkagem_acesso_list_action" />
 
 		<menuitem id="router_menu" name="Router" parent="redes_configuracao_menu"
 			action="router_list_action" />

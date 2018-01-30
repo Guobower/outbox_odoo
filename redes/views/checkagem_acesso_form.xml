@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="checkagem_acesso_form">
+			<field name="name">checkagem_acesso.form</field>
+			<field name="model">checkagem_acesso</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Checkagem de Acesso">
+					<sheet string="Checkagem de Acesso">
+						<group string="Informações Principais">
+							<group>
+								<field name="name" />
+								<field name="valor" />
+							</group>
+							<group>
+								<field name="data_inicio" />
+								<field name="data_termino" />
+							</group>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>
