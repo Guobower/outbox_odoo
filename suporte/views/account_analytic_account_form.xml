@@ -22,7 +22,8 @@
 					<sheet string="Contrato">
 						<div class="oe_right oe_button_box" name="buttons">
 							<button class="oe_inline oe_stat_button" type="action"
-								name="%(adesoes_list_action)d" context="{'search_default_contrato': active_id,'default_contrato': id}"
+								name="%(adesoes_list_action)d"
+								context="{'search_default_contrato': active_id,'default_contrato': id}"
 								icon="fa-pencil" string="Adesões">
 							</button>
 						</div>
@@ -41,6 +42,7 @@
 							<group>
 								<field name="type" invisible="1" />
 								<field name="code" readonly="1" />
+								<field name="status_contrato" readonly="1" />
 							</group>
 						</group>
 						<notebook>
@@ -61,7 +63,6 @@
 										</div>
 									</group>
 									<group string="Configurações">
-										<field name="status_contrato" />
 										<field name="tipo_envio" />
 										<field name="data_base_vencimento" />
 										<field name="tipo_contrato" />
@@ -111,6 +112,61 @@
 							<page string="Faturamento">
 							</page>
 							<page string="Atendimentos">
+							</page>
+							<page string="Status e Operações">
+								<p colspan="2">
+									<strong>Ativo:</strong>
+									Contratos ativos
+									<br />
+									<strong>Suspenso:</strong>
+									Contratos suspensos
+									<br />
+									<strong>Cancelado:</strong>
+									Contratos cancelados
+									<br />
+									<strong>Free:</strong>
+									Contratos free
+									<br />
+									<strong>Nunca Bloquear:</strong>
+									Contratos nunca bloquear
+									<br />
+									<strong>Bloqueado Manualmente:</strong>
+									Contratos bloqueados manualmente
+									<br />
+									<strong>Cancelado Manualmente:</strong>
+									Contratos cancelados manualmente
+									<br />
+									<strong>Velocidade Reduzida:</strong>
+									Contratos com velocidade reduzida
+									<br />
+								</p>
+								<separator string="Operações Disponíveis" />
+								<div>
+									<button class="oe_inline oe_stat_button" name="ativar_contrato"
+										type="object" icon="fa-check" string="Ativo"
+										attrs="{'invisible': [('status_contrato','!=', 14),('status_contrato','!=', 16),('status_contrato','!=', 17)]}">
+									</button>
+									<button class="oe_inline oe_stat_button" name="inativar_contrato"
+										type="object" icon="fa-exclamation" string="Inativo"
+										attrs="{'invisible': [('status_contrato','!=', 13),('status_contrato','!=', 14)]}">
+									</button>
+									<button class="oe_inline oe_stat_button" name="suspender_contrato"
+										type="object" icon="fa-ban" string="Suspenso"
+										attrs="{'invisible': [('status_contrato','!=', 13),('status_contrato','!=', 16),('status_contrato','!=', 17)]}">
+									</button>
+									<button class="oe_inline oe_stat_button" name="cancelar_contrato"
+										type="object" icon="fa-times" string="Cancelado"
+										attrs="{'invisible': [('status_contrato','!=', 13),('status_contrato','!=', 14),('status_contrato','!=', 16),('status_contrato','!=', 17)]}">
+									</button>
+									<button class="oe_inline oe_stat_button" name="free_contrato"
+										type="object" icon="fa-gift" string="Free"
+										attrs="{'invisible': [('status_contrato','!=', 13),('status_contrato','!=', 14)]}">
+									</button>
+									<button class="oe_inline oe_stat_button" name="nunca_bloquear_contrato"
+										type="object" icon="fa-child" string="Nunca Bloquear"
+										attrs="{'invisible': [('status_contrato','!=', 13),('status_contrato','!=', 14)]}">
+									</button>
+								</div>
 							</page>
 						</notebook>
 					</sheet>

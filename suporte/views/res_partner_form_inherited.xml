@@ -19,6 +19,12 @@
 				<field name="inscr_est" position="after">
 					<field name="orgao_emissor_rg" attrs="{'invisible': [('is_company','!=',False)]}"></field>
 				</field>
+				<field name="inscr_mun" position="after">
+					<group string="Dados do Suporte">
+						<field name="sla"></field>
+						<field name="usuario_centreon"></field>
+					</group>
+				</field>
 				<notebook>
 					<page position="inside" string="Informações Técnicas" name="Informações Técnicas">
 						<group>
@@ -28,14 +34,6 @@
 					<page position="inside" string="Textos de Chamados" name="Textos de Chamados">
 						<group>
 							<field name="textos_chamados" readonly="1"></field>
-						</group>
-					</page>
-					<page position="inside" string="Dados do Suporte" name="Dados do Suporte">
-						<group>
-							<group>
-								<field name="sla"></field>
-								<field name="usuario_centreon"></field>
-							</group>
 						</group>
 					</page>
 				</notebook>

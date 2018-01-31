@@ -10,7 +10,7 @@ class Account_analytic_account_inherited(models.Model):
             }
     }
     
-    _defaults={
+    _defaults = {
         'stage_id' : 1,
         'type': 'contract'
     }
@@ -21,7 +21,7 @@ class Account_analytic_account_inherited(models.Model):
         help='Status do contrato',
         track_visibility='onchange')
     
-    tipo_envio  = fields.Selection(
+    tipo_envio = fields.Selection(
         selection=[('1', 'Correios'),
                    ('2', 'E-mail')],
         string='Tipo de envio do boleto',
@@ -73,29 +73,57 @@ class Account_analytic_account_inherited(models.Model):
         )
     
     
-    def gerar_pdf_adesao(self, cr, user, ids, context=None):
-        '''
-            Descrição:
-              Esta função tem como objetivo imprimir um pdf da Adesão para assinatura do cliente.
+    def ativar_contrato(self, cr, user, ids, context=None):
+        contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
+        contrato.write({'status_contrato': 13}, context=context)
         
-            Utilização:
-              gerar_pdf_adesao()
-        
-            Parâmetros:
-              cr
-                Cursor do banco de dados
-              uid
-                Usuário do sistema
-              ids
-                IDs da adesão em questão
-              context
-                Contexto atual
-        '''
-        adesao = self.env.context.get('adesao')
-        self.pool.get('adesao').gerar_pdf_adesao(cr, user, adesao, context=context)
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'suporte.report_adesao',
-            'context': context,
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        
+    def inativar_contrato(self, cr, user, ids, context=None):
+        contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
+        contrato.write({'status_contrato': 12}, context=context)
+        
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
         }
     
+    def suspender_contrato(self, cr, user, ids, context=None):
+        contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
+        contrato.write({'status_contrato': 14}, context=context)
+        
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+    
+    def cancelar_contrato(self, cr, user, ids, context=None):
+        contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
+        contrato.write({'status_contrato': 15}, context=context)
+        
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        
+    def free_contrato(self, cr, user, ids, context=None):
+        contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
+        contrato.write({'status_contrato': 16}, context=context)
+        
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        
+    def nunca_bloquear_contrato(self, cr, user, ids, context=None):
+        contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
+        contrato.write({'status_contrato': 17}, context=context)
+        
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        
