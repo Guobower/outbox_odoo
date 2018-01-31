@@ -52,13 +52,14 @@ class Checkagem_acesso(models.Model):
         r = requests.get('http://syncron.cinte.com.br/radacct/checkagem_acesso.php?escolha='+str(name)+'&valor='+str(valor)+'&data_inicio='+str(data_inicio)+'&data_termino='+str(data_termino)+'')
         
         retorno = list()
-        for linha in r.json():
-            objeto = list()
-            objeto.append(linha["cliente"])
-            objeto.append(linha["cliente_username"])
-            objeto.append(linha["data_inicio"])
-            objeto.append(linha["data_termino"])
-            retorno.append(objeto)
+        if r.json():
+            for linha in r.json():
+                objeto = list()
+                objeto.append(linha["cliente"])
+                objeto.append(linha["cliente_username"])
+                objeto.append(linha["data_inicio"])
+                objeto.append(linha["data_termino"])
+                retorno.append(objeto)
         
         return retorno
     
