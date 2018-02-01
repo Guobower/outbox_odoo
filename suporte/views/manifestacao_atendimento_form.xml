@@ -20,7 +20,7 @@
 						</group>
 						<notebook>
 							<page string="Grupos de Atendimento">
-								<field name="grupo_atendimento" />
+								<field name="grupo_atendimento" context="{'default_manifestacao_atendimento': id}" />
 							</page>
 						</notebook>
 						<div class="oe_chatter">

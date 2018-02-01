@@ -13,6 +13,7 @@
 						<group string="Dados Gerais">
 							<group>
 								<field name="name" />
+								<field name="manifestacao_atendimento" />
 							</group>
 							<group>
 								<field name="descricao" />
@@ -20,7 +21,7 @@
 						</group>
 						<notebook>
 							<page string="Tipos de Atendimento">
-								<field name="tipo_atendimento" />
+								<field name="tipo_atendimento" context="{'default_grupo_atendimento': id}" />
 							</page>
 						</notebook>
 						<div class="oe_chatter">

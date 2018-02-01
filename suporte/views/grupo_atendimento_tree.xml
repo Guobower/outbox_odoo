@@ -1,19 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <openerp>
 	<data>
-		<record model="ir.ui.view" id="adesao_tree">
-			<field name="name">adesao.tree</field>
-			<field name="model">adesao</field>
+		<record model="ir.ui.view" id="grupo_atendimento_tree">
+			<field name="name">grupo_atendimento.tree</field>
+			<field name="model">grupo_atendimento</field>
 			<field name="view_type">tree</field>
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<tree string="Adesões">
-					<field name="plano" />
-					<field name="status_adesao" />
+				<tree string="Grupo de Atendimento">
+					<field name="name" />
 					<field name="descricao" />
-					<field name="login" />
-					<field name="data_adesao" />
 				</tree>
 			</field>
 		</record>
