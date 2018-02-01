@@ -114,28 +114,28 @@
 							<page string="Status e Operações">
 								<p colspan="2">
 									<strong>Ativo:</strong>
-									Contratos ativos
+									Contratos de clientes ativos.
+									<br />
+									<strong>Inativo:</strong>
+									Utilizamos quando há alguma pendência por parte do cliente para ativarmos o cadastro. Ex.: documentação.
 									<br />
 									<strong>Suspenso:</strong>
-									Contratos suspensos
+									Contratos com acesso suspenso.
 									<br />
 									<strong>Cancelado:</strong>
-									Contratos cancelados
+									Contratos cancelados.
 									<br />
 									<strong>Free:</strong>
-									Contratos free
+									Mensalidade gratuita.
 									<br />
 									<strong>Nunca Bloquear:</strong>
-									Contratos nunca bloquear
-									<br />
-									<strong>Bloqueado Manualmente:</strong>
-									Contratos bloqueados manualmente
+									Clientes em análise financeira que não deverão ter o sinal suspenso mesmo em débito.
 									<br />
 									<strong>Cancelado Manualmente:</strong>
-									Contratos cancelados manualmente
+									Cancelado por solicitação do cliente.
 									<br />
 									<strong>Velocidade Reduzida:</strong>
-									Contratos com velocidade reduzida
+									Incluído, automaticamente, pelo sistema após 20 dias de inadimplência.
 									<br />
 								</p>
 								<separator string="Operações Disponíveis" />
