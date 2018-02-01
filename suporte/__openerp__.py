@@ -37,6 +37,12 @@
         'views/adesao_search.xml',
         'views/report_contrato.xml',
         'views/report_adesao.xml',
-        'views/account_analytic_account_form.xml'
+        'views/account_analytic_account_form.xml',
+        'views/manifestacao_atendimento_form.xml',
+        'views/manifestacao_atendimento_tree.xml',
+        'views/grupo_atendimento_form.xml',
+        'views/grupo_atendimento_tree.xml',
+        'views/tipo_atendimento_form.xml',
+        'views/tipo_atendimento_tree.xml'
     ]
 }

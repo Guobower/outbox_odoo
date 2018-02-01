@@ -122,6 +122,42 @@
 				</p>
 			</field>
 		</record>
+		
+		<record model="ir.actions.act_window" id="manifestacao_atendimento_list_action">
+			<field name="name">Manifestação de Atendimento</field>
+			<field name="res_model">manifestacao_atendimento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de manifestações de atendimentos.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="grupo_atendimento_list_action">
+			<field name="name">Grupo de Atendimento</field>
+			<field name="res_model">grupo_atendimento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de grupos de atendimentos.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="tipo_atendimento_list_action">
+			<field name="name">Tipo de Atendimento</field>
+			<field name="res_model">tipo_atendimento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de tipos de atendimentos.
+				</p>
+			</field>
+		</record>
 
 
 		<!-- the following menuitem should appear *after* its parent openacademy_menu 
@@ -143,7 +179,7 @@
 
 
 
-		<menuitem id="configuracoes_menu" name="Configurações"
+		<menuitem id="configuracoes_menu" name="Configurações de Clientes"
 			sequence="20" parent="suporte_parent_menu" />
 
 		<menuitem id="status_contrato_menu" name="Status de Contratos"
@@ -160,6 +196,20 @@
 
 		<menuitem id="modo_aquisicao_menu" name="Modo de Aquisição"
 			parent="configuracoes_menu" action="modo_aquisicao_list_action" />
+			
+			
+			
+		<menuitem id="configuracoes_atendimento_menu" name="Configurações de Atendimentos"
+			sequence="20" parent="suporte_parent_menu" />
+
+		<menuitem id="manifestacao_atendimento_menu" name="Manifestação de Atendimento"
+			parent="configuracoes_atendimento_menu" action="manifestacao_atendimento_list_action" />
+			
+		<menuitem id="grupo_atendimento_menu" name="Grupo de Atendimento"
+			parent="configuracoes_atendimento_menu" action="grupo_atendimento_list_action" />
+			
+		<menuitem id="tipo_atendimento_menu" name="Tipo de Atendimento"
+			parent="configuracoes_atendimento_menu" action="tipo_atendimento_list_action" />
 
 	</data>
 </openerp>
