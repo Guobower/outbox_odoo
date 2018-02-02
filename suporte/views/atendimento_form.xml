@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="atendimento_form">
+			<field name="name">atendimento.form</field>
+			<field name="model">atendimento</field>
+			<field name="view_type">form</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<form string="Atendimento">
+					<sheet>
+						<!-- <div class="oe_right oe_button_box" name="buttons"> <button class="oe_inline 
+							oe_stat_button" type="object" name="abrir_manual" icon="fa-pencil" string="Abrir 
+							Manual"> </button> </div> -->
+						<group>
+							<group string="Área de Atendimento">
+								<field name="manifestacao_atendimento" options="{'no_create': True}" />
+								<field name="grupo_atendimento" options="{'no_create': True}"
+									domain="[('manifestacao_atendimento', '=', manifestacao_atendimento)]" />
+								<field name="tipo_atendimento" options="{'no_create': True}"
+									domain="[('grupo_atendimento', '=', grupo_atendimento)]" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Manual de Atendimento">
+								<group string="Procedimento Técnico">
+									<field name="procedimento" readonly="1" />
+								</group>
+								<group string="Orientação para Atendimento">
+									<field name="orientacao" readonly="1" />
+									<field name="manual_filename" invisible="1" />
+									<field widget="binary" height="64" name="manual"
+										filename="manual_filename" readonly="1" />
+								</group>
+							</page>
+							<page string="Atendimento">
+								<group>
+									<group string="Manifestação">
+										<field name="name" />
+										<field name="reclamacao" />
+										<field name="documentacao" />
+									</group>
+									<group string="Andamento do Atendimento">
+										<field name="previsao_resolucao" />
+										<field name="data_conclusao" />
+										<field name="solicitacao_atendida" />
+										<field name="status_atendimento" />
+									</group>
+								</group>
+							</page>
+						</notebook>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers" />
+							<field name="message_ids" widget="mail_thread" />
+						</div>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

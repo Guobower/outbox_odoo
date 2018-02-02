@@ -61,6 +61,30 @@
 				</p>
 			</field>
 		</record>
+		
+		<record model="ir.actions.act_window" id="atendimento_list_action">
+			<field name="name">Atendimentos</field>
+			<field name="res_model">atendimento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de atendimentos.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="status_atendimento_list_action">
+			<field name="name">Status de Atendimentos</field>
+			<field name="res_model">status_atendimento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de status de atendimentos.
+				</p>
+			</field>
+		</record>
 
 
 		<record model="ir.actions.act_window" id="status_contrato_list_action">
@@ -210,6 +234,9 @@
 			
 		<menuitem id="tipo_atendimento_menu" name="Tipo de Atendimento"
 			parent="configuracoes_atendimento_menu" action="tipo_atendimento_list_action" />
+			
+		<menuitem id="status_atendimento_menu" name="Status de Atendimento"
+			parent="configuracoes_atendimento_menu" action="status_atendimento_list_action" />
 
 	</data>
 </openerp>

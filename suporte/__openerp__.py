@@ -43,6 +43,10 @@
         'views/grupo_atendimento_form.xml',
         'views/grupo_atendimento_tree.xml',
         'views/tipo_atendimento_form.xml',
-        'views/tipo_atendimento_tree.xml'
+        'views/tipo_atendimento_tree.xml',
+        'views/atendimento_form.xml',
+        'views/status_atendimento_form.xml',
+        'views/status_atendimento_tree.xml',
+        'views/protocolo_sequencia.xml'
     ]
 }

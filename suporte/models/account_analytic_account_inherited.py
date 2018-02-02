@@ -48,6 +48,19 @@ class Account_analytic_account_inherited(models.Model):
         string='Adesoes',
         help='Adesões vinculadas ao contrato')
     
+    protocolo = fields.One2many(
+        comodel_name='protocolo',
+        inverse_name='contrato',
+        string='Protocolos',
+        help='Protocolos vinculados ao contrato')
+    
+    contrato_pdf = fields.Binary(
+        string='Contrato Assinado',
+        help='Contrato assinado pelo cliente.')
+    
+    contrato_pdf_filename = fields.Char("Contrato Assinado", 
+        track_visibility='onchange')
+    
     id_syncron = fields.Integer(
         string='ID no Syncron',
         help='ID de identificação no Syncron')

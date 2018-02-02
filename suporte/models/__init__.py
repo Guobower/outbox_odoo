@@ -10,3 +10,6 @@ from . import conexao_cliente
 from . import manifestacao_atendimento
 from . import grupo_atendimento
 from . import tipo_atendimento
+from . import protocolo
+from . import atendimento
+from . import status_atendimento

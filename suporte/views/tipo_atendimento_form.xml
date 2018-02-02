@@ -22,9 +22,11 @@
 						<group string="Dados sobre o Atendimento">
 							<group>
 								<field name="procedimento" />
-								<field name="orientacao" />
+								<field name="manual_filename" invisible="1" />
+								<field widget="binary" height="64" name="manual" filename="manual_filename" />
 							</group>
 							<group>
+								<field name="orientacao" />
 								<field name="tempo_resolucao" />
 							</group>
 						</group>

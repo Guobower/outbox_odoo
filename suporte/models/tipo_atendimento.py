@@ -20,16 +20,27 @@ class Tipo_atendimento(models.Model):
     grupo_atendimento = fields.Many2one(
         string="Grupo de Atendimento",
         comodel_name='grupo_atendimento',
-        help="Grupo de atendimento ao qual esta vinculado o tipo de atendimento")
+        help="Grupo de atendimento ao qual esta vinculado o tipo de atendimento",
+        track_visibility="onchange")
     
     procedimento = fields.Text(
         string="Procedimento",
-        help="Procedimento a ser seguido pelo atendente")
+        help="Procedimento a ser seguido pelo atendente",
+        track_visibility="onchange")
     
     orientacao = fields.Text(
         string="Orientação",
-        help="Orientação ao atendente sobre onde buscar a informação necessária ao atendimento")
+        help="Orientação ao atendente sobre onde buscar a informação necessária ao atendimento",
+        track_visibility="onchange")
     
     tempo_resolucao = fields.Integer(
-        string="Tempo Necessário para Resolução (dias)",
-        help="Tempo necessário para a resolução desse tipo de atendimento em dias.")
+        string="Prazo (dias)",
+        help="Tempo necessário para a resolução desse tipo de atendimento em dias.",
+        track_visibility="onchange")
+    
+    manual = fields.Binary(
+        string='Manual',
+        help='PDF do Manual.')
+    
+    manual_filename = fields.Char("Arquivo do Manual", 
+        track_visibility='onchange')
