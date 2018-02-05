@@ -25,7 +25,7 @@
 			<field name="name">Contratos</field>
 			<field name="res_model">account.analytic.account</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 			<field name="domain">[('parent_id', '=', False)]</field>
 			<field name="context">{
 				'parent_id': 'false'
@@ -42,7 +42,7 @@
 			<field name="name">Adesões</field>
 			<field name="res_model">adesao</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Lista de adesões.
@@ -66,7 +66,7 @@
 			<field name="name">Atendimentos</field>
 			<field name="res_model">atendimento</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">kanban,tree,form,graph</field>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Lista de atendimentos.
@@ -211,6 +211,9 @@
 			
 		<menuitem id="adesoes_menu" name="Adesões" parent="atendimento_menu"
 			action="adesoes_list_action" />
+			
+		<menuitem id="atendimentos_menu" name="Atendimentos" parent="atendimento_menu"
+			action="atendimento_list_action" />	
 
 
 

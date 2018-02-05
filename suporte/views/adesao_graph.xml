@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="adesao_graph">
+			<field name="name">adesao.graph</field>
+			<field name="model">adesao</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Adesões">
+					<field name="status_adesao" />
+					<field name="name" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>

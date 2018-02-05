@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="atendimento_graph">
+			<field name="name">atendimento.graph</field>
+			<field name="model">atendimento</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="Atendimentos">
+					<field name="manifestacao_atendimento" />
+					<field name="grupo_atendimento" />
+					<field name="tipo_atendimento" />
+					<field name="status_atendimento" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>

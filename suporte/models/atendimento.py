@@ -6,6 +6,22 @@ class Atendimento(models.Model):
     _description = 'Atendimento'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     
+    def _read_group_stage_ids(self, cr, uid, ids, domain, read_group_order=None, access_rights_uid=None, context=None):
+        access_rights_uid = access_rights_uid or uid
+        stage_obj = self.pool.get('status_atendimento')
+        order = stage_obj._order
+        
+        # perform search
+        stage_ids = stage_obj._search(cr, uid, "", order=order, access_rights_uid=access_rights_uid, context=context)
+        result = stage_obj.name_get(cr, access_rights_uid, stage_ids, context=context)
+        # restore order of the search
+        result.sort(lambda x, y: cmp(stage_ids.index(x[0]), stage_ids.index(y[0])))
+
+        return result, None
+    
+    _group_by_full = {
+        'status_atendimento': _read_group_stage_ids,
+    }
     
     name = fields.Many2one(
         comodel_name='protocolo',
@@ -105,6 +121,8 @@ class Atendimento(models.Model):
         help='Modo de contato do cliente com a Cinte na abertura do chamado',
         track_visibility='onchange')
     
+    color = fields.Integer(
+        string="Color Index")
     
     def on_change_tipo_atendimento(self, cr, user, ids, tipo_atendimento, context=None):
         '''

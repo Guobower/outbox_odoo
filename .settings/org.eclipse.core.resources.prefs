@@ -67,6 +67,7 @@ encoding//suporte/models/grupo_atendimento.py=utf-8
 encoding//suporte/models/grupo_servico.py=utf-8
 encoding//suporte/models/manifestacao_atendimento.py=utf-8
 encoding//suporte/models/modo_aquisicao.py=utf-8
+encoding//suporte/models/modo_contato.py=utf-8
 encoding//suporte/models/plano.py=utf-8
 encoding//suporte/models/protocolo.py=utf-8
 encoding//suporte/models/res_partner_inherited.py=utf-8
