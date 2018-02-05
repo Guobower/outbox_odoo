@@ -22,6 +22,18 @@ class Adesao(models.Model):
         comodel_name='account.analytic.account',
         help="Contrato ao qual a adesão está vinculada")
     
+    atendimento = fields.One2many(
+        comodel_name='atendimento',
+        inverse_name='adesao',
+        string='Atendimentos',
+        help='Atendimentos vinculados a adesão')
+    
+    protocolo = fields.One2many(
+        comodel_name='protocolo',
+        inverse_name='adesao',
+        string='Protocolos',
+        help='Protocolos vinculados a adesão')
+    
     conexao = fields.One2many(
         comodel_name='conexao_cliente',
         inverse_name='adesao',

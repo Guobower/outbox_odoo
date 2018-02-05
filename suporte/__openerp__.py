@@ -47,6 +47,8 @@
         'views/atendimento_form.xml',
         'views/status_atendimento_form.xml',
         'views/status_atendimento_tree.xml',
-        'views/protocolo_sequencia.xml'
+        'views/protocolo_sequencia.xml',
+        'views/modo_contato_form.xml',
+        'views/modo_contato_tree.xml'
     ]
 }

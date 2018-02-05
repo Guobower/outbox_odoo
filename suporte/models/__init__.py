@@ -13,3 +13,4 @@ from . import tipo_atendimento
 from . import protocolo
 from . import atendimento
 from . import status_atendimento
+from . import modo_contato

@@ -52,6 +52,23 @@
 							<field name="descricao" />
 						</group>
 						<notebook>
+							<page string="Atendimentos e Suportes">
+								<field name="protocolo" context="{'default_adesao': id}">
+									<tree editable="bottom">
+										<field name="name" readonly="1" />
+										<field name="contrato" readonly="1" invisible="1" />
+										<field name="adesao" domain="[('contrato', '=', contrato)]"
+											options="{'no_create': True}" />
+										<field name="create_uid" string="Atendente" readonly="1" />
+										<field name="create_date" string="Data de Criação"
+											readonly="1" />
+										<button type="action" name="%(atendimento_list_action)d"
+											context="{'search_default_name': active_id,'default_name': id,'search_default_contrato': contrato,'default_contrato': contrato,'search_default_adesao': adesao,'default_adesao': adesao}"
+											string="Atendimentos">
+										</button>
+									</tree>
+								</field>
+							</page>
 							<page string="Materiais Utilizados">
 								<field name="numero_serie" />
 							</page>

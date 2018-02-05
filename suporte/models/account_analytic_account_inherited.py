@@ -48,6 +48,12 @@ class Account_analytic_account_inherited(models.Model):
         string='Adesoes',
         help='Adesões vinculadas ao contrato')
     
+    atendimento = fields.One2many(
+        comodel_name='atendimento',
+        inverse_name='contrato',
+        string='Atendimentos',
+        help='Atendimentos vinculados ao contrato')
+    
     protocolo = fields.One2many(
         comodel_name='protocolo',
         inverse_name='contrato',

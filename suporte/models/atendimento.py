@@ -36,6 +36,18 @@ class Atendimento(models.Model):
         help='Protocolo ao qual está vinculado o atendimento',
         track_visibility='onchange')
     
+    contrato = fields.Many2one(
+        string="Contrato",
+        comodel_name='account.analytic.account',
+        help="Contrato ao qual o atendimento está vinculado",
+        track_visibility='onchange')
+    
+    adesao = fields.Many2one(
+        string="Adesao",
+        comodel_name='adesao',
+        help="Adesão a qual o atendimento está vinculado",
+        track_visibility='onchange')
+    
     
     tipo_atendimento = fields.Many2one(
         comodel_name='tipo_atendimento',
@@ -46,6 +58,8 @@ class Atendimento(models.Model):
     procedimento = fields.Text('Procedimento', related='tipo_atendimento.procedimento', store=True)
     
     orientacao = fields.Text('Orientacao', related='tipo_atendimento.orientacao', store=True)
+    
+    tempo_resolucao = fields.Integer('Prazo (dias)', related='tipo_atendimento.tempo_resolucao', store=True)
     
     manual = fields.Binary('Manual', related='tipo_atendimento.manual', store=True)
     
@@ -85,3 +99,50 @@ class Atendimento(models.Model):
         help='Andamento da solicitação do cliente',
         track_visibility='onchange')
     
+    modo_contato = fields.Many2one(
+        comodel_name='modo_contato',
+        string='Modo de Contato',
+        help='Modo de contato do cliente com a Cinte na abertura do chamado',
+        track_visibility='onchange')
+    
+    
+    def on_change_tipo_atendimento(self, cr, user, ids, tipo_atendimento, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo preencher automaticamente os dados de
+              previsão de atendimento de acordo com o tipo do atendimento, adicionando
+              na data atual a quantidade de dias necessárias configurada no tipo do atendimento.
+        
+            Utilização:
+              on_change_tipo_atendimento(param1)
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              tipo_atendimento
+                Tipo do atendimento escolhido
+              context
+                Contexto atual
+        '''
+        from datetime import *
+        import datetime
+        
+        obj_tipo_atendimento = self.pool.get('tipo_atendimento').browse(cr, user, tipo_atendimento)
+        #obj_atendimento = self.pool.get('atendimento').browse(cr, user, ids[0])
+        
+        data_prevista = datetime.date.today() + timedelta(days=obj_tipo_atendimento.tempo_resolucao)
+        
+        #obj_atendimento({'previsao_resolucao': data_prevista}, context=context)
+        res = {
+                 'value': {
+                    # Define os valores dos campos e atualiza no formulário
+                    'previsao_resolucao':  data_prevista
+                }
+            }
+        # Retorna os valores para serem atualizados na view.
+        return res
+        
