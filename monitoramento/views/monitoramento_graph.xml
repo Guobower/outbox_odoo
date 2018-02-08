@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="monitoramento_graph">
+			<field name="name">monitoramento.graph</field>
+			<field name="model">monitoramento</field>
+			<field name="view_type">graph</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<graph string="monitoramento">
+					<field name="name" />
+					<field name="stage_id" />
+				</graph>
+			</field>
+		</record>
+	</data>
+</openerp>

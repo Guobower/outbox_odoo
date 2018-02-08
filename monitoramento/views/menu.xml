@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<!-- window action -->
+		<!-- The following tag is an action definition for a "window action", that 
+			is an action opening a view or a set of views -->
+		<record model="ir.actions.act_window" id="monitoramento_list_action">
+			<field name="name">Monitoramento</field>
+			<field name="res_model">monitoramento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form,graph</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de monitoramento.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="estagios_monitoramento_list_action">
+			<field name="name">Estágios</field>
+			<field name="res_model">estagios_monitoramento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de estágios para monitoramento.
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="sistemas_monitoramento_list_action">
+			<field name="name">Sistemas</field>
+			<field name="res_model">sistemas_monitoramento</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de sistemas para monitoramento.
+				</p>
+			</field>
+		</record>
+
+
+
+		<!-- the following menuitem should appear *after* its parent openacademy_menu 
+			and *after* its action course_list_action -->
+		<menuitem id="monitoramento_parent_menu" name="Monitoramento" sequence="10"
+			parent="suporte.suporte_parent_menu" />
+
+		<menuitem id="monitoramento_configuracao_menu" name="Configurações de Monitoramento"
+			sequence="20" parent="suporte.suporte_parent_menu" />
+
+
+		<menuitem id="monitoramento_menu" name="Monitoramento" 
+			parent="monitoramento_parent_menu" action="monitoramento_list_action" />
+
+		<menuitem id="estagios_monitoramento_menu" name="Estágios"
+			parent="monitoramento_configuracao_menu" action="estagios_monitoramento_list_action" />
+
+		<menuitem id="sistemas_monitoramento_menu" name="Sistemas"
+			parent="monitoramento_configuracao_menu" action="sistemas_monitoramento_list_action" />
+
+	</data>
+</openerp>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <openerp>
+       <data noupdate="0">
+           <!-- Creating a Group Category -->        
+           <record id="monitoramento" model="ir.module.category">
+               <field name="name">Monitoramento</field>
+               <field name="sequence">1</field>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="monitoramento.manager" model="res.groups">
+               <field name="name">Administrador</field>
+               <field name="category_id" ref="monitoramento"/>
+           </record>
+           
+           <record id="monitoramento.user" model="res.groups">
+               <field name="name">Usuário</field>
+               <field name="category_id" ref="monitoramento"/>
+           </record>
+           
+           <record id="monitoramento.solicitante" model="res.groups">
+               <field name="name">Solicitante</field>
+               <field name="category_id" ref="monitoramento"/>
+           </record>
+        </data>
+    </openerp>
