@@ -91,6 +91,12 @@ class Account_analytic_account_inherited(models.Model):
         track_visibility='onchange'
         )
     
+    host = fields.One2many(
+        comodel_name='host',
+        inverse_name='contrato',
+        string='Hosts',
+        help='Hosts vinculados ao contrato')
+    
     
     def ativar_contrato(self, cr, user, ids, context=None):
         contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])

@@ -134,6 +134,14 @@
 									</tree>
 								</field>
 							</page>
+							<page string="Hosts Centreon">
+								<field name="host" context="{'default_contrato': id}">
+									<tree editable="bottom">
+										<field name="name" />
+										<field name="host_id_centreon" />
+									</tree>
+								</field>
+							</page>
 							<page string="Status e Operações">
 								<p colspan="2">
 									<strong>Ativo:</strong>

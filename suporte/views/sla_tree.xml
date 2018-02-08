@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="sla_tree">
+			<field name="name">sla.tree</field>
+			<field name="model">sla</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="SLA">
+					<field name="name" />
+					<field name="contrato" />
+					<field name="host" />
+					<field name="data_inicio" />
+					<field name="data_termino" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>
