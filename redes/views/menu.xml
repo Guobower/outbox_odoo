@@ -51,6 +51,18 @@
 				</p>
 			</field>
 		</record>
+		
+		<record model="ir.actions.act_window" id="host_list_action">
+			<field name="name">Host</field>
+			<field name="res_model">host</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de hosts.
+				</p>
+			</field>
+		</record>
 
 
 
@@ -75,6 +87,9 @@
 
 		<menuitem id="pop_menu" name="Pop" parent="redes_configuracao_menu"
 			action="pop_list_action" />
+			
+		<menuitem id="host_menu" name="Host" parent="redes_configuracao_menu"
+			action="host_list_action" />
 			
 			
 

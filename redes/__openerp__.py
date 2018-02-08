@@ -20,6 +20,8 @@
         'views/pop_notificacoes.xml',
         'views/router_tree.xml',
         'views/router_form.xml',
+        'views/host_tree.xml',
+        'views/host_form.xml',
         'views/checkagem_acesso_tree.xml',
         'views/checkagem_acesso_form.xml',
         'views/report_checkagem_acesso.xml',
