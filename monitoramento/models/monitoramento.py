@@ -80,6 +80,57 @@ class Monitoramento(models.Model):
         help='Responsável pela resolução do problema',
         track_visibility='onchange')
     
+    exibir_site = fields.Selection(
+        selection=[('0', 'Não'),
+                   ('1', 'Sim')],
+        string='Exibir no Site',
+        help='Exibir o monitoramento no site?',
+        track_visibility='onchange')
+    
+    atrasado = fields.Selection(
+        selection=[('0', 'Não'),
+                   ('1', 'Sim')],
+        string='Atrasado',
+        help='Previsão de resolução foi ultrapassada?',
+        track_visibility='onchange')
+    
+    torre = fields.Many2many(
+        comodel_name='torre',
+        string='Torre',
+        help='Torres atingidas pelo problema',
+        track_visibility='onchange')
+    
+    
+    def verificar_atrasos(self, cr, uid, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo monitorar os prazos repassados no ticket e caso 
+              ultrapasse o prazo marcar o mesmo como atrasado.
+        
+            Utilização:
+              verificar_atrasos()
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              context
+                Contexto atual
+        '''
+        from datetime import datetime
+        
+        monitoramento_obj = self.pool.get('monitoramento')
+        monitoramento_ids = self.pool.get('monitoramento').search(cr, uid, [])   
+        
+        for monitoramento_id in monitoramento_ids :
+            monitoramento_line = monitoramento_obj.browse(cr, uid,monitoramento_id ,context=context)
+            previsao = datetime.strptime(monitoramento_line.data_previsao, '%Y-%m-%d %H:%M:%S')
+
+            if previsao < datetime.today():
+                monitoramento_line.write({'atrasado': '1', 'color': 2}, context=context)
+        return True
+    
     
     def pegar_ticket(self, cr, uid, ids, context=None):
         '''
