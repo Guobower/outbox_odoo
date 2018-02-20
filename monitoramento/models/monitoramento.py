@@ -35,7 +35,7 @@ class Monitoramento(models.Model):
     
     sistema = fields.Many2one(
         comodel_name='sistemas_monitoramento',
-        string='Sistema',
+        string='Tipo',
         help='Sistema monitorado',
         track_visibility='onchange')
     
@@ -128,7 +128,8 @@ class Monitoramento(models.Model):
             previsao = datetime.strptime(monitoramento_line.data_previsao, '%Y-%m-%d %H:%M:%S')
 
             if previsao < datetime.today():
-                monitoramento_line.write({'atrasado': '1', 'color': 2}, context=context)
+                if monitoramento_line.stage_id.id != 4:
+                    monitoramento_line.write({'atrasado': '1', 'color': 2}, context=context)
         return True
     
     

@@ -26,7 +26,7 @@
 								<field name="prioridade" widget="priority" />
 							</group>
 						</group>
-						<group string="Atendimento" groups="monitoramento.user">
+						<group string="Atendimento">
 							<group>
 								<field name="data_previsao" string="Previsão de Conclusão" />
 								<field name="data_conclusao" string="Conclusão" />
