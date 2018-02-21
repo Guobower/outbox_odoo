@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
+from openerp import api
+from openerp import fields
+from openerp import models
 
 class Sla(models.Model):
     _name = 'sla'
@@ -7,36 +9,36 @@ class Sla(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     
     name = fields.Selection(
-        string="Servico",
-        selection=[('Ping', 'Latência')],
-        required=True,
-        track_visibility='onchange')
+                            string="Servico",
+                            selection=[('Ping', 'Latência')],
+                            required=True,
+                            track_visibility='onchange')
     
     contrato = fields.Many2one(
-        comodel_name='account.analytic.account',
-        string='Contrato',
-        required=True,
-        help='Contrato a verificar',
-        track_visibility='onchange')
+                               comodel_name='account.analytic.account',
+                               string='Contrato',
+                               required=True,
+                               help='Contrato a verificar',
+                               track_visibility='onchange')
     
     host = fields.Many2many(
-        comodel_name='host',
-        string='Host',
-        required=True,
-        help='Host para visualização',
-        track_visibility='onchange')
+                            comodel_name='host',
+                            string='Host',
+                            required=True,
+                            help='Host para visualização',
+                            track_visibility='onchange')
     
     data_inicio = fields.Date(
-        string='Data de Inicio',
-        help='Data de Inicio',
-        required=True,
-        track_visibility='onchange')
+                              string='Data de Inicio',
+                              help='Data de Inicio',
+                              required=True,
+                              track_visibility='onchange')
     
     data_termino = fields.Date(
-        string='Data de Termino',
-        help='Data de Termino',
-        required=True,
-        track_visibility='onchange')
+                               string='Data de Termino',
+                               help='Data de Termino',
+                               required=True,
+                               track_visibility='onchange')
     
     
     
@@ -52,13 +54,15 @@ class Sla(models.Model):
         
         return res
         '''
+        import urllib
         sla = self.pool.get('sla').browse(cr, user, ids[0])
-        url = 'http://syncron.cinte.com.br/scriptOdoo/sla/relatorioSla.php?servico='+str(sla.name)
-        url += '&inicio='+str(sla.data_inicio)
-        url += '&final='+str(sla.data_termino)
+        parametros = { 'servico' : str(sla.name), 'inicio' : str(sla.data_inicio), 'final' :str(sla.data_termino)}
+        url = 'http://syncron.cinte.com.br/scriptOdoo/sla/relatorioSla.php?' + urllib.urlencode(parametros)
+        #url += '&inicio=' + str(sla.data_inicio)
+        #url += '&final=' + str(sla.data_termino)
         
         for linha_host in sla.host:
-            url += '&hosts[]='+str(linha_host.host_id_centreon)
+            url += '&hosts[]=' + str(linha_host.host_id_centreon)
         
         res = {
             'type': 'ir.actions.act_url',

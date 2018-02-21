@@ -11,7 +11,6 @@
 				<tree string="SLA">
 					<field name="name" />
 					<field name="contrato" />
-					<field name="host" />
 					<field name="data_inicio" />
 					<field name="data_termino" />
 				</tree>
