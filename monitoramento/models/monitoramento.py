@@ -41,6 +41,13 @@ class Monitoramento(models.Model):
                               help='Sistema monitorado',
                               required=True,
                               track_visibility='onchange')
+                              
+    causa_tecnica = fields.Many2one(
+                              comodel_name='causa_tecnica',
+                              string='Causa Tecnica',
+                              help='Causa técnica que originou o problema',
+                              required=True,
+                              track_visibility='onchange')
     
     descricao = fields.Text(
                             string="Descricao",

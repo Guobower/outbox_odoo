@@ -53,6 +53,7 @@
                                 <field name="atrasado" readonly="1" />
                             </group>
                             <group>
+                                <field name="causa_tecnica" string="Causa Técnica" />
                                 <field name="responsavel" string="Responsável" />
                             </group>
                         </group>
