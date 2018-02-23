@@ -15,6 +15,18 @@
 				</p>
 			</field>
 		</record>
+                
+                <record model="ir.actions.act_window" id="conexoes_ativas_list_action">
+			<field name="name">Conexões Ativas</field>
+			<field name="res_model">conexoes_ativas</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Histórico de relatório de conexões ativas.
+				</p>
+			</field>
+		</record>
 		
 		<record model="ir.actions.act_window" id="torre_list_action">
 			<field name="name">Torre</field>
@@ -78,6 +90,9 @@
 			
 		<menuitem id="checkagem_acesso_menu" name="Checkagem de Acesso" parent="redes_relatorios_menu"
 			action="checkagem_acesso_list_action" />
+                
+                <menuitem id="conexoes_ativas_menu" name="Conexões Ativas" parent="redes_relatorios_menu"
+			action="conexoes_ativas_list_action" />
 
 		<menuitem id="router_menu" name="Router" parent="redes_configuracao_menu"
 			action="router_list_action" />

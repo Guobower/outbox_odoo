@@ -26,6 +26,8 @@
         'views/checkagem_acesso_form.xml',
         'views/report_checkagem_acesso.xml',
         'views/router_search.xml',
-        'views/router_notificacoes.xml'
+        'views/router_notificacoes.xml',
+        'views/conexoes_ativas_form.xml',
+        'views/report_conexoes_ativas.xml'
     ]
 }
