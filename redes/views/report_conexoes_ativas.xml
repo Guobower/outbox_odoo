@@ -23,6 +23,9 @@
                                         <th style="border: 1px solid #888888;" class="text-center">
                                             <strong>Início de Conexão</strong>
                                         </th>
+                                        <th style="border: 1px solid #888888;" class="text-center">
+                                            <strong>Opções</strong>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +41,9 @@
                                         </td>
                                         <td>
                                             <span t-esc="o[3]" />
+                                        </td>
+                                        <td>
+                                            <a t-att-href="o[4]" target="_blank">Desconectar</a>
                                         </td>
                                     </tr>
                                 </tbody>

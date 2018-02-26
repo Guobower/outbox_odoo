@@ -44,6 +44,7 @@ class Conexoes_ativas(models.Model):
                 objeto.append(linha["framedipaddress"])
                 objeto.append(linha["callingstationid"])
                 objeto.append(linha["acctstarttime"])
+                objeto.append("http://syncron.cinte.com.br/scriptOdoo/radacct/desconectar_cliente.php?mac="+linha["callingstationid"])
                 retorno.append(objeto)
                 #acctstoptime = null
         
