@@ -46,7 +46,6 @@ class Monitoramento(models.Model):
                               comodel_name='causa_tecnica',
                               string='Causa Tecnica',
                               help='Causa técnica que originou o problema',
-                              required=True,
                               track_visibility='onchange')
     
     descricao = fields.Text(
@@ -113,10 +112,10 @@ class Monitoramento(models.Model):
                                 help='Previsão de resolução foi ultrapassada?',
                                 track_visibility='onchange')
     
-    torre = fields.Many2many(
-                             comodel_name='torre',
-                             string='Torre',
-                             help='Torres atingidas pelo problema',
+    pop = fields.Many2many(
+                             comodel_name='pop',
+                             string='Pop',
+                             help='Pops atingidos pelo problema',
                              track_visibility='onchange')
     
     

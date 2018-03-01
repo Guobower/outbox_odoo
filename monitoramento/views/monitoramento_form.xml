@@ -62,7 +62,7 @@
                                 <field name="descricao" string="Descrição" />
                             </group>
                             <group>
-                                <field name="torre" />
+                                <field name="pop" />
                             </group>
                         </group>
                     </sheet>
