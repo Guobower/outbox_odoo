@@ -55,8 +55,19 @@
         'views/protocolo_sequencia.xml',
         'views/modo_contato_form.xml',
         'views/modo_contato_tree.xml',
+        'views/localidade_form.xml',
+        'views/localidade_tree.xml',
         'views/sla_form.xml',
         'views/sla_tree.xml',
-        'views/report_sla.xml'
+        'views/report_sla.xml',
+        'views/status_ocorrencia_form.xml',
+        'views/tipo_ocorrencia_form.xml',
+        'views/ocorrencia_sequencia.xml',
+        'views/ocorrencia_form.xml',
+        'views/ocorrencia_kanban.xml',
+        'views/ocorrencia_tree.xml',
+        'views/ocorrencia_graph.xml',
+        'views/abre_fecha_ocorrencia_form.xml',
+        'views/email_template_abre_fecha_ocorrencia.xml'
     ]
 }

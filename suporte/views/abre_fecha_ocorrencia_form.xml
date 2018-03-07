@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="abre_fecha_ocorrencia_form">
+            <field name="name">abre_fecha_ocorrencia.form</field>
+            <field name="model">abre_fecha_ocorrencia</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Aberturas e fechamentos de ocorrencias">
+                    <sheet string="Aberturas e fechamentos de ocorrencias">
+                        <group string="Informações Principais">
+                            <group>
+                                <field name="name" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="tempo_efetivo_indisponibilidade" attrs="{'invisible': [('name','=','1')]}" />
+                            </group>
+                            <group colspan="2">
+                                <field name="descricao" string="Descrição" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer> 
+                        <button name="write" type="object" string="Salvar" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

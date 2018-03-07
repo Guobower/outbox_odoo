@@ -1,101 +1,129 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
+from openerp import api
+from openerp import fields
+from openerp import models
 
 class Account_analytic_account_inherited(models.Model):
     _inherit = 'account.analytic.account' 
  
     _track = {
-            'account.analytic.account': {
-                'account.analytic.account.mt_stage_id': lambda self, cr, uid, obj, ctx = None: obj.status_contrato
-            }
+        'account.analytic.account': {
+            'account.analytic.account.mt_stage_id': lambda self, cr, uid, obj, ctx = None: obj.status_contrato
+        }
     }
     
     _defaults = {
-        'stage_id' : 1,
+        'stage_id': 1,
         'type': 'contract'
     }
     
     status_contrato = fields.Many2one(
-        comodel_name='status_contrato',
-        string='Status',
-        help='Status do contrato',
-        track_visibility='onchange')
+                                      comodel_name='status_contrato',
+                                      string='Status',
+                                      help='Status do contrato',
+                                      track_visibility='onchange')
     
     tipo_envio = fields.Selection(
-        selection=[('1', 'Correios'),
-                   ('2', 'E-mail')],
-        string='Tipo de envio do boleto',
-        help='Forma escolhida pelo cliente para envio do boleto',
-        track_visibility='onchange')
+                                  selection=[('1', 'Correios'),
+                                  ('2', 'E-mail')],
+                                  string='Tipo de envio do boleto',
+                                  help='Forma escolhida pelo cliente para envio do boleto',
+                                  track_visibility='onchange')
     
     data_base_vencimento = fields.Integer(
-        string="Data de Vencimento dos Boletos",
-        help="Data base para vencimento dos boletos",
-        track_visibility='onchange')
+                                          string="Data de Vencimento dos Boletos",
+                                          help="Data base para vencimento dos boletos",
+                                          track_visibility='onchange')
     
     tipo_contrato = fields.Selection(
-        selection=[('1', 'Banda Larga'),
-                   ('2', 'Corporativo'),
-                   ('3', 'Licitado'),
-                   ('4', 'Provedor')],
-        string='Tipo de Contrato',
-        help='Tipo de contrato com o cliente',
-        track_visibility='onchange')
+                                     selection=[('1', 'Banda Larga'),
+                                     ('2', 'Corporativo'),
+                                     ('3', 'Licitado'),
+                                     ('4', 'Provedor')],
+                                     string='Tipo de Contrato',
+                                     help='Tipo de contrato com o cliente',
+                                     track_visibility='onchange')
     
     adesao = fields.One2many(
-        comodel_name='adesao',
-        inverse_name='contrato',
-        string='Adesoes',
-        help='Adesões vinculadas ao contrato')
+                             comodel_name='adesao',
+                             inverse_name='contrato',
+                             string='Adesoes',
+                             help='Adesões vinculadas ao contrato')
+        
+    localidade = fields.One2many(
+                                 comodel_name='localidade',
+                                 inverse_name='contrato',
+                                 string='Localidades',
+                                 help='Localidades vinculadas ao contrato')
+                                 
+    contato_localidade = fields.One2many(
+                                 comodel_name='contato_localidade',
+                                 inverse_name='contrato',
+                                 string='Contatos das Localidades',
+                                 help='Contatos das localidades vinculadas ao contrato')
     
     atendimento = fields.One2many(
-        comodel_name='atendimento',
-        inverse_name='contrato',
-        string='Atendimentos',
-        help='Atendimentos vinculados ao contrato')
+                                  comodel_name='atendimento',
+                                  inverse_name='contrato',
+                                  string='Atendimentos',
+                                  help='Atendimentos vinculados ao contrato')
     
     protocolo = fields.One2many(
-        comodel_name='protocolo',
-        inverse_name='contrato',
-        string='Protocolos',
-        help='Protocolos vinculados ao contrato')
+                                comodel_name='protocolo',
+                                inverse_name='contrato',
+                                string='Protocolos',
+                                help='Protocolos vinculados ao contrato')
+                                
+    ocorrencia = fields.One2many(
+                                comodel_name='ocorrencia',
+                                inverse_name='contrato',
+                                string='Ocorrencias',
+                                help='Ocorrencias vinculados ao contrato')
     
     contrato_pdf = fields.Binary(
-        string='Contrato Assinado',
-        help='Contrato assinado pelo cliente.')
+                                 string='Contrato Assinado',
+                                 help='Contrato assinado pelo cliente.')
     
     contrato_pdf_filename = fields.Char("Contrato Assinado", 
-        track_visibility='onchange')
+                                        track_visibility='onchange')
     
     id_syncron = fields.Integer(
-        string='ID no Syncron',
-        help='ID de identificação no Syncron')
+                                string='ID no Syncron',
+                                help='ID de identificação no Syncron')
     
     date_start = fields.Date(
-        track_visibility='onchange'
-        )
+                             track_visibility='onchange'
+                             )
     
     recurring_invoices = fields.Boolean(
-        track_visibility='onchange'
-        )
+                                        track_visibility='onchange'
+                                        )
     
     recurring_interval = fields.Integer(
-        track_visibility='onchange'
-        )
+                                        track_visibility='onchange'
+                                        )
     
     recurring_next_date = fields.Date(
-        track_visibility='onchange'
-        )
+                                      track_visibility='onchange'
+                                      )
     
     recurring_rule_type = fields.Selection(
-        track_visibility='onchange'
-        )
+                                           track_visibility='onchange'
+                                           )
     
     host = fields.One2many(
-        comodel_name='host',
-        inverse_name='contrato',
-        string='Hosts',
-        help='Hosts vinculados ao contrato')
+                           comodel_name='host',
+                           inverse_name='contrato',
+                           string='Hosts',
+                           help='Hosts vinculados ao contrato')
+        
+    sla = fields.Selection(
+                           selection=[(0, 'Não'),
+                           (1, 'Sim')],
+                           string='SLA',
+                           help='Cliente possui SLA?',
+                           required=True,
+                           track_visibility='onchange')
     
     
     def ativar_contrato(self, cr, user, ids, context=None):

@@ -14,20 +14,13 @@ class Res_partner_inherited(models.Model):
     }
     
     informacoes_tecnicas = fields.Text(
-        string="Informações Técnicas",
+        string="Informacoes Tecnicas",
         help="Informações técnicas sobre o cliente",
         track_visibility='onchange')
     
     textos_chamados = fields.Text(
         string="Textos de Chamados",
         help="Textos padrões para os chamados dos clientes",
-        track_visibility='onchange')
-    
-    sla = fields.Selection(
-        selection=[('0', 'Não'),
-                   ('1', 'Sim')],
-        string='SLA',
-        help='Cliente possui SLA?',
         track_visibility='onchange')
     
     usuario_centreon = fields.Char(

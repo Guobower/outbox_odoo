@@ -1,66 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <openerp>
-	<data>
-		<record model="ir.ui.view" id="atendimento_form">
-			<field name="name">atendimento.form</field>
-			<field name="model">atendimento</field>
-			<field name="view_type">form</field>
-			<field name="priority" eval="16" />
-			<field name="arch" type="xml">
-				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<form string="Atendimento">
-					<sheet>
-						<group>
-							<group string="Área de Atendimento">
-								<field name="manifestacao_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}" />
-								<field name="grupo_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}"
-									domain="[('manifestacao_atendimento', '=', manifestacao_atendimento)]" />
-								<field name="tipo_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}"
-									domain="[('grupo_atendimento', '=', grupo_atendimento)]" on_change="on_change_tipo_atendimento(tipo_atendimento)" />
-							</group>
-							<group string="Vínculo">
-								<field name="contrato" readonly="1" />
-								<field name="adesao" readonly="1" />
-							</group>
-						</group>
-						<notebook>
-							<page string="Manual de Atendimento">
-								<group string="Procedimento Técnico">
-									<field name="procedimento" readonly="1" />
-								</group>
-								<group string="Orientação para Atendimento">
-									<field name="orientacao" readonly="1" />
-									<field name="tempo_resolucao" readonly="1" />
-									<field name="manual_filename" invisible="1" />
-									<field widget="binary" height="64" name="manual"
-										filename="manual_filename" readonly="1" />
-								</group>
-							</page>
-							<page string="Atendimento">
-								<group>
-									<group string="Manifestação">
-										<field name="name" readonly="1" />
-										<field name="reclamacao" attrs="{'readonly': [('id','!=', False)]}" />
-										<field name="documentacao" />
-										<field name="modo_contato" />
-									</group>
-									<group string="Andamento do Atendimento">
-										<field name="id" invisible="1" />
-										<field name="previsao_resolucao" attrs="{'invisible': [('id','=', False)],'readonly': [('id','!=', False)]}" />
-										<field name="data_conclusao" />
-										<field name="solicitacao_atendida" />
-										<field name="status_atendimento" />
-									</group>
-								</group>
-							</page>
-						</notebook>
-						<div class="oe_chatter">
-							<field name="message_follower_ids" widget="mail_followers" />
-							<field name="message_ids" widget="mail_thread" />
-						</div>
-					</sheet>
-				</form>
-			</field>
-		</record>
-	</data>
+    <data>
+        <record model="ir.ui.view" id="atendimento_form">
+            <field name="name">atendimento.form</field>
+            <field name="model">atendimento</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Atendimento">
+                    <sheet>
+                        <group>
+                            <group string="Área de Atendimento">
+                                <field name="manifestacao_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}" />
+                                <field name="grupo_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}"
+                                                                       domain="[('manifestacao_atendimento', '=', manifestacao_atendimento)]" />
+                                <field name="tipo_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}"
+                                                                       domain="[('grupo_atendimento', '=', grupo_atendimento)]" on_change="on_change_tipo_atendimento(tipo_atendimento)" />
+                            </group>
+                            <group string="Vínculo">
+                                <field name="contrato" readonly="1" />
+                                <field name="adesao" readonly="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Manual de Atendimento">
+                                <group string="Procedimento Técnico">
+                                    <field name="procedimento" readonly="1" />
+                                </group>
+                                <group string="Orientação para Atendimento">
+                                    <field name="orientacao" readonly="1" />
+                                    <field name="tempo_resolucao" readonly="1" />
+                                    <field name="manual_filename" invisible="1" />
+                                    <field widget="binary" height="64" name="manual"
+                                                                               filename="manual_filename" readonly="1" />
+                                </group>
+                            </page>
+                            <page string="Atendimento">
+                                <group>
+                                    <group string="Manifestação">
+                                        <field name="name" readonly="1" />
+                                        <field name="reclamacao" attrs="{'readonly': [('id','!=', False)]}" />
+                                        <field name="documentacao" />
+                                        <field name="modo_contato" />
+                                    </group>
+                                    <group string="Andamento do Atendimento">
+                                        <field name="id" invisible="1" />
+                                        <field name="previsao_resolucao" attrs="{'invisible': [('id','=', False)],'readonly': [('id','!=', False)]}" />
+                                        <field name="data_conclusao" />
+                                        <field name="solicitacao_atendida" />
+                                        <field name="status_atendimento" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers" />
+                            <field name="message_ids" widget="mail_thread" />
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
 </openerp>

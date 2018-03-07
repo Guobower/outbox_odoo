@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="localidade_tree">
+			<field name="name">localidade.tree</field>
+			<field name="model">localidade</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Localidades">
+					<field name="name" />
+                                        <field name="cidade" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

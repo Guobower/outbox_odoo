@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="ocorrencia_graph">
+            <field name="name">ocorrencia.graph</field>
+            <field name="model">ocorrencia</field>
+            <field name="view_type">graph</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <graph string="Ocorrencias">
+                    <field name="tipo_ocorrencia" />
+                    <field name="status_ocorrencia" />
+                </graph>
+            </field>
+        </record>
+    </data>
+</openerp>

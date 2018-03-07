@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="ocorrencia_form">
+            <field name="name">ocorrencia.form</field>
+            <field name="model">ocorrencia</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Ocorrencia">
+                    <sheet>
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="reabrir_ocorrencia" attrs="{'invisible': [('status_ocorrencia','=',1)]}"
+                                    icon="fa-unlock" string="Reabrir">
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="fechar_ocorrencia" attrs="{'invisible': [('status_ocorrencia','=',2)]}"
+                                    icon="fa-lock" string="Fechar">
+                            </button>
+                        </div>
+                        <group>
+                            <group string="Ocorrência">
+                                <field name="name" readonly="1" />
+                                <field name="status_ocorrencia" readonly="1" required="1" />
+                                <field name="tempo_efetivo_indisponibilidade" readonly="1" />
+                            </group>
+                            <group string="Vínculo">
+                                <field name="contrato" readonly="1" />
+                                <field name="localidade" domain="[('contrato', '=', contrato)]" options="{'no_create': True}" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Dados da Ocorrência">
+                                <group>
+                                    <group string="Manifestação">
+                                        <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
+                                        <field name="titulo" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
+                                        <field name="descricao" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
+                                    </group>
+                                    <group string="Andamento do Atendimento">
+                                        <field name="imputavel" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Aberturas e Fechamentos">
+                                <field name="abre_fecha_ocorrencia" readonly="1">
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="descricao" />
+                                        <field name="tempo_efetivo_indisponibilidade" />
+                                        <field name="create_date" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Informações Técnicas">
+                                <field name="informacoes_tecnicas" readonly="1" />
+                            </page>
+                            <page string="Textos de Chamados">
+                                <field name="textos_chamados" readonly="1" />
+                            </page>
+                        </notebook>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers" />
+                            <field name="message_ids" widget="mail_thread" />
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

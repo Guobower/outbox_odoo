@@ -73,6 +73,18 @@
 				</p>
 			</field>
 		</record>
+                
+                <record model="ir.actions.act_window" id="ocorrencia_list_action">
+			<field name="name">Ocorrencias</field>
+			<field name="res_model">ocorrencia</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form,graph</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de ocorrências.
+				</p>
+			</field>
+		</record>
 		
 		<record model="ir.actions.act_window" id="sla_list_action">
 			<field name="name">SLA</field>
@@ -206,6 +218,30 @@
 				</p>
 			</field>
 		</record>
+                
+                <record model="ir.actions.act_window" id="tipo_ocorrencia_list_action">
+			<field name="name">Tipo de Ocorrência</field>
+			<field name="res_model">tipo_ocorrencia</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de tipos de ocorrências.
+				</p>
+			</field>
+		</record>
+                
+                <record model="ir.actions.act_window" id="status_ocorrencia_list_action">
+			<field name="name">Status de Ocorrência</field>
+			<field name="res_model">status_ocorrencia</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de status de ocorrências.
+				</p>
+			</field>
+		</record>
 
 
 		<!-- the following menuitem should appear *after* its parent openacademy_menu 
@@ -226,6 +262,9 @@
 			
 		<menuitem id="atendimentos_menu" name="Atendimentos" parent="atendimento_menu"
 			action="atendimento_list_action" />	
+                
+                <menuitem id="ocorrencias_menu" name="Ocorrencias" parent="atendimento_menu"
+			action="ocorrencia_list_action" />	
 			
 		<menuitem id="sla_menu" name="SLA" parent="atendimento_menu"
 			action="sla_list_action" />	
@@ -270,6 +309,17 @@
 			
 		<menuitem id="modo_contato_menu" name="Modo de Contato"
 			parent="configuracoes_atendimento_menu" action="modo_contato_list_action" />
+                
+                
+                
+                <menuitem id="configuracoes_ocorrencia_menu" name="Configurações de Ocorrências"
+			sequence="20" parent="suporte_parent_menu" />
+                
+                <menuitem id="status_ocorrencia_menu" name="Status de Ocorrência"
+			parent="configuracoes_ocorrencia_menu" action="status_ocorrencia_list_action" />
+                
+                <menuitem id="tipo_ocorrencia_menu" name="Tipo de Ocorrência"
+			parent="configuracoes_ocorrencia_menu" action="tipo_ocorrencia_list_action" />
 
 	</data>
 </openerp>

@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<openerp>
+	<!-- Mail template are declared in a NOUPDATE block so users can freely 
+		customize/delete them -->
+	<data>
+		<!--Email template -->
+		<record id="email_template_abre_fecha_ocorrencia" model="email.template">
+			<field name="name">Abertura e Fechamento de Ocorrencias</field>
+			<field name="model_id" ref="suporte.model_ocorrencia" />
+			<field name="auto_delete" eval="True" />
+			<field name="email_from">odoo@cinte.com.br</field>
+			<field name="email_to">
+				edsoncosme@cinte.com.br
+			</field>
+			<field name="subject">Ocorrência - ${object.name}</field>
+			<field name="body_html">
+<![CDATA[
+
+<b><u>HIST&Oacute;RICO DO ATENDIMENTO</u></b>
+        <br><br>
+            <table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
+                <thead>
+                    <tr><th colspan='2' align='center' style='background-color: #007236; color: #FFFFFF;' >Ocorr&ecirc;ncia ${object.name} -  ${object.report_format_imputavel(object.imputavel)}</p></th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><b>T&iacute;tulo:</b></td><td>${object.titulo}</td></tr>
+                    <tr><td><b>Descri&ccedil;&atilde;o:</b></td><td>${object.descricao}</td></tr>
+                    <tr><td><b>Abertura:</b></td><td>${object.report_format_data(object.create_date)}</td></tr>
+                    <tr><td nowrap><b>Tipo de Ocorr&ecirc;ncia:</b></td><td>${object.tipo_ocorrencia.name}</td></tr>
+                    <tr><td><b>Cliente:</b></td><td>${object.contrato.partner_id.name}</td></tr>
+                    <tr><td><b>Usu&aacute;rio:</b></td><td>${object.create_uid.name}</td></tr>
+                    <tr><td><b>Status:</b></td><td>${object.status_ocorrencia.name}</td></tr>
+                    <tr><td><b>Localidade:</b></td><td>${object.localidade.name}</td></tr>
+                    <tr><td><b>Tempo Efetivo de Indisponibilidade:</b></td><td>${object.tempo_efetivo_indisponibilidade}</td></tr>
+                </tbody>
+            </table>
+            <br><br>
+<b><u>ABERTURAS E FECHAMENTOS</u></b>    
+<br><br>
+<table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
+    <tr align='center' style='background-color: #007236; color: #FFFFFF;' >
+        <td><b>Opera&ccedil;&atilde;o</b></td>
+        <td><b>Data da abertura/fechamento</b></td>
+        <td><b>Tempo efetivo de indisponibilidade</b></td>
+        <td><b>Descri&ccedil;&atilde;o</b></td>
+        <td><b>Usu&aacute;rio</b></td>
+    </tr>
+    % for row in object.abre_fecha_ocorrencia:  
+    <tr>
+        <td>${object.report_format_operacao(row.name)}</td>
+        <td>${object.report_format_data(row.create_date)}</td>
+        <td>${row.tempo_efetivo_indisponibilidade}</td>
+        <td>${row.descricao}</td>
+        <td>${row.create_uid.name}</td>
+    <tr>
+    %endfor
+</table>
+
+]]>
+</field>
+		</record>
+	</data>
+</openerp>

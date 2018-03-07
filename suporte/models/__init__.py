@@ -15,3 +15,9 @@ from . import atendimento
 from . import status_atendimento
 from . import modo_contato
 from . import sla
+from . import localidade
+from . import status_ocorrencia
+from . import tipo_ocorrencia
+from . import ocorrencia
+from . import contato_localidade
+from . import abre_fecha_ocorrencia

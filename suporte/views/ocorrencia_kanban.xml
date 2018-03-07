@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="ocorrencia_kanban">
+            <field name="name">ocorrencia.kanban</field>
+            <field name="model">ocorrencia</field>
+            <field name="view_type">kanban</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <kanban default_group_by="status_ocorrencia" edit="false">
+                    <field name="status_ocorrencia" />
+                    <field name="create_uid" />
+                    <field name="color" />
+                    <templates>
+                        <field name="status_ocorrencia" />
+                        <t t-name="kanban-box">
+                            <div
+                                t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_dropdown_toggle oe_dropdown_kanban">
+                                    <span class="oe_e">í</span>
+                                    <ul class="oe_dropdown_menu">
+                                        <t t-if="widget.view.is_action_enabled('edit')">
+                                            <li>
+                                                <a type="edit">Edit...</a>
+                                            </li>
+                                        </t>
+                                        <t t-if="widget.view.is_action_enabled('delete')">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                        </t>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker" data-field="color" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <b>
+                                            <field name="titulo" />
+                                        </b>
+                                    </div>
+                                    <div>
+                                        <b style="color: #AAAAAA">
+                                            <i>
+                                                <field name="descricao" />
+                                            </i>
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="oe_clear" />
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</openerp>
