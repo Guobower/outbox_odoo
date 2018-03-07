@@ -7,6 +7,10 @@ class AccountMoveLineInherited(models.Model):
     
     name = fields.Char(
         required=False)
+        
+    centro_custo_name = fields.Char('Centro de Custo', related='invoice.x_centro_custo.name', store=True)
+    
+    natureza_financeira_name = fields.Char('Centro de Custo', related='invoice.x_natureza_financeira.name', store=True)
 
     @api.multi
     def action_payment_installment(self):
