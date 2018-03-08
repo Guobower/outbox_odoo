@@ -32,7 +32,13 @@ class Abre_fecha_ocorrencia(models.Model):
                                  comodel_name='ocorrencia',
                                  help="Ocorrência a qual a abertura/fechamento está vinculada")
          
-                                 
+    anexo2 = fields.Binary(
+        string='Anexo',
+        help='Anexo.',
+        attachment=True)
+    
+    anexo_filename = fields.Char("Anexo")
+    
     @api.model
     def create(self, values):
         import datetime
@@ -53,11 +59,32 @@ class Abre_fecha_ocorrencia(models.Model):
             template_id = ir_model_data.get_object_reference(self.env.cr, self.env.uid, 'suporte', 'email_template_abre_fecha_ocorrencia')[1]
         except ValueError:
             template_id = False
-            
+        
+        
+        attachment = {
+            'name': str(record['anexo_filename']),
+            'datas': record['anexo2'],
+ 	    'datas_fname': record['anexo_filename'],
+            'res_model': 'abre_fecha_ocorrencia',
+            'res_id': record['id'],
+            'type': 'binary'
+        }
+        
+        arquivo_anexo = self.env['ir.attachment'].create(attachment)
+        
+        #template = self.pool.get('mail.template').browse(self.env.cr, self.env.uid, template_id)
+        template = self.env['email.template'].browse(template_id)
+        # Add Attachment
+
+        template.attachment_ids = [(6,0,[arquivo_anexo.id])]
+
+        template.send_mail(record['ocorrencia'].id, force_send=True)
+        
+        '''
         self.pool['email.template'].send_mail(
            self.env.cr, self.env.uid, template_id, record['ocorrencia'].id, force_send=True,
            context=None)
         
-        
+        '''
         # Return the record so that the changes are applied and everything is stored.
 	return record
