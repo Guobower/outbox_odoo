@@ -233,7 +233,22 @@ class Ocorrencia(models.Model):
             }
         }
     
-    
+    def adicionar_observacao(self, cr, user, ids, context=None):
+        
+        return {
+            'name':'abre_fecha_ocorrencia.form',
+            'view_type':'form',
+            'view_mode':'form',
+            'res_model':'abre_fecha_ocorrencia',
+            'type':'ir.actions.act_window',
+            'target':'new',
+            'context': {
+                'default_ocorrencia': ids[0],
+                'default_name': '3',
+            }
+        }
+        
+        
     def report_format_data(self, cr, uid, data, context=None):
         import datetime
         
@@ -244,9 +259,11 @@ class Ocorrencia(models.Model):
         
         if operacao:
             if operacao == '1':
-                retorno = "Abertura"
+                retorno = "Reabertura"
             if operacao == '2':
                 retorno = "Fechamento"
+            if operacao == '3':
+                retorno = "Observacao"
         
         return retorno
     
@@ -260,4 +277,58 @@ class Ocorrencia(models.Model):
                 retorno = "Imputavel"
 
         return retorno
+    
+    def report_format_aberto_fechado(self, cr, uid, status, context=None):
+        retorno = ""
         
+        if status:
+            if status == 1:
+                retorno = "Aberto a"
+            if status == 2:
+                retorno = "Tempo Efetivo de Indisponibilidade"
+
+        return retorno
+    
+    def report_format_tempo_efetivo_indisponibilidade(self, cr, uid, ocorrencia, context=None):
+        import datetime
+        retorno = ""
+        
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
+        
+        if obj_ocorrencia.status_ocorrencia:
+            if obj_ocorrencia.status_ocorrencia.id == 1:
+                tempo_efetivo_indisponibilidade = (datetime.datetime.today() - datetime.datetime.strptime(obj_ocorrencia.create_date, '%Y-%m-%d %H:%M:%S')).total_seconds()
+                
+                retorno = self.formatar_hora_extenso(tempo_efetivo_indisponibilidade)
+            if obj_ocorrencia.status_ocorrencia.id == 2:
+                retorno = self.formatar_hora_extenso(obj_ocorrencia.tempo_efetivo_indisponibilidade*60)
+
+        return retorno
+    
+    def formatar_hora_extenso(self, segundos):
+        #dias = segundos // 86400
+        #segundos_rest = segundos % 86400
+        horas = segundos // 3600
+        segundos_rest = segundos % 3600
+        minutos = segundos_rest // 60
+        minutos_totais = segundos // 60
+        
+        return str(int(round(horas)))+' horas e '+str(int(round(minutos)))+' minutos ('+str(int(round(minutos_totais)))+' minutos)'
+    
+    def houve_nova_informacao(self, cr, uid, ocorrencia, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
+        
+        retorno = ""
+        if len(obj_ocorrencia.abre_fecha_ocorrencia) > 0:
+            retorno = "A seguinte informacao foi adicionada a ordem de servico:"
+        
+        return retorno
+    
+    def ultima_informacao(self, cr, uid, ocorrencia, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
+        
+        retorno = ""
+        cont_iteracoes = len(obj_ocorrencia.abre_fecha_ocorrencia)
+        if cont_iteracoes > 0:
+            retorno = obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].descricao
+        return retorno

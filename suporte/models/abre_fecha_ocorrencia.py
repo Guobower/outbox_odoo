@@ -12,7 +12,8 @@ class Abre_fecha_ocorrencia(models.Model):
     name = fields.Selection(
                             string="Tipo",
                             selection=[('1', 'Abertura'),
-                            ('2', 'Fechamento')],
+                            ('2', 'Fechamento'),
+                            ('3', 'Observação')],
                             required=True,
                             track_visibility='onchange')
     
@@ -62,9 +63,9 @@ class Abre_fecha_ocorrencia(models.Model):
         
         
         attachment = {
-            'name': str(record['anexo_filename']),
+            'name': str(record['anexo_filename'].encode('ascii', 'ignore').decode('ascii')),
             'datas': record['anexo2'],
- 	    'datas_fname': record['anexo_filename'],
+ 	    'datas_fname': str(record['anexo_filename'].encode('ascii', 'ignore').decode('ascii')),
             'res_model': 'abre_fecha_ocorrencia',
             'res_id': record['id'],
             'type': 'binary'
@@ -80,11 +81,5 @@ class Abre_fecha_ocorrencia(models.Model):
 
         template.send_mail(record['ocorrencia'].id, force_send=True)
         
-        '''
-        self.pool['email.template'].send_mail(
-           self.env.cr, self.env.uid, template_id, record['ocorrencia'].id, force_send=True,
-           context=None)
-        
-        '''
         # Return the record so that the changes are applied and everything is stored.
 	return record

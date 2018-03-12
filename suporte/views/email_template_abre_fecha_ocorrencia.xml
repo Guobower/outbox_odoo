@@ -15,10 +15,47 @@
 			<field name="subject">Ocorrência - ${object.name}</field>
 			<field name="body_html">
 <![CDATA[
+<style>
+table {
+    border-collapse: collapse;
+}
 
+table, th, td {
+    border: 1px solid #009458;
+}
+
+th, td {
+    padding: 5px;
+}
+
+</style>
+<p>
+Mensagem gerada automaticamente pelo sistema de gerenciamento da CINTE.
+<br>
+Caso deseje manter contato, ligar para (84) 3231-2922 ou enviar e-mail para suporte@cinte.com.br. 
+<br>
+<br>
+<b><u>REGISTRO DA ATIVIDADE</u></b>
+<br>
+<br>
+<b>Cliente:</b> ${object.contrato.partner_id.name}
+<br>
+<b>Ordem de Serviço:</b> ${object.name} 
+<br>
+<b>Data e Hora da Abertura:</b> ${object.report_format_data(object.create_date)}
+<br>
+<b>Motivo da Abertura:</b> ${object.descricao}
+<br>
+<br>
+<b>${object.houve_nova_informacao(object.id)}</b>
+<br>
+${object.ultima_informacao(object.id)}
+<br>
+<br>
+</p>
 <b><u>HIST&Oacute;RICO DO ATENDIMENTO</u></b>
         <br><br>
-            <table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
+            <table width='100%' style='font-family: 'Verdana'; font-size: 11px; border: 1px solid #007236' >
                 <thead>
                     <tr><th colspan='2' align='center' style='background-color: #007236; color: #FFFFFF;' >Ocorr&ecirc;ncia ${object.name} -  ${object.report_format_imputavel(object.imputavel)}</p></th></tr>
                 </thead>
@@ -31,31 +68,28 @@
                     <tr><td><b>Usu&aacute;rio:</b></td><td>${object.create_uid.name}</td></tr>
                     <tr><td><b>Status:</b></td><td>${object.status_ocorrencia.name}</td></tr>
                     <tr><td><b>Localidade:</b></td><td>${object.localidade.name}</td></tr>
-                    <tr><td><b>Tempo Efetivo de Indisponibilidade:</b></td><td>${object.tempo_efetivo_indisponibilidade}</td></tr>
+                    <tr><td><b>${object.report_format_aberto_fechado(object.status_ocorrencia.id)}:</b></td><td>${object.report_format_tempo_efetivo_indisponibilidade(object.id)}</td></tr>
                 </tbody>
             </table>
-            <br><br>
-<b><u>ABERTURAS E FECHAMENTOS</u></b>    
-<br><br>
 <table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
-    <tr align='center' style='background-color: #007236; color: #FFFFFF;' >
+    <tr align='center' style='background-color: #007236; color: #FFFFFF;'><td colspan='5'><b>REABERTURAS, FECHAMENTOS E OBSERVAÇÕES</b></td></tr>
+    <tr>
+        <td><b>Protocolo</b></td>
         <td><b>Opera&ccedil;&atilde;o</b></td>
-        <td><b>Data da abertura/fechamento</b></td>
-        <td><b>Tempo efetivo de indisponibilidade</b></td>
         <td><b>Descri&ccedil;&atilde;o</b></td>
+        <td><b>Data da abertura/fechamento</b></td>
         <td><b>Usu&aacute;rio</b></td>
     </tr>
     % for row in object.abre_fecha_ocorrencia:  
     <tr>
+        <td>${object.name}</td>
         <td>${object.report_format_operacao(row.name)}</td>
-        <td>${object.report_format_data(row.create_date)}</td>
-        <td>${row.tempo_efetivo_indisponibilidade}</td>
         <td>${row.descricao}</td>
+        <td>${object.report_format_data(row.create_date)}</td>
         <td>${row.create_uid.name}</td>
     <tr>
     %endfor
 </table>
-Download: ${object.anexo}
 ]]>
 </field>
 		</record>

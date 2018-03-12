@@ -19,6 +19,10 @@
                                     name="fechar_ocorrencia" attrs="{'invisible': [('status_ocorrencia','=',2)]}"
                                     icon="fa-lock" string="Fechar">
                             </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="adicionar_observacao"
+                                    icon="fa-edit" string="Observação">
+                            </button>
                         </div>
                         <group>
                             <group string="Ocorrência">
@@ -44,7 +48,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Aberturas e Fechamentos">
+                            <page string="Aberturas, Fechamentos e Observações">
                                 <field name="abre_fecha_ocorrencia" readonly="1">
                                     <tree>
                                         <field name="name" />
