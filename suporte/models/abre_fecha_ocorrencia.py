@@ -41,7 +41,7 @@ class Abre_fecha_ocorrencia(models.Model):
     anexo_filename = fields.Char("Anexo")
     
     @api.model
-    def create(self, values):
+    def create(self, values, anexo_lote=0):
         import datetime
         # Override the original create function for the res.partner model
         record = super(Abre_fecha_ocorrencia, self).create(values)
@@ -61,24 +61,25 @@ class Abre_fecha_ocorrencia(models.Model):
         except ValueError:
             template_id = False
         
-        
-        attachment = {
-            'name': str(record['anexo_filename'].encode('ascii', 'ignore').decode('ascii')),
-            'datas': record['anexo2'],
- 	    'datas_fname': str(record['anexo_filename'].encode('ascii', 'ignore').decode('ascii')),
-            'res_model': 'abre_fecha_ocorrencia',
-            'res_id': record['id'],
-            'type': 'binary'
-        }
-        
-        arquivo_anexo = self.env['ir.attachment'].create(attachment)
-        
-        #template = self.pool.get('mail.template').browse(self.env.cr, self.env.uid, template_id)
         template = self.env['email.template'].browse(template_id)
-        # Add Attachment
-
-        template.attachment_ids = [(6,0,[arquivo_anexo.id])]
-
+        
+        if record['anexo_filename']:
+            attachment = {
+                'name': str(record['anexo_filename'].encode('ascii', 'ignore').decode('ascii')),
+                'datas': record['anexo2'],
+                'datas_fname': str(record['anexo_filename'].encode('ascii', 'ignore').decode('ascii')),
+                'res_model': 'abre_fecha_ocorrencia',
+                'res_id': record['id'],
+                'type': 'binary'
+            }
+            print 'Abre-fecha: '+str(values)
+            arquivo_anexo = self.env['ir.attachment'].create(attachment)
+            # Add Attachment
+            template.attachment_ids = [(6,0,[arquivo_anexo.id])]
+        
+        if anexo_lote > 0:
+            template.attachment_ids = [(6,0,[anexo_lote])]
+            
         template.send_mail(record['ocorrencia'].id, force_send=True)
         
         # Return the record so that the changes are applied and everything is stored.

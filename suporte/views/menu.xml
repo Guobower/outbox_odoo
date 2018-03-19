@@ -28,7 +28,7 @@
 			<field name="view_mode">tree,form,graph</field>
 			<field name="domain">[('parent_id', '=', False)]</field>
 			<field name="context">{
-				'parent_id': 'false'
+				'parent_id': None
 				}
 			</field>
 			<field name="help" type="html">
@@ -82,6 +82,30 @@
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Lista de ocorrências.
+				</p>
+			</field>
+		</record>
+                
+                <record model="ir.actions.act_window" id="lote_ocorrencias_list_action">
+			<field name="name">Lote de Ocorrencias</field>
+			<field name="res_model">lote_ocorrencias</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lote de ocorrências.
+				</p>
+			</field>
+		</record>
+                
+                <record model="ir.actions.act_window" id="lote_abre_fecha_ocorrencias_list_action">
+			<field name="name">Lote Abre e Fecha Ocorrencias</field>
+			<field name="res_model">lote_abre_fecha_ocorrencias</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lote de abertura e fechamento de ocorrências.
 				</p>
 			</field>
 		</record>
@@ -264,8 +288,8 @@
 			action="atendimento_list_action" />	
                 
                 <menuitem id="ocorrencias_menu" name="Ocorrencias" parent="atendimento_menu"
-			action="ocorrencia_list_action" />	
-			
+			action="ocorrencia_list_action" />
+                	
 		<menuitem id="sla_menu" name="SLA" parent="atendimento_menu"
 			action="sla_list_action" />	
 

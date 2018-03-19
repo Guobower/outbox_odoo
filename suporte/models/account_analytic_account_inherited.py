@@ -180,3 +180,64 @@ class Account_analytic_account_inherited(models.Model):
             'tag': 'reload',
         }
         
+        
+    def abrir_varias_ocorrencias(self, cr, user, ids, context=None):
+        
+        return {
+            'name':'lote_ocorrencias.form',
+            'view_type':'form',
+            'view_mode':'form',
+            'res_model':'lote_ocorrencias',
+            'type':'ir.actions.act_window',
+            'target':'new',
+            'context': {
+                'default_contrato': ids[0]
+            }
+        }
+        
+    def reabrir_varias_ocorrencias(self, cr, user, ids, context=None):
+        return {
+            'name':'lote_abre_fecha_ocorrencias.form',
+            'view_type':'form',
+            'view_mode':'form',
+            'res_model':'lote_abre_fecha_ocorrencias',
+            'type':'ir.actions.act_window',
+            'target':'new',
+            'context': {
+                'default_contrato': ids[0],
+                'default_name': '1',
+                'default_operacao': '1'
+            }
+        }
+        
+    def fechar_varias_ocorrencias(self, cr, user, ids, context=None):
+        
+        return {
+            'name':'lote_abre_fecha_ocorrencias.form',
+            'view_type':'form',
+            'view_mode':'form',
+            'res_model':'lote_abre_fecha_ocorrencias',
+            'type':'ir.actions.act_window',
+            'target':'new',
+            'context': {
+                'default_contrato': ids[0],
+                'default_name': '2',
+                'default_operacao': '2'
+            }
+        }
+        
+    def obs_varias_ocorrencias(self, cr, user, ids, context=None):
+        
+        return {
+            'name':'lote_abre_fecha_ocorrencias.form',
+            'view_type':'form',
+            'view_mode':'form',
+            'res_model':'lote_abre_fecha_ocorrencias',
+            'type':'ir.actions.act_window',
+            'target':'new',
+            'context': {
+                'default_contrato': ids[0],
+                'default_name': '3',
+                'default_operacao': '3'
+            }
+        }

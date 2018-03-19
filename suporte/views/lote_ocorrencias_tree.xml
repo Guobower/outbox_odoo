@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="lote_ocorrencias_tree">
+            <field name="name">lote_ocorrencias.tree</field>
+            <field name="model">lote_ocorrencias</field>
+            <field name="view_type">tree</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <tree string="Atendimento">
+                    <field name="name" />
+                    <field name="tipo_ocorrencia" />
+                    <field name="create_date" string="Data de Criação" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

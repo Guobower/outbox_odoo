@@ -136,10 +136,33 @@
                                 </field>
                             </page>
                             <page string="Ocorrências">
+                                <div class="oe_right oe_button_box" name="buttons">
+                                    <button class="oe_inline oe_stat_button" type="object"
+                                            name="abrir_varias_ocorrencias"
+                                            icon="fa-unlock" string="Abrir Várias">
+                                    </button>
+                                    <button class="oe_inline oe_stat_button" type="object"
+                                            name="reabrir_varias_ocorrencias"
+                                            icon="fa-unlock" string="Reabrir Várias">
+                                    </button>
+                                    <button class="oe_inline oe_stat_button" type="object"
+                                            name="fechar_varias_ocorrencias"
+                                            icon="fa-lock" string="Fechar Várias">
+                                    </button>
+                                    <button class="oe_inline oe_stat_button" type="object"
+                                            name="obs_varias_ocorrencias"
+                                            icon="fa-edit" string="Obs em Várias">
+                                    </button>
+                                </div>
                                 <field name="ocorrencia" context="{'default_contrato': id}">
-                                    <tree>
+                                    <tree default_order='create_date desc'>
                                         <field name="name" readonly="1" />
                                         <field name="contrato" readonly="1" invisible="1" />
+                                        <field name="titulo" readonly="1" />
+                                        <field name="localidade" readonly="1" />
+                                        <field name="tipo_ocorrencia" readonly="1" />
+                                        <field name="status_ocorrencia" readonly="1" />
+                                        <field name="imputavel" readonly="1" />
                                         <field name="create_uid" string="Atendente" readonly="1" />
                                         <field name="create_date" string="Data de Criação"
                                                readonly="1" />

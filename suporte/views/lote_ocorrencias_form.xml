@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="lote_ocorrencias_form">
+            <field name="name">lote_ocorrencias.form</field>
+            <field name="model">lote_ocorrencias</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Ocorrencia">
+                    <sheet>
+                        <group>
+                            <group string="Ocorrência">
+                                <field name="name" />
+                                <field name="contrato" readonly="1" />
+                            </group>
+                            <group string="Manifestação">
+                                <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
+                                <field name="descricao" />
+                                <field name="imputavel" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Localidades">
+                                <field name="localidade" domain="[('contrato', '=', contrato)]" options="{'no_create': True}" />
+                            </page>
+                            <page string="Informações Técnicas">
+                                <field name="informacoes_tecnicas" readonly="1" />
+                            </page>
+                            <page string="Textos de Chamados">
+                                <field name="textos_chamados" readonly="1" />
+                            </page>
+                        </notebook>
+                        <footer> 
+                            <button name="write" type="object" string="Salvar" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

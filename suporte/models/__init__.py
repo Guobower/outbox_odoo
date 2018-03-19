@@ -21,3 +21,5 @@ from . import tipo_ocorrencia
 from . import ocorrencia
 from . import contato_localidade
 from . import abre_fecha_ocorrencia
+from . import lote_ocorrencias
+from . import lote_abre_fecha_ocorrencias

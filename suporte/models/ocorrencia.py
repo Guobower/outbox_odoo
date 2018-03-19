@@ -59,8 +59,8 @@ class Ocorrencia(models.Model):
     imputavel = fields.Selection(
                                  string="Imputavel",
                                  help="Ocorrência deve ser imputada?",
-                                 selection=[(0, 'Não'),
-                                 (1, 'Sim')],
+                                 selection=[(1, 'Não'),
+                                 (2, 'Sim')],
                                  track_visibility="onchange")
     
     color = fields.Integer(
@@ -271,9 +271,9 @@ class Ocorrencia(models.Model):
         retorno = ""
         
         if imputavel:
-            if imputavel == 0:
-                retorno = "Não Imputavel"
             if imputavel == 1:
+                retorno = "Nao Imputavel"
+            if imputavel == 2:
                 retorno = "Imputavel"
 
         return retorno
