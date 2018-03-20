@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="tecnico_tree">
+            <field name="name">tecnico.tree</field>
+            <field name="model">tecnico</field>
+            <field name="view_type">tree</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <tree string="Tecnico">
+                    <field name="name" string="Nome" />
+                    <field name="usuario" />
+                    <field name="codigo_usuario" />
+                    <field name="codigo_verificacao" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

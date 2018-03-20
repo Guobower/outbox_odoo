@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="goon_res_company_form" model="ir.ui.view">
+            <field name="name">goon_res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <group position="after" name="account_grp" string="Accounting">
+                    <group string="Configurações do Goon">
+                        <field name="url"></field>
+                        <field name="auth_code"></field>
+                        <field name="client_code"></field>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>
