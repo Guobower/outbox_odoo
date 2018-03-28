@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<openerp>
+    <!-- Mail template are declared in a NOUPDATE block so users can freely 
+    customize/delete them -->
+    <data>
+        <!--Email template -->
+        <record id="email_template_solicitacao_visita_tecnica" model="email.template">
+            <field name="name">Solicitacao de Visita Tecnica</field>
+            <field name="model_id" ref="agenda_tecnicos.model_agenda_tecnicos" />
+            <field name="auto_delete" eval="True" />
+            <field name="email_from">odoo@cinte.com.br</field>
+            <field name="email_to">
+                edsoncosme@cinte.com.br
+            </field>
+            <field name="subject">Solicitação de Visita Técnica - ${object.ocorrencia.name}</field>
+            <field name="body_html">
+<![CDATA[
+<p>
+Foi solicitada uma nova visita técnica no Odoo.
+<br>
+<br>
+<b><u>REGISTRO DO PEDIDO</u></b>
+<br>
+<br>
+<b>Cliente:</b> ${object.cliente.name}
+<br>
+<b>Atividade:</b> ${object.atividade} 
+<br>
+<b>Obs:</b> ${object.observacoes} 
+</p>
+<p><a href="http://odoo.cinte.com.br:8069/web#id=${object.id}&view_type=form&model=agenda_tecnicos&menu_id=495&action=627" target="_blank">Clique aqui</a> para acessar a agenda.</p>
+]]>
+            </field>
+        </record>
+    </data>
+</openerp>

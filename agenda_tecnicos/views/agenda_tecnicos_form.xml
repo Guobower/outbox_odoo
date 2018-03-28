@@ -1,79 +1,99 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <openerp>
-	<data>
-		<record model="ir.ui.view" id="agenda_tecnicos_form">
-			<field name="name">agenda_tecnicos.form</field>
-			<field name="model">agenda_tecnicos</field>
-			<field name="view_type">form</field>
-			<field name="priority" eval="16" />
-			<field name="arch" type="xml">
-				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<form string="Agenda dos Técnicos">
-					<sheet string="Agenda dos Técnicos">
-						<group string="Informações Principais">
-							<group>
-								<field name="name" />
-								<field name="cliente_nome" />
-								<field name="tipo_cliente" />
-								<field name="veiculo" />
-								<field name="quantidade" />
-							</group>
-							<group>
-								<field name="data" />
-								<field name="turno" />
-								<field name="status" />
-								<field name="hospedagem" />
-								<field name="motivo" />
-							</group>
-						</group>
-						<group string="Descritivo">
-							<group colspan="2">
-								<field colspan="2" name="atividade" />
-							</group>
-							<group colspan="2">
-								<field colspan="2" name="observacoes" />
-							</group>
-						</group>
-						<notebook>
-							<page string="Trajeto">
-								<group>
-									<group>
-										<field name="cidade_origem" on_change="on_change_cidade(cidade_origem, cidade_destino)" />
-										<field name="cidade_destino" on_change="on_change_cidade(cidade_origem, cidade_destino)" />
-									</group>
-									<group>
-										<field name="distancia" />
-										<field name="tempo_viagem" />
-									</group>
-								</group>
-							</page>
-							<page string="Equipe">
-								<field colspan="4" name="equipe" widget="many2many_kanban">
-									<kanban quick_create="false" create="true" delete="true">
-										<field name="name" />
-										<templates>
-											<t t-name="kanban-box">
-												<div style="position: relative">
-													<a t-if="! read_only_mode" type="delete"
-														style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
-													<div class="oe_module_vignette">
-														<img
-															t-att-src="kanban_image('res.users', 'image_small', record.id.value)"
-															class="oe_avatar oe_kanban_avatar_smallbox" />
-														<div class="oe_module_desc">
-															<field name="name" />
-														</div>
-													</div>
-												</div>
-											</t>
-										</templates>
-									</kanban>
-								</field>
-							</page>
-						</notebook>
-					</sheet>
-				</form>
-			</field>
-		</record>
-	</data>
+    <data>
+        <record model="ir.ui.view" id="agenda_tecnicos_form">
+            <field name="name">agenda_tecnicos.form</field>
+            <field name="model">agenda_tecnicos</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Agenda dos Técnicos">
+                    <sheet string="Agenda dos Técnicos">
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="sincronizar_dados"
+                                    icon="fa-globe" string="Sinc. Goon">
+                            </button>
+                        </div>
+                        <group string="Informações Principais">
+                            <group>
+                                <field name="name" options="{'no_create': True}" on_change="on_change_contrato(contrato)" />
+                                <field name="cliente" attrs="{'readonly': [('ocorrencia','!=',False)]}" options="{'no_create': True}" />
+                                <field name="tipo_cliente" />
+                                <field name="veiculo" />
+                                <field name="quantidade" />
+                            </group>
+                            <group>
+                                <field name="data" />
+                                <field name="turno" />
+                                <field name="status" />
+                                <field name="hospedagem" />
+                                <field name="motivo" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Descritivo">
+                                <group colspan="2">
+                                    <field colspan="2" name="atividade" />
+                                </group>
+                                <group colspan="2">
+                                    <field colspan="2" name="observacoes" />
+                                </group>
+                            </page>
+                            <page string="Goon">
+                                <group>
+                                    <group string="Dados do Chamado">
+                                        <field name="contrato" on_change="on_change_contrato(contrato)" attrs="{'readonly': [('ocorrencia','!=',False)]}" domain="[('parent_id', '=', False)]" options="{'no_create': True}" />
+                                        <field name="ocorrencia" readonly="1" />
+                                        <field name="localidade" readonly="1" />
+                                    </group>
+                                    <group string="Dados no Goon">
+                                        <field name="tipo_servico" options="{'no_create': True}" attrs="{'readonly': [('name','=',False)]}" />
+                                        <field name="codigo_goon" readonly="1" />
+                                        <field name="status_goon" readonly="1" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Trajeto">
+                                <group>
+                                    <group>
+                                        <field name="cidade_origem" on_change="on_change_cidade(cidade_origem, cidade_destino)" />
+                                        <field name="cidade_destino" on_change="on_change_cidade(cidade_origem, cidade_destino)" />
+                                    </group>
+                                    <group>
+                                        <field name="distancia" />
+                                        <field name="tempo_viagem" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Equipe">
+                                <field colspan="4" name="equipe" widget="many2many_kanban">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="name" />
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete"
+                                                       style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                                                    <div class="oe_module_vignette">
+                                                        <img
+                                                            t-att-src="kanban_image('res.users', 'image_small', record.id.value)"
+                                                            class="oe_avatar oe_kanban_avatar_smallbox" />
+                                                        <div class="oe_module_desc">
+                                                            <field name="name" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
 </openerp>
