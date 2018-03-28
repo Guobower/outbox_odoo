@@ -13,19 +13,18 @@
                         <div class="oe_right oe_button_box" name="buttons">
                             <button class="oe_inline oe_stat_button" type="object"
                                     name="sincronizar_dados"
-                                    icon="fa-edit" string="Observação">
+                                    icon="fa-globe" string="Sinc. Goon">
                             </button>
                         </div>
                         <group>
                             <group string="Informações Principais">
                                 <field name="name" string="Nome" />
                                 <field name="usuario" />
-                                <field name="email" />
                                 <field name="telefone" />
                             </group>
                             <group string="Dados do Goon">
-                                <field name="codigo_usuario" />
-                                <field name="codigo_verificacao" />
+                                <field name="codigo_usuario" readonly="1" />
+                                <field name="codigo_verificacao" readonly="1" />
                             </group>
                         </group>
                     </sheet>

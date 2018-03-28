@@ -4,6 +4,7 @@ from openerp import fields
 from openerp import models
 import simplejson
 import urllib
+
 class Tecnico(models.Model):
     _name = 'tecnico'
     _description = 'Registro de Tecnicos'
@@ -29,10 +30,6 @@ class Tecnico(models.Model):
                               help='Usuario vinculado ao tecnico',
                               track_visibility='onchange')
                               
-    email = fields.Char(
-                        string="E-mail",
-                        size=100
-                        )
     
     telefone = fields.Char(
                            string="Telefone",
@@ -49,30 +46,9 @@ class Tecnico(models.Model):
         
         client = Client(obj_companhia.url)
         
-        '''
-        CAMPOS DO WEBSERVICE CASO DESEJE ADICIONAR MAIS ALGUM CONTROLE
-        agent_code
-        externalID
-        name
-        email
-        telefone
-        True
-        True
-        isToUpdateMobileAgentTeam
-        mobileAgentTeamExternalId
-        startMonitoringTime
-        finishMonitoringTime
-        addess
-        addressNumber
-        addressComplement
-        addressNeighborhood
-        addressCity
-        addressState
-        addressZipcode
-        '''
         retorno = json.loads(client.service.SaveOrUpdateMobileAgent(obj_companhia.auth_code, 
             obj_companhia.client_code, tecnico.codigo_usuario, tecnico.id, tecnico.name, 
-            tecnico.email, tecnico.telefone, 'true', 'true', 'true', 1, 
+            tecnico.usuario.login, tecnico.telefone, 'true', 'true', 'true', 1, 
             '','','','','','','','',''))
         
         if retorno['success']:
