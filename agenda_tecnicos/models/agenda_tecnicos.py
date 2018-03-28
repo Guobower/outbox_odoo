@@ -195,8 +195,6 @@ class Agenda_tecnicos(models.Model):
         if agenda_tecnicos.codigo_goon:
             chamado_goon = self.pool.get('chamado_goon').browse(cr, user, agenda_tecnicos.codigo_goon.id)
             retorno = chamado_goon.sincronizar_dados()
-            agenda_tecnicos.write({'status_goon': retorno})
-            
             return {
                 'type': 'ir.actions.client',
                 'tag': 'reload',
