@@ -16,6 +16,7 @@
         'views/res_company_form_inherited.xml',
         'views/tipo_servico_form.xml',
         'views/tipo_servico_tree.xml',
-        'views/chamado_goon_form.xml'
+        'views/chamado_goon_form.xml',
+        'data/schedule_atualiza_chamados.xml'
     ]
 }

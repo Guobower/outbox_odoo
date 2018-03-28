@@ -97,15 +97,15 @@ class Chamado_goon(models.Model):
         
         if obj_chamado_goon.name:
             if obj_chamado_goon.tecnico.id == obj_agenda_tecnicos.name.id and obj_chamado_goon.data == obj_agenda_tecnicos.data:
-                return self.acompanharOrdemServico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
+                return self.acompanhar_ordem_servico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
             else:
-                self.acompanharOrdemServico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
-                return self.editarOrdemServico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
+                self.acompanhar_ordem_servico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
+                return self.editar_ordem_servico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
         else:
-            return self.abrirOrdemServico(obj_companhia, obj_chamado_goon)
+            return self.abrir_ordem_servico(obj_companhia, obj_chamado_goon)
     
     
-    def abrirOrdemServico(self, obj_companhia, obj_chamado_goon):
+    def abrir_ordem_servico(self, obj_companhia, obj_chamado_goon):
         client = Client(obj_companhia.url)
         retorno = json.loads(client.service.OpenOrdemServico(
                              '88E9F98B63F15D7F635B0D6027DC4443EE44B50F', 
@@ -161,7 +161,7 @@ class Chamado_goon(models.Model):
                     }
             }
             
-    def editarOrdemServico(self, obj_companhia, obj_chamado_goon, obj_agenda_tecnicos):
+    def editar_ordem_servico(self, obj_companhia, obj_chamado_goon, obj_agenda_tecnicos):
         client = Client(obj_companhia.url)
         retorno = json.loads(client.service.SetAcompanhamentoOrdemServico(
                              'A7E43A2C4974A8282B6E6754AF5F06DCA0DE988B', 
@@ -179,7 +179,7 @@ class Chamado_goon(models.Model):
             obj_chamado_goon.write({'data': obj_agenda_tecnicos.data, 'tecnico': obj_agenda_tecnicos.name.id})
             return obj_chamado_goon.status
         
-    def acompanharOrdemServico(self, obj_companhia, obj_chamado_goon, obj_agenda_tecnicos):
+    def acompanhar_ordem_servico(self, obj_companhia, obj_chamado_goon, obj_agenda_tecnicos):
         client = Client(obj_companhia.url)
         retorno = json.loads(client.service.GetAcompanhamentoOrdemServico(
                              'B2754231E374B8DAB17B09DA83E40AF1354D3EFD', 
@@ -190,3 +190,26 @@ class Chamado_goon(models.Model):
             obj_chamado_goon.write({'status': retorno['status']})
             obj_agenda_tecnicos.write({'status_goon': retorno['status']})
             return retorno['status']
+        
+        
+    def atualiza_chamados(self, cr, uid, context=None):
+        from suds.client import Client
+        
+        obj_companhia = self.pool.get('res.company').browse(cr, uid, 1)
+        
+        obj_chamado_goon = self.pool.get('chamado_goon').search(cr, uid, [('id','>',0)]) 
+        
+        for item in obj_chamado_goon:
+            chamado = self.pool.get('chamado_goon').browse(cr, uid, item)
+            obj_agenda_tecnicos = self.pool.get('agenda_tecnicos').browse(cr, uid, chamado.agenda_tecnicos.id)
+        
+            client = Client(obj_companhia.url)
+            retorno = json.loads(client.service.GetAcompanhamentoOrdemServico(
+                                 'B2754231E374B8DAB17B09DA83E40AF1354D3EFD', 
+                                 obj_companhia.client_code, 
+                                 chamado.id))
+                                 
+            if retorno['success']:
+                chamado.write({'status': retorno['status']})
+                obj_agenda_tecnicos.write({'status_goon': retorno['status']})
+                return True
