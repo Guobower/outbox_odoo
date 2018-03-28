@@ -229,7 +229,7 @@ class Ocorrencia(models.Model):
             'context': {
                 'default_ocorrencia': ids[0],
                 'default_name': '2',
-                'default_tempo_efetivo_indisponibilidade': round(tempo_efetivo_indisponibilidade/60),
+                'default_tempo_efetivo_indisponibilidade': round(tempo_efetivo_indisponibilidade / 60),
             }
         }
     
@@ -301,7 +301,7 @@ class Ocorrencia(models.Model):
                 
                 retorno = self.formatar_hora_extenso(tempo_efetivo_indisponibilidade)
             if obj_ocorrencia.status_ocorrencia.id == 2:
-                retorno = self.formatar_hora_extenso(obj_ocorrencia.tempo_efetivo_indisponibilidade*60)
+                retorno = self.formatar_hora_extenso(obj_ocorrencia.tempo_efetivo_indisponibilidade * 60)
 
         return retorno
     
@@ -313,7 +313,7 @@ class Ocorrencia(models.Model):
         minutos = segundos_rest // 60
         minutos_totais = segundos // 60
         
-        return str(int(round(horas)))+' horas e '+str(int(round(minutos)))+' minutos ('+str(int(round(minutos_totais)))+' minutos)'
+        return str(int(round(horas))) + ' horas e ' + str(int(round(minutos))) + ' minutos (' + str(int(round(minutos_totais))) + ' minutos)'
     
     def houve_nova_informacao(self, cr, uid, ocorrencia, context=None):
         obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
@@ -332,3 +332,38 @@ class Ocorrencia(models.Model):
         if cont_iteracoes > 0:
             retorno = obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].descricao
         return retorno
+    
+    def solicitar_visita(self, cr, uid, ids, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ids[0])
+        
+        valores = {
+            'ocorrencia': obj_ocorrencia.id,
+            'cliente': obj_ocorrencia.contrato.partner_id.id,
+            'contrato': obj_ocorrencia.contrato.id,
+            'localidade': obj_ocorrencia.localidade.id,
+            'atividade': obj_ocorrencia.titulo,
+            'observacoes': obj_ocorrencia.descricao
+        }
+
+        obj_agenda_tecnicos = self.pool.get('agenda_tecnicos').create(cr, uid, valores, context)
+        
+        ir_model_data = self.pool.get('ir.model.data')
+        try:
+            template_id = ir_model_data.get_object_reference(cr, uid, 'agenda_tecnicos', 'email_template_solicitacao_visita_tecnica')[1]
+        except ValueError:
+            template_id = False
+        
+        self.pool['email.template'].send_mail(
+                                              cr, uid, template_id, obj_agenda_tecnicos, force_send=True,
+                                              context=None)
+           
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'action_warn',
+            'name': 'Warning',
+            'params': {
+                'title': 'Solicitação Concluída!',
+                'text': 'Foi solicitada a visita técnica ao setor responsável, aguarde retorno!',
+                'sticky': False
+                }
+        }

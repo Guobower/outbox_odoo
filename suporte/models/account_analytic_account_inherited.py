@@ -44,6 +44,12 @@ class Account_analytic_account_inherited(models.Model):
                                      help='Tipo de contrato com o cliente',
                                      track_visibility='onchange')
     
+    grupo_servico = fields.Many2one(
+                                    comodel_name='grupo_servico',
+                                    string='Grupo de Servico',
+                                    help='Grupo de serviço do plano',
+                                    track_visibility='onchange')
+        
     adesao = fields.One2many(
                              comodel_name='adesao',
                              inverse_name='contrato',
@@ -57,10 +63,10 @@ class Account_analytic_account_inherited(models.Model):
                                  help='Localidades vinculadas ao contrato')
                                  
     contato_localidade = fields.One2many(
-                                 comodel_name='contato_localidade',
-                                 inverse_name='contrato',
-                                 string='Contatos das Localidades',
-                                 help='Contatos das localidades vinculadas ao contrato')
+                                         comodel_name='contato_localidade',
+                                         inverse_name='contrato',
+                                         string='Contatos das Localidades',
+                                         help='Contatos das localidades vinculadas ao contrato')
     
     atendimento = fields.One2many(
                                   comodel_name='atendimento',
@@ -75,10 +81,10 @@ class Account_analytic_account_inherited(models.Model):
                                 help='Protocolos vinculados ao contrato')
                                 
     ocorrencia = fields.One2many(
-                                comodel_name='ocorrencia',
-                                inverse_name='contrato',
-                                string='Ocorrencias',
-                                help='Ocorrencias vinculados ao contrato')
+                                 comodel_name='ocorrencia',
+                                 inverse_name='contrato',
+                                 string='Ocorrencias',
+                                 help='Ocorrencias vinculados ao contrato')
     
     contrato_pdf = fields.Binary(
                                  string='Contrato Assinado',

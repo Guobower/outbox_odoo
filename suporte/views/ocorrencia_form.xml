@@ -23,6 +23,10 @@
                                     name="adicionar_observacao"
                                     icon="fa-edit" string="Observação">
                             </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="solicitar_visita"
+                                    icon="fa-paper-plane" string="Visita Técnica">
+                            </button>
                         </div>
                         <group>
                             <group string="Ocorrência">
