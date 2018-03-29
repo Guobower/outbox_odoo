@@ -55,7 +55,7 @@ class AccountMoveLineInherited(models.Model):
 
     def atualiza_campos(self, cr, uid, context=None):
         obj_vencimentos = self.pool.get('account.move.line').search(cr, uid, [('centro_custo','=',False)]) 
-        
+        print "SELECIONEEEI " + str(obj_vencimentos)
         for item in obj_vencimentos:
             print "ENTREEEI "+ str(item)
             vencimento = self.pool.get('account.move.line').browse(cr, uid, item)
