@@ -10,9 +10,9 @@ class AccountMoveLineInherited(models.Model):
     name = fields.Char(
                        required=False)
         
-    centro_custo_name = fields.Char('Centro de Custo', related='invoice.x_centro_custo.name', store=True)
+    #centro_custo_name = fields.Char('Centro de Custo', related='invoice.x_centro_custo.name', store=True)
     
-    natureza_financeira_name = fields.Char('Natureza Financeira', related='invoice.x_natureza_financeira.name', store=True)
+    #natureza_financeira_name = fields.Char('Natureza Financeira', related='invoice.x_natureza_financeira.name', store=True)
     
     #tipo_documento_name = fields.Char('Tipo de Documento', related='invoice.fiscal_document_id.name', store=True)
     
@@ -55,8 +55,6 @@ class AccountMoveLineInherited(models.Model):
 
     def atualiza_campos(self, cr, uid, context=None):
         obj_vencimentos = self.pool.get('account.move.line').search(cr, uid, [('centro_custo','=',False)]) 
-        print "SELECIONEEEI " + str(obj_vencimentos)
         for item in obj_vencimentos:
-            print "ENTREEEI "+ str(item)
             vencimento = self.pool.get('account.move.line').browse(cr, uid, item)
             vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo.id, 'natureza_financeira': vencimento.invoice.x_natureza_financeira.id})
