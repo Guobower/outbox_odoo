@@ -59,4 +59,4 @@ class AccountMoveLineInherited(models.Model):
         for item in obj_vencimentos:
             print "ENTREEEI "+ str(item)
             vencimento = self.pool.get('account.move.line').browse(cr, uid, item)
-            vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo, 'natureza_financeira': vencimento.invoice.x_natureza_financeira})
+            vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo.id, 'natureza_financeira': vencimento.invoice.x_natureza_financeira.id})
