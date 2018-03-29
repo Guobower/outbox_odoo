@@ -36,6 +36,8 @@ class AccountMoveLineInherited(models.Model):
         vencimento = self.pool.get('account.move.line').browse(self.env.cr, self.env.uid, record['id'])
         
         vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo.id, 'natureza_financeira': vencimento.invoice.x_natureza_financeira.id})
+        
+        print 'SALVANDOOO '+ str(vencimento.invoice.x_centro_custo.id)
         # Return the record so that the changes are applied and everything is stored.
 	return record
     
