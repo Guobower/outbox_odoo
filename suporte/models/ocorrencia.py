@@ -89,7 +89,13 @@ class Ocorrencia(models.Model):
                                             inverse_name='ocorrencia',
                                             string='Aberturas e Fechamentos',
                                             help='Aberturas e fechamentos da ocorrência')
-                                
+    
+    agenda_tecnicos = fields.Many2one(
+                                      comodel_name='agenda_tecnicos',
+                                      string='Agenda dos Tecnicos',
+                                      help='Agenda dos tecnicos vinculada ao chamado no Goon',
+                                      track_visibility='onchange')
+                                      
     informacoes_tecnicas = fields.Text('Informacoes Tecnicas', related='contrato.partner_id.informacoes_tecnicas', store=True)
      
     textos_chamados = fields.Text('Textos de chamados', related='contrato.partner_id.textos_chamados', store=True) 
@@ -346,6 +352,7 @@ class Ocorrencia(models.Model):
         }
 
         obj_agenda_tecnicos = self.pool.get('agenda_tecnicos').create(cr, uid, valores, context)
+        obj_ocorrencia.write({'agenda_tecnicos': obj_agenda_tecnicos})
         
         ir_model_data = self.pool.get('ir.model.data')
         try:
@@ -359,11 +366,5 @@ class Ocorrencia(models.Model):
            
         return {
             'type': 'ir.actions.client',
-            'tag': 'action_warn',
-            'name': 'Warning',
-            'params': {
-                'title': 'Solicitação Concluída!',
-                'text': 'Foi solicitada a visita técnica ao setor responsável, aguarde retorno!',
-                'sticky': False
-                }
+            'tag': 'reload',
         }

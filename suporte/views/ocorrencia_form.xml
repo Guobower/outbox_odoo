@@ -37,6 +37,7 @@
                             <group string="Vínculo">
                                 <field name="contrato" readonly="1" />
                                 <field name="localidade" domain="[('contrato', '=', contrato)]" options="{'no_create': True}" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
+                                <field name="agenda_tecnicos" readonly="1" />
                             </group>
                         </group>
                         <notebook>
