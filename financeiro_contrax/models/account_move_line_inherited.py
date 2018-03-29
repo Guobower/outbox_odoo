@@ -37,7 +37,6 @@ class AccountMoveLineInherited(models.Model):
         
         vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo.id, 'natureza_financeira': vencimento.invoice.x_natureza_financeira.id})
         
-        print 'SALVANDOOO '+ str(vencimento.invoice.x_centro_custo.id)
         # Return the record so that the changes are applied and everything is stored.
 	return record
     
@@ -54,7 +53,7 @@ class AccountMoveLineInherited(models.Model):
         }
 
     def atualiza_campos(self, cr, uid, context=None):
-        obj_vencimentos = self.pool.get('account.move.line').search(cr, uid, [('centro_custo','=',False)]) 
+        obj_vencimentos = self.pool.get('account.move.line').search(cr, uid, ['|',('centro_custo','=',False),('natureza_financeira','=',False)]) 
         for item in obj_vencimentos:
             vencimento = self.pool.get('account.move.line').browse(cr, uid, item)
             vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo.id, 'natureza_financeira': vencimento.invoice.x_natureza_financeira.id})
