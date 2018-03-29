@@ -53,3 +53,10 @@ class AccountMoveLineInherited(models.Model):
             'res_id': self.move_id.id,
         }
 
+    def atualiza_campos(self, cr, uid, context=None):
+        obj_vencimentos = self.pool.get('account.move.line').search(cr, uid, [('centro_custo','=',False)]) 
+        
+        for item in obj_vencimentos:
+            print "ENTREEEI "+ str(item)
+            vencimento = self.pool.get('account.move.line').browse(cr, uid, item)
+            vencimento.write({'centro_custo': vencimento.invoice.x_centro_custo, 'natureza_financeira': vencimento.invoice.x_natureza_financeira})
