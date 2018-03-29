@@ -19,13 +19,13 @@ class AccountMoveLineInherited(models.Model):
     centro_custo = fields.Many2one(
                               string='Centro de Custo',
                               help='Centro de Custo do vencimento',
-                              comodel_name='x_centro_custo',
+                              comodel_name='centro_custo',
                               required=True)
                               
     natureza_financeira = fields.Many2one(
                               string='Natureza Financeira',
                               help='Natureza Financeira do vencimento',
-                              comodel_name='x_natureza_financeira',
+                              comodel_name='natureza_financeira',
                               required=True)
     
     @api.model
