@@ -14,7 +14,7 @@ class AccountMoveLineInherited(models.Model):
     
     natureza_financeira_name = fields.Char('Natureza Financeira', related='invoice.x_natureza_financeira.name', store=True)
     
-    tipo_documento_name = fields.Char('Tipo de Documento', related='invoice.fiscal_document_id.name', store=True)
+    #tipo_documento_name = fields.Char('Tipo de Documento', related='invoice.fiscal_document_id.name', store=True)
     
     centro_custo = fields.Many2one(
                               string='Centro de Custo',
