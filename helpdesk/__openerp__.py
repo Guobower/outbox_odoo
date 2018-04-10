@@ -16,6 +16,8 @@
         'views/helpdesk_form.xml',
         'views/helpdesk_graph.xml',
         'views/helpdesk_notificacoes.xml',
-        'security/helpdesk_security.xml'
+        'security/helpdesk_security.xml',
+        'data/schedule_pausa.xml',
+        'data/schedule_verifica_atrasos.xml'
     ]
 }
