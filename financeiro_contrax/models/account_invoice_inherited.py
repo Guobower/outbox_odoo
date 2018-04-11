@@ -5,6 +5,7 @@ class Account_invoice_inherited(models.Model):
     _inherit = 'account.invoice' 
 
     def atualiza_campos(self, cr, uid, context=None):
+        print "ENTREI PORRAAA, CADEEE"
         obj_faturas = self.pool.get('account.invoice').search(cr, uid, [('state','=','open'),('state','=','paid')]) 
         print "FATURAAAAS "+str(obj_faturas)
         for nota in obj_faturas:
