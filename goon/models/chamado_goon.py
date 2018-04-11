@@ -14,8 +14,7 @@ class Chamado_goon(models.Model):
     name = fields.Char(
                        string='ID Goon',
                        help='Id do chamado no Goon',
-                       size=200,
-                       required=True)
+                       size=200)
     
     tecnico = fields.Many2one(
                               string='Tecnico',
