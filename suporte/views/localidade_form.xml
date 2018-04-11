@@ -14,19 +14,22 @@
                             <group>
                                 <field name="name" />
                             </group>
+                            <group>
+                                <field name="contrato" />
+                            </group>
                         </group>
                         <notebook>
                             <page string="Endereço">
                                 <group string="Endereço">
                                     <group>
+                                        <field name="cep" on_change="on_change_zip(cep)" widget="mask"
+                                               placeholder="99.999-000" mask="99.999-999" />
                                         <field name="logradouro" />
                                         <field name="numero" />
                                         <field name="bairro" />
                                         <field name="complemento" />
                                     </group>
                                     <group>
-                                        <field name="cep" on_change="on_change_zip(cep)" widget="mask"
-                                               placeholder="99.999-000" mask="99.999-999" />
                                         <field name="estado" on_change="on_change_estado(estado)"
                                                options="{'no_create': True}" />
                                         <field name="cidade" options="{'no_create': True}" />
