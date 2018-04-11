@@ -15,6 +15,7 @@
         'views/centro_custo_tree.xml',
         'views/natureza_financeira_form.xml',
         'views/natureza_financeira_tree.xml',
-        'data/schedule_atualiza_campos_relacao.xml'
+        'data/schedule_atualiza_campos_relacao.xml',
+        'data/schedule_atualiza_campos_pagamento.xml'
     ]
 }
