@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data>
-		<record id="suporte_res_partner_form" model="ir.ui.view">
-			<field name="name">suporte_res.partner.form</field>
-			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="base.view_partner_form" />
-			<field name="arch" type="xml">
-				<div class="oe_right oe_button_box" name="buttons">
-					<button class="oe_inline oe_stat_button" type="action" name="%(contratos_list_action)d"
-						context="{'search_default_partner_id': active_id}" icon="fa-envelope-o"
-						string="Contratos">
-					</button>
-				</div>
-				<field name="title" position="after">
-					<field name="data_nascimento"></field>
-					<field name="profissao" options="{'no_create': True}"></field>
-				</field>
-				<field name="inscr_est" position="after">
-					<field name="orgao_emissor_rg" attrs="{'invisible': [('is_company','!=',False)]}"></field>
-				</field>
-				<field name="inscr_mun" position="after">
-					<group string="Dados do Suporte">
-						<field name="usuario_centreon"></field>
-                                                <field name="id_syncron"></field>
-					</group>
-				</field>
-				<notebook>
-					<page position="inside" string="Informações Técnicas" name="Informações Técnicas">
-						<group>
-							<field name="informacoes_tecnicas" readonly="1"></field>
-						</group>
-					</page>
-					<page position="inside" string="Textos de Chamados" name="Textos de Chamados">
-						<group>
-							<field name="textos_chamados" readonly="1"></field>
-						</group>
-					</page>
-				</notebook>
-			</field>
-		</record>
+    <data>
+        <record id="suporte_res_partner_form" model="ir.ui.view">
+            <field name="name">suporte_res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <div class="oe_right oe_button_box" name="buttons">
+                    <button class="oe_inline oe_stat_button" type="action" name="%(contratos_list_action)d"
+                                                context="{'search_default_partner_id': active_id}" icon="fa-envelope-o"
+                                                string="Contratos">
+                    </button>
+                    <button class="oe_inline oe_stat_button" type="object"
+                                                name="sincronizar_dados"
+                                                icon="fa-globe" string="Sinc. Goon">
+                    </button>
+                </div>
+                <field name="title" position="after">
+                    <field name="data_nascimento"></field>
+                    <field name="profissao" options="{'no_create': True}"></field>
+                </field>
+                <field name="inscr_est" position="after">
+                    <field name="orgao_emissor_rg" attrs="{'invisible': [('is_company','!=',False)]}"></field>
+                </field>
+                <field name="inscr_mun" position="after">
+                    <group string="Dados do Suporte">
+                        <field name="usuario_centreon"></field>
+                        <field name="id_syncron"></field>
+                    </group>
+                </field>
+                <notebook>
+                    <page position="inside" string="Informações Técnicas" name="Informações Técnicas">
+                        <group>
+                            <field name="informacoes_tecnicas" readonly="1"></field>
+                        </group>
+                    </page>
+                    <page position="inside" string="Textos de Chamados" name="Textos de Chamados">
+                        <group>
+                            <field name="textos_chamados" readonly="1"></field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
 
-	</data>
+    </data>
 </openerp>
