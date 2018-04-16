@@ -91,6 +91,7 @@ class Chamado_goon(models.Model):
         obj_companhia = self.pool.get('res.company').browse(cr, user, 1)
         obj_chamado_goon = self.pool.get('chamado_goon').browse(cr, user, ids)
         obj_agenda_tecnicos = self.pool.get('agenda_tecnicos').browse(cr, user, obj_chamado_goon.agenda_tecnicos.id)
+        obj_cliente = self.pool.get('res.partner').browse(cr, user, obj_chamado_goon.agenda_tecnicos.cliente.id)
         
         client = Client(obj_companhia.url)
         
@@ -101,6 +102,7 @@ class Chamado_goon(models.Model):
                 self.acompanhar_ordem_servico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
                 return self.editar_ordem_servico(obj_companhia, obj_chamado_goon, obj_agenda_tecnicos)
         else:
+            obj_cliente.sincronizar_dados()
             return self.abrir_ordem_servico(obj_companhia, obj_chamado_goon)
     
     
@@ -111,7 +113,7 @@ class Chamado_goon(models.Model):
                              obj_companhia.client_code, 
                              obj_chamado_goon.id, 
                              obj_chamado_goon.ocorrencia.contrato.partner_id.id_syncron, 
-                             obj_chamado_goon.tipo_servico.id, 
+                             obj_chamado_goon.tipo_servico.id_syncron, 
                              '0',
                              str(obj_chamado_goon.data).replace(" ", "T"), 
                              'N', 
@@ -135,6 +137,7 @@ class Chamado_goon(models.Model):
                              str(obj_chamado_goon.data).replace(" ", "T"),
                              '',
                              'Internal'))
+
 
         if retorno['success']:
             obj_chamado_goon.write({'name': retorno['numeroOS'], 'status': 'DESP'})
