@@ -138,16 +138,21 @@ class Localidade(models.Model):
             if localidade.numero:
                 url = url + localidade.numero + ","
             
-            url = url + localidade.bairro + "," + localidade.cidade.name + "-" + localidade.estado.code + "&key=AIzaSyBRXLYF_PsJjlo-s0NIUXr_186CmZpf0hI"
+            if localidade.bairro:
+                url = url + localidade.bairro + ","
+                
+            if localidade.cidade:
+                url = url + localidade.cidade.name + ","
+                
+            if localidade.estado:
+                url = url + localidade.estado.code + ""
+                
+            url = url + "&key=AIzaSyBRXLYF_PsJjlo-s0NIUXr_186CmZpf0hI"
             url = url.encode('utf-8')
             result = simplejson.load(urllib.urlopen(url))
     
-            # distancia = (result['rows'][0]['elements'][0]['distance']['value']) / 1000
-            # tempoViagem = (result['rows'][0]['elements'][0]['duration']['value']) / 60
             latitude = (result['results'][0]['geometry']['location']['lat'])
             longitude = (result['results'][0]['geometry']['location']['lng'])
-            
-            
             
             localidade.write({'latitude': str(latitude), 'longitude': str(longitude)}, context=context)
             # Return the values to update it in the view.
