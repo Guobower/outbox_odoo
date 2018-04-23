@@ -133,8 +133,11 @@ class Localidade(models.Model):
         localidade = self.pool.get('localidade').browse(cr, user, ids[0])
         
         try:
-            url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + localidade.logradouro + ","
+            url = "https://maps.googleapis.com/maps/api/geocode/json?address="
             
+            if localidade.logradouro:
+                url = url + localidade.logradouro + ","
+                
             if localidade.numero:
                 url = url + localidade.numero + ","
             
