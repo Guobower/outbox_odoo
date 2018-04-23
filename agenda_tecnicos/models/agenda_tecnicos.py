@@ -158,6 +158,17 @@ class Agenda_tecnicos(models.Model):
                                    ('FIOK', 'Finalizado OK'),
                                    ('AGEN', 'Agendado')],
                                    )
+    
+    retirada_almoxarifado = fields.Many2one(
+                              string='Retirada do Almoxarifado',
+                              help='Retirada de materiais para uso na atividade',
+                              comodel_name='stock.picking')
+                              
+    devolucao_almoxarifado = fields.Many2one(
+                              string='Devolucao de Materiais',
+                              help='Devolução de materiais não usados ou recolhidos na atividade',
+                              comodel_name='stock.picking')
+                              
                               
     def on_change_cidade(self, cr, user, ids, cidadeOrigem, cidadeDestino, context=None):
         if cidadeOrigem:

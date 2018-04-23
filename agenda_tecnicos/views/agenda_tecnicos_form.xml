@@ -67,6 +67,16 @@
                                     </group>
                                 </group>
                             </page>
+                            <page string="Almoxarifado">
+                                <group>
+                                    <group string="Retirada">
+                                        <field name="retirada_almoxarifado" domain="[('picking_type_id', '=', 2)]" context="{'default_picking_type_id': 2}" />
+                                    </group>
+                                    <group string="Devolução">
+                                        <field name="devolucao_almoxarifado" domain="[('picking_type_id', '=', 21)]" context="{'default_picking_type_id': 21}" />
+                                    </group>
+                                </group>
+                            </page>
                             <page string="Equipe">
                                 <field colspan="4" name="equipe" widget="many2many_kanban">
                                     <kanban quick_create="false" create="true" delete="true">
