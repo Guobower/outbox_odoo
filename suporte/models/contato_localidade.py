@@ -9,7 +9,7 @@ class Contato_localidade(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     
     name = fields.Char(
-                       string="Localidade",
+                       string="Nome",
                        size=250,
                        required=True,
                        track_visibility='onchange')
@@ -19,8 +19,9 @@ class Contato_localidade(models.Model):
                           size=250,
                           required=True,
                           track_visibility='onchange')
-                       
-    contrato = fields.Many2one(
-                               string="Contrato",
-                               comodel_name='account.analytic.account',
-                               help="Contrato ao qual a localidade está vinculada")
+                               
+    localidade = fields.Many2one(
+                                 string="Localidade",
+                                 comodel_name='localidade',
+                                 required=True,
+                                 help="Localidade a qual o contato está vinculado")

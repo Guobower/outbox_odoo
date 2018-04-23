@@ -49,6 +49,25 @@
                                     </group>
                                 </group>
                             </page>
+                            <page string="Dados Técnicos">
+                                <group>
+                                    <group>
+                                        <field name="torre" />
+                                        <field name="pop" />
+                                    </group>
+                                    <group>
+                                        <field name="informacoes_tecnicas" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Contatos e Telefones">
+                                <field name="contato_localidade" context="{'default_localidade': id}" string="Teste">
+                                    <tree editable="bottom">
+                                        <field name="name" />
+                                        <field name="contato" />
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                         <div class="oe_chatter">
                             <field name="message_follower_ids" widget="mail_followers" />

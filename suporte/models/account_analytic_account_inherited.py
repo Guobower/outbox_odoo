@@ -61,12 +61,6 @@ class Account_analytic_account_inherited(models.Model):
                                  inverse_name='contrato',
                                  string='Localidades',
                                  help='Localidades vinculadas ao contrato')
-                                 
-    contato_localidade = fields.One2many(
-                                         comodel_name='contato_localidade',
-                                         inverse_name='contrato',
-                                         string='Contatos das Localidades',
-                                         help='Contatos das localidades vinculadas ao contrato')
     
     atendimento = fields.One2many(
                                   comodel_name='atendimento',
@@ -124,7 +118,7 @@ class Account_analytic_account_inherited(models.Model):
                            help='Hosts vinculados ao contrato')
         
     sla = fields.Selection(
-                           selection=[(0, 'Não'),
+                           selection=[(2, 'Não'),
                            (1, 'Sim')],
                            string='SLA',
                            help='Cliente possui SLA?',

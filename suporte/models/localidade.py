@@ -78,7 +78,29 @@ class Localidade(models.Model):
                                    help="Ponto de referência",
                                    track_visibility="onchange")         
                                    
-    
+    torre = fields.Many2one(
+                            string='Torre',
+                            help='Torre ao qual a localidade está vinculada',
+                            comodel_name='torre',
+                            track_visibility="onchange")         
+                                   
+    pop = fields.Many2one(
+                          string='Pop',
+                          help='Pop ao qual a localidade está vinculada',
+                          comodel_name='pop',
+                          track_visibility="onchange")         
+                                   
+    contato_localidade = fields.One2many(
+                                         comodel_name='contato_localidade',
+                                         inverse_name='localidade',
+                                         string='Contatos das Localidades',
+                                         help='Contatos das localidades vinculadas ao contrato',
+                                         track_visibility="onchange")   
+                                   
+    informacoes_tecnicas = fields.Text(
+                                       string='Informacoes Tecnicas',
+                                       help='Informações e dados técnicos extras sobre esta localidade',
+                                       track_visibility="onchange")
                             
                             
     def on_change_estado(self, cr, user, ids, estado, context=None):
