@@ -71,6 +71,7 @@
         'views/email_template_abre_fecha_ocorrencia.xml',
         'views/lote_ocorrencias_tree.xml',
         'views/lote_ocorrencias_form.xml',
-        'views/lote_abre_fecha_ocorrencias_form.xml'
+        'views/lote_abre_fecha_ocorrencias_form.xml',
+        'views/plano_cidade_form.xml'
     ]
 }

@@ -61,7 +61,7 @@
                                 </group>
                             </page>
                             <page string="Contatos e Telefones">
-                                <field name="contato_localidade" context="{'default_localidade': id}" string="Teste">
+                                <field name="contato_localidade" context="{'default_localidade': id}">
                                     <tree editable="bottom">
                                         <field name="name" />
                                         <field name="contato" />
