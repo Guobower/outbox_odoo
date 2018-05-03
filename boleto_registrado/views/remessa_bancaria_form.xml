@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="remessa_bancaria_form">
+            <field name="name">remessa_bancaria.form</field>
+            <field name="model">remessa_bancaria</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Remessa Bancaria">
+                    <sheet string="Remessa Bancaria">
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="gerar_remessa"
+                                    icon="fa-globe" string="Gerar">
+                            </button>
+                        </div>
+                        <group string="Informações Principais">
+                            <group>
+                                <field name="name" />
+                                <field name="empresa" />
+                            </group>
+                            <group>
+                                <field name="volume" />
+                                <field name="remessa_gerada" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Faturas de Clientes">
+                                <field name="faturas" domain="[('state', '=', 'open'),('type','=','out_invoice'),('date_due', '&lt;=', ((context_today()+datetime.timedelta(days=10)).strftime('%Y-%m-%d'))),('date_due', '&gt;=', ((context_today()).strftime('%Y-%m-%d')))]">
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="remessa_bancaria_account_invoice_form" model="ir.ui.view">
+            <field name="name">remessa_bancaria.account_invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <field position="after" name="origin">
+                        <field name="remessa_bancaria" readonly="1"></field>
+                        <field name="status_banco" readonly="1"></field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
