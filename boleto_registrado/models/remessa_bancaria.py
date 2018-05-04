@@ -59,7 +59,7 @@ class Remessa_bancaria(models.Model):
             faturas = json.JSONEncoder().encode(self.gerar_array_faturas(obj_remessa.faturas))
 
             r = requests.get('http://syncron.cinte.com.br/scriptOdoo/remessa_cnab/cintenet.php?faturas=' + str(faturas))
-
+            
             attach_obj = self.pool.get('ir.attachment')
             context.update({'default_res_id': ids[0], 'default_res_model': 'remessa_bancaria'})
             
@@ -94,7 +94,7 @@ class Remessa_bancaria(models.Model):
                 cpf_cnpj_tipo = 'cnpj'
             else:
                 cpf_cnpj_tipo = 'cpf'
-                
+            '''    
             valores = {
                 'nosso_numero':item.id,
                 'numero_documento':item.id,
@@ -110,6 +110,10 @@ class Remessa_bancaria(models.Model):
                 'data_vencimento':item.date_due,
                 'data_cadastro':item.date_invoice,
                 'mensagem':item.comment
+            }
+            '''
+            valores = {
+                'nosso_numero':item.id
             }
             retorno.append(valores)
         
