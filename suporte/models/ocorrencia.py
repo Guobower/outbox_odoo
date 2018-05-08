@@ -344,6 +344,20 @@ class Ocorrencia(models.Model):
             retorno = obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].descricao
         return retorno
     
+    def titulo_ultima_informacao(self, cr, uid, ocorrencia, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
+        
+        retorno = ""
+        cont_iteracoes = len(obj_ocorrencia.abre_fecha_ocorrencia)
+        if cont_iteracoes > 0:
+            if obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].name == '1':
+                retorno = "Reabertura"
+            if obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].name == '2':
+                retorno = "Fechamento"
+            if obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].name == '3':
+                retorno = "Observacao"
+        return retorno
+    
     def solicitar_visita(self, cr, uid, ids, context=None):
         obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ids[0])
         

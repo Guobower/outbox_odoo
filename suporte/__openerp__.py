@@ -69,6 +69,7 @@
         'views/ocorrencia_graph.xml',
         'views/abre_fecha_ocorrencia_form.xml',
         'views/email_template_abre_fecha_ocorrencia.xml',
+        'views/email_template_abre_ocorrencia.xml',
         'views/lote_ocorrencias_tree.xml',
         'views/lote_ocorrencias_form.xml',
         'views/lote_abre_fecha_ocorrencias_form.xml',

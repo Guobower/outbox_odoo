@@ -4,13 +4,13 @@
 		customize/delete them -->
 	<data>
 		<!--Email template -->
-		<record id="email_template_abre_fecha_ocorrencia" model="email.template">
-			<field name="name">Abertura e Fechamento de Ocorrencias</field>
+		<record id="email_template_abre_ocorrencia" model="email.template">
+			<field name="name">Abertura de Ocorrencias</field>
 			<field name="model_id" ref="suporte.model_ocorrencia" />
 			<field name="auto_delete" eval="True" />
 			<field name="email_from">odoo@cinte.com.br</field>
 			<field name="email_to">edsoncosme@cinte.com.br,leonardonunes@cinte.com.br</field>
-			<field name="subject">${object.titulo_ultima_informacao(object.id)} - ${object.tipo_ocorrencia.name} - ${object.localidade.name} - ${object.name}</field>
+			<field name="subject">${object.tipo_ocorrencia.name} - ${object.localidade.name} - ${object.name}</field>
 			<field name="body_html">
 <![CDATA[
 <style>
@@ -69,25 +69,6 @@ ${object.ultima_informacao(object.id)}
                     <tr><td><b>${object.report_format_aberto_fechado(object.status_ocorrencia.id)}:</b></td><td>${object.report_format_tempo_efetivo_indisponibilidade(object.id)}</td></tr>
                 </tbody>
             </table>
-<table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
-    <tr align='center' style='background-color: #007236; color: #FFFFFF;'><td colspan='5'><b>REABERTURAS, FECHAMENTOS E OBSERVAÇÕES</b></td></tr>
-    <tr>
-        <td><b>Protocolo</b></td>
-        <td><b>Opera&ccedil;&atilde;o</b></td>
-        <td><b>Descri&ccedil;&atilde;o</b></td>
-        <td><b>Data da abertura/fechamento</b></td>
-        <td><b>Usu&aacute;rio</b></td>
-    </tr>
-    % for row in object.abre_fecha_ocorrencia:  
-    <tr>
-        <td>${object.name}</td>
-        <td>${object.report_format_operacao(row.name)}</td>
-        <td>${row.descricao}</td>
-        <td>${object.report_format_data(row.create_date)}</td>
-        <td>${row.create_uid.name}</td>
-    <tr>
-    %endfor
-</table>
 ]]>
 </field>
 		</record>
