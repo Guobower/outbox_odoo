@@ -73,14 +73,20 @@ class Abre_fecha_ocorrencia(models.Model):
                 'res_id': record['id'],
                 'type': 'binary'
             }
-            print 'Abre-fecha: '+str(values)
             arquivo_anexo = self.env['ir.attachment'].create(attachment)
             # Add Attachment
             template.attachment_ids = [(6,0,[arquivo_anexo.id])]
-        
+        else:
+            # Remove Attachment
+            template.attachment_ids = [(6,0,[])]
+            
         if anexo_lote > 0:
             template.attachment_ids = [(6,0,[anexo_lote])]
-            
+        else:
+            # Remove Attachment
+            template.attachment_ids = [(6,0,[])]
+        
+        
         template.send_mail(record['ocorrencia'].id, force_send=True)
         
         # Return the record so that the changes are applied and everything is stored.

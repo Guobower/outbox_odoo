@@ -233,7 +233,6 @@ class Ocorrencia(models.Model):
         for item in obj_ocorrencia.abre_fecha_ocorrencia:
             if item.name == '2':
                 ja_fechou += 1
-            print "Aquiiiii"+str(item.name)
         
         if ja_fechou > 0:
             tempo_efetivo_indisponibilidade = (datetime.datetime.today() - timedelta(hours=3) - datetime.datetime.strptime(obj_ocorrencia.data_ultima_abertura, '%Y-%m-%d %H:%M:%S')).total_seconds()
