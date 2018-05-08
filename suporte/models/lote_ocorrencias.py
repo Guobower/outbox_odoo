@@ -83,7 +83,7 @@ class Lote_ocorrencias(models.Model):
             res = {
                 'value': {
                     # Define a distancia entre as cidades e o tempo médio do percurso.
-                    'titulo': tipo.titulo_padrao,
+                    'name': tipo.titulo_padrao,
                     'descricao': tipo.texto_padrao
                 }
             }

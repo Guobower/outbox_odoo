@@ -12,11 +12,11 @@
                     <sheet>
                         <group>
                             <group string="Ocorrência">
-                                <field name="name" />
+                                <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
                                 <field name="contrato" readonly="1" />
                             </group>
                             <group string="Manifestação">
-                                <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
+                                <field name="name" />
                                 <field name="descricao" />
                                 <field name="imputavel" />
                             </group>
