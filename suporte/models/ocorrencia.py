@@ -225,11 +225,21 @@ class Ocorrencia(models.Model):
         }
         '''
         import datetime
+        from datetime import timedelta
         
         obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, user, ids[0])
         
-        tempo_efetivo_indisponibilidade = (datetime.datetime.today() - datetime.datetime.strptime(obj_ocorrencia.data_ultima_abertura, '%Y-%m-%d %H:%M:%S')).total_seconds()
+        ja_fechou = 0
+        for item in obj_ocorrencia.abre_fecha_ocorrencia:
+            if item.name == '2':
+                ja_fechou += 1
+            print "Aquiiiii"+str(item.name)
         
+        if ja_fechou > 0:
+            tempo_efetivo_indisponibilidade = (datetime.datetime.today() - timedelta(hours=3) - datetime.datetime.strptime(obj_ocorrencia.data_ultima_abertura, '%Y-%m-%d %H:%M:%S')).total_seconds()
+        else:
+            tempo_efetivo_indisponibilidade = (datetime.datetime.today() - datetime.datetime.strptime(obj_ocorrencia.create_date, '%Y-%m-%d %H:%M:%S')).total_seconds()
+            
         return {
             'name':'abre_fecha_ocorrencia.form',
             'view_type':'form',
@@ -262,8 +272,9 @@ class Ocorrencia(models.Model):
         
     def report_format_data(self, cr, uid, data, context=None):
         import datetime
+        from datetime import timedelta
         
-        return datetime.datetime.strptime(data, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S')
+        return (datetime.datetime.strptime(data, '%Y-%m-%d %H:%M:%S') - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M:%S')
     
     def report_format_operacao(self, cr, uid, operacao, context=None):
         retorno = ""

@@ -43,16 +43,17 @@ class Abre_fecha_ocorrencia(models.Model):
     @api.model
     def create(self, values, anexo_lote=0):
         import datetime
+        from datetime import timedelta
         # Override the original create function for the res.partner model
         record = super(Abre_fecha_ocorrencia, self).create(values)
         
         obj_ocorrencia = self.pool.get('ocorrencia').browse(self.env.cr, self.env.uid, record['ocorrencia'].id)
         
         if record['name'] == '1':
-            obj_ocorrencia.write({'status_ocorrencia': 1, 'data_ultima_abertura':datetime.datetime.today()}, context=None)
+            obj_ocorrencia.write({'status_ocorrencia': 1, 'data_ultima_abertura':datetime.datetime.today() - timedelta(hours=3)}, context=None)
             
         if record['name'] == '2':
-            obj_ocorrencia.write({'status_ocorrencia': 2, 'tempo_efetivo_indisponibilidade': obj_ocorrencia.tempo_efetivo_indisponibilidade + record['tempo_efetivo_indisponibilidade'], 'data_ultimo_fechamento':datetime.datetime.today()}, context=None)
+            obj_ocorrencia.write({'status_ocorrencia': 2, 'tempo_efetivo_indisponibilidade': obj_ocorrencia.tempo_efetivo_indisponibilidade + record['tempo_efetivo_indisponibilidade'], 'data_ultimo_fechamento':datetime.datetime.today() - timedelta(hours=3)}, context=None)
         
         
         ir_model_data = self.pool.get('ir.model.data')
