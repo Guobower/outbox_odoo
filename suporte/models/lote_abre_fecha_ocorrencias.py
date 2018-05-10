@@ -76,7 +76,7 @@ class Lote_abre_fecha_ocorrencias(models.Model):
                     
             valores = {
                 'name': record['name'],
-                'descricao': record['descricao'],
+                'descricao': str(record['descricao']).replace('#cidade#', '' + item.localidade.name),
                 'ocorrencia': item.id,
                 'tempo_efetivo_indisponibilidade': round(tempo_efetivo_indisponibilidade/60)
             }
