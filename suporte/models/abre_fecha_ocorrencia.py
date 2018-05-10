@@ -40,14 +40,57 @@ class Abre_fecha_ocorrencia(models.Model):
     
     anexo_filename = fields.Char("Anexo")
     
+    
+    
+    def on_change_descricao(self, cr, user, ids, descricao, ocorrencia, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo modificar o titulo e o texto do chamado trocando 
+              #cidade# pelo nome da localidade.
+        
+            Utilização:
+              on_change_tipo(param1)
+        
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              titulo
+                Titulo da ocorrência
+              descricao
+                Descricao da ocorrência
+              localidade
+                Localidade da ocorrência
+              context
+                Contexto atual
+        '''
+        if ocorrencia:
+            if descricao:
+                obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, user, ocorrencia)
+                res = {
+                    'value': {
+                        # Define a distancia entre as cidades e o tempo médio do percurso.
+                        'descricao': str(descricao).replace('#cidade#', '' + obj_ocorrencia.localidade.name)
+                    }
+                }
+                # Return the values to update it in the view.
+                return res
+                
+                
     @api.model
     def create(self, values, anexo_lote=0):
         import datetime
         from datetime import timedelta
         # Override the original create function for the res.partner model
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(self.env.cr, self.env.uid, values['ocorrencia'])
+        
+        values['descricao'] = str(values['descricao']).replace('#cidade#', '' + obj_ocorrencia.localidade.name)
+        
         record = super(Abre_fecha_ocorrencia, self).create(values)
         
-        obj_ocorrencia = self.pool.get('ocorrencia').browse(self.env.cr, self.env.uid, record['ocorrencia'].id)
         
         if record['name'] == '1':
             obj_ocorrencia.write({'status_ocorrencia': 1, 'data_ultima_abertura':datetime.datetime.today() - timedelta(hours=3)}, context=None)
