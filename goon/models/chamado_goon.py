@@ -138,7 +138,8 @@ class Chamado_goon(models.Model):
                              '',
                              'Internal'))
 
-
+        print "Cliente " +str(obj_chamado_goon.ocorrencia.contrato.partner_id.id_syncron)
+        print "RETORNO DO WEBSERVICE "+str(retorno)
         if retorno['success']:
             obj_chamado_goon.write({'name': retorno['numeroOS'], 'status': 'DESP'})
             return {
