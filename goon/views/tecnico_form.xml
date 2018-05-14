@@ -25,6 +25,7 @@
                             <group string="Dados do Goon">
                                 <field name="codigo_usuario" readonly="1" />
                                 <field name="codigo_verificacao" readonly="1" />
+                                <field name="active" />
                             </group>
                         </group>
                     </sheet>

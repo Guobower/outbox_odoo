@@ -35,6 +35,12 @@ class Tecnico(models.Model):
                            string="Telefone",
                            size=30
                            )
+                           
+    active = fields.Boolean(
+                            string="Ativo",
+                            help="Pacote ativo ou não",
+                            track_visibility='onchange'
+                            )
         
     
     def sincronizar_dados(self, cr, user, ids, context=None):
@@ -47,9 +53,9 @@ class Tecnico(models.Model):
         client = Client(obj_companhia.url)
         
         retorno = json.loads(client.service.SaveOrUpdateMobileAgent(obj_companhia.auth_code, 
-            obj_companhia.client_code, tecnico.codigo_usuario, tecnico.id, tecnico.name, 
-            tecnico.usuario.login, tecnico.telefone, 'true', 'true', 'true', 1, 
-            '','','','','','','','',''))
+                             obj_companhia.client_code, tecnico.codigo_usuario, tecnico.id, tecnico.name, 
+                             tecnico.usuario.login, tecnico.telefone, 'true', 'true', 'true', 1, 
+                             '', '', '', '', '', '', '', '', ''))
         
         if retorno['success']:
             return {
@@ -61,7 +67,7 @@ class Tecnico(models.Model):
                     'text': 'Dados enviados para o Goon.',
                     'sticky': False
                     }
-             }
+            }
         else:
             return {
                 'type': 'ir.actions.client',
@@ -72,4 +78,4 @@ class Tecnico(models.Model):
                     'text': 'Houve um erro ao sincronizar, contate o administrador do sistema.',
                     'sticky': False
                     }
-             }
+            }
