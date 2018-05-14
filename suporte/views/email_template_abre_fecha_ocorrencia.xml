@@ -10,7 +10,7 @@
 			<field name="auto_delete" eval="True" />
 			<field name="email_from">odoo@cinte.com.br</field>
 			<field name="email_to">edsoncosme@cinte.com.br,leonardonunes@cinte.com.br</field>
-			<field name="subject">${object.titulo_ultima_informacao(object.id)} - ${object.tipo_ocorrencia.name} - ${object.localidade.name} - ${object.name}</field>
+			<field name="subject">${object.titulo_ultima_informacao(object.id)} - ${object.tipo_ocorrencia.name} - ${object.localidade.name} - ${object.name} ${object.report_imputavel(object.id)}</field>
 			<field name="body_html">
 <![CDATA[
 <style>

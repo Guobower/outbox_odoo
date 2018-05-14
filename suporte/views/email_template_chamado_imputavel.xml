@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<openerp>
+    <!-- Mail template are declared in a NOUPDATE block so users can freely 
+    customize/delete them -->
+    <data>
+        <!--Email template -->
+        <record id="email_template_chamado_imputavel" model="email.template">
+            <field name="name">Chamado Imputavel</field>
+            <field name="model_id" ref="suporte.model_ocorrencia" />
+            <field name="auto_delete" eval="True" />
+            <field name="email_from">odoo@cinte.com.br</field>
+            <field name="email_to">edsoncosme@cinte.com.br,leonardonunes@cinte.com.br</field>
+            <field name="subject">Atendimento protocolo: ${object.name} (Imputavel)</field>
+            <field name="body_html">
+<![CDATA[
+<style>
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #009458;
+}
+
+th, td {
+    padding: 5px;
+}
+
+</style>
+<p>
+Mensagem gerada automaticamente pelo sistema de gerenciamento da CINTE.
+<br>
+Caso deseje manter contato, ligar para (84) 3231-2922 ou enviar e-mail para suporte@cinte.com.br. 
+<br>
+<br>
+<b><u>REGISTRO DA ATIVIDADE</u></b>
+<br>
+<br>
+<b>Cliente:</b> ${object.contrato.partner_id.name}
+<br>
+<b>Ordem de Serviço:</b> ${object.name} 
+<br>
+<b>Data e Hora da Abertura:</b> ${object.report_format_data(object.create_date)}
+<br>
+<b>Motivo da Abertura:</b> ${object.descricao}
+<br>
+<br>
+<b>A seguinte informação foi adicionada à ordem de serviço</b>
+<br>
+Após análise constatamos falha técnica na estrutura da CINTE, cujo a localidade ${object.localidade.name} é dependente. Para fins de contabilização, estamos imputando esta ocorrência.
+</p>
+]]>
+            </field>
+        </record>
+    </data>
+</openerp>

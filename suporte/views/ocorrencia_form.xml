@@ -25,18 +25,23 @@
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
                                     name="solicitar_visita"
-                                    icon="fa-paper-plane" string="Visita Técnica">
+                                    icon="fa-paper-plane" string="Visita Técnica" attrs="{'invisible': [('agenda_tecnicos','&lt;&gt;',False)]}">
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                                        name="imputar_chamado"
+                                                        icon="fa-exclamation-triangle" string="Imputar" attrs="{'invisible': [('imputavel','=',2)]}">
                             </button>
                         </div>
                         <group>
                             <group string="Ocorrência">
+                                <field name="id" />
                                 <field name="name" invisible="1" />
                                 <field name="status_ocorrencia" readonly="1" required="1" />
                                 <field name="tempo_efetivo_indisponibilidade" readonly="1" />
                             </group>
                             <group string="Vínculo">
                                 <field name="contrato" readonly="1" />
-                                <field name="localidade" domain="[('contrato', '=', contrato)]" options="{'no_create': True}" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
+                                <field name="localidade" domain="[('contrato', '=', contrato)]" options="{'no_create': True}" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
                                 <field name="agenda_tecnicos" readonly="1" />
                             </group>
                         </group>
@@ -44,12 +49,12 @@
                             <page string="Dados da Ocorrência">
                                 <group>
                                     <group string="Manifestação">
-                                        <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
-                                        <field name="titulo" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
-                                        <field name="descricao" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" />
+                                        <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
+                                        <field name="titulo" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
+                                        <field name="descricao" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
                                     </group>
                                     <group string="Andamento do Atendimento">
-                                        <field name="imputavel" />
+                                        <field name="imputavel" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
                                     </group>
                                 </group>
                             </page>
@@ -57,7 +62,7 @@
                                 <field name="abre_fecha_ocorrencia" readonly="1">
                                     <tree>
                                         <field name="name" />
-                                        <field name="descricao" />
+                                        <field name="descricao" widget="html" />
                                         <field name="tempo_efetivo_indisponibilidade" />
                                         <field name="create_date" />
                                     </tree>

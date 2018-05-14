@@ -352,6 +352,7 @@ class Ocorrencia(models.Model):
         cont_iteracoes = len(obj_ocorrencia.abre_fecha_ocorrencia)
         if cont_iteracoes > 0:
             retorno = obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes-1].descricao
+            print retorno
         return retorno
     
     def titulo_ultima_informacao(self, cr, uid, ocorrencia, context=None):
@@ -368,6 +369,15 @@ class Ocorrencia(models.Model):
                 retorno = "Observacao"
         return retorno
     
+    def report_imputavel(self, cr, uid, ocorrencia, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
+        
+        if obj_ocorrencia.imputavel == 2:
+            return '(IMPUTAVEL)'
+        else:
+            return ''
+        
+        
     def solicitar_visita(self, cr, uid, ids, context=None):
         obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ids[0])
         
@@ -397,3 +407,27 @@ class Ocorrencia(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
+    
+    def imputar_chamado(self, cr, uid, ids, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ids[0])
+        obj_ocorrencia.write({'imputavel': 2})
+        
+        
+        ir_model_data = self.pool.get('ir.model.data')  
+        try:
+            template_id = ir_model_data.get_object_reference(cr, uid, 'suporte', 'email_template_chamado_imputavel')[1]
+        except ValueError:
+            template_id = False
+              
+        self.pool['email.template'].send_mail(
+           cr, uid, template_id, ids[0], force_send=True,
+           context=None)
+           
+        pass
+        
+    def raw_string(self, s):
+        if isinstance(s, str):
+            s = s.encode('string-escape')
+        elif isinstance(s, unicode):
+            s = s.encode('unicode-escape')
+        return s
