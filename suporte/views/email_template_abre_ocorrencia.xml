@@ -47,7 +47,7 @@ Caso deseje manter contato, ligar para (84) 3231-2922 ou enviar e-mail para supo
 <br>
 <b>${object.houve_nova_informacao(object.id)}</b>
 <br>
-${object.ultima_informacao(object.id)}
+${object.ultima_informacao(object.id)|safe}
 <br>
 <br>
 </p>
