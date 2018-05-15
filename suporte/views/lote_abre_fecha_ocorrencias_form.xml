@@ -21,7 +21,7 @@
                                 <field name="anexo_filename" invisible="1" />
                             </group>
                             <group colspan="2">
-                                <field name="descricao" string="Descrição" />
+                                <field name="descricao" widget="html" string="Descrição" />
                             </group>
                             <notebook>
                                 <page string="Ocorrências">
