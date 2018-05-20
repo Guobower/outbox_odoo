@@ -5,5 +5,5 @@ class Account_bank_statement_inherited(models.Model):
     _inherit = 'account.bank.statement'
     
     journal_id = field.Many2one(
-        domain=[('id','=',1)]
+        domain=[('id','=',7)]
     )
