@@ -15,8 +15,8 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
     def on_change_odometro(self, cr, uid, ids, odometro, veiculo, context=None):
         print "ENTREI"
         if odometro and veiculo:
-            obj_abastecimentos = self.pool.get('fleet.vehicle.log.fuel').search(cr, uid, [('odometer', '>', odometro), ('vehicle_id', '=', veiculo)])
-            if len(obj_abastecimentos) > 0:
+            obj_veiculo = self.pool.get('fleet.vehicle').search(cr, uid, [('id', '=', veiculo)])
+            if obj_veiculo.odometer >= odometro:
                 '''
                 res = {
                     'value': {
@@ -29,7 +29,7 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
                     'tag': 'action_warn',
                     'name': 'Warning',
                     'params': {
-                        'title': 'Abastecimento não validado!' + str(len(obj_abastecimentos)),
+                        'title': 'Abastecimento não validado!',
                         'text': 'Abastecimento automaticamente validado.',
                         'sticky': True
                         }
@@ -40,7 +40,7 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
                     'tag': 'action_warn',
                     'name': 'Warning',
                     'params': {
-                        'title': 'Abastecimento Validado!' + str(len(obj_abastecimentos)),
+                        'title': 'Abastecimento Validado!',
                         'text': 'Abastecimento automaticamente validado.',
                         'sticky': True
                         }
