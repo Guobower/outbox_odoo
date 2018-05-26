@@ -12,9 +12,9 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
                             track_visibility='onchange'
                             )
     
-    def on_change_odometro(self, cr, user, ids, odometro, context=None):
+    def on_change_odometro(self, cr, user, ids, odometro, veiculo, context=None):
         if odometro:
-            obj_abastecimentos = self.pool.get('fleet.vehicle.log.fuel').search(cr, uid, [('odometer', '>', odometro)])
+            obj_abastecimentos = self.pool.get('fleet.vehicle.log.fuel').search(cr, uid, [('odometer', '>', odometro), ('vehicle_id', '=', veiculo)])
             if len(obj_abastecimentos) > 0:
                 res = {
                     'value': {
