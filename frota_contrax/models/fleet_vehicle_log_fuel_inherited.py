@@ -44,4 +44,16 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
                         'sticky': True
                         }
                 }
-            return res
+        else:
+            res = {
+                'type': 'ir.actions.client',
+                'tag': 'action_warn',
+                'name': 'Warning',
+                'params': {
+                    'title': 'Nem entrou!' + str(odometro),
+                    'text': 'Abastecimento automaticamente validado.' + str(veiculo),
+                    'sticky': True
+                    }
+            }
+        
+        return res
