@@ -6,10 +6,8 @@
             <field name="model">fleet.vehicle.log.fuel</field>
             <field name="inherit_id" ref="fleet.fleet_vehicle_log_fuel_form" />
             <field name="arch" type="xml">
-                <field name="odometer" position="after">
-                    <group>
-                        <field name="active" readonly="1" />
-                    </group>
+                <field name="odometer_unit" position="after">
+                    <field name="active" readonly="1" />
                 </field>
             </field>
         </record>
