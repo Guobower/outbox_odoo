@@ -15,7 +15,7 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
     def on_change_odometro(self, cr, uid, ids, odometro, veiculo, context=None):
         print "ENTREI"
         if odometro and veiculo:
-            obj_veiculo = self.pool.get('fleet.vehicle').search(cr, uid, [('id', '=', veiculo)])
+            obj_veiculo = self.pool.get('fleet.vehicle').browse(cr, uid, veiculo)
             if obj_veiculo.odometer >= odometro:
                 '''
                 res = {
