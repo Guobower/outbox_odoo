@@ -3,7 +3,7 @@
 	<data>
 		<record id="fleet.fleet_vehicle_log_fuel" model="ir.ui.view">
 			<field name="name">active_field</field>
-			<field name="model">fleet.fleet.vehicle.log.fuel</field>
+			<field name="model">fleet.vehicle.log.fuel</field>
 			<field name="inherit_id" ref="fleet.fleet_vehicle_log_fuel_form" />
 			<field name="arch" type="xml">
 				<field name="odometer" position="after">
