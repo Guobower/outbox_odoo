@@ -16,20 +16,32 @@ class Fleet_vehicle_log_fuel_inherited(models.Model):
         if odometro and veiculo:
             obj_abastecimentos = self.pool.get('fleet.vehicle.log.fuel').search(cr, uid, [('odometer', '>', odometro), ('vehicle_id', '=', veiculo)])
             if len(obj_abastecimentos) > 0:
+                '''
                 res = {
                     'value': {
                         'active': False
                     }
                 }
+                '''
+                res = {
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'Abastecimento não validado!' + str(len(obj_abastecimentos)),
+                        'text': 'Abastecimento automaticamente validado.',
+                        'sticky': True
+                        }
+                }
             else:
                 res = {
-                        'type': 'ir.actions.client',
-                        'tag': 'action_warn',
-                        'name': 'Warning',
-                        'params': {
-                            'title': 'Abastecimento Validado!',
-                            'text': 'Abastecimento automaticamente validado.',
-                            'sticky': False
-                            }
-                    }
+                    'type': 'ir.actions.client',
+                    'tag': 'action_warn',
+                    'name': 'Warning',
+                    'params': {
+                        'title': 'Abastecimento Validado!' + str(len(obj_abastecimentos)),
+                        'text': 'Abastecimento automaticamente validado.',
+                        'sticky': True
+                        }
+                }
             return res
