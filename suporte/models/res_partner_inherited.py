@@ -56,7 +56,13 @@ class Res_partner_inherited(models.Model):
         help='Contatos do cliente',
         track_visibility="onchange")
     
-    
-    
-    
-    
+
+    def get_contatos_notificacoes(self, cr, user, ids, context=None):
+        obj_parceiro = self.pool.get('res.partner').browse(cr, user, ids)
+
+        retorno = ''
+        for contato in obj_parceiro.contato_cliente:
+            if contato.name == '1':
+                retorno = retorno + contato.contato + ','
+
+        return retorno[:-1]
