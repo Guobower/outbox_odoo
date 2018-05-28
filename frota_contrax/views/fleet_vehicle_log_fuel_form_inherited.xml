@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="fleet.fleet_vehicle_log_fuel" model="ir.ui.view">
+            <field name="name">active_field</field>
+            <field name="model">fleet.vehicle.log.fuel</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_log_fuel_form" />
+            <field name="arch" type="xml">
+                <field name="odometer_unit" position="after">
+                    <field name="active" readonly="1" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
