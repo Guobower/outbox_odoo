@@ -13,6 +13,7 @@ class Contato_cliente(models.Model):
                             selection=[('1', 'E-mail'),
                                        ('2', 'Telefone')],
                             string="Tipo de Contato",
+                            required=True,
                             help="Lista de contatos extras dos clientes, utilizada para envio de notificações.",
                             track_visibility='onchange')
 
