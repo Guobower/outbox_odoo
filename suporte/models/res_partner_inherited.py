@@ -48,6 +48,13 @@ class Res_partner_inherited(models.Model):
         string='Profissao',
         help='Profissão',
         track_visibility='onchange')
+
+    contato_cliente = fields.One2many(
+        comodel_name='contato_cliente',
+        inverse_name='cliente',
+        string='Contatos do Cliente',
+        help='Contatos do cliente',
+        track_visibility="onchange")
     
     
     

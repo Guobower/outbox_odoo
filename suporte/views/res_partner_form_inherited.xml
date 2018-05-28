@@ -30,6 +30,14 @@
                     </group>
                 </field>
                 <notebook>
+                    <page position="inside" string="Contatos Extras" name="Contatos Extras">
+                        <field name="contato_cliente">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="contato" />
+                                </tree>
+                        </field>
+                    </page>
                     <page position="inside" string="Informações Técnicas" name="Informações Técnicas">
                         <group>
                             <field name="informacoes_tecnicas" readonly="1"></field>
