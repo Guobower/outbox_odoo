@@ -27,6 +27,7 @@
                     <group string="Dados do Suporte">
                         <field name="usuario_centreon"></field>
                         <field name="id_syncron"></field>
+                        <field name="senha_site" password="True" />
                     </group>
                 </field>
                 <notebook>

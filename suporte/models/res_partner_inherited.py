@@ -55,6 +55,13 @@ class Res_partner_inherited(models.Model):
         string='Contatos do Cliente',
         help='Contatos do cliente',
         track_visibility="onchange")
+
+    senha_site = fields.Char(
+        string="Senha de Acesso ao Site",
+        size=100,
+        help="Senha de acesso a área de suporte do site.",
+        track_visibility='onchange'
+    )
     
 
     def get_contatos_notificacoes(self, cr, user, ids, context=None):
