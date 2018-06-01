@@ -648,7 +648,7 @@ class Convenio115(models.Model):
                 
                 # Fase ou Tipo de Utilização, 1 casa, 18 - 18 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    1, str('4')
+                    1, str('2')
                     )
                 
                 # Grupo de Tensão, 2 casas, 19 - 20 tipo N
@@ -698,7 +698,7 @@ class Convenio115(models.Model):
                 
                 # Código de classificação do item, 4 casas, 100 - 103 tipo N
                 txt_content = txt_content + "" + self.formatar_numerico(
-                    4, str("0104")
+                    4, str("0102")
                     )
                 
                 # Unidade, 6 casas, 104 - 109 tipo X
