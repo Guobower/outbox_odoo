@@ -15,10 +15,10 @@
                                 <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
                                 <field name="contrato" readonly="1" />
                             </group>
-                            <group string="Manifestação">
+                            <group string="Manifestação" colspan="2">
                                 <field name="name" />
                                 <field name="descricao" widget="html" />
-                                <field name="imputavel" />
+                                <field name="imputavel" required="1" />
                             </group>
                         </group>
                         <notebook>

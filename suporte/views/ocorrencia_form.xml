@@ -48,13 +48,13 @@
                         <notebook>
                             <page string="Dados da Ocorrência">
                                 <group>
-                                    <group string="Manifestação">
+                                    <group string="Manifestação" colspan="2">
                                         <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
                                         <field name="titulo" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
                                         <field name="descricao" on_change="on_change_titulo_descricao(titulo,descricao,localidade)" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
                                     </group>
-                                    <group string="Andamento do Atendimento">
-                                        <field name="imputavel" attrs="{'readonly': [('id','&lt;&gt;',False)]}" />
+                                    <group string="Andamento do Atendimento" colspan="2">
+                                        <field name="imputavel" attrs="{'readonly': [('id','&lt;&gt;',False)]}" required="1" />
                                     </group>
                                 </group>
                             </page>
