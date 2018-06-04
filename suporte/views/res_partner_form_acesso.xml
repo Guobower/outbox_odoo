@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="suporte_res_partner_form_acesso" model="ir.ui.view">
+            <field name="name">suporte_res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="suporte_res_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='informacoes_tecnicas']" position="attributes">
+					<attribute name="readonly"/>
+				</xpath>
+                <xpath expr="//field[@name='textos_chamados']" position="attributes">
+					<attribute name="readonly"/>
+				</xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

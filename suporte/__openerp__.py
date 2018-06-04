@@ -14,6 +14,7 @@
         'security/suporte_security.xml',
         'views/res_partner_notificacoes.xml',
         'views/res_partner_form_inherited.xml',
+        'views/res_partner_form_acesso.xml',
         'views/status_contrato_form.xml',
         'views/status_contrato_notificacoes.xml',
         'views/status_contrato_tree.xml',
