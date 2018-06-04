@@ -35,10 +35,10 @@ class Monitoramento(models.Model):
                        required=True,
                        track_visibility='onchange')
     
-    sistema = fields.Many2one(
-                              comodel_name='sistemas_monitoramento',
+    tipo_ocorrencia = fields.Many2one(
+                              comodel_name='tipo_ocorrencia',
                               string='Tipo',
-                              help='Sistema monitorado',
+                              help='Tipo da ocorrência no monitoramento',
                               required=True,
                               track_visibility='onchange')
                               
@@ -305,5 +305,39 @@ class Monitoramento(models.Model):
                 'sticky': False
                 }
             }
-    
-    
+
+
+    def on_change_tipo(self, cr, uid, ids, tipo_ocorrencia, context=None):
+        '''
+        Descrição:
+          Esta função tem como objetivo modificar o titulo e o texto padrao do monitoramento
+          de acordo com o tipo.
+
+        Utilização:
+          _onchange_tipo_ocorrencia(param1)
+
+        Parâmetros:
+          cr
+            Cursor do banco de dados
+          uid
+            Usuário do sistema
+          ids
+            IDs do monitoramento
+          tipo_ocorrencia
+            Tipo da ocorrência selecionado no formulario
+          context
+            Contexto atual
+        '''
+        print("Entrei no onchange")
+        if tipo_ocorrencia:
+            tipo = self.pool.get('tipo_ocorrencia').browse(cr, uid, tipo_ocorrencia)
+
+            res = {
+                'value': {
+                    # Define a distancia entre as cidades e o tempo médio do percurso.
+                    'name': tipo.titulo_padrao,
+                    'descricao': tipo.texto_padrao
+                }
+            }
+            # Return the values to update it in the view.
+            return res

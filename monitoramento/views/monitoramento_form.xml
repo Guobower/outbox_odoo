@@ -33,9 +33,9 @@
                         </div>
                         <group string="Informações Principais">
                             <group>
+                                <field name="tipo_ocorrencia" options="{'no_create': True}" on_change="on_change_tipo(tipo_ocorrencia)" />
                                 <field name="name" string="Nome" />
                                 <field name="stage_id" readonly="1" />
-                                <field name="sistema" />
                             </group>
                             <group>
                                 <field name="create_date" string="Data de Criação"
