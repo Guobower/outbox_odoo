@@ -20,16 +20,16 @@
                                     icon="fa-lock" string="Fechar">
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
-                                    name="adicionar_observacao"
+                                    name="adicionar_observacao" attrs="{'invisible': [('status_ocorrencia','=',2)]}"
                                     icon="fa-edit" string="Observação">
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
                                     name="solicitar_visita"
-                                    icon="fa-paper-plane" string="Visita Técnica" attrs="{'invisible': [('agenda_tecnicos','&lt;&gt;',False)]}">
+                                    icon="fa-paper-plane" string="Visita Técnica" attrs="{'invisible': ['|',('agenda_tecnicos','&lt;&gt;',False),('status_ocorrencia','=',2)]}">
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
                                                         name="imputar_chamado"
-                                                        icon="fa-exclamation-triangle" string="Imputar" attrs="{'invisible': [('imputavel','=',2)]}">
+                                                        icon="fa-exclamation-triangle" string="Imputar" attrs="{'invisible': ['|',('imputavel','=',2),('status_ocorrencia','=',2)]}">
                             </button>
                         </div>
                         <group>
