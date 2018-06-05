@@ -106,9 +106,15 @@ class Ocorrencia(models.Model):
     textos_chamados = fields.Text('Textos de chamados', related='contrato.partner_id.textos_chamados', store=True) 
     
     #contato_localidade = fields.One2many('Contatos de Localidades', related='contrato.contato_localidade', store=True) 
-    
-    
-    
+
+    checar_atraso = fields.Boolean(compute='_checar_atraso')
+
+    @api.depends('create_date')
+    def _checar_atraso(self):
+        import datetime
+        for record in self:
+            record.checar_atraso = (datetime.datetime.strptime(record.create_date, '%Y-%m-%d %H:%M:%S') + datetime.timedelta(hours=2)) < datetime.datetime.now()
+
     def on_change_tipo(self, cr, user, ids, tipo_ocorrencia, context=None):
         '''
             Descrição:

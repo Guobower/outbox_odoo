@@ -117,8 +117,6 @@
                                     </field>
                                 </div>
                             </page>
-                            <page string="Faturamento">
-                            </page>
                             <page string="Atendimentos e Suportes" attrs="{'invisible': [('sla','=',1)]}">
                                 <field name="protocolo" context="{'default_contrato': id}">
                                     <tree editable="bottom">
@@ -156,7 +154,7 @@
                                     </button>
                                 </div>
                                 <field name="ocorrencia" context="{'default_contrato': id}">
-                                    <tree default_order='create_date desc'>
+                                    <tree default_order='status_ocorrencia, create_date desc' colors="blue:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == False;orange:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == True;red:status_ocorrencia[1] == 'Aberto' and imputavel == 2;gray:status_ocorrencia[1] == 'Fechado';" >
                                         <field name="name" readonly="1" />
                                         <field name="contrato" readonly="1" invisible="1" />
                                         <field name="titulo" readonly="1" />
@@ -167,6 +165,7 @@
                                         <field name="create_uid" string="Atendente" readonly="1" />
                                         <field name="create_date" string="Data de Criação"
                                                readonly="1" />
+                                        <field name="checar_atraso" invisible="1" />
                                     </tree>
                                 </field>
                             </page>
