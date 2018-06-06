@@ -78,7 +78,9 @@ class Lote_abre_fecha_ocorrencias(models.Model):
                 'name': record['name'],
                 'descricao': str(record['descricao']).replace('#cidade#', '' + item.localidade.name),
                 'ocorrencia': item.id,
-                'tempo_efetivo_indisponibilidade': round(tempo_efetivo_indisponibilidade/60)
+                'tempo_efetivo_indisponibilidade': round(tempo_efetivo_indisponibilidade/60),
+                'anexo2': record['anexo'],
+                'anexo_filename': record['anexo_filename']
             }
 
             obj_abre_fecha_ocorrencia = self.env['abre_fecha_ocorrencia'].create(valores,anexo_lote)
