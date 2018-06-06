@@ -238,6 +238,6 @@ class Account_analytic_account_inherited(models.Model):
             'context': {
                 'default_contrato': ids[0],
                 'default_name': '3',
-                'default_operacao': '3'
+                'default_operacao': '2'
             }
         }
