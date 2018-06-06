@@ -12,6 +12,12 @@
                 <xpath expr="//field[@name='textos_chamados']" position="attributes">
 					<attribute name="readonly"/>
 				</xpath>
+                <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                    <attribute name="groups">account_payment.group_account_payment</attribute>
+                </xpath>
+                <xpath expr="//page[@name='accounting']" position="attributes">
+                    <attribute name="groups">account_payment.group_account_payment</attribute>
+                </xpath>
             </field>
         </record>
 

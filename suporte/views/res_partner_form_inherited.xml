@@ -24,10 +24,10 @@
                     <field name="orgao_emissor_rg" attrs="{'invisible': [('is_company','!=',False)]}"></field>
                 </field>
                 <field name="inscr_mun" position="after">
-                    <group string="Dados do Suporte">
+                    <group string="Dados do Suporte" groups="suporte.user">
                         <field name="usuario_centreon"></field>
                         <field name="id_syncron"></field>
-                        <field name="senha_site" password="True" />
+                        <field name="senha_site" password="True" groups="suporte.manager" />
                     </group>
                 </field>
                 <notebook>
@@ -39,12 +39,12 @@
                                 </tree>
                         </field>
                     </page>
-                    <page position="inside" string="Informações Técnicas" name="Informações Técnicas">
+                    <page position="inside" string="Informações Técnicas" name="Informações Técnicas" groups="suporte.user">
                         <group>
                             <field name="informacoes_tecnicas" readonly="1"></field>
                         </group>
                     </page>
-                    <page position="inside" string="Textos de Chamados" name="Textos de Chamados">
+                    <page position="inside" string="Textos de Chamados" name="Textos de Chamados" groups="suporte.user">
                         <group>
                             <field name="textos_chamados" readonly="1"></field>
                         </group>
