@@ -84,4 +84,4 @@ class Lote_abre_fecha_ocorrencias(models.Model):
             obj_abre_fecha_ocorrencia = self.env['abre_fecha_ocorrencia'].create(valores,anexo_lote)
         
         # Return the record so that the changes are applied and everything is stored.
-	return record
+        return record

@@ -122,15 +122,11 @@ class Abre_fecha_ocorrencia(models.Model):
         else:
             # Remove Attachment
             template.attachment_ids = [(6,0,[])]
-            
-        if anexo_lote > 0:
-            template.attachment_ids = [(6,0,[anexo_lote])]
-        else:
-            # Remove Attachment
-            template.attachment_ids = [(6,0,[])]
+            if anexo_lote > 0:
+                template.attachment_ids = [(6,0,[anexo_lote])]
         
         
         template.send_mail(record['ocorrencia'].id, force_send=True)
         
         # Return the record so that the changes are applied and everything is stored.
-	return record
+        return record
