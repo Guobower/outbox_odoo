@@ -313,7 +313,7 @@ class Convenio115(models.Model):
             txt_content = txt_content + "0"
             
             # Fase ou tipo de ligação, 1 caracter, casa 67, tipo N 
-            txt_content = txt_content + "4"
+            txt_content = txt_content + "2"
             
             # Grupo de tensão, 2 caracteres, casas 68 - 69, tipo N 
             txt_content = txt_content + "00"
