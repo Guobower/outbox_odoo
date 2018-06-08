@@ -7,7 +7,7 @@
     'version': '1.1',
     'description': "Agenda customizada para os projetistas da Cinte",
     'author': 'Edson Junior',
-    'depends': ['base'],
+    'depends': ['base','mail','contacts'],
     'installable': True,
     'data': [
         'views/menu.xml',

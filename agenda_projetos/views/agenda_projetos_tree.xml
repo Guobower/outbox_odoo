@@ -19,6 +19,8 @@
 					<field name="status" />
 					<field name="cidade_origem" />
 					<field name="cidade_destino" />
+					<field name="retirada_almoxarifado" />
+					<field name="devolucao_almoxarifado" />
 				</tree>
 			</field>
 		</record>
