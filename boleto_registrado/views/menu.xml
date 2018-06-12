@@ -12,11 +12,26 @@
                 </p>
             </field>
         </record>
+        
+        <record model="ir.actions.act_window" id="retorno_bancario_list_action">
+            <field name="name">Retorno Bancario</field>
+            <field name="res_model">retorno_bancario</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de retornos bancarios.
+                </p>
+            </field>
+        </record>
 
         <!-- the following menuitem should appear *after*
              its parent openacademy_menu and *after* its
              action course_list_action -->
         <menuitem id="remessa_bancaria_menu" name="Remessa Bancaria" parent="account.menu_finance_bank_and_cash"
                   action="remessa_bancaria_list_action"/>   
+        
+        <menuitem id="retorno_bancario_menu" name="Retorno Bancario" parent="account.menu_finance_bank_and_cash"
+                  action="retorno_bancario_list_action"/>   
     </data>
 </openerp>

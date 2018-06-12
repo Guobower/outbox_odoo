@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="retorno_bancario_form">
+            <field name="name">retorno_bancario.form</field>
+            <field name="model">retorno_bancario</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Retorno Bancario">
+                    <sheet string="Retorno Bancario">
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="ler_arquivo_retorno"
+                                    icon="fa-globe" string="Ler">
+                            </button>
+                        </div>
+                        <group string="Informações Principais">
+                            <group>
+                                <field name="name" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="arquivo_retorno_filename" invisible="1" />
+                                <field widget="binary" height="64" name="arquivo_retorno"
+                                        filename="arquivo_retorno_filename" />
+                                <field name="retorno_lido" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Itens do Retorno">
+                                <field name="item_retorno_bancario" readonly="1">
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="numero_documento" />
+                                        <field name="valor_recebido" />
+                                        <field name="data_ocorrencia" />
+                                        <field name="retorno" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

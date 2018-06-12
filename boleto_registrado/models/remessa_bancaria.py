@@ -6,17 +6,21 @@ from openerp import models
 
 class Remessa_bancaria(models.Model):
     _name = 'remessa_bancaria'
+    _description = 'Remessa bancaria para registro de boletos'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
     
     name = fields.Char(
                        string="Nome",
                        size=150,
-                       required=True)
+                       required=True,
+                       track_visibility='onchange')
                        
     empresa = fields.Many2one(
                               string='Empresa Emitente',
                               help='Empresa emissora dos boletos',
                               comodel_name='res.company',
-                              required=True)
+                              required=True,
+                              track_visibility='onchange')
     
     volume = fields.Selection(
                               selection=[(1, 1),
@@ -26,16 +30,19 @@ class Remessa_bancaria(models.Model):
                               (5, 5)],
                               string='Numero Sequencial',
                               help='Número sequencial do lote de remessa, iniciando-se em 1 diariamente',
-                              required=True)
+                              required=True,
+                              track_visibility='onchange')
     
     faturas = fields.Many2many(
                                comodel_name='account.invoice',
                                string='Faturas de Clientes',
-                               help='Selecione as faturas de clientes que farão parte desse lote')
+                               help='Selecione as faturas de clientes que farão parte desse lote',
+                               track_visibility='onchange')
     
     remessa_gerada = fields.Boolean(
                                     string="Remessa Gerada",
-                                    help='Remessa já gerada no sistema')
+                                    help='Remessa já gerada no sistema',
+                                    track_visibility='onchange')
     
     def gerar_remessa(self, cr, user, ids, context=None):
         import requests
@@ -63,7 +70,7 @@ class Remessa_bancaria(models.Model):
             attach_obj = self.pool.get('ir.attachment')
             context.update({'default_res_id': ids[0], 'default_res_model': 'remessa_bancaria'})
             
-            print 'FATURAAAS '+str(r)
+            print 'FATURAAAS ' + str(r)
             if r.json():
                 for linha in r.json():
                     if linha["status"] == "Sucesso":
@@ -94,27 +101,43 @@ class Remessa_bancaria(models.Model):
                 cpf_cnpj_tipo = 'cnpj'
             else:
                 cpf_cnpj_tipo = 'cpf'
-            '''    
-            valores = {
-                'nosso_numero':item.id,
-                'numero_documento':item.id,
-                'valor':item.amount_total,
-                'razao_social':item.partner_id.legal_name,
-                'cpf_cnpj_tipo':cpf_cnpj_tipo,
-                'cpf_cnpj':item.partner_id.cnpj_cpf,
-                'logradouro':item.partner_id.street,
-                'bairro':item.partner_id.district,
-                'cep':item.partner_id.zip,
-                'cidade':item.partner_id.l10n_br_city_id.name,
-                'uf':item.partner_id.state_id.code,
-                'data_vencimento':item.date_due,
-                'data_cadastro':item.date_invoice,
-                'mensagem':item.comment
-            }
-            '''
             valores = {
                 'nosso_numero':item.id
             }
             retorno.append(valores)
         
         return retorno
+    
+    def registrar_pagamentos(self, cr, user, ids, context=None):
+        invoice = self.pool.get('account.invoice').browse(cr, user, 2241) 
+        
+        if not invoice.state == "open":
+            return 
+        
+        payable_amount = 1 # The amount you want to pay
+        
+        voucher = self.pool.get("account.voucher").create(cr, user, {
+                                                          "name": "",
+                                                          "amount": payable_amount,
+                                                          "journal_id": self.pool.get("account.journal").search(cr, user, [("type", "=", "bank")], limit=1)[0],
+                                                          "account_id": invoice.partner_id.property_account_receivable.id,
+                                                          "period_id": self.pool.get("account.voucher")._get_period(cr, user),
+                                                          "partner_id": invoice.partner_id.id,
+                                                          "type": "receipt"
+                                                          }, context)
+        
+        print "voucheeer " + str(invoice.partner_id.property_account_receivable.id)
+        voucher_obj = self.pool.get('account.voucher').browse(cr, user, voucher) 
+        voucher_line = self.pool.get("account.voucher.line").create(cr, user, {
+                                                                    "name": "",
+                                                                    "payment_option": "without_writeoff",
+                                                                    "amount": payable_amount,
+                                                                    "voucher_id": voucher,
+                                                                    "partner_id": invoice.partner_id.id,
+                                                                    "account_id": invoice.partner_id.property_account_receivable.id,
+                                                                    "type": "cr",
+                                                                    "move_line_id": invoice.move_id.line_id[0].id,
+                                                                    }, context)
+        voucher_obj.signal_workflow("proforma_voucher")
+        
+        pass

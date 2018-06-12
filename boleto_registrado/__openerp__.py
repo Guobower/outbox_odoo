@@ -12,6 +12,7 @@
     'data': [
         'views/menu.xml',
         'views/remessa_bancaria_form.xml',
-        'views/account_invoice_form_inherited.xml'
+        'views/account_invoice_form_inherited.xml',
+        'views/retorno_bancario_form.xml'
     ]
 }
