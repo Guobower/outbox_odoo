@@ -78,7 +78,6 @@ class Retorno_bancario(models.Model):
         return linha[141:145] + "-" + linha[139:141] + "-" + linha[137:139]
 
     def registrar_pagamentos(self, cr, user, invoice, context=None):
-        
         if not invoice.state == "open":
             return 
         
