@@ -39,7 +39,8 @@ class Manuais(models.Model):
                    ('conhecimento','Conhecimento'),
                    ('relatorios','Relatórios'),
                    ('site','Site'),
-                   ('configuracoes','Configurações')],
+                   ('configuracoes','Configurações'),
+                   ('suporte','Suporte')],
         help="Módulo ao qual o manual se refere", 
         track_visibility='onchange')
     

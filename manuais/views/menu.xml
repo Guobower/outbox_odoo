@@ -149,6 +149,24 @@
                 </p>
             </field>
         </record>
+
+        <record model="ir.actions.act_window" id="manuais_suporte_list_action">
+            <field name="name">Manuais de Suporte</field>
+            <field name="res_model">manuais</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('modulo','=','suporte')]</field>
+            <field name="context">{
+				'modulo': 'suporte',
+				'default_modulo': 'suporte'
+				}
+			</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Lista de manuais referentes ao módulo de Suporte.
+                </p>
+            </field>
+        </record>
         
         
 
@@ -176,7 +194,10 @@
                   action="manuais_almoxarifado_list_action"/>        
                   
         <menuitem id="manuais_frota_menu" name="Frota" parent="manuais_menu"
-                  action="manuais_frota_list_action"/>        
+                  action="manuais_frota_list_action"/>
+
+        <menuitem id="manuais_suporte_menu" name="Suporte" parent="manuais_menu"
+                  action="manuais_suporte_list_action"/>
                     
                   
     </data>
