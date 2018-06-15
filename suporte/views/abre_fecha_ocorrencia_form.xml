@@ -20,7 +20,7 @@
                                 <field name="tempo_efetivo_indisponibilidade" attrs="{'invisible': [('name','!=','2')]}" />
                             </group>
                             <group colspan="2">
-                                <field name="descricao" widget="html" string="Descrição" on_change="on_change_descricao(descricao,ocorrencia)" />
+                                <field name="descricao" string="Descrição" on_change="on_change_descricao(descricao,ocorrencia)" />
                             </group>
                         </group>
                     </sheet>

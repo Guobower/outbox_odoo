@@ -17,7 +17,7 @@ class Abre_fecha_ocorrencia(models.Model):
                             required=True,
                             track_visibility='onchange')
     
-    descricao = fields.Html(
+    descricao = fields.Text(
                             string="Descricao",
                             help="Descrição da abertura/fechamento da ocorrência",
                             track_visibility="onchange")

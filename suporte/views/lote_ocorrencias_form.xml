@@ -17,7 +17,7 @@
                             </group>
                             <group string="Manifestação" colspan="2">
                                 <field name="name" />
-                                <field name="descricao" widget="html" />
+                                <field name="descricao" />
                                 <field name="imputavel" required="1" />
                             </group>
                         </group>

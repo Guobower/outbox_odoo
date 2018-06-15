@@ -62,7 +62,7 @@
                                 <field name="abre_fecha_ocorrencia" readonly="1">
                                     <tree>
                                         <field name="name" />
-                                        <field name="descricao" widget="html" />
+                                        <field name="descricao" />
                                         <field name="tempo_efetivo_indisponibilidade" />
                                         <field name="create_date" />
                                     </tree>
