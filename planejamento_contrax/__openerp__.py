@@ -10,6 +10,7 @@
     'depends': ['base','account','financeiro_contrax'],
     'installable': True,
     'data': [
-        'views/menu.xml'
+        'views/menu.xml',
+        'views/centro_custo_form_inherited.xml'
     ]
 }

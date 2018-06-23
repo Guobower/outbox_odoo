@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="planejamento_centro_custo_form" model="ir.ui.view">
+            <field name="name">planejamento_centro_custo.form</field>
+            <field name="model">centro_custo</field>
+            <field name="inherit_id" ref="centro_custo_form" />
+            <field name="arch" type="xml">
+                <field name="codigo" position="before">
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button class="oe_inline oe_stat_button" type="action" name="%(contratos_list_action)d"
+                                                    context="{'search_default_partner_id': active_id}" icon="fa-envelope-o"
+                                                    string="Contratos">
+                        </button>
+                        <button class="oe_inline oe_stat_button" type="object"
+                                                    name="sincronizar_dados"
+                                                    icon="fa-globe" string="Sinc. Goon">
+                        </button>
+                    </div>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
