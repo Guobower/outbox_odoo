@@ -11,6 +11,6 @@
     'installable': True,
     'data': [
         'views/menu.xml',
-        'views/centro_custo_form_inherited.xml'
+        #'views/centro_custo_form_inherited.xml'
     ]
 }
