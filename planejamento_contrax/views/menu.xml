@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+
+        <menuitem id="planejamento_parent_menu" name="Planejamento" />
+
+        <menuitem id="centro_custo_planejamento_menu" name="Centro de Custo" parent="planejamento_parent_menu"
+                  action="centro_custo_list_action"/>
+
+        <menuitem id="natureza_financeira_planejamento_menu" name="Natureza Financeira" parent="planejamento_parent"
+                  action="natureza_financeira_list_action"/>   
+    </data>
+</openerp>
