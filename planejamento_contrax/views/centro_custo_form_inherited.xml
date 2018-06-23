@@ -4,7 +4,7 @@
         <record id="planejamento_centro_custo_form" model="ir.ui.view">
             <field name="name">planejamento_centro_custo.form</field>
             <field name="model">centro_custo</field>
-            <field name="inherit_id" ref="centro_custo_form" />
+            <field name="inherit_id" ref="financeiro_contrax.centro_custo_form" />
             <field name="arch" type="xml">
                 <field name="codigo" position="before">
                     <div class="oe_right oe_button_box" name="buttons">
