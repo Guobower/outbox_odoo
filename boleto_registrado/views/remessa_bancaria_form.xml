@@ -15,6 +15,10 @@
                                     name="gerar_remessa"
                                     icon="fa-globe" string="Gerar">
                             </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="gerar_remessa_php"
+                                    icon="fa-globe" string="Gerar PHP">
+                            </button>
                         </div>
                         <group string="Informações Principais">
                             <group>
@@ -22,7 +26,6 @@
                                 <field name="empresa" />
                             </group>
                             <group>
-                                <field name="volume" />
                                 <field name="remessa_gerada" />
                             </group>
                         </group>
