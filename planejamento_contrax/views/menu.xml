@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+
+        <record model="ir.actions.act_window" id="centro_custo_list_action">
+            <field name="name">Centro de Custo</field>
+            <field name="res_model">centro_custo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Centro de Custos.
+                </p>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="natureza_financeira_list_action">
+            <field name="name">Natureza Financeira</field>
+            <field name="res_model">natureza_financeira</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Conjunto de naturezas financeiras para categorização de despesas.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="planejamento_parent_menu" name="Planejamento" />
+
+        <menuitem id="planejamento_obras_menu" name="Obras" sequence="10"
+			parent="planejamento_parent_menu" />
+
+        <menuitem id="centro_custo_planejamento_menu" name="Centro de Custo" parent="planejamento_obras_menu"
+                  action="centro_custo_list_action"/>
+
+        <menuitem id="natureza_financeira_planejamento_menu" name="Natureza Financeira" parent="planejamento_obras_menu"
+                  action="natureza_financeira_list_action"/>
+    </data>
+</openerp>

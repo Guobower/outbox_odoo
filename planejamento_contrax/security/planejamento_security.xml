@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <openerp>
+       <data noupdate="0">
+           <!-- Creating a Group Category -->        
+           <record id="planejamento" model="ir.module.category">
+               <field name="name">Planejamento</field>
+               <field name="sequence">1</field>
+           </record>
+           <!-- Adding a Group to the Group Category -->
+           <record id="planejamento.manager" model="res.groups">
+               <field name="name">Administrador</field>
+               <field name="category_id" ref="planejamento"/>
+           </record>
+           
+           <record id="planejamento.user" model="res.groups">
+               <field name="name">Usuário</field>
+               <field name="category_id" ref="planejamento"/>
+           </record>
+        </data>
+    </openerp>
