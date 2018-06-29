@@ -14,6 +14,7 @@
         'views/remessa_bancaria_form.xml',
         'views/account_invoice_form_inherited.xml',
         'views/retorno_bancario_form.xml',
-        'views/res_partner_bank_form_inherited.xml'
+        'views/res_partner_bank_form_inherited.xml',
+        'data/schedule_confirma_faturas_boleto.xml'
     ]
 }
