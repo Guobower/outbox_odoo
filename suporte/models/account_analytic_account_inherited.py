@@ -17,23 +17,13 @@ class Account_analytic_account_inherited(models.Model):
         'type': 'contract'
     }
     
-    status_contrato = fields.Many2one(
-                                      comodel_name='status_contrato',
-                                      string='Status',
-                                      help='Status do contrato',
-                                      track_visibility='onchange')
-    
-    tipo_envio = fields.Selection(
-                                  selection=[('1', 'Correios'),
-                                  ('2', 'E-mail')],
-                                  string='Tipo de envio do boleto',
-                                  help='Forma escolhida pelo cliente para envio do boleto',
-                                  track_visibility='onchange')
-    
-    data_base_vencimento = fields.Integer(
-                                          string="Data de Vencimento dos Boletos",
-                                          help="Data base para vencimento dos boletos",
-                                          track_visibility='onchange')
+    condicao_pagamento = fields.Many2one(
+                                        comodel_name='account.payment.term',
+                                        string='Condição de Pagamento',
+                                        help='Condição padrão de pagamento do cliente',
+                                        required=True,
+                                        track_visibility='onchange')
+
     
     tipo_contrato = fields.Selection(
                                      selection=[('1', 'Banda Larga'),
@@ -42,12 +32,22 @@ class Account_analytic_account_inherited(models.Model):
                                      ('4', 'Provedor')],
                                      string='Tipo de Contrato',
                                      help='Tipo de contrato com o cliente',
+                                     required=True,
                                      track_visibility='onchange')
+
+    metodo_pagamento = fields.Selection(
+                                    selection=[('1', 'Boleto'),
+                                               ('2', 'Fatura')],
+                                    string='Método de Pagamento',
+                                    help='Método de pagamento do cliente',
+                                    required=True,
+                                    track_visibility='onchange')
     
     grupo_servico = fields.Many2one(
                                     comodel_name='grupo_servico',
                                     string='Grupo de Servico',
                                     help='Grupo de serviço do plano',
+                                    required=True,
                                     track_visibility='onchange')
         
     adesao = fields.One2many(
@@ -125,7 +125,7 @@ class Account_analytic_account_inherited(models.Model):
                            required=True,
                            track_visibility='onchange')
     
-    
+    '''
     def ativar_contrato(self, cr, user, ids, context=None):
         contrato = self.pool.get('account.analytic.account').browse(cr, user, ids[0])
         contrato.write({'status_contrato': 13}, context=context)
@@ -180,7 +180,7 @@ class Account_analytic_account_inherited(models.Model):
             'tag': 'reload',
         }
         
-        
+    '''
     def abrir_varias_ocorrencias(self, cr, user, ids, context=None):
         
         return {

@@ -8,7 +8,6 @@
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<graph string="Contratos">
-					<field name="status_contrato" />
 					<field name="name" />
 				</graph>
 			</field>
