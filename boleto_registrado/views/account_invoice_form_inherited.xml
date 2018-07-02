@@ -9,7 +9,7 @@
                 <h1 position="before" name="titulo">
                     <div class="oe_right oe_button_box" name="buttons">
                         <button class="oe_inline oe_stat_button" type="object"
-                                                    name="imprimir_boleto" attrs="{'invisible':['|',['metodo_pagamento', '!=', '1'], ['status_banco', 'not in', ['02','28']]]}"
+                                                    name="imprimir_boleto" attrs="{'invisible':['|','|',['metodo_pagamento', '!=', '1'],['state', '!=', 'open'], ['status_banco', 'not in', ['02','28']]]}"
                                                     icon="fa-barcode" string="Boleto">
                         </button>
                     </div>
