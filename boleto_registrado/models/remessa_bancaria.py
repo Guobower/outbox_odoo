@@ -38,14 +38,6 @@ class Remessa_bancaria(models.Model):
     )
     
     def gerar_remessa(self, cr, user, ids, context=None):
-        '''
-        $this->criarArquivo();
-        $this->escrever($this->registroHeader());
-        $this->escrever($this->headerLote());
-        $this->escrever($this->detalhesSegmentoP());
-        $this->escrever($this->trailerLote());
-        $this->escrever($this->trailerArquivo());
-        '''
         import base64
         remessa_bancaria = self.pool.get('remessa_bancaria').browse(cr, user, ids[0])
         remessa_bancaria.write({'total_registros_lote': 0})
