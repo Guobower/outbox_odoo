@@ -97,7 +97,6 @@ class Account_invoice_inherited(models.Model):
 
 
     def confirmar_fatura(self, fatura, contrato):
-        print("Entrei no método")
         print(str(fatura))
         fatura.write({'payment_term': contrato.condicao_pagamento.id, 'metodo_pagamento': contrato.metodo_pagamento})
         fatura.action_date_assign()
@@ -116,7 +115,7 @@ class Account_invoice_inherited(models.Model):
         disponivel = hoje < data_vencimento + timedelta(days=1)
 
         if disponivel:
-            url = 'http://www.cinte.com.br/2016/boletos/boletoOdoo/bancoBrasil.php?id=' + str(ids[0])
+            url = 'http://www.cinte.com.br/2016/boletos/imprimirOdoo.php?id=' + str(ids[0])
             res = {
                 'type': 'ir.actions.act_url',
                 'target': 'new',
