@@ -16,6 +16,18 @@
             </field>
         </record>
 
+        <record model="ir.actions.act_window" id="checklist_list_action">
+            <field name="name">Checklist</field>
+            <field name="res_model">checklist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Lista de checklists de mudança de turnos.
+                </p>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="estagios_monitoramento_list_action">
             <field name="name">Estágios</field>
             <field name="res_model">estagios_monitoramento</field>
@@ -65,6 +77,9 @@
 
         <menuitem id="monitoramento_menu" name="Monitoramento" 
                           parent="monitoramento_parent_menu" action="monitoramento_list_action" />
+
+        <menuitem id="checklist_menu" name="Checklist"
+                          parent="monitoramento_parent_menu" action="checklist_list_action" />
 
         <menuitem id="estagios_monitoramento_menu" name="Estágios"
                           parent="monitoramento_configuracao_menu" action="estagios_monitoramento_list_action" />

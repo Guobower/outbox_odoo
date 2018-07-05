@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="checklist_tree">
+			<field name="name">checklist.tree</field>
+			<field name="model">checklist</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="checklist" default_order='name desc'>
+					<field name="name" string="Nome" />
+					<field name="create_uid" string="Atendente" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

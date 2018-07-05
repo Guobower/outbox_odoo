@@ -15,6 +15,8 @@
         'views/monitoramento_tree.xml',
         'views/monitoramento_form.xml',
         'views/monitoramento_graph.xml',
+        'views/checklist_form.xml',
+        'views/checklist_tree.xml',
         'data/schedule_atraso.xml',
         'security/monitoramento_security.xml'
     ]
