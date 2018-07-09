@@ -43,7 +43,7 @@ Caso deseje manter contato, ligar para (84) 3231-2922 ou enviar e-mail para supo
 <br>
 <b>Data e Hora da Abertura:</b> ${object.report_format_data(object.create_date)}
 <br>
-<b>Motivo da Abertura:</b> ${object.descricao}
+<b>Motivo da Abertura:</b> ${object.descricao|safe}
 <br>
 <br>
 <b>${object.houve_nova_informacao(object.id)}</b>
@@ -60,7 +60,7 @@ ${object.ultima_informacao(object.id)|safe}
                 </thead>
                 <tbody>
                     <tr><td><b>T&iacute;tulo:</b></td><td>${object.titulo}</td></tr>
-                    <tr><td><b>Descri&ccedil;&atilde;o:</b></td><td>${object.descricao}</td></tr>
+                    <tr><td><b>Descri&ccedil;&atilde;o:</b></td><td>${object.descricao|safe}</td></tr>
                     <tr><td><b>Abertura:</b></td><td>${object.report_format_data(object.create_date)}</td></tr>
                     <tr><td nowrap><b>Tipo de Ocorr&ecirc;ncia:</b></td><td>${object.tipo_ocorrencia.name}</td></tr>
                     <tr><td><b>Cliente:</b></td><td>${object.contrato.partner_id.name}</td></tr>
