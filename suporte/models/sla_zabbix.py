@@ -102,8 +102,10 @@ class Sla_zabbix(models.Model):
         import datetime
         from datetime import timedelta
 
+        data_inicio = data_inicio + timedelta(hours=3)
         data_termino = data_inicio + timedelta(days=1)
         time_inicio = time.mktime(data_inicio.timetuple())
+
         time_fim = time.mktime(data_termino.timetuple())
 
         server = 'http://10.10.200.217/zabbix/api_jsonrpc.php'
