@@ -10,11 +10,6 @@
 				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<form string="SLA">
 					<sheet string="Relatório de SLA">
-						<div class="oe_right oe_button_box" name="buttons">
-							<button class="oe_inline oe_stat_button" type="object"
-								name="gerar_sla" icon="fa-file" string="SLA">
-							</button>
-						</div>
 						<group string="Informações Principais">
 							<group>
 								<field name="name" />
