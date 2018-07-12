@@ -121,6 +121,18 @@
 				</p>
 			</field>
 		</record>
+
+		<record model="ir.actions.act_window" id="sla_zabbix_list_action">
+			<field name="name">SLA Zabbix</field>
+			<field name="res_model">sla_zabbix</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de SLA do Zabbix.
+				</p>
+			</field>
+		</record>
 		
 		<record model="ir.actions.act_window" id="status_atendimento_list_action">
 			<field name="name">Status de Atendimentos</field>
@@ -291,7 +303,10 @@
 			action="ocorrencia_list_action" />
                 	
 		<menuitem id="sla_menu" name="SLA" parent="atendimento_menu"
-			action="sla_list_action" />	
+			action="sla_list_action" />
+
+		<menuitem id="sla_zabbix_menu" name="SLA Zabbix" parent="atendimento_menu"
+			action="sla_zabbix_list_action" />
 
 
 
