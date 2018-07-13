@@ -73,15 +73,16 @@ class Sla_zabbix(models.Model):
             "output": ["value_avg"]
         })
 
-
     def get_host_id(self, zapi, host):
         # Obtendo uma lista com os hosts que já estão no zabbix
         hosts = zapi.host.get({
             "output": ["hostid"],
             "filter": {"host": host}
         })
-
-        return hosts[0]["hostid"]
+        if hosts:
+            return hosts[0]["hostid"]
+        else:
+            return 0
 
     def get_dias(self, cr, uid, data_inicio, data_termino, context=None):
         from datetime import datetime, timedelta
@@ -119,12 +120,15 @@ class Sla_zabbix(models.Model):
 
         host_id = self.get_host_id(zapi, host_name)
 
-        itens_metrica = zapi.item.get({
-            'output': ["itemid", "name", "hostid"],
-            'hostids': host_id
-        })
+        if host_id:
+            itens_metrica = zapi.item.get({
+                'output': ["itemid", "name", "hostid"],
+                'hostids': host_id
+            })
 
-        return self.get_resultado_sla(zapi, itens_metrica, time_inicio, time_fim)
+            return self.get_resultado_sla(zapi, itens_metrica, time_inicio, time_fim)
+        else:
+            return "-"
 
     def get_resultado_sla(self, zapi, itens, time_inicio, time_fim):
         for item in itens:
@@ -147,7 +151,10 @@ class Sla_zabbix(models.Model):
 
     def calcular_media_diaria(self, lista):
         resultado = 0
-        for item in lista:
-            resultado += float(item["value_avg"])
 
-        return resultado/len(lista)
+        if lista:
+            for item in lista:
+                resultado += float(item["value_avg"])
+            return round(resultado/len(lista), 2)
+        else:
+            return 0
