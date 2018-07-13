@@ -10,6 +10,7 @@
 				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<tree string="Grupo de Atendimento">
 					<field name="name" />
+					<field name="manifestacao_atendimento" />
 					<field name="descricao" />
 				</tree>
 			</field>
