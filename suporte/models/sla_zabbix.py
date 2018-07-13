@@ -18,6 +18,7 @@ class Sla_zabbix(models.Model):
                                comodel_name='account.analytic.account',
                                string='Contrato',
                                required=True,
+                               domain=[('tipo_contrato', '=', 3)],
                                help='Contrato a verificar',
                                track_visibility='onchange')
     
