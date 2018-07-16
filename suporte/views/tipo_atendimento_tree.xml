@@ -8,7 +8,7 @@
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<tree string="Tipo de Atendimento">
+				<tree string="Tipo de Atendimento" default_order='name, grupo_atendimento asc'>
 					<field name="name" />
 					<field name="grupo_atendimento" />
 					<field name="descricao" />
