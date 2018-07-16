@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <openerp>
 	<data>
-		<record model="ir.ui.view" id="sla_tree">
+		<record model="ir.ui.view" id="sla_zabbix_tree">
 			<field name="name">sla_zabbix.tree</field>
 			<field name="model">sla_zabbix</field>
 			<field name="view_type">tree</field>

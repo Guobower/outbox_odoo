@@ -110,7 +110,7 @@ class Sla_zabbix(models.Model):
 
         time_fim = time.mktime(data_termino.timetuple())
 
-        server = 'http://10.10.200.217/zabbix/api_jsonrpc.php'
+        server = 'http://10.10.200.218/zabbix/api_jsonrpc.php'
         username = 'Admin'
         password = 'zabbix'
 
