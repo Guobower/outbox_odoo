@@ -24,8 +24,8 @@
                                     <tree editable="bottom">
                                         <field name="name" />
                                         <field name="status" />
-                                        <field name="observacoes" />
                                         <field name="verificado" />
+                                        <field name="observacoes" />
                                     </tree>
                                 </field>
                             </page>
@@ -34,8 +34,8 @@
                                     <tree editable="bottom">
                                         <field name="name" />
                                         <field name="status" />
-                                        <field name="observacoes" />
                                         <field name="verificado" />
+                                        <field name="observacoes" />
                                     </tree>
                                 </field>
                             </page>
