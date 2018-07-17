@@ -58,14 +58,29 @@ class Checklist_item_cliente(models.Model):
     _name = 'checklist_item_cliente'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
 
-    name = fields.Many2one(
-        comodel_name="res.partner",
-        string="Cliente Licitado",
-        help="Escolha o cliente licitado para definir suas ocorrências",
+    name = fields.Selection(
+        selection=[('caern', 'Caern'),
+                   ('crea', 'CREA-RN'),
+                   ('dprf', 'DPRF'),
+                   ('sesi', 'SESI (FIERN)'),
+                   ('ifrn', 'IFRN'),
+                   ('jfrn', 'JFRN'),
+                   ('mprn', 'MPRN'),
+                   ('pmja', 'PMJA'),
+                   ('pml', 'PML'),
+                   ('pmm', 'PMM'),
+                   ('pmsn', 'PMSN'),
+                   ('sebrae', 'SEBRAE'),
+                   ('sesc', 'SESC'),
+                   ('tjrn', 'TJRN'),
+                   ('tre', 'TRE'),
+                   ('tce', 'TCE'),
+                   ('uern', 'UERN'),
+                   ('ufrn', 'UFRN'),
+                   ('ebserh', 'EBSERH')],
+        string='Cliente',
         required=True,
-        domain=[('customer', '=', True)],
-        track_visibility='onchange'
-    )
+        track_visibility='onchange')
 
     status = fields.Selection(
         selection=[('1', 'Ocorrências registradas corretamente'),
