@@ -70,9 +70,11 @@ ${object.ultima_informacao(object.id)|safe}
                     <tr><td><b>${object.report_format_aberto_fechado(object.status_ocorrencia.id)}:</b></td><td>${object.report_format_tempo_efetivo_indisponibilidade(object.id)}</td></tr>
                 </tbody>
             </table>
-<table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
-    <tr align='center' style='background-color: #007236; color: #FFFFFF;'><td colspan='5'><b>REABERTURAS, FECHAMENTOS E OBSERVAÇÕES</b></td></tr>
-    <tr>
+     <br><br>
+	<b><u>REABERTURAS, FECHAMENTOS E OBSERVAÇÕES</u></b>
+        <br><br>
+	<table width='100%' style='font-family: 'Verdana'; font-size: 11px;' >
+    <tr style='background-color: #007236; color: #FFFFFF;'>
         <td><b>Protocolo</b></td>
         <td><b>Opera&ccedil;&atilde;o</b></td>
         <td><b>Descri&ccedil;&atilde;o</b></td>
