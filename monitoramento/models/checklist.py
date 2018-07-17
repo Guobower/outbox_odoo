@@ -129,13 +129,8 @@ class Checklist_item_backbone(models.Model):
         track_visibility='onchange'
     )
 
-    status = fields.Selection(
-        selection=[('1', 'Repetidora Down'),
-                   ('2', 'Já reportado'),
-                   ('3', 'Não reportado. Retificado'),
-                   ('4', 'Todas as repetidoras operam normalmente'),
-                   ('5', 'Intermitência - Rota Norte - Chamado registrado'),
-                   ('6', 'Intermitência - Rota Sul - Chamado registrado')],
+    status = fields.Many2one(
+        comodel_name="status_checklist_item_backbone",
         string='Status',
         required=True,
         track_visibility='onchange')
@@ -154,4 +149,46 @@ class Checklist_item_backbone(models.Model):
     checklist = fields.Many2one(
         string="Checklist",
         comodel_name='checklist')
+
+    def on_change_name(self, cr, user, ids, name, context=None):
+        """
+        Função onchange para os itens do checklist do backbone.
+
+        Recebe qual item foi selecionado e devolve os status possíveis de utilização para este item.
+
+        :param cr: Cursor da base de dados.
+        :param user: Usuário logado.
+        :param ids: IDs das instâncias da classe.
+        :param name: Item selecionado no formulário.
+        :param context: Contexto da aplicação. Default None
+        :return: Retorna o domínio de status possíveis para o item selecionado
+        """
+
+        if name == "1":
+            return {'domain': {'status': [('id', 'in', (1, 2, 3, 4, 5, 6))]}}
+        elif name == "2":
+            return {'domain': {'status': [('id', 'in', (7, 8, 9, 10))]}}
+        elif name == "3":
+            return {'domain': {'status': [('id', 'in', (11, 12, 13, 14, 15, 16))]}}
+        elif name == "4":
+            return {'domain': {'status': [('id', 'in', (17, 18, 19))]}}
+        elif name == "5":
+            return {'domain': {'status': [('id', 'in', (20, 21, 22))]}}
+        elif name == "6":
+            return {'domain': {'status': [('id', 'in', (23, 24, 25))]}}
+
+
+class Status_checklist_item_backbone(models.Model):
+    """
+    Classe status dos itens do checklist de backbone.
+    """
+
+    _name = 'status_checklist_item_backbone'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+
+    name = fields.Char(
+        string="Status",
+        size=150,
+        required=True
+    )
 

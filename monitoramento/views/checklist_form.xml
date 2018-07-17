@@ -32,7 +32,7 @@
                             <page string="Backbone">
                                 <field name="item_backbone">
                                     <tree editable="bottom">
-                                        <field name="name" />
+                                        <field name="name" on_change="on_change_name(name)" />
                                         <field name="status" />
                                         <field name="verificado" />
                                         <field name="observacoes" />
