@@ -33,7 +33,7 @@
                                 <field name="item_backbone">
                                     <tree editable="bottom">
                                         <field name="name" on_change="on_change_name(name)" />
-                                        <field name="status" />
+                                        <field name="status" options="{'no_create': True}" />
                                         <field name="verificado" />
                                         <field name="observacoes" />
                                     </tree>
