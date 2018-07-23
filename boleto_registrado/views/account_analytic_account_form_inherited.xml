@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="remessa_bancaria_account_analytic_account_form" model="ir.ui.view">
+            <field name="name">remessa_bancaria.account_analytic_account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="suporte.account_analytic_account_form" />
+            <field name="arch" type="xml">
+                <field position="after" name="recurring_invoice_line_ids">
+                        <label for="acrescimo_desconto"
+                                       attrs="{'invisible': [('metodo_pagamento','!=','1')]}" />
+                        <field name="acrescimo_desconto" attrs="{'invisible': [('metodo_pagamento','!=','1')]}" >
+                            <tree editable="bottom">
+                                <field name="name" />
+                                <field name="active" />
+                                <field name="valor" />
+                                <field name="repeticoes" />
+                                <field name="repeticoes_executadas" readonly="1" />
+                                <field name="create_uid" readonly="1" />
+                            </tree>
+                        </field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

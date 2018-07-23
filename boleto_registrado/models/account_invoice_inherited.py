@@ -92,17 +92,42 @@ class Account_invoice_inherited(models.Model):
             for item_fatura in itens_faturas:
                 fatura = self.pool.get('account.invoice').browse(cr, user, item_fatura)
                 print(str(fatura))
-                self.confirmar_fatura(fatura, contrato)
+                self.confirmar_fatura(cr, user, fatura, contrato)
 
-
-
-    def confirmar_fatura(self, fatura, contrato):
+    def confirmar_fatura(self, cr, user, fatura, contrato):
         print(str(fatura))
+        self.gerar_acrescimos_descontos(cr, user, fatura, contrato)
         fatura.write({'payment_term': contrato.condicao_pagamento.id, 'metodo_pagamento': contrato.metodo_pagamento})
         fatura.action_date_assign()
         fatura.action_move_create()
         fatura.action_number()
         fatura.invoice_validate()
+
+    def gerar_acrescimos_descontos(self, cr, user, fatura, contrato):
+        for acrescimo_desconto in contrato.acrescimo_desconto:
+            if acrescimo_desconto.repeticoes > acrescimo_desconto.repeticoes_executadas:
+                if acrescimo_desconto.name == 'acres':
+                    valores = {
+                        'product_id': 846,
+                        'name': 'ACRESCIMO AGENDADO',
+                        'quantity': 1,
+                        'price_unit': acrescimo_desconto.valor,
+                        'invoice_id': fatura.id
+                    }
+
+                    self.pool.get('account.invoice.line').create(cr, user, valores)
+                    acrescimo_desconto.write({'repeticoes_executadas': acrescimo_desconto.repeticoes_executadas + 1})
+                elif acrescimo_desconto.name == 'desc':
+                    valores = {
+                        'product_id': 845,
+                        'name': 'DESCONTO AGENDADO',
+                        'quantity': 1,
+                        'price_unit': acrescimo_desconto.valor * -1,
+                        'invoice_id': fatura.id
+                    }
+
+                    self.pool.get('account.invoice.line').create(cr, user, valores)
+                    acrescimo_desconto.write({'repeticoes_executadas': acrescimo_desconto.repeticoes_executadas + 1})
 
     def imprimir_boleto(self, cr, user, ids, context=None):
         from datetime import datetime, timedelta

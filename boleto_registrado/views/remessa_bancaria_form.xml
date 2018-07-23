@@ -27,7 +27,7 @@
                         </group>
                         <notebook>
                             <page string="Faturas de Clientes">
-                                <field name="faturas" domain="[('state', '=', 'open'),('type','=','out_invoice'),('date_due', '&lt;=', ((context_today()+datetime.timedelta(days=10)).strftime('%Y-%m-%d'))),('date_due', '&gt;=', ((context_today()).strftime('%Y-%m-%d')))]">
+                                <field name="faturas" domain="[('state', '=', 'open'),('metodo_pagamento', '=', '1'),('type','=','out_invoice'),('date_due', '&lt;=', ((context_today()+datetime.timedelta(days=10)).strftime('%Y-%m-%d'))),('date_due', '&gt;=', ((context_today()).strftime('%Y-%m-%d')))]">
                                 </field>
                             </page>
                         </notebook>
