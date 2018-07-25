@@ -20,6 +20,7 @@ class Abre_fecha_ocorrencia(models.Model):
     descricao = fields.Text(
                             string="Descricao",
                             help="Descrição da abertura/fechamento da ocorrência",
+                            required=True,
                             track_visibility="onchange")
         
     tempo_efetivo_indisponibilidade = fields.Integer(
@@ -31,6 +32,7 @@ class Abre_fecha_ocorrencia(models.Model):
     ocorrencia = fields.Many2one(
                                  string="Ocorrência",
                                  comodel_name='ocorrencia',
+                                 required=True,
                                  help="Ocorrência a qual a abertura/fechamento está vinculada")
          
     anexo2 = fields.Binary(

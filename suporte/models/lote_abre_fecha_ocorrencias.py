@@ -17,15 +17,18 @@ class Lote_abre_fecha_ocorrencias(models.Model):
     
     descricao = fields.Text(
                             string="Descricao",
+                            required=True,
                             help="Descrição da abertura/fechamento da ocorrência")
                                                      
     ocorrencia = fields.Many2many(
                                   string="Ocorrência",
                                   comodel_name='ocorrencia',
+                                  required=True,
                                   help="Ocorrência a qual a abertura/fechamento está vinculada")
          
     contrato = fields.Many2one(
                                comodel_name='account.analytic.account',
+                               required=True,
                                string='Contrato')
     
     anexo = fields.Binary(
