@@ -14,6 +14,7 @@
 							<group>
 								<field name="name" />
 								<field name="manifestacao_atendimento" />
+								<field name="active" />
 							</group>
 							<group>
 								<field name="descricao" />

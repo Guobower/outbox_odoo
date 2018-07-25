@@ -13,6 +13,7 @@
 						<group string="Dados Gerais">
 							<group>
 								<field name="name" />
+								<field name="active" />
 							</group>
 							<group>
 								<field name="descricao" />
