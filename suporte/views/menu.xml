@@ -74,10 +74,11 @@
 			</field>
 		</record>
                 
-                <record model="ir.actions.act_window" id="ocorrencia_list_action">
+		<record model="ir.actions.act_window" id="ocorrencia_list_action">
 			<field name="name">Ocorrencias</field>
 			<field name="res_model">ocorrencia</field>
 			<field name="view_type">form</field>
+			<field name="limit">1000</field>
 			<field name="view_mode">kanban,tree,form,graph</field>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">

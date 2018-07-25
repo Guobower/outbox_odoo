@@ -152,8 +152,8 @@
                                             icon="fa-edit" string="Obs em Várias">
                                     </button>
                                 </div>
-                                <field name="ocorrencia" context="{'default_contrato': id}">
-                                    <tree default_order='status_ocorrencia, create_date desc' colors="blue:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == False;orange:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == True;red:status_ocorrencia[1] == 'Aberto' and imputavel == 2;gray:status_ocorrencia[1] == 'Fechado';" >
+                                <field name="ocorrencia" context="{'default_contrato': id}" >
+                                    <tree colors="blue:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == False;orange:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == True;red:status_ocorrencia[1] == 'Aberto' and imputavel == 2;gray:status_ocorrencia[1] == 'Fechado';" >
                                         <field name="name" readonly="1" />
                                         <field name="contrato" readonly="1" invisible="1" />
                                         <field name="titulo" readonly="1" />

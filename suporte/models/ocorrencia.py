@@ -19,7 +19,9 @@ class Ocorrencia(models.Model):
         'status_ocorrencia': 1,
         'data_ultima_abertura': datetime.date.today()
         }
-    
+
+    _order = "status_ocorrencia, create_date desc"
+
     name = fields.Char(
                        string="Protocolo",
                        size=250,
