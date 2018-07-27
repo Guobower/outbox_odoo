@@ -39,23 +39,40 @@ class Remessa_bancaria(models.Model):
     
     def gerar_remessa(self, cr, user, ids, context=None):
         import base64
+        from datetime import datetime
+        import pytz
+
         remessa_bancaria = self.pool.get('remessa_bancaria').browse(cr, user, ids[0])
-        remessa_bancaria.write({'total_registros_lote': 0})
 
-        conteudo_remessa = self.header_arquivo(remessa_bancaria)
-        conteudo_remessa += self.header_lote(remessa_bancaria)
-        conteudo_remessa += self.segmento_p(remessa_bancaria)
-        conteudo_remessa += self.trailer_lote(remessa_bancaria)
-        conteudo_remessa += self.trailer_arquivo(remessa_bancaria)
+        if remessa_bancaria.remessa_gerada:
+            remessa_bancaria.write({'total_registros_lote': 0})
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'action_warn',
+                'name': 'Warning',
+                'params': {
+                    'title': 'Remessa já gerada!',
+                    'text': 'Verifique o anexo para baixar a remessa',
+                    'sticky': True
+                    }
+            }
+        else:
+            conteudo_remessa = self.header_arquivo(remessa_bancaria)
+            conteudo_remessa += self.header_lote(remessa_bancaria)
+            conteudo_remessa += self.segmento_p(remessa_bancaria)
+            conteudo_remessa += self.trailer_lote(remessa_bancaria)
+            conteudo_remessa += self.trailer_arquivo(remessa_bancaria)
 
-        attach_obj = self.pool.get('ir.attachment')
-        context.update({'default_res_id': ids[0], 'default_res_model': 'remessa_bancaria'})
+            attach_obj = self.pool.get('ir.attachment')
+            context.update({'default_res_id': ids[0], 'default_res_model': 'remessa_bancaria'})
 
-        attach_obj.create(cr, user, {'name': 'teste.txt',
-                                     'datas': base64.encodestring(conteudo_remessa),
-                                     'datas_fname': 'teste.txt'}, context=context)
+            hoje = datetime.now(pytz.timezone(context["tz"]))
 
-        remessa_bancaria.write({'remessa_gerada': True})
+            attach_obj.create(cr, user, {'name': 'Arquivo_remessa_'+hoje.strftime('%d-%m-%Y')+'.rem',
+                                         'datas': base64.encodestring(conteudo_remessa),
+                                         'datas_fname': 'teste.txt'}, context=context)
+
+            remessa_bancaria.write({'remessa_gerada': True})
 
 
     def header_arquivo(self, remessa_bancaria):
