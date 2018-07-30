@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="mapa_cotacao_form">
+            <field name="name">mapa_cotacao.form</field>
+            <field name="model">mapa_cotacao</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Mapa de Cotação">
+                    <sheet string="Mapa de Cotação">
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="gerar_mapa_cotacao"
+                                    icon="fa-sitemap" string="Gerar Mapa">
+                            </button>
+                        </div>
+                        <group string="Informações Principais">
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="fornecedor1" />
+                                <field name="fornecedor2" />
+                                <field name="fornecedor3" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mapa de Cotação">
+                                <field name="item_mapa_cotacao" >
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+
+        <record model="ir.actions.act_window" id="mapa_cotacao_list_action">
+            <field name="name">Mapa de Cotação</field>
+            <field name="res_model">mapa_cotacao</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Mapa de cotação.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="mapa_cotacao_menu" name="Mapa de Cotação" parent="purchase.menu_procurement_management"
+                  action="mapa_cotacao_list_action"/>
+    </data>
+</openerp>
