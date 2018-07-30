@@ -7,7 +7,6 @@
 			<field name="view_type">tree</field>
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
-				<!-- view content: <form>, <tree>, <graph>, ... -->
 				<tree string="Mapa de Cotacao">
 					<field name="name" />
 					<field name="fornecedor1" />

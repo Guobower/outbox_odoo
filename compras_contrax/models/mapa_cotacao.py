@@ -6,12 +6,12 @@ from openerp import models
 
 class Mapa_cotacao(models.Model):
     _name = 'mapa_cotacao'
-    _description = 'Mapa de cotação'
+    _description = 'Mapa de cotacao'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
 
     name = fields.Many2one(
         comodel_name="purchase.order",
-        string="Solicitação",
+        string="Solicitacao",
         required=True,
         track_visibility='onchange')
 
@@ -38,14 +38,14 @@ class Mapa_cotacao(models.Model):
 
     item_mapa_cotacao = fields.One2many(
         comodel_name='item_mapa_cotacao',
-        string='Itens do Mapa de Cotação',
+        string='Itens do Mapa de Cotacao',
         inverse_name='mapa_cotacao',
         track_visibility='onchange')
 
 
 class Item_mapa_cotacao(models.Model):
     _name = 'item_mapa_cotacao'
-    _description = 'Item do mapa de cotação'
+    _description = 'Item do mapa de cotacao'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
 
     name = fields.Many2one(
@@ -56,7 +56,7 @@ class Item_mapa_cotacao(models.Model):
     )
 
     mapa_cotacao = fields.Many2one(
-        string="Mapa de Cotação",
+        string="Mapa de Cotacao",
         comodel_name='mapa_cotacao',
         help="Mapa de cotação ao qual o item está associado")
 

@@ -16,7 +16,7 @@
                                     icon="fa-sitemap" string="Gerar Mapa">
                             </button>
                         </div>
-                        <group string="Informações Principais">
+                        <group string="Informacoes Principais">
                             <group>
                                 <field name="name" />
                             </group>
@@ -27,7 +27,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Mapa de Cotação">
+                            <page string="Mapa de Cotacao">
                                 <field name="item_mapa_cotacao" >
                                 </field>
                             </page>
