@@ -8,8 +8,9 @@
 			<field name="priority" eval="16" />
 			<field name="arch" type="xml">
 				<!-- view content: <form>, <tree>, <graph>, ... -->
-				<tree string="Grupo de Atendimento">
+				<tree string="Grupo de Atendimento" default_order='name, manifestacao_atendimento asc'>
 					<field name="name" />
+					<field name="manifestacao_atendimento" />
 					<field name="descricao" />
 				</tree>
 			</field>

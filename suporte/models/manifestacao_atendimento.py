@@ -16,6 +16,11 @@ class Manisfestacao_atendimento(models.Model):
         string="Descricao",
         help="Descrição",
         track_visibility="onchange")
+
+    active = fields.Boolean(
+        string="Ativo",
+        track_visibility='onchange'
+    )
     
     grupo_atendimento = fields.One2many(
         comodel_name='grupo_atendimento',

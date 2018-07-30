@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields
 from openerp import models
+import datetime
 
 class Account_invoice_inherited(models.Model):
     _inherit = 'account.invoice' 
@@ -70,3 +71,87 @@ class Account_invoice_inherited(models.Model):
                                     help="Status atual do boleto no banco",
                                     track_visibility='onchange'
                                     )
+
+    metodo_pagamento = fields.Selection(
+        selection=[('1', 'Boleto'),
+                   ('2', 'Fatura')],
+        string='Método de Pagamento',
+        help='Método de pagamento do cliente',
+        track_visibility='onchange')
+
+    def validar_faturas(self, cr, user, context=None):
+        hoje = datetime.date.today()
+        # Buscar contratos que pagam por boleto
+        itens_contratos = self.pool.get('account.analytic.account').search(cr, user, [('metodo_pagamento','=','1')])
+        print(str(itens_contratos))
+        for item_contrato in itens_contratos:
+            contrato = self.pool.get('account.analytic.account').browse(cr, user, item_contrato)
+            print(str(contrato))
+            itens_faturas = self.pool.get('account.invoice').search(cr, user, [('origin', '=', contrato.code), ('date_invoice', '<=', hoje.strftime('%Y-%m-%d')), ('state', '=', 'draft')])
+            print(str(itens_faturas))
+            for item_fatura in itens_faturas:
+                fatura = self.pool.get('account.invoice').browse(cr, user, item_fatura)
+                print(str(fatura))
+                self.confirmar_fatura(cr, user, fatura, contrato)
+
+    def confirmar_fatura(self, cr, user, fatura, contrato):
+        print(str(fatura))
+        self.gerar_acrescimos_descontos(cr, user, fatura, contrato)
+        fatura.write({'payment_term': contrato.condicao_pagamento.id, 'metodo_pagamento': contrato.metodo_pagamento})
+        fatura.action_date_assign()
+        fatura.action_move_create()
+        fatura.action_number()
+        fatura.invoice_validate()
+
+    def gerar_acrescimos_descontos(self, cr, user, fatura, contrato):
+        for acrescimo_desconto in contrato.acrescimo_desconto:
+            if acrescimo_desconto.repeticoes > acrescimo_desconto.repeticoes_executadas:
+                if acrescimo_desconto.name == 'acres':
+                    valores = {
+                        'product_id': 846,
+                        'name': 'ACRESCIMO AGENDADO',
+                        'quantity': 1,
+                        'price_unit': acrescimo_desconto.valor,
+                        'invoice_id': fatura.id
+                    }
+
+                    self.pool.get('account.invoice.line').create(cr, user, valores)
+                    acrescimo_desconto.write({'repeticoes_executadas': acrescimo_desconto.repeticoes_executadas + 1})
+                elif acrescimo_desconto.name == 'desc':
+                    valores = {
+                        'product_id': 845,
+                        'name': 'DESCONTO AGENDADO',
+                        'quantity': 1,
+                        'price_unit': acrescimo_desconto.valor * -1,
+                        'invoice_id': fatura.id
+                    }
+
+                    self.pool.get('account.invoice.line').create(cr, user, valores)
+                    acrescimo_desconto.write({'repeticoes_executadas': acrescimo_desconto.repeticoes_executadas + 1})
+
+    def imprimir_boleto(self, cr, user, ids, context=None):
+        from datetime import datetime, timedelta
+
+        fatura = self.pool.get('account.invoice').browse(cr, user, ids[0])
+
+        hoje = datetime.now()
+        data_vencimento = datetime.strptime(fatura.date_due, '%Y-%m-%d')
+
+        disponivel = hoje < data_vencimento + timedelta(days=1)
+
+        if disponivel:
+            url = 'http://www.cinte.com.br/2016/boletos/imprimirOdoo.php?id=' + str(ids[0])
+            res = {
+                'type': 'ir.actions.act_url',
+                'target': 'new',
+                'url': url,
+            }
+        else:
+            url = 'https://www63.bb.com.br/portalbb/boleto/boletos/hc21e,802,3322,10343.bbx?_ga=2.163848380.2023037881.1506687534-274924826.1502129516&&pk_vid=5ee6db42c6a667aa15066875613fff07'
+            res = {
+                'type': 'ir.actions.act_url',
+                'target': 'new',
+                'url': url,
+            }
+
+        return res

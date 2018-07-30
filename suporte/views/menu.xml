@@ -26,7 +26,7 @@
 			<field name="res_model">account.analytic.account</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form,graph</field>
-			<field name="domain">[('parent_id', '=', False)]</field>
+			<field name="domain">['|','|','|',('tipo_contrato', '=', 1),('tipo_contrato', '=', 2),('tipo_contrato', '=', 3),('tipo_contrato', '=', 4)]</field>
 			<field name="context">{
 				'parent_id': None
 				}
@@ -74,10 +74,11 @@
 			</field>
 		</record>
                 
-                <record model="ir.actions.act_window" id="ocorrencia_list_action">
+		<record model="ir.actions.act_window" id="ocorrencia_list_action">
 			<field name="name">Ocorrencias</field>
 			<field name="res_model">ocorrencia</field>
 			<field name="view_type">form</field>
+			<field name="limit">1000</field>
 			<field name="view_mode">kanban,tree,form,graph</field>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
@@ -118,6 +119,18 @@
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Lista de SLA.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="sla_zabbix_list_action">
+			<field name="name">SLA Zabbix</field>
+			<field name="res_model">sla_zabbix</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de SLA do Zabbix.
 				</p>
 			</field>
 		</record>
@@ -291,7 +304,10 @@
 			action="ocorrencia_list_action" />
                 	
 		<menuitem id="sla_menu" name="SLA" parent="atendimento_menu"
-			action="sla_list_action" />	
+			action="sla_list_action" />
+
+		<menuitem id="sla_zabbix_menu" name="SLA Zabbix" parent="atendimento_menu"
+			action="sla_zabbix_list_action" />
 
 
 

@@ -20,6 +20,7 @@ class Abre_fecha_ocorrencia(models.Model):
     descricao = fields.Text(
                             string="Descricao",
                             help="Descrição da abertura/fechamento da ocorrência",
+                            required=True,
                             track_visibility="onchange")
         
     tempo_efetivo_indisponibilidade = fields.Integer(
@@ -27,10 +28,24 @@ class Abre_fecha_ocorrencia(models.Model):
                                                      help="Registro de tempo efetivo de indisponibilidade",
                                                      track_visibility="onchange"
                                                      )
+
+    desligamento = fields.Boolean(
+        string="É desligamento?",
+        help="Marque se for desligamento e quiser realizar o cálculo de uptime do ativo",
+        track_visibility="onchange"
+    )
+
+    uptime = fields.Char(
+        string="Uptime do ativo",
+        size=5,
+        help="Informe o uptime do ativo para que o Odoo preencha o texto do fechamento automaticamente",
+        track_visibility="onchange"
+    )
                                                      
     ocorrencia = fields.Many2one(
                                  string="Ocorrência",
                                  comodel_name='ocorrencia',
+                                 required=True,
                                  help="Ocorrência a qual a abertura/fechamento está vinculada")
          
     anexo2 = fields.Binary(
@@ -39,8 +54,7 @@ class Abre_fecha_ocorrencia(models.Model):
         attachment=True)
     
     anexo_filename = fields.Char("Anexo")
-    
-    
+
     
     def on_change_descricao(self, cr, user, ids, descricao, ocorrencia, context=None):
         '''
@@ -78,8 +92,46 @@ class Abre_fecha_ocorrencia(models.Model):
                 }
                 # Return the values to update it in the view.
                 return res
-                
-                
+
+    def on_change_uptime(self, cr, user, ids, desligamento, uptime, context=None):
+        if desligamento:
+            hora_uptime = self.calcular_hora_uptime(uptime, context)
+            if hora_uptime:
+                texto_fechamento = "O circuito de dados da localidade #cidade# consta em nossos sistemas como havendo " \
+                                   "retornado a funcionar normalmente sem intervenção corretiva da CINTE, e por este motivo" \
+                                   " estamos encerrando a ocorrência. Após análise, verificamos que o link foi " \
+                                   "restabelecido às " + hora_uptime + " e o uptime do equipamento é de " + self.formatar_uptime(uptime) + ", por este motivo " \
+                                   "estamos encerrando a ocorrência. Em caso de anormalidades em sua operação, " \
+                                   "por gentileza contatem novamente o suporte técnico da CINTE, através do e-mail " \
+                                   "suporte@cinte.com.br ou pelo telefone (84)3231-2922."
+                res = {
+                    'value': {
+                        # Define a distancia entre as cidades e o tempo médio do percurso.
+                        'descricao': texto_fechamento
+                    }
+                }
+
+                return res
+
+    def calcular_hora_uptime(self, uptime, context):
+        from datetime import datetime, timedelta
+        import pytz
+
+        uptime = uptime.split(":")
+
+        if len(uptime) > 1:
+            hora_atual = datetime.now(pytz.timezone(context["tz"]))
+
+            hora_uptime = hora_atual - timedelta(hours=float(uptime[0])) - timedelta(minutes=float(uptime[1]))
+
+            return hora_uptime.strftime('%Hh%M')
+
+    def formatar_uptime(self, uptime):
+        uptime = uptime.split(":")
+
+        if len(uptime) > 1:
+            return uptime[0] + " horas e " + uptime[1] + " minutos"
+
     @api.model
     def create(self, values, anexo_lote=0):
         import datetime

@@ -45,8 +45,9 @@
                             <group>
                                 <field name="type" invisible="1" />
                                 <field name="code" readonly="1" />
-                                <field name="status_contrato" readonly="1" />
                                 <field name="sla" />
+                                <field name="metodo_pagamento" />
+                                <field name="condicao_pagamento" />
                             </group>
                         </group>
                         <notebook>
@@ -70,8 +71,6 @@
                                                filename="contrato_pdf_filename" />
                                     </group>
                                     <group string="Configurações">
-                                        <field name="tipo_envio" />
-                                        <field name="data_base_vencimento" />
                                         <field name="tipo_contrato" />
                                         <field name="grupo_servico" options="{'no_create': True}" />
                                     </group>
@@ -153,8 +152,8 @@
                                             icon="fa-edit" string="Obs em Várias">
                                     </button>
                                 </div>
-                                <field name="ocorrencia" context="{'default_contrato': id}">
-                                    <tree default_order='status_ocorrencia, create_date desc' colors="blue:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == False;orange:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == True;red:status_ocorrencia[1] == 'Aberto' and imputavel == 2;gray:status_ocorrencia[1] == 'Fechado';" >
+                                <field name="ocorrencia" context="{'default_contrato': id}" >
+                                    <tree colors="blue:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == False;orange:status_ocorrencia[1] == 'Aberto' and imputavel == 1 and checar_atraso == True;red:status_ocorrencia[1] == 'Aberto' and imputavel == 2;gray:status_ocorrencia[1] == 'Fechado';" >
                                         <field name="name" readonly="1" />
                                         <field name="contrato" readonly="1" invisible="1" />
                                         <field name="titulo" readonly="1" />

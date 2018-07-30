@@ -44,7 +44,7 @@
 							statusbar_colors="{&quot;proforma&quot;:&quot;blue&quot;,&quot;proforma2&quot;:&quot;blue&quot;}" />
 					</header>
 					<sheet string="Invoice">
-						<h1>
+						<h1 name="titulo">
 							<label string="Draft Invoice"
 								attrs="{'invisible': ['|',('state','not in',('draft',)), ('type','&lt;&gt;','out_invoice')]}" />
 							<label string="Draft Refund"

@@ -54,10 +54,13 @@ class Retorno_bancario(models.Model):
 
                     self.pool.get('item_retorno_bancario').create(cr, user, {'retorno_bancario': retorno_bancario.id, 'name': nosso_numero, 'numero_documento': numero_documento, 'valor_recebido': valor_recebido, 'retorno': retorno, 'data_ocorrencia': data_ocorrencia})
 
-                    if retorno in ("06", "17"):
-                        invoices = self.pool.get('account.invoice').search(cr, user, [('id', '=', int(numero_documento))])
-                        if len(invoices) > 0:
+                    invoices = self.pool.get('account.invoice').search(cr, user, [('id', '=', int(numero_documento))])
+                    if len(invoices) > 0:
+                        if retorno in ("06", "17"):
                             self.registrar_pagamentos(cr, user, self.pool.get('account.invoice').browse(cr, user, invoices[0]))
+
+                        fatura = self.pool.get('account.invoice').browse(cr, user, invoices[0])
+                        fatura.write({'status_banco': retorno})
 
             except IndexError:
                 break

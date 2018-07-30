@@ -19,7 +19,9 @@ class Ocorrencia(models.Model):
         'status_ocorrencia': 1,
         'data_ultima_abertura': datetime.date.today()
         }
-    
+
+    _order = "status_ocorrencia, create_date desc"
+
     name = fields.Char(
                        string="Protocolo",
                        size=250,
@@ -29,6 +31,7 @@ class Ocorrencia(models.Model):
     contrato = fields.Many2one(
                                string="Contrato",
                                comodel_name='account.analytic.account',
+                               required=True,
                                help="Contrato ao qual a ocorrência está vinculada")
         
     titulo = fields.Char(
@@ -40,12 +43,14 @@ class Ocorrencia(models.Model):
     descricao = fields.Text(
                             string="Descricao",
                             help="Descrição da ocorrência",
+                            required=True,
                             track_visibility="onchange")
     
     tipo_ocorrencia = fields.Many2one(
                                       comodel_name='tipo_ocorrencia',
                                       string='Tipo',
                                       help='Tipo da ocorrêmcia',
+                                      required=True,
                                       track_visibility='onchange')
                                       
     status_ocorrencia = fields.Many2one(
@@ -59,6 +64,7 @@ class Ocorrencia(models.Model):
                                  comodel_name='localidade',
                                  string='Localidade',
                                  help='Localidade',
+                                 required=True,
                                  track_visibility='onchange')
     
     imputavel = fields.Selection(

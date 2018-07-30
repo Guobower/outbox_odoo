@@ -15,6 +15,7 @@ from . import atendimento
 from . import status_atendimento
 from . import modo_contato
 from . import sla
+from . import sla_zabbix
 from . import localidade
 from . import status_ocorrencia
 from . import tipo_ocorrencia

@@ -22,17 +22,20 @@ class Lote_ocorrencias(models.Model):
     contrato = fields.Many2one(
                                string="Contrato",
                                comodel_name='account.analytic.account',
+                               required=True,
                                help="Contrato ao qual a ocorrência está vinculada")
     
     descricao = fields.Text(
                             string="Descricao",
                             help="Descrição da ocorrência",
+                            required=True,
                             track_visibility="onchange")
     
     tipo_ocorrencia = fields.Many2one(
                                       comodel_name='tipo_ocorrencia',
                                       string='Tipo',
                                       help='Tipo da ocorrêmcia',
+                                      required=True,
                                       track_visibility='onchange')
                                       
         
@@ -40,6 +43,7 @@ class Lote_ocorrencias(models.Model):
                                  comodel_name='localidade',
                                  string='Localidade',
                                  help='Localidade',
+                                 required=True,
                                  track_visibility='onchange')
     
     imputavel = fields.Selection(
