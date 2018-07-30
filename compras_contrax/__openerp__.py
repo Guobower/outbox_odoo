@@ -10,8 +10,8 @@
     'depends': ['base','account'],
     'installable': True,
     'data': [
-        #'views/menu.xml',
-        #'views/mapa_form.xml',
-        #'views/mapa_tree.xml'
+        'views/menu.xml',
+        'views/mapa_form.xml',
+        'views/mapa_tree.xml'
     ]
 }
