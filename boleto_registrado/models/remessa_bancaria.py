@@ -404,6 +404,9 @@ class Remessa_bancaria(models.Model):
             # Complementando com o segmento R
             segmento_p += self.segmento_r(remessa_bancaria)
 
+            # Confirmando saída para registro na fatura
+            self.confirmar_saida_registro(fatura, remessa_bancaria)
+
         return segmento_p
 
     def segmento_q(self, fatura, remessa_bancaria):
@@ -648,6 +651,9 @@ class Remessa_bancaria(models.Model):
 
     def remover_caracteres(self, texto):
         return texto.replace('-','').replace('.','').replace('/','').replace(':','')
+
+    def confirmar_saida_registro(self, fatura, remessa_bancaria):
+        fatura.write({'remessa_bancaria': remessa_bancaria.id})
 
     def gerar_remessa_php(self, cr, user, ids, context=None):
         import requests
