@@ -25,14 +25,12 @@ class Mapa(models.Model):
     fornecedor2 = fields.Many2one(
         comodel_name="res.partner",
         string="Fornecedor 2",
-        required=True,
         track_visibility="onchange"
     )
 
     fornecedor3 = fields.Many2one(
         comodel_name="res.partner",
         string="Fornecedor 3",
-        required=True,
         track_visibility="onchange"
     )
 
