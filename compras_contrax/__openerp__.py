@@ -11,7 +11,7 @@
     'installable': True,
     'data': [
         'views/menu.xml',
-        'views/mapa_cotacao_form.xml',
-        'views/mapa_cotacao_tree.xml'
+        #'views/mapa_cotacao_form.xml',
+        #'views/mapa_cotacao_tree.xml'
     ]
 }
