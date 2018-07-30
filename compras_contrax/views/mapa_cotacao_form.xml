@@ -8,7 +8,7 @@
             <field name="priority" eval="16" />
             <field name="arch" type="xml">
                 <!-- view content: <form>, <tree>, <graph>, ... -->
-                <form string="Mapa de Cotação">
+                <form string="Mapa de Cotacao">
                     <sheet string="Mapa de Cotação">
                         <div class="oe_right oe_button_box" name="buttons">
                             <button class="oe_inline oe_stat_button" type="object"
