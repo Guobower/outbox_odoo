@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <!-- view content: <form>, <tree>, <graph>, ... -->
                 <form string="Mapa de Cotacao">
-                    <sheet string="Mapa de Cotação">
+                    <sheet string="Mapa de Cotacao">
                         <div class="oe_right oe_button_box" name="buttons">
                             <button class="oe_inline oe_stat_button" type="object"
                                     name="gerar_mapa_cotacao"
