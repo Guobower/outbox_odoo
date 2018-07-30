@@ -13,6 +13,6 @@
         'views/menu.xml',
         'views/mapa_form.xml',
         'views/mapa_tree.xml',
-        'views/item_mapa_tree.xml'
+        'views/item_mapa_form.xml'
     ]
 }
