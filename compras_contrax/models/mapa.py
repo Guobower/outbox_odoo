@@ -75,28 +75,26 @@ class Item_mapa(models.Model):
     )
 
     total_fornecedor1 = fields.Float(
-        string="Fornecedor 1 - Valor",
+        string="Fornecedor 1 - Total",
     )
 
     total_fornecedor2 = fields.Float(
-        string="Fornecedor 2 - Valor",
+        string="Fornecedor 2 - Total",
     )
 
     total_fornecedor3 = fields.Float(
-        string="Fornecedor 3 - Valor",
+        string="Fornecedor 3 - Total",
     )
 
     fornecedor_indicado = fields.Many2one(
         comodel_name="res.partner",
-        string="Fornecedor 1",
-        required=True,
+        string="Fornecedor Indicado",
         track_visibility="onchange"
     )
 
     fornecedor_escolhido = fields.Many2one(
         comodel_name="res.partner",
-        string="Fornecedor 1",
-        required=True,
+        string="Fornecedor Escolhido",
         track_visibility="onchange"
     )
 
