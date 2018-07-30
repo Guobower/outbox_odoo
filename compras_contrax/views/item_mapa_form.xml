@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="item_mapa_form">
+            <field name="name">item_mapa.form</field>
+            <field name="model">item_mapa</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Item do Mapa">
+                    <sheet string="Item do Mapa">
+                        <group string="Informacoes Principais">
+                            <group>
+                                <field name="name" />
+                                <field name="quantidade" />
+                            </group>
+                            <group>
+                                <field name="fornecedor_indicado" />
+                                <field name="fornecedor_escolhido" />
+                            </group>
+                            <group colspan="2">
+                                <field name="justificativa" />
+                            </group>
+                        </group>
+                        <group string="Fornecedor 1">
+                            <group>
+                                <field name="valor_fornecedor1" />
+                            </group>
+                            <group>
+                                <field name="total_fornecedor1" />
+                            </group>
+                        </group>
+                        <group string="Fornecedor 2">
+                            <group>
+                                <field name="valor_fornecedor2" />
+                            </group>
+                            <group>
+                                <field name="total_fornecedor2" />
+                            </group>
+                        </group>
+                        <group string="Fornecedor 3">
+                            <group>
+                                <field name="valor_fornecedor3" />
+                            </group>
+                            <group>
+                                <field name="total_fornecedor3" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
