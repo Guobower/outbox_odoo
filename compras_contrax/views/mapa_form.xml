@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="mapa_cotacao_form">
-            <field name="name">mapa_cotacao.form</field>
-            <field name="model">mapa_cotacao</field>
+        <record model="ir.ui.view" id="mapa_form">
+            <field name="name">mapa.form</field>
+            <field name="model">mapa</field>
             <field name="view_type">form</field>
             <field name="priority" eval="16" />
             <field name="arch" type="xml">
                 <!-- view content: <form>, <tree>, <graph>, ... -->
-                <form string="Mapa de Cotacao">
-                    <sheet string="Mapa de Cotacao">
+                <form string="Mapa">
+                    <sheet string="Mapa">
                         <div class="oe_right oe_button_box" name="buttons">
                             <button class="oe_inline oe_stat_button" type="object"
-                                    name="gerar_mapa_cotacao"
+                                    name="gerar_mapa"
                                     icon="fa-sitemap" string="Gerar Mapa">
                             </button>
                         </div>
@@ -27,8 +27,8 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Mapa de Cotacao">
-                                <field name="item_mapa_cotacao" >
+                            <page string="Mapa">
+                                <field name="item_mapa" >
                                 </field>
                             </page>
                         </notebook>

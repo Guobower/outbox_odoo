@@ -1,2 +1,2 @@
-from . import mapa_cotacao
+from . import mapa
 
