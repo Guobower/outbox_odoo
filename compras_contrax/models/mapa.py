@@ -144,12 +144,16 @@ class Item_mapa(models.Model):
         if total_fornecedor3 < menor_valor and total_fornecedor3 > 0:
             fornecedor_indicado = item_mapa_obj.mapa.fornecedor3.id
 
-        res = {
-            'value': {
+        dados_item = {
                 'total_fornecedor1': total_fornecedor1,
                 'total_fornecedor2': total_fornecedor2,
                 'total_fornecedor3': total_fornecedor3,
                 'fornecedor_indicado': fornecedor_indicado
             }
+
+        item_mapa_obj.write(dados_item)
+
+        res = {
+            'value': dados_item
         }
         return res
