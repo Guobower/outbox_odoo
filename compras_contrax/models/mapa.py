@@ -73,7 +73,7 @@ class Mapa(models.Model):
 
             self.pool.get('item_mapa').create(cr, user, dados_item_mapa)
 
-    def gerar_ordens(self, cr, user, ids, context=None):
+    def duplicar_solicitacoes(self, cr, user, ids, context=None):
         mapa = self.pool.get('mapa').browse(cr, user, ids[0])
 
         if mapa.name:
@@ -85,6 +85,12 @@ class Mapa(models.Model):
                 if not mapa.ordem_fornecedor3:
                     copy_id = self.pool.get('purchase.order').copy(cr, user, mapa.name.id, {'partner_id': mapa.fornecedor3.id})
                     mapa.write({'ordem_fornecedor3': copy_id})
+
+    def gerar_ordens(self, cr, user, ids, context=None):
+        mapa = self.pool.get('mapa').browse(cr, user, ids[0])
+
+        for item in mapa.name.order_line:
+            item.unlink()
 
 
 

@@ -16,8 +16,12 @@
                                     icon="fa-sitemap" string="Gerar Mapa">
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
+                                    name="duplicar_solicitacoes"
+                                    icon="fa-file" string="Duplicar">
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object"
                                     name="gerar_ordens"
-                                    icon="fa-sitemap" string="Gerar Ordens">
+                                    icon="fa-credit-card" string="Gerar Ordens">
                             </button>
                         </div>
                         <group string="Informacoes Principais">
