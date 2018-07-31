@@ -15,6 +15,16 @@ class Mapa(models.Model):
         required=True,
         track_visibility='onchange')
 
+    ordem_fornecedor2 = fields.Many2one(
+        comodel_name="purchase.order",
+        string="Ordem do Fornecedor 2",
+        track_visibility='onchange')
+
+    ordem_fornecedor3 = fields.Many2one(
+        comodel_name="purchase.order",
+        string="Ordem do Fornecedor 3",
+        track_visibility='onchange')
+
     fornecedor1 = fields.Many2one(
         comodel_name="res.partner",
         string="Fornecedor 1",
@@ -62,6 +72,13 @@ class Mapa(models.Model):
             }
 
             self.pool.get('item_mapa').create(cr, user, dados_item_mapa)
+
+    def gerar_ordens(self, cr, user, ids, context=None):
+        copy_id = self.pool.get('purchase.order').copy(cr, user, ids[0])
+
+        mapa = self.pool.get('mapa').browse(cr, user, ids[0])
+
+        mapa.write({'ordem_fornecedor2': copy_id})
 
 
 class Item_mapa(models.Model):
