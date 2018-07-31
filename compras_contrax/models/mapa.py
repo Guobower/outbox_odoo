@@ -45,7 +45,7 @@ class Mapa(models.Model):
 
         for item in mapa.name.order_line:
             dados_item_mapa = {
-                'name': item.product_id,
+                'name': item.product_id.id,
                 'quantidade': item.product_qty
             }
 
