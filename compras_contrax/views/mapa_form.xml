@@ -21,7 +21,7 @@
                                 <field name="name" on_change="on_change_cotacao(name)" />
                             </group>
                             <group>
-                                <field name="fornecedor1" readonly="1" />
+                                <field name="fornecedor1" />
                                 <field name="fornecedor2" />
                                 <field name="fornecedor3" />
                             </group>
