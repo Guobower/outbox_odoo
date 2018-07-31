@@ -102,7 +102,7 @@ class Mapa(models.Model):
 
     def remover_itens(self, ordem, produto):
         for item in ordem.order_line:
-            if item.product_id == produto.id:
+            if item.product_id.id == produto.id:
                 item.unlink()
 
 
