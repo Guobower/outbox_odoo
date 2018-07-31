@@ -91,12 +91,20 @@ class Mapa(models.Model):
 
         for item in mapa.item_mapa:
             if item.fornecedor_escolhido == '1':
+                self.atualizar_valor(mapa.name, item.name, item.valor_fornecedor1)
+
                 self.remover_itens(mapa.ordem_fornecedor2, item.name)
                 self.remover_itens(mapa.ordem_fornecedor3, item.name)
+
             elif item.fornecedor_escolhido == '2':
+                self.atualizar_valor(mapa.ordem_fornecedor2, item.name, item.valor_fornecedor2)
+
                 self.remover_itens(mapa.name, item.name)
                 self.remover_itens(mapa.ordem_fornecedor3, item.name)
+
             elif item.fornecedor_escolhido == '3':
+                self.atualizar_valor(mapa.ordem_fornecedor3, item.name, item.valor_fornecedor3)
+
                 self.remover_itens(mapa.name, item.name)
                 self.remover_itens(mapa.ordem_fornecedor2, item.name)
 
@@ -104,6 +112,11 @@ class Mapa(models.Model):
         for item in ordem.order_line:
             if item.product_id.id == produto.id:
                 item.unlink()
+
+    def atualizar_valor(self, ordem, produto, valor):
+        for item in ordem.order_line:
+            if item.product_id.id == produto.id:
+                item.write({'price_unit': valor})
 
 
 class Item_mapa(models.Model):
