@@ -74,11 +74,18 @@ class Mapa(models.Model):
             self.pool.get('item_mapa').create(cr, user, dados_item_mapa)
 
     def gerar_ordens(self, cr, user, ids, context=None):
-        copy_id = self.pool.get('purchase.order').copy(cr, user, ids[0])
-
         mapa = self.pool.get('mapa').browse(cr, user, ids[0])
 
-        mapa.write({'ordem_fornecedor2': copy_id})
+        if mapa.name:
+            if mapa.fornecedor2:
+                if not mapa.ordem_fornecedor2:
+                    copy_id = self.pool.get('purchase.order').copy(cr, user, mapa.name.id, {'partner_id': mapa.fornecedor2.id})
+                    mapa.write({'ordem_fornecedor2': copy_id})
+            if mapa.fornecedor3:
+                if not mapa.ordem_fornecedor3:
+                    copy_id = self.pool.get('purchase.order').copy(cr, user, mapa.name.id, {'partner_id': mapa.fornecedor3.id})
+                    mapa.write({'ordem_fornecedor3': copy_id})
+
 
 
 class Item_mapa(models.Model):

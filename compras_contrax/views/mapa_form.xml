@@ -15,8 +15,6 @@
                                     name="gerar_mapa"
                                     icon="fa-sitemap" string="Gerar Mapa">
                             </button>
-                        </div>
-                        <div class="oe_right oe_button_box" name="buttons">
                             <button class="oe_inline oe_stat_button" type="object"
                                     name="gerar_ordens"
                                     icon="fa-sitemap" string="Gerar Ordens">
