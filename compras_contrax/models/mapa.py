@@ -51,33 +51,6 @@ class Mapa(models.Model):
             }
             return res
 
-    def on_change_valor_fornecedor(self, cr, user, ids, quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3, context=None):
-        total_fornecedor1 = quantidade * valor_fornecedor1
-        total_fornecedor2 = quantidade * valor_fornecedor2
-        total_fornecedor3 = quantidade * valor_fornecedor3
-
-        mapa_obj = self.pool.get('mapa').browse(cr, user, ids[0])
-
-        menor_valor = total_fornecedor1
-        fornecedor_indicado = mapa_obj.fornecedor1.id
-
-        if total_fornecedor2 < menor_valor and total_fornecedor2 > 0:
-            menor_valor = total_fornecedor2
-            fornecedor_indicado = mapa_obj.fornecedor2.id
-
-        if total_fornecedor3 < menor_valor and total_fornecedor3 > 0:
-            fornecedor_indicado = mapa_obj.fornecedor3.id
-
-        res = {
-            'value': {
-                'total_fornecedor1': total_fornecedor1,
-                'total_fornecedor2': total_fornecedor2,
-                'total_fornecedor3': total_fornecedor3,
-                'fornecedor_indicado': fornecedor_indicado
-            }
-        }
-        return res
-
     def gerar_mapa(self, cr, user, ids, context=None):
         mapa = self.pool.get('mapa').browse(cr, user, ids[0])
 
@@ -152,3 +125,31 @@ class Item_mapa(models.Model):
         string="Justificativa",
         track_visibility="onchange"
     )
+
+    def on_change_valor_fornecedor(self, cr, user, ids, quantidade, valor_fornecedor1, valor_fornecedor2,
+                                   valor_fornecedor3, context=None):
+        total_fornecedor1 = quantidade * valor_fornecedor1
+        total_fornecedor2 = quantidade * valor_fornecedor2
+        total_fornecedor3 = quantidade * valor_fornecedor3
+
+        item_mapa_obj = self.pool.get('item_mapa').browse(cr, user, ids[0])
+
+        menor_valor = total_fornecedor1
+        fornecedor_indicado = item_mapa_obj.mapa.fornecedor1.id
+
+        if total_fornecedor2 < menor_valor and total_fornecedor2 > 0:
+            menor_valor = total_fornecedor2
+            fornecedor_indicado = item_mapa_obj.mapa.fornecedor2.id
+
+        if total_fornecedor3 < menor_valor and total_fornecedor3 > 0:
+            fornecedor_indicado = item_mapa_obj.mapa.fornecedor3.id
+
+        res = {
+            'value': {
+                'total_fornecedor1': total_fornecedor1,
+                'total_fornecedor2': total_fornecedor2,
+                'total_fornecedor3': total_fornecedor3,
+                'fornecedor_indicado': fornecedor_indicado
+            }
+        }
+        return res
