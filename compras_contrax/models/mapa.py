@@ -128,9 +128,9 @@ class Mapa(models.Model):
     def validar_ordem(self, ordem):
         if ordem:
             if len(ordem.order_line) > 0:
-                ordem.purchase_confirm()
+                ordem.wkf_confirm_order()
             else:
-                ordem.action_cancel()
+                ordem.wkf_action_cancel()
 
 
 class Item_mapa(models.Model):
