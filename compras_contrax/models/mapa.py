@@ -109,22 +109,34 @@ class Item_mapa(models.Model):
         string="Fornecedor 3 - Total",
     )
 
-    fornecedor_indicado = fields.Many2one(
-        comodel_name="res.partner",
+    fornecedor_indicado = fields.Selection(
+        selection=[('1', 'Fornecedor 1'),
+                   ('2', 'Fornecedor 2'),
+                   ('3', 'Fornecedor 3')],
         string="Fornecedor Indicado",
+        help="Fornecedor indicado pelo sistema para a compra",
         track_visibility="onchange"
     )
 
-    fornecedor_escolhido = fields.Many2one(
-        comodel_name="res.partner",
+    fornecedor_escolhido = fields.Selection(
+        selection=[('1', 'Fornecedor 1'),
+                   ('2', 'Fornecedor 2'),
+                   ('3', 'Fornecedor 3')],
         string="Fornecedor Escolhido",
-        track_visibility="onchange"
+        help="Fornecedor escolhido para a compra",
+        track_visibility='onchange'
     )
 
     justificativa = fields.Text(
         string="Justificativa",
         track_visibility="onchange"
     )
+
+    fornecedor1 = fields.Char('Fornecedor 1', related='mapa.fornecedor1.name', store=True)
+
+    fornecedor2 = fields.Char('Fornecedor 2', related='mapa.fornecedor2.name', store=True)
+
+    fornecedor3 = fields.Char('Fornecedor 3', related='mapa.fornecedor3.name', store=True)
 
     def on_change_valor_fornecedor(self, cr, user, ids, quantidade, valor_fornecedor1, valor_fornecedor2,
                                    valor_fornecedor3, context=None):
@@ -135,14 +147,14 @@ class Item_mapa(models.Model):
         item_mapa_obj = self.pool.get('item_mapa').browse(cr, user, ids[0])
 
         menor_valor = total_fornecedor1
-        fornecedor_indicado = item_mapa_obj.mapa.fornecedor1.id
+        fornecedor_indicado = '1'
 
         if total_fornecedor2 < menor_valor and total_fornecedor2 > 0:
             menor_valor = total_fornecedor2
-            fornecedor_indicado = item_mapa_obj.mapa.fornecedor2.id
+            fornecedor_indicado = '2'
 
         if total_fornecedor3 < menor_valor and total_fornecedor3 > 0:
-            fornecedor_indicado = item_mapa_obj.mapa.fornecedor3.id
+            fornecedor_indicado = '3'
 
         dados_item = {
                 'total_fornecedor1': total_fornecedor1,
