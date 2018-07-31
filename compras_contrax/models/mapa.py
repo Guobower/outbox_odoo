@@ -46,7 +46,8 @@ class Mapa(models.Model):
         for item in mapa.name.order_line:
             dados_item_mapa = {
                 'name': item.product_id.id,
-                'quantidade': item.product_qty
+                'quantidade': item.product_qty,
+                'mapa': ids[0]
             }
 
             self.pool.get('item_mapa').create(cr, user, dados_item_mapa)
