@@ -25,29 +25,29 @@
                         </group>
                         <group string="Fornecedor 1">
                             <group>
-                                <field name="fornecedor1" />
+                                <field name="fornecedor1" string="Fornecedor" readonly="1" />
                             </group>
                             <group>
-                                <field name="valor_fornecedor1" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
-                                <field name="total_fornecedor1" readonly="1" />
+                                <field name="valor_fornecedor1" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
+                                <field name="total_fornecedor1" string="Total" readonly="1" />
                             </group>
                         </group>
                         <group string="Fornecedor 2">
                             <group>
-                                <field name="fornecedor2" />
+                                <field name="fornecedor2" string="Fornecedor" readonly="1" />
                             </group>
                             <group>
-                                <field name="valor_fornecedor2" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
-                                <field name="total_fornecedor2" readonly="1" />
+                                <field name="valor_fornecedor2" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
+                                <field name="total_fornecedor2" string="Total" readonly="1" />
                             </group>
                         </group>
                         <group string="Fornecedor 3">
                             <group>
-                                <field name="fornecedor3" />
+                                <field name="fornecedor3" string="Fornecedor" readonly="1" />
                             </group>
                             <group>
-                                <field name="valor_fornecedor3" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
-                                <field name="total_fornecedor3" readonly="1" />
+                                <field name="valor_fornecedor3" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
+                                <field name="total_fornecedor3" string="Total" readonly="1" />
                             </group>
                         </group>
                     </sheet>
