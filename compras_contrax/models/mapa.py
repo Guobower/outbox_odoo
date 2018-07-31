@@ -108,15 +108,29 @@ class Mapa(models.Model):
                 self.remover_itens(mapa.name, item.name)
                 self.remover_itens(mapa.ordem_fornecedor2, item.name)
 
+
+        self.validar_ordem(mapa.name)
+        self.validar_ordem(mapa.ordem_fornecedor2)
+        self.validar_ordem(mapa.ordem_fornecedor3)
+
     def remover_itens(self, ordem, produto):
-        for item in ordem.order_line:
-            if item.product_id.id == produto.id:
-                item.unlink()
+        if ordem:
+            for item in ordem.order_line:
+                if item.product_id.id == produto.id:
+                    item.unlink()
 
     def atualizar_valor(self, ordem, produto, valor):
-        for item in ordem.order_line:
-            if item.product_id.id == produto.id:
-                item.write({'price_unit': valor})
+        if ordem:
+            for item in ordem.order_line:
+                if item.product_id.id == produto.id:
+                    item.write({'price_unit': valor})
+
+    def validar_ordem(self, ordem):
+        if ordem:
+            if len(ordem.order_line) > 0:
+                ordem.purchase_confirm()
+            else:
+                ordem.action_cancel()
 
 
 class Item_mapa(models.Model):
