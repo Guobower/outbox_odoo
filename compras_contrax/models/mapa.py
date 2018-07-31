@@ -40,6 +40,17 @@ class Mapa(models.Model):
         inverse_name='mapa',
         track_visibility='onchange')
 
+    def on_change_cotacao(self, cr, user, ids, cotacao, context=None):
+        if cotacao:
+            cotacao_obj = self.pool.get('purchase.order').browse(cr, user, cotacao)
+
+            res = {
+                'value': {
+                    'fornecedor1': cotacao_obj.partner_id.id
+                }
+            }
+            return res
+
     def gerar_mapa(self, cr, user, ids, context=None):
         mapa = self.pool.get('mapa').browse(cr, user, ids[0])
 
