@@ -89,9 +89,25 @@ class Mapa(models.Model):
     def gerar_ordens(self, cr, user, ids, context=None):
         mapa = self.pool.get('mapa').browse(cr, user, ids[0])
 
-        for item in mapa.name.order_line:
-            item.unlink()
+        self.remover_itens(mapa.name)
+        self.remover_itens(mapa.ordem_fornecedor2)
+        self.remover_itens(mapa.ordem_fornecedor3)
 
+        for item in mapa.item_mapa:
+            if item.fornecedor_escolhido == '1':
+                self.remover_itens(mapa.ordem_fornecedor2, item.name)
+                self.remover_itens(mapa.ordem_fornecedor3, item.name)
+            elif item.fornecedor_escolhido == '2':
+                self.remover_itens(mapa.name, item.name)
+                self.remover_itens(mapa.ordem_fornecedor3, item.name)
+            elif item.fornecedor_escolhido == '3':
+                self.remover_itens(mapa.name, item.name)
+                self.remover_itens(mapa.ordem_fornecedor2, item.name)
+
+    def remover_itens(self, ordem, produto):
+        for item in ordem.order_line:
+            if item.product_id == produto.id:
+                item.unlink()
 
 
 class Item_mapa(models.Model):
