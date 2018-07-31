@@ -32,15 +32,11 @@
                                     <tree>
                                         <field name="name" />
                                         <field name="quantidade" />
-                                        <field name="valor_fornecedor1" />
                                         <field name="total_fornecedor1" />
-                                        <field name="valor_fornecedor2" />
                                         <field name="total_fornecedor2" />
-                                        <field name="valor_fornecedor3" />
                                         <field name="total_fornecedor3" />
                                         <field name="fornecedor_indicado" />
                                         <field name="fornecedor_escolhido" />
-                                        <field name="justificativa" />
                                     </tree>
                                 </field>
                             </page>

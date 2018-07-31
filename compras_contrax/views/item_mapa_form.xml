@@ -12,11 +12,11 @@
                     <sheet string="Item do Mapa">
                         <group string="Informacoes Principais">
                             <group>
-                                <field name="name" />
-                                <field name="quantidade" />
+                                <field name="name" readonly="1" />
+                                <field name="quantidade" readonly="1" />
                             </group>
                             <group>
-                                <field name="fornecedor_indicado" />
+                                <field name="fornecedor_indicado" readonly="1" />
                                 <field name="fornecedor_escolhido" />
                             </group>
                             <group colspan="2">
@@ -28,7 +28,7 @@
                                 <field name="valor_fornecedor1" />
                             </group>
                             <group>
-                                <field name="total_fornecedor1" />
+                                <field name="total_fornecedor1" readonly="1" />
                             </group>
                         </group>
                         <group string="Fornecedor 2">
@@ -36,7 +36,7 @@
                                 <field name="valor_fornecedor2" />
                             </group>
                             <group>
-                                <field name="total_fornecedor2" />
+                                <field name="total_fornecedor2" readonly="1" />
                             </group>
                         </group>
                         <group string="Fornecedor 3">
@@ -44,7 +44,7 @@
                                 <field name="valor_fornecedor3" />
                             </group>
                             <group>
-                                <field name="total_fornecedor3" />
+                                <field name="total_fornecedor3" readonly="1" />
                             </group>
                         </group>
                     </sheet>

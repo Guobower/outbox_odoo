@@ -40,6 +40,17 @@ class Mapa(models.Model):
         inverse_name='mapa',
         track_visibility='onchange')
 
+    def gerar_mapa(self, cr, user, ids, context=None):
+        mapa = self.pool.get('mapa').browse(cr, user, ids[0])
+
+        for item in mapa.name.order_line:
+            dados_item_mapa = {
+                'name': item.product_id,
+                'quantidade': item.product_qty
+            }
+
+            self.pool.get('item_mapa').create(cr, user, dados_item_mapa)
+
 
 class Item_mapa(models.Model):
     _name = 'item_mapa'
