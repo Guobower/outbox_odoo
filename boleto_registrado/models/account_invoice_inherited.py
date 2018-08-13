@@ -140,7 +140,7 @@ class Account_invoice_inherited(models.Model):
         disponivel = hoje < data_vencimento + timedelta(days=1)
 
         if disponivel:
-            url = 'http://www.cinte.com.br/2016/boletos/imprimirOdoo.php?id=' + str(ids[0])
+            url = 'http://www.cinte.com.br/boletophp/boleto_bnb.php?id=' + str(ids[0])
             res = {
                 'type': 'ir.actions.act_url',
                 'target': 'new',
