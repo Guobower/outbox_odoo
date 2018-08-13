@@ -91,23 +91,22 @@ class Mapa(models.Model):
 
         for item in mapa.item_mapa:
             if item.fornecedor_escolhido == '1':
-                self.atualizar_valor(mapa.name, item.name, item.valor_fornecedor1)
+                self.atualizar_valor(mapa.name, item.name, item.valor_fornecedor1, item.desconto_fornecedor1)
 
                 self.remover_itens(mapa.ordem_fornecedor2, item.name)
                 self.remover_itens(mapa.ordem_fornecedor3, item.name)
 
             elif item.fornecedor_escolhido == '2':
-                self.atualizar_valor(mapa.ordem_fornecedor2, item.name, item.valor_fornecedor2)
+                self.atualizar_valor(mapa.ordem_fornecedor2, item.name, item.valor_fornecedor2, item.desconto_fornecedor2)
 
                 self.remover_itens(mapa.name, item.name)
                 self.remover_itens(mapa.ordem_fornecedor3, item.name)
 
             elif item.fornecedor_escolhido == '3':
-                self.atualizar_valor(mapa.ordem_fornecedor3, item.name, item.valor_fornecedor3)
+                self.atualizar_valor(mapa.ordem_fornecedor3, item.name, item.valor_fornecedor3, item.desconto_fornecedor3)
 
                 self.remover_itens(mapa.name, item.name)
                 self.remover_itens(mapa.ordem_fornecedor2, item.name)
-
 
         self.validar_ordem(mapa.name)
         self.validar_ordem(mapa.ordem_fornecedor2)
@@ -119,16 +118,16 @@ class Mapa(models.Model):
                 if item.product_id.id == produto.id:
                     item.unlink()
 
-    def atualizar_valor(self, ordem, produto, valor):
+    def atualizar_valor(self, ordem, produto, valor, desconto):
         if ordem:
             for item in ordem.order_line:
                 if item.product_id.id == produto.id:
-                    item.write({'price_unit': valor})
+                    item.write({'price_unit': valor, 'discount': desconto})
 
     def validar_ordem(self, ordem):
         if ordem:
             if len(ordem.order_line) > 0:
-                ordem.wkf_confirm_order()
+                ordem.wkf_po_done()
             else:
                 ordem.wkf_action_cancel()
 
@@ -158,12 +157,24 @@ class Item_mapa(models.Model):
         string="Fornecedor 1 - Valor",
     )
 
+    desconto_fornecedor1 = fields.Float(
+        string="Fornecedor 1 - Desconto",
+    )
+
     valor_fornecedor2 = fields.Float(
         string="Fornecedor 2 - Valor",
     )
 
+    desconto_fornecedor2 = fields.Float(
+        string="Fornecedor 2 - Desconto",
+    )
+
     valor_fornecedor3 = fields.Float(
         string="Fornecedor 3 - Valor",
+    )
+
+    desconto_fornecedor3 = fields.Float(
+        string="Fornecedor 3 - Desconto",
     )
 
     total_fornecedor1 = fields.Float(
@@ -207,11 +218,11 @@ class Item_mapa(models.Model):
 
     fornecedor3 = fields.Char('Fornecedor 3', related='mapa.fornecedor3.name', store=True)
 
-    def on_change_valor_fornecedor(self, cr, user, ids, quantidade, valor_fornecedor1, valor_fornecedor2,
-                                   valor_fornecedor3, context=None):
-        total_fornecedor1 = quantidade * valor_fornecedor1
-        total_fornecedor2 = quantidade * valor_fornecedor2
-        total_fornecedor3 = quantidade * valor_fornecedor3
+    def on_change_valor_fornecedor(self, cr, user, ids, quantidade, valor_fornecedor1, desconto_fornecedor1,
+                                   valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3, context=None):
+        total_fornecedor1 = (quantidade * valor_fornecedor1) * (1 - desconto_fornecedor1/100)
+        total_fornecedor2 = (quantidade * valor_fornecedor2) * (1 - desconto_fornecedor2/100)
+        total_fornecedor3 = (quantidade * valor_fornecedor3) * (1 - desconto_fornecedor3/100)
 
         item_mapa_obj = self.pool.get('item_mapa').browse(cr, user, ids[0])
 
