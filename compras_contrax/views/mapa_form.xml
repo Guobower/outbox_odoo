@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="mapa_form">
+            <field name="name">mapa.form</field>
+            <field name="model">mapa</field>
+            <field name="view_type">form</field>
+            <field name="priority" eval="16" />
+            <field name="arch" type="xml">
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+                <form string="Mapa">
+                    <sheet string="Mapa">
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="gerar_mapa"
+                                    icon="fa-sitemap" string="Gerar Mapa">
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="duplicar_solicitacoes"
+                                    icon="fa-file" string="Duplicar">
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                    name="gerar_ordens"
+                                    icon="fa-credit-card" string="Gerar Ordens">
+                            </button>
+                        </div>
+                        <group string="Informacoes Principais">
+                            <group>
+                                <field name="name" on_change="on_change_cotacao(name)" />
+                                <field name="ordem_fornecedor2" />
+                                <field name="ordem_fornecedor3" />
+                            </group>
+                            <group>
+                                <field name="fornecedor1" />
+                                <field name="fornecedor2" />
+                                <field name="fornecedor3" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mapa">
+                                <field name="item_mapa" >
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="quantidade" />
+                                        <field name="total_fornecedor1" />
+                                        <field name="total_fornecedor2" />
+                                        <field name="total_fornecedor3" />
+                                        <field name="fornecedor_indicado" />
+                                        <field name="fornecedor_escolhido" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

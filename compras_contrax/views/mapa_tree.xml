@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="mapa_tree">
+			<field name="name">mapa.tree</field>
+			<field name="model">mapa</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<tree string="Mapa">
+					<field name="name" />
+					<field name="fornecedor1" />
+					<field name="fornecedor2" />
+					<field name="fornecedor3" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

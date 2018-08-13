@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+
+        <record model="ir.actions.act_window" id="mapa_list_action">
+            <field name="name">Mapa</field>
+            <field name="res_model">mapa</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                	Mapa.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="mapa_menu" name="Mapa" parent="purchase.menu_procurement_management"
+                  action="mapa_list_action"/>
+    </data>
+</openerp>
