@@ -656,52 +656,15 @@ class Remessa_bancaria(models.Model):
         fatura.write({'remessa_bancaria': remessa_bancaria.id})
 
     def gerar_remessa_php(self, cr, user, ids, context=None):
-        import requests
-        import base64
-        import json
-        
-        obj_remessa = self.pool.get('remessa_bancaria').browse(cr, user, ids[0]) 
-        
-        if obj_remessa.remessa_gerada:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'action_warn',
-                'name': 'Warning',
-                'params': {
-                    'title': 'Remessa já gerada!',
-                    'text': 'Verifique o anexo para baixar a remessa',
-                    'sticky': True
-                    }
-            }
-        else:
-            faturas = json.JSONEncoder().encode(self.gerar_array_faturas(obj_remessa.faturas))
+        url = 'http://cinte.com.br/CnabPHP/index.php?remessa='+str(ids[0])
 
-            r = requests.get('http://syncron.cinte.com.br/scriptOdoo/remessa_cnab/cintenet.php?faturas=' + str(faturas))
-            
-            attach_obj = self.pool.get('ir.attachment')
-            context.update({'default_res_id': ids[0], 'default_res_model': 'remessa_bancaria'})
-            
-            print 'FATURAAAS ' + str(r)
-            if r.json():
-                for linha in r.json():
-                    if linha["status"] == "Sucesso":
-                        attach_id = attach_obj.create(cr, user, {'name': 'teste_php.txt',
-                                                      'datas': base64.encodestring(linha["texto"]),
-                                                      'datas_fname': 'teste.REM'}, context=context)
-                        obj_remessa.write({'remessa_gerada':True})
-                    else:
-                        return {
-                            'type': 'ir.actions.client',
-                            'tag': 'action_warn',
-                            'name': 'Warning',
-                            'params': {
-                                'title': 'Erro ao gerar!',
-                                'text': 'Contate o administrador do sistema',
-                                'sticky': True
-                                }
-                        }
+        res = {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': url,
+        }
 
-            pass
+        return res
 
     def computar_total_lote(self, remessa_bancaria):
         remessa_bancaria.write({'total_registros_lote': remessa_bancaria.total_registros_lote + 1})
