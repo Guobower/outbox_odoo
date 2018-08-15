@@ -28,7 +28,8 @@
                                 <field name="fornecedor1" string="Fornecedor" readonly="1" />
                             </group>
                             <group>
-                                <field name="valor_fornecedor1" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
+                                <field name="valor_fornecedor1" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, desconto_fornecedor1, valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3)" />
+                                <field name="desconto_fornecedor1" string="Desconto" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, desconto_fornecedor1, valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3)" />
                                 <field name="total_fornecedor1" string="Total" readonly="1" />
                             </group>
                         </group>
@@ -37,7 +38,8 @@
                                 <field name="fornecedor2" string="Fornecedor" readonly="1" />
                             </group>
                             <group>
-                                <field name="valor_fornecedor2" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
+                                <field name="valor_fornecedor2" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, desconto_fornecedor1, valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3)" />
+                                <field name="desconto_fornecedor2" string="Desconto" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, desconto_fornecedor1, valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3)" />
                                 <field name="total_fornecedor2" string="Total" readonly="1" />
                             </group>
                         </group>
@@ -46,7 +48,8 @@
                                 <field name="fornecedor3" string="Fornecedor" readonly="1" />
                             </group>
                             <group>
-                                <field name="valor_fornecedor3" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, valor_fornecedor2, valor_fornecedor3)" />
+                                <field name="valor_fornecedor3" string="Valor" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, desconto_fornecedor1, valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3)" />
+                                <field name="desconto_fornecedor3" string="Desconto" on_change="on_change_valor_fornecedor(quantidade, valor_fornecedor1, desconto_fornecedor1, valor_fornecedor2, desconto_fornecedor2, valor_fornecedor3, desconto_fornecedor3)" />
                                 <field name="total_fornecedor3" string="Total" readonly="1" />
                             </group>
                         </group>
