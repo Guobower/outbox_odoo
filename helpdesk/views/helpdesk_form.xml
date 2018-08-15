@@ -27,6 +27,7 @@
                                 <field name="name" string="Nome" />
                                 <field name="stage_id" groups="helpdesk.user" />
                                 <field name="sistema" />
+                                <field name="setor" readonly="1" />
                             </group>
                             <group>
                                 <field name="create_date" string="Data de Criação"

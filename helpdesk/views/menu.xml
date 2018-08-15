@@ -5,10 +5,32 @@
 		<!-- The following tag is an action definition for a "window action", that 
 			is an action opening a view or a set of views -->
 		<record model="ir.actions.act_window" id="helpdesk_list_action">
-			<field name="name">Helpdesk</field>
+			<field name="name">Desenvolvimento</field>
 			<field name="res_model">helpdesk</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">kanban,tree,form,graph</field>
+			<field name="domain">[('setor','=','0')]</field>
+			<field name="context">{
+				'default_setor': '0'
+				}
+			</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de chamados de suporte.
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="helpdesk_redes_list_action">
+			<field name="name">Redes</field>
+			<field name="res_model">helpdesk</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form,graph</field>
+			<field name="domain">[('setor','=','1')]</field>
+			<field name="context">{
+				'default_setor': '1'
+				}
+			</field>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Lista de chamados de suporte.
@@ -53,8 +75,11 @@
 			sequence="20" parent="helpdesk_parent_menu" />
 
 
-		<menuitem id="helpdesk_menu" name="Helpdesk" 
+		<menuitem id="helpdesk_menu" name="Desenvolvimento"
 			parent="helpdesk_suporte_menu" action="helpdesk_list_action" />
+
+		<menuitem id="helpdesk_redes_menu" name="Redes"
+			parent="helpdesk_suporte_menu" action="helpdesk_redes_list_action" />
 
 		<menuitem id="estagios_helpdesk_menu" name="Estágios"
 			parent="helpdesk_configuracao_menu" action="estagios_helpdesk_list_action" />

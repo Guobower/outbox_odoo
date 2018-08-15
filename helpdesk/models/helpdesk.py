@@ -77,6 +77,13 @@ class Helpdesk(models.Model):
                                   string='Prioridade',
                                   help='Prioridade do suporte',
                                   track_visibility='onchange')
+
+    setor = fields.Selection(
+        selection=[('0', 'Desenvolvimento'),
+                   ('1', 'Redes')],
+        string='Setor Responsável',
+        help='Setor responsável pelo suporte',
+        track_visibility='onchange')
     
     data_previsao = fields.Date(
                                 string='Previsao de Conclusao',
