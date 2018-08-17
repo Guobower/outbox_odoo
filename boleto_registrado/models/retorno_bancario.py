@@ -45,22 +45,22 @@ class Retorno_bancario(models.Model):
         for linha in linhas:
             try:
                 if linha[13] == 'T':
-                    nosso_numero = self.ler_nosso_numero(linha)
-                    numero_documento = self.ler_numero_documento(linha)
+                    nosso_numero = self.ler_nosso_numero(linha).strip()
+                    numero_documento = self.ler_numero_documento(linha).strip()
                 elif linha[13] == 'U':
                     valor_recebido = self.ler_valor_recebido(linha)
                     retorno = self.ler_retorno(linha)
                     data_ocorrencia = self.ler_data_ocorrencia(linha)
 
                     self.pool.get('item_retorno_bancario').create(cr, user, {'retorno_bancario': retorno_bancario.id, 'name': nosso_numero, 'numero_documento': numero_documento, 'valor_recebido': valor_recebido, 'retorno': retorno, 'data_ocorrencia': data_ocorrencia})
+                    if numero_documento:
+                            invoices = self.pool.get('account.invoice').search(cr, user, [('id', '=', int(numero_documento))])
+                            if len(invoices) > 0:
+                                if retorno in ("06", "17"):
+                                    self.registrar_pagamentos(cr, user, self.pool.get('account.invoice').browse(cr, user, invoices[0]))
 
-                    invoices = self.pool.get('account.invoice').search(cr, user, [('id', '=', int(numero_documento))])
-                    if len(invoices) > 0:
-                        if retorno in ("06", "17"):
-                            self.registrar_pagamentos(cr, user, self.pool.get('account.invoice').browse(cr, user, invoices[0]))
-
-                        fatura = self.pool.get('account.invoice').browse(cr, user, invoices[0])
-                        fatura.write({'status_banco': retorno})
+                                fatura = self.pool.get('account.invoice').browse(cr, user, invoices[0])
+                                fatura.write({'status_banco': retorno})
 
             except IndexError:
                 break
