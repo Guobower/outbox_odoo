@@ -5,6 +5,10 @@ class Grupo_atendimento(models.Model):
     _name = 'grupo_atendimento'
     _description = 'Grupo de atendimento'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+
+    _defaults = {
+        'active': True
+    }
     
     name = fields.Char(
         string="Nome",

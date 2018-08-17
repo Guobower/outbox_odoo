@@ -5,6 +5,10 @@ class Manisfestacao_atendimento(models.Model):
     _name = 'manifestacao_atendimento'
     _description = 'Manifestacao de atendimento'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+
+    _defaults = {
+        'active': True
+    }
     
     name = fields.Char(
         string="Nome",

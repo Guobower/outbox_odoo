@@ -5,6 +5,10 @@ class Tipo_atendimento(models.Model):
     _name = 'tipo_atendimento'
     _description = 'Tipo de atendimento'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+
+    _defaults = {
+        'active': True
+    }
     
     name = fields.Char(
         string="Nome",
@@ -27,6 +31,8 @@ class Tipo_atendimento(models.Model):
         comodel_name='grupo_atendimento',
         help="Grupo de atendimento ao qual esta vinculado o tipo de atendimento",
         track_visibility="onchange")
+
+    manifestacao_atendimento = fields.Char('Manifestação de Atendimento', related='grupo_atendimento.manifestacao_atendimento.name', store=True)
     
     procedimento = fields.Text(
         string="Procedimento",

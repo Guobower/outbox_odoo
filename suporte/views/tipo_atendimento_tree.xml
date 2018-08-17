@@ -11,6 +11,7 @@
 				<tree string="Tipo de Atendimento" default_order='name, grupo_atendimento asc'>
 					<field name="name" />
 					<field name="grupo_atendimento" />
+					<field name="manifestacao_atendimento" />
 					<field name="descricao" />
 				</tree>
 			</field>
