@@ -18,7 +18,7 @@
                                 <field name="anexo_filename" invisible="1" />
                                 <field name="ocorrencia" invisible="1" />
                                 <field name="tempo_efetivo_indisponibilidade" attrs="{'invisible': [('name','!=','2')]}" />
-                                <field name="desligamento" />
+                                <field name="desligamento" attrs="{'invisible': [('name','!=','2')]}" />
                                 <field name="uptime" attrs="{'invisible': [('desligamento','!=',True)]}" on_change="on_change_uptime(desligamento,uptime)" />
                             </group>
                             <group colspan="2">
