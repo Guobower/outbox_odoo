@@ -13,6 +13,6 @@
 		</record>
 
 		<menuitem id="recurring_task_menu" name="Tarefas Recorrentes" sequence="20"
-			parent="project.menu_project_management" />
+			parent="project.menu_project_management" action="recurring_task_action" />
 	</data>
 </odoo>

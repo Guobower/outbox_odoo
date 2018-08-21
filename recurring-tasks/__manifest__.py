@@ -18,5 +18,6 @@
         'views/menu.xml',
         'views/recurring_task_form.xml',
         'views/recurring_task_tree.xml',
+        'data/recurring_task_cron.xml',
     ],
 }

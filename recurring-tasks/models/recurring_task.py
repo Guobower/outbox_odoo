@@ -24,10 +24,6 @@ class RecurringTask(models.Model):
     _name = 'recurring_task'
     _inherit = ['mail.thread']
 
-    _defaults = {
-        'active': True
-    }
-
     name = fields.Char(
         string="Nome",
         size=150,
@@ -41,8 +37,39 @@ class RecurringTask(models.Model):
         track_visibility="onchange"
     )
 
+    stage_id = fields.Many2one(
+        string="Estágio",
+        comodel_name="project.task.type",
+        track_visibility="onchange"
+    )
+
+    frequencia = fields.Integer(
+        string="Repetir a cada",
+        required=True,
+        track_visibility="onchange"
+    )
+
+    recorrencia = fields.Selection(
+        string="Recorrência",
+        selection=[
+            ('dia','Dia(s)'),
+            ('semana','Semana(s)'),
+            ('mes','Mês(es)'),
+            ('ano','Ano(s)')
+        ],
+        required=True,
+        track_visibility="onchange"
+    )
+
+    proxima_data = fields.Date(
+        string="Data da próxima tarefa",
+        required=True,
+        track_visibility="onchange"
+    )
+
     active = fields.Boolean(
         string="Ativo",
+        default=True,
         track_visibility="onchange"
     )
 
@@ -53,42 +80,51 @@ class RecurringTask(models.Model):
         track_visibility="onchange"
     )
 
-    description = fields.Text(
+    description = fields.Html(
         string="Descrição",
         track_visibility="onchange"
     )
 
-    '''
-    def on_change_cidade(self, cr, user, ids, cidade_origem, cidade_destino, context=None):
+    @api.multi
+    def executar_cron(self, context=None):
         """
-        Função onchange para as cidades no formulário.
-        Recebe a cidade de origem e destino adicionadas ao formulário, caso ambas estejam preenchidas utiliza a API do
-        Google Maps para buscar a distância e o tempo de percurso entre as cidades e atualiza no formulário os dados
-        calculados na consulta.
-        :param cr: Cursor da base de dados.
-        :param user: Usuário logado.
-        :param ids: IDs das instâncias da classe.
-        :param cidade_origem: Cidade de origem definida no formulário.
-        :param cidade_destino: Cidade de destino definida no formulário.
+        Função para gerar tarefas agendadas.
+        Função a ser executada diariamente com o intuido de verificar quais tarefas recorrentes devem ser geradas na data
+        atual e realizar a criação, após isso também seta a data da próxima geração de acordo com a frequência definida.
         :param context: Contexto da aplicação. Default None
-        :return: Retorna o par distância/tempo de viagem e atualiza os campos do formulário
+        :return: Null
         """
-        if cidade_origem and cidade_destino:
-            origem = self.pool.get('l10n_br_base.city').browse(cr, user, cidade_origem)
-            destino = self.pool.get('l10n_br_base.city').browse(cr, user, cidade_destino)
+        import datetime
+        hoje = datetime.datetime.now().strftime("%Y-%m-%d")
+        recurring_tasks_obj = self.env['recurring_task'].search([('proxima_data', '<=', hoje)])
 
-            url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + origem.name + "," + origem.state_id.name + "&destinations=" + destino.name + "," + destino.state_id.name + "&key=AIzaSyDYRUAfCeT3uwCqZzvVoGv1QqRIAL0h5dk"
-            url = url.encode('utf-8')
-            result = simplejson.load(urllib.urlopen(url))
-
-            distancia = (result['rows'][0]['elements'][0]['distance']['value']) / 1000
-            tempo_viagem = (result['rows'][0]['elements'][0]['duration']['value']) / 60
-
-            res = {
-                'value': {
-                    'distancia': distancia,
-                    'tempo_viagem': tempo_viagem
-                }
+        for recurring_task in recurring_tasks_obj:
+            valores = {
+                'name': recurring_task["name"],
+                'project_id': recurring_task["project_id"].id,
+                'stage_id': recurring_task["stage_id"].id,
+                'user_id': recurring_task["user_id"].id,
+                'description': recurring_task["description"]
             }
-            return res
-    '''
+            recurring_task.recalcular_proxima_data()
+            self.env['project.task'].create(valores)
+
+    def recalcular_proxima_data(self):
+        """
+        Função para recalcular a data da próxima tarefa agendada.
+        Função responsável por recalcular a data da geração da próxima atividade de acordo com a definição de frequência
+        e recorrência.
+        :param context: Contexto da aplicação. Default None
+        :return: Null
+        """
+        from datetime import timedelta, datetime
+        from dateutil.relativedelta import relativedelta
+
+        if self.recorrencia == "dia":
+            self.proxima_data = (datetime.strptime(self.proxima_data, '%Y-%m-%d') + timedelta(days=self.frequencia)).strftime("%Y-%m-%d")
+        elif self.recorrencia == "semana":
+            self.proxima_data = (datetime.strptime(self.proxima_data, '%Y-%m-%d') + timedelta(weeks=self.frequencia)).strftime("%Y-%m-%d")
+        elif self.recorrencia == "mes":
+            self.proxima_data = (datetime.strptime(self.proxima_data, '%Y-%m-%d') + relativedelta(months=self.frequencia)).strftime("%Y-%m-%d")
+        elif self.recorrencia == "ano":
+            self.proxima_data = (datetime.strptime(self.proxima_data, '%Y-%m-%d') + relativedelta(years=self.frequencia)).strftime("%Y-%m-%d")
