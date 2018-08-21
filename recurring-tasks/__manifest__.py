@@ -13,10 +13,10 @@
     'website': "http://www.outboxsistemas.com",
     'category': 'Project',
     'version': '1.0',
-    'depends': ['base','project'],
+    'depends': ['base','project','mail','contacts'],
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/menu.xml',
+        'views/recurring_task_form.xml',
+        'views/recurring_task_tree.xml',
     ],
 }

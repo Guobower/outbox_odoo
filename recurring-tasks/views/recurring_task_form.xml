@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="recurring_task_form">
+      <field name="name">recurring_task.form</field>
+      <field name="model">recurring_task</field>
+      <field name="view_type">form</field>
+      <field name="arch" type="xml">
+        <form string="Tarefas Recorrentes">
+          <field name="name"/>
+          <field name="project_id"/>
+          <field name="user_id"/>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>
