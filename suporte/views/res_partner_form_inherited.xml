@@ -23,13 +23,6 @@
                 <field name="inscr_est" position="after">
                     <field name="orgao_emissor_rg" attrs="{'invisible': [('is_company','!=',False)]}"></field>
                 </field>
-                <field name="inscr_mun" position="after">
-                    <group string="Dados do Suporte" groups="suporte.user">
-                        <field name="usuario_centreon"></field>
-                        <field name="id_syncron"></field>
-                        <field name="senha_site" password="True" groups="suporte.manager" />
-                    </group>
-                </field>
                 <notebook>
                     <page position="inside" string="Contatos Extras" name="Contatos Extras">
                         <field name="contato_cliente">
