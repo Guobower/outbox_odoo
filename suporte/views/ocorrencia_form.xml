@@ -16,7 +16,7 @@
                                     icon="fa-unlock" string="Reabrir">
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
-                                    name="fechar_ocorrencia" attrs="{'invisible': [('status_ocorrencia','=',2)]}"
+                                    name="fechar_ocorrencia" attrs="{'invisible': ['|',('status_ocorrencia','=',2),('bloqueado_gerencia','=',True)]}"
                                     icon="fa-lock" string="Fechar">
                             </button>
                             <button class="oe_inline oe_stat_button" type="object"
@@ -55,6 +55,7 @@
                                     </group>
                                     <group string="Andamento do Atendimento" colspan="2">
                                         <field name="imputavel" attrs="{'readonly': [('id','&lt;&gt;',False)]}" required="1" />
+                                        <field name="bloqueado_gerencia" groups="suporte.manager" />
                                     </group>
                                 </group>
                             </page>

@@ -73,6 +73,11 @@ class Ocorrencia(models.Model):
                                  selection=[(1, 'Não'),
                                  (2, 'Sim')],
                                  track_visibility="onchange")
+
+    bloqueado_gerencia = fields.Boolean(
+        string="Bloqueado pela Gerência",
+        help="Ocorrência bloqueada pela gerência",
+        track_visibility="onchange")
     
     color = fields.Integer(
                            string="Color Index")

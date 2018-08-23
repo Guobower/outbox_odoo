@@ -13,6 +13,7 @@
                     <field name="titulo" />
                     <field name="tipo_ocorrencia" />
                     <field name="status_ocorrencia" />
+                     <field name="bloqueado_gerencia" />
                     <field name="create_date" string="Data de Criação" />
                 </tree>
             </field>
