@@ -13,6 +13,8 @@ class AccountMoveLineInherited(models.Model):
         help='Código de barras do boleto deste vencimento',
         size=200)
 
+    nota_fiscal = fields.Char('Nota Fiscal', related='invoice.supplier_invoice_number', store=True)
+
     @api.multi
     def action_payment_installment(self):
         compose_form = self.env.ref('view_move_installment_form', False)
