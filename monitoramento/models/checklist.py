@@ -76,7 +76,6 @@ class Checklist_item_cliente(models.Model):
                    ('tre', 'TRE'),
                    ('tce', 'TCE'),
                    ('uern', 'UERN'),
-                   ('ufrn', 'UFRN'),
                    ('ebserh', 'EBSERH')],
         string='Cliente',
         required=True,
