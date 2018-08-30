@@ -241,3 +241,10 @@ class Account_analytic_account_inherited(models.Model):
                 'default_operacao': '2'
             }
         }
+
+    def gerar_protocolo(self, cr, user, ids, context=None):
+        valores = {
+            'contrato': ids[0]
+        }
+        protocolo = self.pool.get('protocolo').create(cr, user, valores, context)
+        pass

@@ -117,6 +117,12 @@
                                 </div>
                             </page>
                             <page string="Atendimentos e Suportes" attrs="{'invisible': [('sla','=',1)]}" groups="suporte.user">
+                                <div class="oe_right oe_button_box" name="buttons">
+                                    <button class="oe_inline oe_stat_button" type="object"
+                                            name="gerar_protocolo"
+                                            icon="fa-unlock" string="Gerar Protocolo">
+                                    </button>
+                                </div>
                                 <field name="protocolo" context="{'default_contrato': id}">
                                     <tree editable="bottom">
                                         <field name="name" readonly="1" />
