@@ -11,7 +11,7 @@
 			<field name="email_from">odoo@cinte.com.br</field>
 			<field name="email_to">suporte@cinte.com.br</field>
 			<field name="email_cc">${object.contrato.partner_id.get_contatos_notificacoes()}</field>
-			<field name="subject">${object.tipo_ocorrencia.name} - ${object.localidade.name} - ${object.name} ${object.report_imputavel(object.id)}</field>
+			<field name="subject">${object.report_webservice(object.create_uid)}${object.tipo_ocorrencia.name} - ${object.localidade.name} - ${object.name} ${object.report_imputavel(object.id)}</field>
 			<field name="body_html">
 <![CDATA[
 <style>

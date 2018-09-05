@@ -393,8 +393,24 @@ class Ocorrencia(models.Model):
             return '(IMPUTAVEL)'
         else:
             return ''
-        
-        
+
+    def report_webservice(self, cr, uid, usuario_criacao, context=None):
+        if usuario_criacao.id == 112:
+            return 'NOVO CHAMADO ABERTO: '
+        else:
+            return ''
+
+    def report_webservice_abre_fecha(self, cr, uid, ocorrencia, context=None):
+        obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ocorrencia)
+        cont_iteracoes = len(obj_ocorrencia.abre_fecha_ocorrencia)
+        if cont_iteracoes > 0:
+            if obj_ocorrencia.abre_fecha_ocorrencia[cont_iteracoes - 1].create_uid.id == 112:
+                return 'NOVA OBSERVAÇÃO ADICIONADA: '
+            else:
+                return ''
+        else:
+            return ''
+
     def solicitar_visita(self, cr, uid, ids, context=None):
         obj_ocorrencia = self.pool.get('ocorrencia').browse(cr, uid, ids[0])
         
