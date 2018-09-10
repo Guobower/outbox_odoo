@@ -33,6 +33,7 @@
         'views/ponto_interno_form.xml',
         'views/ponto_cliente_licitado_form.xml',
         'views/menu.xml',
-        'dossie_viabilidade_report.xml'
+        'dossie_viabilidade_report.xml',
+        'data/schedule_vencimento.xml'
     ]
 }

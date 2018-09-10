@@ -130,5 +130,38 @@ class Project_task_inherited(models.Model):
                     'sticky': True
                     }
             }
-        
-        
+
+    def fechar_projetos(self, cr, uid, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo fechar projetos estacionados na proposta do cliente.
+
+            Utilização:
+              fechar_projetos()
+
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs dos projetos em questão
+              context
+                Contexto atual
+        '''
+        from datetime import datetime, timedelta
+        hoje = datetime.now()
+        data_limite = hoje - timedelta(days=60)
+        projetos = self.pool.get('project.project').search(cr, uid, [('state','=','open'),('date_start','<',data_limite.strftime('%Y-%m-%d')),('proxima_tarefa', 'ilike', 'Aprovação do cliente')])
+
+        for id_projeto in projetos:
+            projeto = self.pool.get('project.project').browse(cr, uid, id_projeto)
+
+            projeto.write({'state': 'cancelled'}, context=context)
+            msg_obj = self.pool.get('mail.message')
+
+            msg_obj.create(cr, uid, {'author_id': uid,
+                                      'type': 'comment',
+                                      'model': 'project.project',
+                                      'res_id': projeto.id,
+                                      'body': 'Cancelando projeto por inatividade: Em caso de retorno será preciso rever a viabilidade'}, context=context)
