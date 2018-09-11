@@ -128,7 +128,7 @@ class Sla_zabbix(models.Model):
 
             return self.get_resultado_sla(zapi, itens_metrica, time_inicio, time_fim)
         else:
-            return "-"
+            return "- / -"
 
     def get_resultado_sla(self, zapi, itens, time_inicio, time_fim):
         for item in itens:
