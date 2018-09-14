@@ -38,25 +38,29 @@ class Atendimento(models.Model):
         comodel_name='manifestacao_atendimento',
         string='Manifestacao',
         help='Manifestação do atendimento',
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
     
     grupo_atendimento = fields.Many2one(
         comodel_name='grupo_atendimento',
         string='Grupo',
         help='Grupo do atendimento',
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
     
     protocolo = fields.Many2one(
         comodel_name='protocolo',
         string='Protocolo',
         help='Protocolo ao qual está vinculado o atendimento',
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
     
     contrato = fields.Many2one(
         string="Contrato",
         comodel_name='account.analytic.account',
         help="Contrato ao qual o atendimento está vinculado",
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
     
     adesao = fields.Many2one(
         string="Adesao",
@@ -69,7 +73,8 @@ class Atendimento(models.Model):
         comodel_name='tipo_atendimento',
         string='Tipo',
         help='Status do contrato',
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
     
     procedimento = fields.Text('Procedimento', related='tipo_atendimento.procedimento', store=True)
     
@@ -87,19 +92,22 @@ class Atendimento(models.Model):
     
     reclamacao = fields.Text(
         string="Reclamacao",
-        help="Descrição da reclamação do cliente")
+        help="Descrição da reclamação do cliente",
+        required=True)
     
     documentacao = fields.Selection(
-        selection=[('0', 'Documentos Pendentes'),
-                   ('1', 'Documentos Recebidos')],
+        selection=[('0', 'Aguardando cliente enviar'),
+                   ('1', 'Recebido do cliente')],
         string="Documentacao",
-        help="A documentação necessária para o atendimento ao cliente foi entregue ou há alguma pendência por parte do cliente?")
+        help="A documentação necessária para o atendimento ao cliente foi entregue ou há alguma pendência por parte do cliente?",
+        required=True)
     
     solicitacao_atendida = fields.Selection(
         selection=[('0', 'Não'),
                    ('1', 'Sim')],
         string="Solicitacao Atendida",
-        help="A solicitação/reclamação do cliente foi atendida pela Cinte?")
+        help="A solicitação/reclamação do cliente foi atendida pela Cinte?",
+        required=True)
     
     previsao_resolucao = fields.Date(
         string="Previsao de Resolucao",
@@ -113,18 +121,78 @@ class Atendimento(models.Model):
         comodel_name='status_atendimento',
         string='Status',
         help='Andamento da solicitação do cliente',
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
+
+    area_resolvedora = fields.Many2one(
+        comodel_name='area_resolvedora',
+        string='Área Resolvedora',
+        help='Área atualmente responsável pela resolução da demanda',
+        track_visibility='onchange',
+        required=True)
     
     modo_contato = fields.Many2one(
         comodel_name='modo_contato',
         string='Modo de Contato',
         help='Modo de contato do cliente com a Cinte na abertura do chamado',
-        track_visibility='onchange')
+        track_visibility='onchange',
+        required=True)
     
     color = fields.Integer(
         string="Color Index")
+
+    def on_change_manifestacao_atendimento(self, cr, user, ids, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo zerar os subcampos da configuracao de atendimento ao trocar a manifestacao.
+
+            Utilização:
+              on_change_manifestacao_atendimento()
+
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              context
+                Contexto atual
+        '''
+        res = {
+            'value': {
+                'grupo_atendimento': '',
+                'tipo_atendimento': ''
+            }
+        }
+        return res
+
+    def on_change_grupo_atendimento(self, cr, user, ids, context=None):
+        '''
+            Descrição:
+              Esta função tem como objetivo zerar os subcampos da configuracao de atendimento ao trocar o grupo.
+
+            Utilização:
+              on_change_grupo_atendimento()
+
+            Parâmetros:
+              cr
+                Cursor do banco de dados
+              uid
+                Usuário do sistema
+              ids
+                IDs da fatura em questão
+              context
+                Contexto atual
+        '''
+        res = {
+            'value': {
+                'tipo_atendimento': ''
+            }
+        }
+        return res
     
-    def on_change_tipo_atendimento(self, cr, user, ids, tipo_atendimento, context=None):
+    def on_change_documentacao(self, cr, user, ids, tipo_atendimento, documentacao, context=None):
         '''
             Descrição:
               Esta função tem como objetivo preencher automaticamente os dados de
@@ -150,17 +218,22 @@ class Atendimento(models.Model):
         import datetime
         
         obj_tipo_atendimento = self.pool.get('tipo_atendimento').browse(cr, user, tipo_atendimento)
-        #obj_atendimento = self.pool.get('atendimento').browse(cr, user, ids[0])
-        
-        data_prevista = datetime.date.today() + timedelta(days=obj_tipo_atendimento.tempo_resolucao)
-        
-        #obj_atendimento({'previsao_resolucao': data_prevista}, context=context)
-        res = {
-                 'value': {
+
+        if documentacao == '1':
+            data_prevista = datetime.date.today() + timedelta(days=obj_tipo_atendimento.tempo_resolucao)
+
+            res = {
+                     'value': {
+                        # Define os valores dos campos e atualiza no formulário
+                        'previsao_resolucao':  data_prevista
+                    }
+                }
+        else:
+            res = {
+                'value': {
                     # Define os valores dos campos e atualiza no formulário
-                    'previsao_resolucao':  data_prevista
+                    'previsao_resolucao': ''
                 }
             }
         # Retorna os valores para serem atualizados na view.
         return res
-        

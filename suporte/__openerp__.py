@@ -53,6 +53,8 @@
         'views/atendimento_graph.xml',
         'views/status_atendimento_form.xml',
         'views/status_atendimento_tree.xml',
+        'views/area_resolvedora_form.xml',
+        'views/area_resolvedora_tree.xml',
         'views/protocolo_sequencia.xml',
         'views/modo_contato_form.xml',
         'views/modo_contato_tree.xml',

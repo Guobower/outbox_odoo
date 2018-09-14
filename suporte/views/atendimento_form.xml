@@ -12,11 +12,11 @@
                     <sheet>
                         <group>
                             <group string="Área de Atendimento">
-                                <field name="manifestacao_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}" />
+                                <field name="manifestacao_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}" on_change="on_change_manifestacao_atendimento()" />
                                 <field name="grupo_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}"
-                                                                       domain="[('manifestacao_atendimento', '=', manifestacao_atendimento)]" />
+                                                                       domain="[('manifestacao_atendimento', '=', manifestacao_atendimento)]" on_change="on_change_grupo_atendimento()" />
                                 <field name="tipo_atendimento" options="{'no_create': True}" attrs="{'readonly': [('id','!=', False)]}"
-                                                                       domain="[('grupo_atendimento', '=', grupo_atendimento)]" on_change="on_change_tipo_atendimento(tipo_atendimento)" />
+                                                                       domain="[('grupo_atendimento', '=', grupo_atendimento)]" on_change="on_change_documentacao(tipo_atendimento, documentacao)" />
                             </group>
                             <group string="Vínculo">
                                 <field name="contrato" readonly="1" />
@@ -41,7 +41,7 @@
                                     <group string="Manifestação">
                                         <field name="name" readonly="1" />
                                         <field name="reclamacao" attrs="{'readonly': [('id','!=', False)]}" />
-                                        <field name="documentacao" />
+                                        <field name="documentacao" on_change="on_change_documentacao(tipo_atendimento, documentacao)" />
                                         <field name="modo_contato" />
                                     </group>
                                     <group string="Andamento do Atendimento">
@@ -49,7 +49,8 @@
                                         <field name="previsao_resolucao" attrs="{'invisible': [('id','=', False)],'readonly': [('id','!=', False)]}" />
                                         <field name="data_conclusao" />
                                         <field name="solicitacao_atendida" />
-                                        <field name="status_atendimento" />
+                                        <field name="status_atendimento" options="{'no_create': True}" />
+                                        <field name="area_resolvedora" options="{'no_create': True}" />
                                     </group>
                                 </group>
                             </page>

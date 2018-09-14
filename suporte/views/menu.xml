@@ -147,6 +147,18 @@
 			</field>
 		</record>
 
+		<record model="ir.actions.act_window" id="area_resolvedora_list_action">
+			<field name="name">Area Resolvedora</field>
+			<field name="res_model">area_resolvedora</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de areas resolvedoras.
+				</p>
+			</field>
+		</record>
+
 
 		<record model="ir.actions.act_window" id="status_contrato_list_action">
 			<field name="name">Status de Contratos</field>
@@ -346,6 +358,9 @@
 			
 		<menuitem id="status_atendimento_menu" name="Status de Atendimento"
 			parent="configuracoes_atendimento_menu" action="status_atendimento_list_action" />
+
+		<menuitem id="area_resolvedora_menu" name="Area Resolvedora"
+			parent="configuracoes_atendimento_menu" action="area_resolvedora_list_action" />
 			
 		<menuitem id="modo_contato_menu" name="Modo de Contato"
 			parent="configuracoes_atendimento_menu" action="modo_contato_list_action" />

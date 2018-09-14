@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="area_resolvedora_tree">
+			<field name="name">area_resolvedora.tree</field>
+			<field name="model">area_resolvedora</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="Area Resolvedora">
+					<field name="name" />
+					<field name="descricao" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

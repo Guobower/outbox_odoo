@@ -26,3 +26,4 @@ from . import lote_ocorrencias
 from . import lote_abre_fecha_ocorrencias
 from . import plano_cidade
 from . import contato_cliente
+from . import area_resolvedora
