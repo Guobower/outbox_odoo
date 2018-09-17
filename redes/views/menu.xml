@@ -76,6 +76,18 @@
 			</field>
 		</record>
 
+		<record model="ir.actions.act_window" id="ap_list_action">
+			<field name="name">Ap</field>
+			<field name="res_model">ap</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Lista de aps.
+				</p>
+			</field>
+		</record>
+
 
 
 		<!-- the following menuitem should appear *after* its parent openacademy_menu 
@@ -91,7 +103,7 @@
 		<menuitem id="checkagem_acesso_menu" name="Checkagem de Acesso" parent="redes_relatorios_menu"
 			action="checkagem_acesso_list_action" />
                 
-                <menuitem id="conexoes_ativas_menu" name="Conexões Ativas" parent="redes_relatorios_menu"
+		<menuitem id="conexoes_ativas_menu" name="Conexões Ativas" parent="redes_relatorios_menu"
 			action="conexoes_ativas_list_action" />
 
 		<menuitem id="router_menu" name="Router" parent="redes_configuracao_menu"
@@ -105,8 +117,9 @@
 			
 		<menuitem id="host_menu" name="Host" parent="redes_configuracao_menu"
 			action="host_list_action" />
-			
-			
+
+		<menuitem id="ap_menu" name="AP" parent="redes_configuracao_menu"
+			action="ap_list_action" />
 
 
 	</data>

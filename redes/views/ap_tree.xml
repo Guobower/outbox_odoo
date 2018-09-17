@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="ap_tree">
+			<field name="name">ap.tree</field>
+			<field name="model">ap</field>
+			<field name="view_type">tree</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<!-- view content: <form>, <tree>, <graph>, ... -->
+				<tree string="AP">
+					<field name="name" />
+					<field name="nas_name" />
+					<field name="type" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>
