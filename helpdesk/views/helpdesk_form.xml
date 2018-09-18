@@ -24,6 +24,7 @@
                                 groups="helpdesk.user" attrs="{'invisible': [('responsavel','!=',False)]}" />
                         <group string="Informações Principais">
                             <group>
+                                <field name="id" readonly="1" />
                                 <field name="name" string="Nome" />
                                 <field name="stage_id" groups="helpdesk.user" />
                                 <field name="sistema" />

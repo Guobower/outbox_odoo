@@ -39,7 +39,7 @@
                                 <div class="oe_kanban_content">
                                     <div>
                                         <b>
-                                            <field name="name" />
+                                            <field name="id" /> - <field name="name" />
                                         </b>
                                     </div>
                                     <div>
