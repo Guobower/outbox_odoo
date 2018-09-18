@@ -39,13 +39,13 @@
                             <page string="Atendimento">
                                 <group>
                                     <group string="Manifestação">
+                                        <field name="id" readonly="1" />
                                         <field name="name" readonly="1" />
                                         <field name="reclamacao" attrs="{'readonly': [('id','!=', False)]}" />
                                         <field name="documentacao" on_change="on_change_documentacao(tipo_atendimento, documentacao)" />
                                         <field name="modo_contato" />
                                     </group>
                                     <group string="Andamento do Atendimento">
-                                        <field name="id" invisible="1" />
                                         <field name="previsao_resolucao" attrs="{'invisible': [('id','=', False)],'readonly': [('id','!=', False)]}" />
                                         <field name="data_conclusao" />
                                         <field name="solicitacao_atendida" />
